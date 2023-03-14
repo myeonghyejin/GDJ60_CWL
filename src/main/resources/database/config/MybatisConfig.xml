@@ -4,8 +4,12 @@
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
    
   <configuration>
-
+  
     <typeAliases>
+  		<typeAlias type="com.team.cwl.member.MemberDTO" alias="MemberDTO"/>
+  		<typeAlias type="com.team.cwl.member.RoleDTO" alias="RoleDTO"/>
   		
+  		<typeAlias type="java.lang.Long" alias="Long"/>
   	</typeAliases>
+  	
   </configuration>
