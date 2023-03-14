@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team.cwl.board.BoardDAO">
+
+	<!-- SQL -->
+  	<sql id="boardCondition">
+    <where>
+		<if test="condition=='title'">
+			TITLE LIKE '%' || #{search} || '%'
+		</if>
+		<if test="condition=='contents'">
+			CONTENTS LIKE '%' || #{search} || '%'
+		</if>
+		<if test="condition=='writer'">
+			WRITER LIKE '%' || #{search} || '%'
+		</if>
+		</where>
+	</sql>
+
+	<!-- SELECT -->
+  	<select id="getBoardList" resultType="BoardDTO">
+  		SELECT * FROM BOARD
+  		WHERE BOARDNUM = #{boardNum}
+  	</select>
+  	
+  	<select id="getBoardDetail" resultType="BoardDTO" parameterType="BoardDTO">
+  		SELECT * FROM BOARD
+  		WHERE BOARDNUM = #{boardNum}
+  	</select>
+	
+	<select id="getTotalCount" resultType="Long" parameterType="Pagination">
+		SELECT COUNT(BOARDNUM) FROM BOARD
+	</select>
+	
+	<!-- INSERT -->
+	<insert id="setBoardAdd" parameterType="BoardDTO">
+		<selectKey keyProperty="boardNum" resultType="Long" order="BEFORE">
+			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO BOARD
+		VALUES(#{boardNum}, #{memberId}, #{boardTitle}, #{boardContents}, SYSDATE, 0)
+	</insert>
+	
+	<!-- UPDATE -->
+	<update id="setBoardUpdate" parameterType="BoardDTO">
+		UPDATE BOARD SET TITLE = #{boardTitle}, CONTENTS = #{boardContents}
+		WHERE BOARDNUM = #{boardNum}
+	</update>
+	
+	<!-- DELETE -->
+	<delete id="setBoardDelete" parameterType="BoardDTO">
+		DELETE BOARD
+		WHERE BOARDNUM = #{boardNum}
+	</delete>
+
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team.cwl.board.comment.boardCommentDAO">
+
+	<!-- SELECT -->
+	<select id="getBoardCommentList" resultType="BoardDTO" parameterType="BoardDTO">
+		SELECT * FROM BOARDCOMMENT
+		WHERE BOARDCOMMENTNUM = #{boardCommentNum}
+	</select>
+	
+	<select id="getTotalCount" resultType="Long" parameterType="Pagination">
+		SELECT COUNT(BOARDCOMMENTNUM) FROM BOARDCOMMNET
+	</select>
+	
+	<!-- INSERT -->
+	<!-- UPDATE -->
+	<!-- DELETE -->
+
+</mapper>
