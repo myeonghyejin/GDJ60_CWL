@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.team.cwl.member.MemberDAO">
 	<insert id="setMemberAdd" parameterType="MemberDTO">
-		INSERT INTO MEMBER
+		INSERT INTO MEMBER (MEMBERID, MEMBERPW, MEMBERNAME, MEMBERPHONE, MEMBEREMAIL, MEMBERGENDER, MEMBERSI, MEMBERAGE)
 		VALUES (#{memberId}, #{memberPw}, #{memberName}, #{memberPhone}, #{memberEmail}, #{memberGender}, #{memberSI}, #{memberAge})
 	</insert>
 	

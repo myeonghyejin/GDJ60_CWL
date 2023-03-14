@@ -22,7 +22,7 @@ public class MemberService {
 	
 	public int setMemberAdd(MemberDTO memberDTO) throws Exception {
 		int result = memberDAO.setMemberAdd(memberDTO);
-		result = memberDAO.setMemberRoleAdd(memberDTO);
+//		result = memberDAO.setMemberRoleAdd(memberDTO);
 		return result;
 	}
 	
