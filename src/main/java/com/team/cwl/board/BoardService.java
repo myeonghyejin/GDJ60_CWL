@@ -20,6 +20,13 @@ public class BoardService {
 	public List<BoardDTO> getBoardList(Pagination pagination) throws Exception {
 		pagination.makeRow();
 		pagination.makeNum(boardDAO.getTotalCount(pagination));
+		
+		System.out.println(boardDAO.getTotalCount(pagination));
+		
+		if(boardDAO.getTotalCount(pagination) == 0) {
+			pagination.setPerBlock(1L);
+		}
+		
 		return boardDAO.getBoardList(pagination);
 	}
 

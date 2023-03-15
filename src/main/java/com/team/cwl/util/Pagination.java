@@ -7,7 +7,7 @@ public class Pagination {
 	
 	public Long getPage() {
 		if(this.page == null || this.page < 1) {
-			this.page = 1L;
+			this.page = 5L;
 		}
 		return page;
 	}
@@ -115,6 +115,9 @@ public class Pagination {
 	private String search;
 	
 	public String getSearch() {
+		if(search == null) {
+			search = "";
+		}
 		return search;
 	}
 	public void setSearch(String search) {
@@ -130,8 +133,8 @@ public class Pagination {
 
 	public void makeNum(Long totalCount) {
 		//총 페이지
-		this.totalPage = totalCount / this.getPerBlock();
-		if(totalCount % this.getPerBlock() != 0) {
+		this.totalPage = totalCount / this.getPerPage();
+		if(totalCount % this.getPerPage() != 0) {
 			totalPage++;
 		}
 		
