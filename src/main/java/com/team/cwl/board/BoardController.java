@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.team.cwl.board.BoardDTO;
 import com.team.cwl.util.Pagination;
 
 @Controller

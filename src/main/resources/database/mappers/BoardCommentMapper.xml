@@ -9,11 +9,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- SQL -->
   	<sql id="commentCondition">
     <where>
-		<if test="condition=='contents'">
-			CONTENTS LIKE '%' || #{search} || '%'
+		<if test="condition == 'contents'">
+			BOARDCOMMENTCONTENTS LIKE '%' || #{search} || '%'
 		</if>
-		<if test="condition=='writer'">
-			WRITER LIKE '%' || #{search} || '%'
+		<if test="condition == 'writer'">
+			MEMBERID LIKE '%' || #{search} || '%'
 		</if>
 		</where>
 	</sql>
@@ -35,13 +35,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getTotalCount" resultType="Long" parameterType="Pagination">
 		SELECT COUNT(BOARDCOMMENTNUM) FROM BOARDCOMMNET
+		<include refid="commentCondition"></include>
 	</select>
 	
 	<!-- INSERT -->
 	<insert id="setBoardCommentAdd" parameterType="BoardDTO">
-<!-- 		<selectKey keyProperty="boardCommentNum" resultType="Long" order="BEFORE">
-			SELECT BOARDCOMMENT_SEQ.NEXTVAL FROM DUAL
-		</selectKey> -->
 		INSERT INTO BOARDCOMMENT
 		VALUES (BOARDCOMMENT_SEQ.NEXTVAL, #{boardNum}, #{memberId}, #{boardCommentContents}, SYSDATE)
 	</insert>
