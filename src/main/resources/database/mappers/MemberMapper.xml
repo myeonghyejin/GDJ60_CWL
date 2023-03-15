@@ -9,8 +9,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES (#{memberId}, #{memberPw}, #{memberName}, #{memberPhone}, #{memberEmail}, #{memberGender}, #{memberSI}, #{memberAge})
 	</insert>
 	
+	<insert id="setMemberRoleAdd" parameterType="MemberDTO">
+  		INSERT INTO MEMBERROLE (MEMBERID, ROLENUM)
+  		VALUES (#{memberId}, (SELECT ROLENUM FROM ROLE WHERE ROLENAME='회원'))
+  	</insert>
+	
 	<select id="getMemberLogin" parameterType="MemberDTO" resultMap="getMemberLoginResult">
-		SELECT * FROM MEMBER
+		SELECT M.*, R.*
+		FROM MEMBER M
+			INNER JOIN
+			MEMBERROLE MR
+			ON (M.MEMBERID = MR.MEMBERID)
+			INNER JOIN
+			ROLE R
+			ON (MR.ROLENUM = R.ROLENUM)
+		WHERE M.MEMBERID = #{memberId}  	
+		
+		<!-- SELECT M.*, R.*
+		FROM MEMBER M
+			INNER JOIN
+			MEMBERROLE MR
+			ON (M.MEMBERID = MR.MEMBERID)
+			INNER JOIN
+			ROLE R
+			ON (MR.ROLENUM = R.ROLENUM)
+		WHERE M.MEMBERID = #{memberId} -->
 	</select>
 	
 	<resultMap type="MemberDTO" id="getMemberLoginResult">
@@ -22,10 +45,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="MEMBERGENDER" property="memberGender"/>
 		<result column="MEMBERSI" property="memberSI"/>
 		<result column="MEMBERAGE" property="memberAge"/>
+		<association property="roleDTO" javaType="RoleDTO">
+			<id column="ROLENUM" property="roleNum"/>
+			<result column="roleName" property="roleName"/>
+		</association>
 	</resultMap>
 	
 	<update id="setMemberUpdate" parameterType="MemberDTO">
 		UPDATE MEMBER SET MEMBERPW=#{memberPw}, MEMBERNAME=#{memberName}, MEMBERPHONE=#{memberPhone}, MEMBEREMAIL=#{memberEmail}, MEMBERGENDER=#{memberGender}, MEMBERSI=#{memberSI}, MEMBERAGE=#{memberAge}
+		WHERE MEMBERID=#{memberId}
 	</update>
 
 </mapper>

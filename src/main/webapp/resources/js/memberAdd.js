@@ -1,7 +1,7 @@
-const id = document.getElementById("id");
+const memberId = document.getElementById("memberId");
 const idResult = document.getElementById("idResult");
 
-const pw = document.getElementById("pw");
+const memberPw = document.getElementById("memberPw");
 const pwResult = document.getElementById("pwResult");
 
 const pwCheck = document.getElementById("pwCheck");
@@ -10,26 +10,25 @@ const pwCheckResult = document.getElementById("pwCheckResult");
 const frm = document.getElementById("frm");
 const btn = document.getElementById("btn");
 
-const name = document.getElementById("name");
+const memberName = document.getElementById("memberName");
 const nameResult = document.getElementById("nameResult");
 
-const phone = document.getElementById("phone");
+const memberPhone = document.getElementById("memberPhone");
 const phoneResult = document.getElementById("phoneResult");
 
-const email = document.getElementById("email");
+const memberEmail = document.getElementById("memberEmail");
 const emailResult = document.getElementById("emailResult");
 
-const address = document.getElementById("address");
+const memberAddress = document.getElementById("memberAddress");
 const addressResult = document.getElementById("addressResult");
 
-// let idCheck = false;
-// let pwLengthCheck = false;
-// let pwNullCheck = false;
-// let pwEqualCheck = false;
+const memberAge = document.getElementById("memberAge");
+const ageResult = document.getElementById("ageResult");
+
 let checks = [false, false, false, false, false, false, false, false];
 
 // ID 검증
-id.addEventListener("blur", function() {
+memberId.addEventListener("blur", function() {
     // 중복검사
     let xhttp = new XMLHttpRequest();
 
@@ -40,7 +39,7 @@ id.addEventListener("blur", function() {
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     // 요청 발생 POST일 경우 parameter 전송
-    xhttp.send("id="+id.value);
+    xhttp.send("memberId="+memberId.value);
 
     // 응답 처리
     xhttp.addEventListener("readystatechange", function(){
@@ -57,15 +56,12 @@ id.addEventListener("blur", function() {
                 idResult.classList.remove("blueResult");
             }
         }
-        // if(this.readyState==4 && this.status!=200) {
-
-        // }
     });
 });
 
 // PW 검증
-pw.addEventListener("keyup", function() {
-    if(pw.value.length>5 && pw.value.length<13) {
+memberPw.addEventListener("keyup", function() {
+    if(memberPw.value.length>5 && memberPw.value.length<13) {
         pwResult.innerHTML='정상적인 비밀번호입니다.'
         // pwLengthCheck = true;
         checks[1]=true;
@@ -79,9 +75,8 @@ pw.addEventListener("keyup", function() {
     }
 });
 
-pw.addEventListener("blur", function() {
-    if(pw.value.length != '') {
-        // pwNullCheck = true;
+memberPw.addEventListener("blur", function() {
+    if(memberPw.value.length != '') {
         checks[2] = true;
     } else {
         pwResult.innerHTML='비밀번호는 필수 입력입니다.'
@@ -92,7 +87,7 @@ pw.addEventListener("blur", function() {
     }
 });
 
-pw.addEventListener("change", function(){
+memberPw.addEventListener("change", function(){
     checks[3] = false;
     pwCheck.value='';
     pwCheckResult.innerHTML='비밀번호가 일치하지 않습니다.';
@@ -104,7 +99,7 @@ pw.addEventListener("change", function(){
 
 // PW Equal 검증
 pwCheck.addEventListener("blur", function() {
-    if(pwCheck.value == pw.value) {
+    if(pwCheck.value == memberPw.value) {
         pwCheckResult.innerHTML="비밀번호가 일치합니다."
         // pwEqualCheck = true;
         checks[3] = true;
@@ -120,8 +115,8 @@ pwCheck.addEventListener("blur", function() {
 
 
 // 이름 검증
-name.addEventListener("blur", function() {
-    if(name.value.length != 0) {
+memberName.addEventListener("blur", function() {
+    if(memberName.value.length != 0) {
         nameResult.innerHTML='';
         checks[4] = true;        
     } else {
@@ -132,8 +127,8 @@ name.addEventListener("blur", function() {
 });
 
 // 번호 검증
-phone.addEventListener("blur", function() {
-    if(phone.value.length != 0) {
+memberPhone.addEventListener("blur", function() {
+    if(memberPhone.value.length != 0) {
         phoneResult.innerHTML='';
         checks[5] = true;
     } else {
@@ -144,8 +139,8 @@ phone.addEventListener("blur", function() {
 });
 
 // 이메일 검증
-email.addEventListener("blur", function() {
-    if(email.value.length != 0) {
+memberEmail.addEventListener("blur", function() {
+    if(memberEmail.value.length != 0) {
         emailResult.innerHTML='';
         checks[6] = true;
     } else {
@@ -156,20 +151,31 @@ email.addEventListener("blur", function() {
 });
 
 // 주소 검증
-address.addEventListener("blur", function() {
-    if(address.value.length != 0) {
-        addressResult.innerHTML='';
+// memberAddress.addEventListener("blur", function() {
+//     if(memberAddress.value.length != 0) {
+//         addressResult.innerHTML='';
+//         checks[7] = true;
+//     } else {
+//         addressResult.innerHTML="주소는 필수 입력입니다."
+//         checks[7] = false;
+//         addressResult.classList.add("redResult");
+//     }
+// });
+
+// 나이 검증
+memberAge.addEventListener("blur", function() {
+    if(memberAge.value.length != 0) {
+        ageResult.innerHTML='';
         checks[7] = true;
     } else {
-        addressResult.innerHTML="주소는 필수 입력입니다."
+        ageResult.innerHTML="나이는 필수 입력입니다."
         checks[7] = false;
-        addressResult.classList.add("redResult");
+        ageResult.classList.add("redResult");
     }
 });
 
 // form 전송
 btn.addEventListener("click", function() {
-    // if(idCheck && pwLengthCheck && pwNullCheck && pwEqualCheck) {
     if(!checks.includes(false)) {
         alert('회원가입 성공');
         frm.submit();

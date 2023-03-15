@@ -33,3 +33,5 @@ agree.addEventListener("click", function() {
         alert('모든 약관에 동의 해야합니다.');
     }
 });
+
+

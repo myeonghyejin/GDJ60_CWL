@@ -65,8 +65,8 @@
 		
 		<div class="mb-3">
 			<label for="memberGender" class="form-label fw-bold">성별</label>
-			<input type="radio" name="memberGender" value="male">남성
-			<input type="radio" name="memberGender" value="female">여성
+			<input type="radio" name="memberGender" value="남성">남성
+			<input type="radio" name="memberGender" value="여성">여성
 			<div id="genderResult"></div>
 		</div>
 		
@@ -78,11 +78,11 @@
 		<div class="mb-3">
 			<label for="memberAge" class="form-label fw-bold">나이</label>
 			<input type="text" name="memberAge" class="form-control" id="memberAge" placeholder="나이 입력">
-			<div id="nameResult"></div>
+			<div id="ageResult"></div>
 		</div>
 		
 		<div class="mb-3">
-				<button class="btn btn-outline-success fw-bold" type="submit" id="btn">등록</button>
+			<button class="btn btn-outline-success fw-bold" type="button" id="btn">등록</button>
 		</div>
 		</form>
 	</div>
