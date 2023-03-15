@@ -1,8 +1,8 @@
-package com.team.cwl.board.review;
+package com.team.cwl.product.review;
 
 import com.team.cwl.board.comment.BoardCommentDTO;
 
-public class BoardReviewDTO extends BoardCommentDTO {
+public class ProductReviewDTO extends BoardCommentDTO {
 	
 	private Integer lessonRating;
 	

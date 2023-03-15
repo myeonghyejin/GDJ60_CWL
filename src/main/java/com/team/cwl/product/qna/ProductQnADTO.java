@@ -1,14 +1,17 @@
-package com.team.cwl.board.qna;
+package com.team.cwl.product.qna;
 
 import java.sql.Date;
 
-public class BoardQnADTO {
+public class ProductQnADTO {
 	
 	private Long productQnANum;
 	private Long productNum;
 	private String memberId;
 	private String productQnAContents;
 	private Date productQnADate;
+	private Long productQnARef;
+	private Long productQnAStep;
+	private Long productQnADepth;
 	
 	public Long getProductQnANum() {
 		return productQnANum;
@@ -39,6 +42,24 @@ public class BoardQnADTO {
 	}
 	public void setProductQnADate(Date productQnADate) {
 		this.productQnADate = productQnADate;
+	}
+	public Long getProductQnARef() {
+		return productQnARef;
+	}
+	public void setProductQnARef(Long productQnARef) {
+		this.productQnARef = productQnARef;
+	}
+	public Long getProductQnAStep() {
+		return productQnAStep;
+	}
+	public void setProductQnAStep(Long productQnAStep) {
+		this.productQnAStep = productQnAStep;
+	}
+	public Long getProductQnADepth() {
+		return productQnADepth;
+	}
+	public void setProductQnADepth(Long productQnADepth) {
+		this.productQnADepth = productQnADepth;
 	}
 
 }

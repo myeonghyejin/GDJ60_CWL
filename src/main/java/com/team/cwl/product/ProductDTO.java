@@ -1,4 +1,4 @@
-package com.team.cwl.Product;
+package com.team.cwl.product;
 
 public class ProductDTO {
 
