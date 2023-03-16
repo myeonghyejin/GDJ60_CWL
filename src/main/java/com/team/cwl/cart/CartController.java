@@ -30,7 +30,7 @@ public class CartController {
 		}
 		cartDTO.setMemberId(memberId);
 		cartService.insert(cartDTO);
-		return "redirect:/cwl/cart/list.do";
+		return "redirect:/cwl/cart/list";
 	}
 	
 	@RequestMapping(value = "list")
@@ -65,7 +65,7 @@ public class CartController {
 	@RequestMapping(value = "delete")
 	public String delete(@RequestParam Long cartNum) {
 		cartService.delete(cartNum);
-		return "redirect:/cwl/cart/list.do";
+		return "redirect:/cwl/cart/list";
 	}
 	
 	@RequestMapping(value = "deleteAll")
@@ -74,7 +74,7 @@ public class CartController {
 		if(memberId != null) {
 			cartService.deleteAll(memberId);
 		}
-		return "redirect:/cwl/cart/list.do";
+		return "redirect:/cwl/cart/list";
 	}
 	
 }

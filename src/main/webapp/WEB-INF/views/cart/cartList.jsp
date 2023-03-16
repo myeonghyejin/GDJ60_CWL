@@ -12,12 +12,12 @@
 $(function(){
  
     $("#btnList").click(function(){
-        location.href="${path}/cwl/product/list.do";
+        location.href="${path}/cwl/product/list";
     });
  
     $("#btnDelete").click(function(){
         if(confirm("장바구니를 비우시겠습니까?")){
-            location.href="${path}/cwl/cart/deleteAll.do";
+            location.href="${path}/cwl/cart/deleteAll";
         }
     });
 });
@@ -33,8 +33,8 @@ $(function(){
     <c:otherwise>
     <!-- map.count가 0이 아닐때, 즉 자료가 있을때 -->
     <!-- form을 실행한다.  -->
-    <!-- form의 id를 form1로 하고, method 방식을 post로 한다. 그리고 update.do페이지로 이동시킨다. -->
-        <form id="form1" name="form1" method="post" action="${path}/cwl/cart/update.do">
+    <!-- form의 id를 form1로 하고, method 방식을 post로 한다. 그리고 update페이지로 이동시킨다. -->
+        <form id="form1" name="form1" method="post" action="${path}/cwl/cart/update">
             <table border="1" style="width:400px">
                 <tr>
                     <th>상품명</th>
@@ -61,7 +61,7 @@ $(function(){
                     	<fmt:formatNumber value="${row.money}" pattern="#,###,###" />
                     </td>
                     <td>
-                    	<a href="${path}/cwl/cart/delete.do?cartNum=${row.cartNum}">[삭제]</a>
+                    	<a href="${path}/cwl/cart/delete?cartNum=${row.cartNum}">[삭제]</a>
                     </td>
                 </tr>
             </c:forEach>
