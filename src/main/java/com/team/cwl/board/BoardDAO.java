@@ -16,7 +16,7 @@ public class BoardDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.team.cwl.board.BoardDAO.";
 
-//--------------------------------------------	
+//--------------------------------------------
 	
 	/** SELECT **/
 	public List<BoardDTO> getBoardList(Pagination pagination) throws Exception {

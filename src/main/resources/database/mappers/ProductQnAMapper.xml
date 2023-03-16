@@ -7,15 +7,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.team.cwl.product.qna.ProductQnADAO">
 
 	<!-- SQL -->
-	<sql id="qnaCondition">
+	<sql id="productQnACondition">
 		<where>
-			<if test="condition == 'title'">
+			<if test="condition == 'productQnATitle'">
 				TITLE LIKE '%' || #{search} || '%'
 			</if>
-			<if test="condition == 'contents'">
+			<if test="condition == 'productQnAContents'">
 				CONTENTS LIKE '%' || #{search} || '%'
 			</if>
-			<if test="condition == 'writer'">
+			<if test="condition == 'memberId'">
 				WRITER LIKE '%' || #{search} || '%'
 			</if>
 		</where>
@@ -28,15 +28,47 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				SELECT ROWNUM R, C.* FROM
 					(
 						SELECT * FROM PRODUCTQNA
-						<include refid="qnaCondition"></include>
+						<include refid="productQnACondition"></include>
 						ORDER BY PRODUCTQNAREF DESC, PRODUCTQNASTEP ASC
 					) C
 			)
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
 	</select>
 	
+	<select id="getTotalCount" resultType="Long" parameterType="Pagination">
+		SELECT COUNT(PRODUCTQNANUM) FROM PRODUCTQNA
+		<include refid="productQnACondition"></include>
+	</select>
+	
 	<!-- INSERT -->
+	<insert id="setProductQnAAdd" parameterType="ProductQnADTO">
+		<selectKey keyProperty="productQnANum" resultType="Long" order="BEFORE">
+  			SELECT PRODUCTQNA_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
+  		INSERT INTO PRODUCTQNA
+		VALUES (#{productQnANum}, #{productNum}, #{memberId}, #{productQnAContents}, SYSDATE, #{productQnANum}, 0, 0)
+	</insert>
+	
+	<insert id="setProductQnAReplyAdd" parameterType="ProductQnADTO">
+		INSERT INTO PRODUCTQNA
+		VALUES (PRODUCT_SEQ.NEXTVAL, #{productNum}, #{memberId}, #{productQnAContents}, SYSDATE, #{productQnARef}, #{productQnAStep}, #{productQnADepth})
+	</insert>
+	
 	<!-- UPDATE -->
+	<update id="setProductQnAUpdate" parameterType="ProductQnADTO">
+		UPDATE PRODUCTQNA SET PRODUCTQNACONTENTS = #{productQnAContents}
+		WHERE PRODUCTQNANUM = #{productQnANum}
+	</update>
+	
+	<update id="setStepUpdate" parameterType="ProductQnADTO">
+		UPDATE PRODUCTQNA SET PRODUCTQNASTEP = PRODUCTQNASTEP + 1
+		WHERE PRODUCTQNAREF = #{productQnARef} AND PRODUCTQNASTEP > #{productQnAStep}
+	</update>
+	
 	<!-- DELETE -->
+	<delete id="setProductQnADelete" parameterType="ProductQnADTO">
+		DELETE PRODUCTQNA
+		WHERE PRODUCTQNANUM = #{productQnANum}
+	</delete>
 
 </mapper>

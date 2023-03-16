@@ -1,4 +1,4 @@
-package com.team.cwl.board.comment;
+package com.team.cwl.product.qna;
 
 import java.util.List;
 
@@ -12,32 +12,32 @@ import org.springframework.web.servlet.ModelAndView;
 import com.team.cwl.util.Pagination;
 
 @Controller
-@RequestMapping("/boardComment/*")
-public class BoardCommentController {
-	
+@RequestMapping("/ProductQnA/*")
+public class ProductQnAController {
+
 	@Autowired
-	private BoardCommentService boardCommentService;
+	private ProductQnAService productQnAService;
 	
 //--------------------------------------------
 	
 	/** SELECT **/
 	@GetMapping("list")
-	public ModelAndView getBoardCommentList(Pagination pagination, ModelAndView modelAndView) throws Exception {
-		List<BoardCommentDTO> ar = boardCommentService.getBoardCommentList(pagination);
+	public ModelAndView getProductQnAList(Pagination pagination, ModelAndView modelAndView) throws Exception {
+		List<ProductQnADTO> ar = productQnAService.getProductQnAList(pagination);
 		
 		modelAndView.addObject("list", ar);
-		modelAndView.setViewName("common/list");
+		modelAndView.setViewName("product/qnaList");
 		
 		return modelAndView;
 	}
 	
 	/** INSERT **/
 	@PostMapping("add")
-	public ModelAndView setBoardCommentAdd(BoardCommentDTO boardCommentDTO, ModelAndView modelAndView) throws Exception {
+	public ModelAndView setProductQnAAdd(ProductQnADTO productQnADTO, ModelAndView modelAndView) throws Exception {
 		//MemberDTO 필요
-		boardCommentDTO.setMemberId("mhj");
+		productQnADTO.setMemberId("mhj");
 		
-		int result = boardCommentService.setBoardCommentAdd(boardCommentDTO);
+		int result = productQnAService.setProductQnAAdd(productQnADTO);
 		
 		modelAndView.addObject("result", result);
 		modelAndView.setViewName("common/ajaxResult");
@@ -46,9 +46,8 @@ public class BoardCommentController {
 	}
 	
 	/** UPDATE **/
-	@PostMapping("update")
-	public ModelAndView setBoardCommentUpdate(BoardCommentDTO boardCommentDTO, ModelAndView modelAndView) throws Exception {
-		int result = boardCommentService.setBoardCommentUpdate(boardCommentDTO);
+	public ModelAndView setProductUpdate(ProductQnADTO productQnADTO, ModelAndView modelAndView) throws Exception {
+		int result = productQnAService.setProductQnAUpdate(productQnADTO);
 		
 		modelAndView.addObject("result", result);
 		modelAndView.setViewName("common/ajaxResult");
@@ -57,9 +56,8 @@ public class BoardCommentController {
 	}
 	
 	/** DELETE **/
-	@PostMapping("delete")
-	public ModelAndView setBoardCommentDelete(BoardCommentDTO boardCommentDTO, ModelAndView modelAndView) throws Exception {
-		int result = boardCommentService.setBoardCommentDelete(boardCommentDTO);
+	public ModelAndView setProductDelete(ProductQnADTO productQnADTO, ModelAndView modelAndView) throws Exception {
+		int result = productQnAService.setProductQnADelete(productQnADTO);
 		
 		modelAndView.addObject("result", result);
 		modelAndView.setViewName("common/ajaxResult");

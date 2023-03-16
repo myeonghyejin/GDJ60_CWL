@@ -77,6 +77,7 @@ public class BoardController {
 		
 		boardDTO = boardService.getBoardDetail(boardDTO);
 		
+		modelAndView.addObject("DTO", boardDTO);
 		modelAndView.setViewName("board/update");
 		
 		return modelAndView;

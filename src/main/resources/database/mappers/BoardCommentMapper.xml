@@ -9,10 +9,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- SQL -->
   	<sql id="commentCondition">
     <where>
-		<if test="condition == 'contents'">
+		<if test="condition == 'boardCommentContents'">
 			BOARDCOMMENTCONTENTS LIKE '%' || #{search} || '%'
 		</if>
-		<if test="condition == 'writer'">
+		<if test="condition == 'memberId'">
 			MEMBERID LIKE '%' || #{search} || '%'
 		</if>
 		</where>

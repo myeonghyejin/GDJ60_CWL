@@ -9,13 +9,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- SQL -->
   	<sql id="boardCondition">
     <where>
-		<if test="condition == 'title'">
+		<if test="condition == 'boardTitle'">
 			BOARDTITLE LIKE '%' || #{search} || '%'
 		</if>
-		<if test="condition == 'contents'">
+		<if test="condition == 'boardContents'">
 			BOARDCONTENTS LIKE '%' || #{search} || '%'
 		</if>
-		<if test="condition == 'writer'">
+		<if test="condition == 'memberId'">
 			MEMBERID LIKE '%' || #{search} || '%'
 		</if>
 		</where>
