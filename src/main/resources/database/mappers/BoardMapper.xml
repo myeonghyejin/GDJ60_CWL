@@ -60,6 +60,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE BOARDNUM = #{boardNum}
 	</update>
 	
+	<update id="setBoardHitUpdate" parameterType="BoardDTO">
+		UPDATE BOARD SET BOARDHIT = #{boardHit} + 1
+		WHERE BOARDNUM = #{boardNum}
+	</update>
+	
 	<!-- DELETE -->
 	<delete id="setBoardDelete" parameterType="BoardDTO">
 		DELETE BOARD

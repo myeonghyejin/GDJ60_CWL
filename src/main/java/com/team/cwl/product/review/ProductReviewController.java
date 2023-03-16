@@ -1,4 +1,4 @@
-package com.team.cwl.product.qna;
+package com.team.cwl.product.review;
 
 import java.util.List;
 
@@ -12,18 +12,18 @@ import org.springframework.web.servlet.ModelAndView;
 import com.team.cwl.util.Pagination;
 
 @Controller
-@RequestMapping("/ProductQnA/*")
-public class ProductQnAController {
+@RequestMapping("/ProductReview/*")
+public class ProductReviewController {
 
 	@Autowired
-	private ProductQnAService productQnAService;
+	private ProductReviewService productReviewService;
 	
 //--------------------------------------------
 	
 	/** SELECT **/
 	@GetMapping("list")
-	public ModelAndView getProductQnAList(Pagination pagination, ModelAndView modelAndView) throws Exception {
-		List<ProductQnADTO> ar = productQnAService.getProductQnAList(pagination);
+	public ModelAndView getProductReviewList(Pagination pagination, ModelAndView modelAndView) throws Exception {
+		List<ProductReviewDTO> ar = productReviewService.getProductReviewList(pagination);
 		
 		modelAndView.addObject("list", ar);
 		modelAndView.setViewName("product/qnaList");
@@ -33,11 +33,11 @@ public class ProductQnAController {
 	
 	/** INSERT **/
 	@PostMapping("add")
-	public ModelAndView setProductQnAAdd(ProductQnADTO productQnADTO, ModelAndView modelAndView) throws Exception {
+	public ModelAndView setProductReviewAdd(ProductReviewDTO productReviewDTO, ModelAndView modelAndView) throws Exception {
 		//MemberDTO 필요
-		productQnADTO.setMemberId("mhj");
+		productReviewDTO.setMemberId("mhj");
 		
-		int result = productQnAService.setProductQnAAdd(productQnADTO);
+		int result = productReviewService.setProductReviewAdd(productReviewDTO);
 		
 		modelAndView.addObject("result", result);
 		modelAndView.setViewName("common/ajaxResult");
@@ -46,8 +46,8 @@ public class ProductQnAController {
 	}
 	
 	/** UPDATE **/
-	public ModelAndView setProductQnAUpdate(ProductQnADTO productQnADTO, ModelAndView modelAndView) throws Exception {
-		int result = productQnAService.setProductQnAUpdate(productQnADTO);
+	public ModelAndView setProductReviewUpdate(ProductReviewDTO productReviewDTO, ModelAndView modelAndView) throws Exception {
+		int result = productReviewService.setProductReviewUpdate(productReviewDTO);
 		
 		modelAndView.addObject("result", result);
 		modelAndView.setViewName("common/ajaxResult");
@@ -56,8 +56,8 @@ public class ProductQnAController {
 	}
 	
 	/** DELETE **/
-	public ModelAndView setProductQnADelete(ProductQnADTO productQnADTO, ModelAndView modelAndView) throws Exception {
-		int result = productQnAService.setProductQnADelete(productQnADTO);
+	public ModelAndView setProductDelete(ProductReviewDTO productReviewDTO, ModelAndView modelAndView) throws Exception {
+		int result = productReviewService.setProductReviewDelete(productReviewDTO);
 		
 		modelAndView.addObject("result", result);
 		modelAndView.setViewName("common/ajaxResult");

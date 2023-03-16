@@ -9,9 +9,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- SQL -->
 	<sql id="productQnACondition">
 		<where>
-			<if test="condition == 'productQnATitle'">
-				TITLE LIKE '%' || #{search} || '%'
-			</if>
 			<if test="condition == 'productQnAContents'">
 				CONTENTS LIKE '%' || #{search} || '%'
 			</if>

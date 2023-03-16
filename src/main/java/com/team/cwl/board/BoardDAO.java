@@ -40,6 +40,10 @@ public class BoardDAO {
 	public int setBoardUpdate(BoardDTO boardDTO) throws Exception {
 		return sqlSession.update(NAMESPACE+"setBoardUpdate", boardDTO);
 	}
+	
+	public int setBoardHitUpdate(BoardDTO boardDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"setBoardHitUpdate", boardDTO);
+	}
 
 	/** DELETE **/
 	public int setBoardDelete(BoardDTO boardDTO) throws Exception {

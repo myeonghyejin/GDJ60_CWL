@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team.cwl.product.review.ProductReviewDAO">
+
+	<!-- SQL -->
+	<sql id="productReviewCondition">
+		<where>
+			<if test="condition == 'productQnAContents'">
+				CONTENTS LIKE '%' || #{search} || '%'
+			</if>
+			<if test="condition == 'memberId'">
+				WRITER LIKE '%' || #{search} || '%'
+			</if>
+		</where>
+	</sql>
+
+	<!-- SELECT -->
+	<select id="getProductReviewList" resultType="ProductReviewDTO" parameterType="Pagination">
+		SELECT * FROM
+			(
+				SELECT ROWNUM R, C.* FROM
+					(
+						SELECT * FROM PRODUCTREVIEW
+						<include refid="productReviewCondition"></include>
+						ORDER BY PRODUCTREVIEWNUM DESC
+					) C
+			)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+	</select>
+	
+	<select id="getTotalCount" resultType="Long" parameterType="Pagination">
+		SELECT COUNT(PRODUCTQNANUM) FROM PRODUCTREVIEW
+		<include refid="productReviewCondition"></include>
+	</select>
+	
+	<!-- INSERT -->
+	<insert id="setProductReviewAdd" parameterType="ProductReviewDTO">
+		<selectKey keyProperty="productReviewNum" resultType="Long" order="BEFORE">
+  			SELECT PRODUCTREVIEW_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
+  		INSERT INTO PRODUCTREVIEW
+		VALUES (#{productReviewNum}, #{productNum}, #{memberId}, #{productReviewContents}, SYSDATE, 0)
+	</insert>
+	
+	<!-- UPDATE -->
+	<update id="setProductReviewUpdate" parameterType="ProductReviewDTO">
+		UPDATE PRODUCTREVIEW SET PRODUCTREVIEWCONTENTS = #{productReviewContents}
+		WHERE PRODUCTREVIEWNUM = #{productReviewNum}
+	</update>
+	
+	<!-- DELETE -->
+	<delete id="setProductReviewDelete" parameterType="ProductReviewDTO">
+		DELETE PRODUCTREVIEW
+		WHERE PRODUCTREVIEWNUM = #{productReviewNum}
+	</delete>
+
+</mapper>
