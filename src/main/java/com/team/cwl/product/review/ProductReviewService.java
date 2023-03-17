@@ -2,6 +2,8 @@ package com.team.cwl.product.review;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +25,7 @@ public class ProductReviewService {
 	}
 
 	/** INSERT **/
-	public int setProductReviewAdd(ProductReviewDTO productReviewDTO) throws Exception {
+	public int setProductReviewAdd(ProductReviewDTO productReviewDTO, HttpSession session) throws Exception {
 		return productReviewDAO.setProductReviewAdd(productReviewDTO);
 	}
 	

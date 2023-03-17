@@ -11,8 +11,8 @@ public class ProductReviewDTO extends BoardCommentDTO {
 	private String memberId;
 	private String productReviewContents;
 	private Date productReviewDate;
-	private Integer lessonRating;
-	
+	private Double productRating;
+
 	public Long getProductReviewNum() {
 		return productReviewNum;
 	}
@@ -52,12 +52,13 @@ public class ProductReviewDTO extends BoardCommentDTO {
 	public void setProductReviewDate(Date productReviewDate) {
 		this.productReviewDate = productReviewDate;
 	}
-	public Integer getLessonRating() {
-		return lessonRating;
+	
+	public Double getProductRating() {
+		return productRating;
 	}
 
-	public void setLessonRating(Integer lessonRating) {
-		this.lessonRating = lessonRating;
+	public void setProductRating(Double productRating) {
+		this.productRating = productRating;
 	}
 
 }

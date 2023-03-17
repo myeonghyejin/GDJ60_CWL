@@ -11,6 +11,7 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
 <body>
+	<c:import url="../template/header.jsp"></c:import>
 	<div class="container-fluid my-5">
 		<!-- Title -->
 		<div class="row col-md-4 mx-auto text-center border-bottom border-dark pb-2">

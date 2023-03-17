@@ -2,7 +2,7 @@
 getList(1);
 
 function getList(page){
-    fetch("/board/list?boardNum="+boardCommentAdd.getAttribute('data-board-comment')+"&page="+page, {
+    fetch("/bankbookComment/list?boardNum="+boardCommentAdd.getAttribute('data-board-comment')+"&page="+page, {
         method: 'GET'
     })
     .then((response)=>response.text())
@@ -22,7 +22,7 @@ $('#boardCommentAdd').click(function(){
     const form = new FormData();
     form.append('contents', $('#boardCommentContents').val());
     form.append('boardNum', $('#boardCommentAdd').attr('data-board-comment'));
-    fetch('../board/add', {
+    fetch('../bankbookComment/add', {
         method: 'POST',
         body: form,
     }).then((response) => response.text())
@@ -39,12 +39,12 @@ $('#boardCommentAdd').click(function(){
 
 //delete
 $('#boardCommentListResult').on('click', '.del', function(e){
-    fetch('../board/delete', {
+    fetch('../bankbookComment/delete', {
         method:'POST',
         headers:{
             'content-type': 'application/x-www-form-urlencoded'
         },
-        body:"boardNum="+$(this).attr("data-comment-num")
+        body:"num="+$(this).attr("data-comment-num")
     }).then((response)=>response.text())
         .then((res)=>{
             if(res.trim()>0){
@@ -58,17 +58,17 @@ $('#boardCommentListResult').on('click', '.del', function(e){
 
 //update
 $('#boardCommentListResult').on('click', '.upd', function(e){
-    let boardNum = $(this).attr('data-comment-num')
-    $('#contents').val($('#contents'+boardNum).text().trim());
-    $('#contentsConfirm').attr('data-comment-num', boardNum);
+    let num = $(this).attr('data-comment-num')
+    $('#contents').val($('#contents'+num).text().trim());
+    $('#contentsConfirm').attr('data-comment-num', num);
     e.preventDefault();
 })
 
 $('#contentsConfirm').click(function(){
-    fetch('../board/update', {
+    fetch('../bankbookComment/update', {
         method: 'POST',
         headers: {"Content-type": "application/x-www-form-urlencoded"},
-        body: "boardNum="+$(this).attr('data-comment-num')+"&contents="+$('#contents').val()
+        body: "num="+$(this).attr('data-comment-num')+"&contents="+$('#contents').val()
     }).then((response)=>response.text())
     .then((res)=>{
         if(res.trim()>0) {

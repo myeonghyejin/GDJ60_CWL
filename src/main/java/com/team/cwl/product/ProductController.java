@@ -1,4 +1,4 @@
-package com.team.cwl.board;
+package com.team.cwl.product;
 
 import java.util.List;
 
@@ -12,31 +12,31 @@ import org.springframework.web.servlet.ModelAndView;
 import com.team.cwl.util.Pagination;
 
 @Controller
-@RequestMapping("/board/*")
-public class BoardController {
+@RequestMapping("/product/*")
+public class ProductController {
 	
 	@Autowired
-	private BoardService boardService;
+	private ProductService productService;
 
 //----------------------------------------------
 	
 	/** SELECT **/
 	@GetMapping("list")
-	public ModelAndView getBoardList(Pagination pagination, ModelAndView modelAndView) throws Exception {
-		List<BoardDTO> ar = boardService.getBoardList(pagination);
+	public ModelAndView getLessonList(Pagination pagination, ModelAndView modelAndView) throws Exception {
+		List<ProductDTO> ar = productService.getProductList(pagination);
 		
 		modelAndView.addObject("list", ar);
-		modelAndView.setViewName("board/list");
+		modelAndView.setViewName("lesson/list");
 		
 		return modelAndView;
 	}
 	
 	@GetMapping("detail")
-	public ModelAndView getBoardDetail(BoardDTO boardDTO, ModelAndView modelAndView) throws Exception {
-		boardDTO = boardService.getBoardDetail(boardDTO);
+	public ModelAndView getLessonDetail(ProductDTO productDTO, ModelAndView modelAndView) throws Exception {
+		productDTO = productService.getProductDetail(productDTO);
 		
-		modelAndView.addObject("DTO", boardDTO);
-		modelAndView.setViewName("board/detail");
+		modelAndView.addObject("DTO", productDTO);
+		modelAndView.setViewName("lesson/detail");
 		
 		return modelAndView;	
 	}
@@ -44,16 +44,16 @@ public class BoardController {
 	/** INSERT **/
 	//입력 폼으로 이동
 	@GetMapping("add")
-	public ModelAndView setBoardAdd(ModelAndView modelAndView) throws Exception {
-		modelAndView.setViewName("board/add");
+	public ModelAndView setProductAdd(ModelAndView modelAndView) throws Exception {
+		modelAndView.setViewName("product/add");
 		
 		return modelAndView;
 	}
 	
 	//DB에 Insert
 	@PostMapping("add")
-	public ModelAndView setBoardAdd(BoardDTO boardDTO, ModelAndView modelAndView) throws Exception {
-		int result = boardService.setBoardAdd(boardDTO);
+	public ModelAndView setProductAdd(ProductDTO productDTO, ModelAndView modelAndView) throws Exception {
+		int result = productService.setProductAdd(productDTO);
 		
 		String message = "등록에 실패했습니다.";
 		
@@ -72,21 +72,21 @@ public class BoardController {
 	//입력 폼으로 이동
 	//Overloading 하기 위해 매개 변수에 ModelAndView 빠짐
 	@GetMapping("update")
-	public ModelAndView setBoardUpdate(BoardDTO boardDTO) throws Exception {
+	public ModelAndView setProductUpdate(ProductDTO productDTO) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		
-		boardDTO = boardService.getBoardDetail(boardDTO);
+		productDTO = productService.getProductDetail(productDTO);
 		
-		modelAndView.addObject("DTO", boardDTO);
-		modelAndView.setViewName("board/update");
+		modelAndView.addObject("DTO", productDTO);
+		modelAndView.setViewName("lesson/update");
 		
 		return modelAndView;
 	}
 	
 	//DB에 Insert
 	@PostMapping("update")
-	public ModelAndView setBoardUpdate(BoardDTO boardDTO, ModelAndView modelAndView) throws Exception {
-		int result = boardService.setBoardUpdate(boardDTO);
+	public ModelAndView setProductUpdate(ProductDTO productDTO, ModelAndView modelAndView) throws Exception {
+		int result = productService.setProductUpdate(productDTO);
 		
 		String message = "수정에 실패했습니다.";
 		
@@ -95,7 +95,7 @@ public class BoardController {
 		}
 		
 		modelAndView.addObject("result", message);
-		modelAndView.addObject("URL", "./detail?boardNum="+boardDTO.getBoardNum());
+		modelAndView.addObject("URL", "./detail?productNum="+productDTO.getProductNum());
 		modelAndView.setViewName("common/result");
 		
 		return modelAndView;
@@ -103,8 +103,8 @@ public class BoardController {
 	
 	/** DELETE **/
 	@PostMapping("delete")
-	public ModelAndView setBoardDelete(BoardDTO boardDTO, ModelAndView modelAndView) throws Exception {
-		int result = boardService.setBoardDelete(boardDTO);
+	public ModelAndView setLessonDelete(ProductDTO productDTO, ModelAndView modelAndView) throws Exception {
+		int result = productService.setProductDelete(productDTO);
 		
 		String message = "삭제에 실패했습니다.";
 		

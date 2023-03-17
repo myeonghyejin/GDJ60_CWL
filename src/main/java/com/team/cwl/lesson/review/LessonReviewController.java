@@ -1,4 +1,4 @@
-package com.team.cwl.product.review;
+package com.team.cwl.lesson.review;
 
 import java.util.List;
 
@@ -14,35 +14,35 @@ import org.springframework.web.servlet.ModelAndView;
 import com.team.cwl.util.Pagination;
 
 @Controller
-@RequestMapping("/ProductReview/*")
-public class ProductReviewController {
-
+@RequestMapping("/lessonReview/*")
+public class LessonReviewController {
+	
 	@Autowired
-	private ProductReviewService productReviewService;
+	private LessonReviewService lessonReviewService;
 	
 //--------------------------------------------
 	
 	/** SELECT **/
 	@GetMapping("list")
-	public ModelAndView getProductReviewList(Pagination pagination, ModelAndView modelAndView) throws Exception {
-		List<ProductReviewDTO> ar = productReviewService.getProductReviewList(pagination);
+	public ModelAndView getLessonReviewList(Pagination pagination, ModelAndView modelAndView) throws Exception {
+		List<LessonReviewDTO> ar = lessonReviewService.getLessonReviewList(pagination);
 		
 		modelAndView.addObject("list", ar);
-		modelAndView.setViewName("product/review");
+		modelAndView.setViewName("lesson/reviewList");
 		
 		return modelAndView;
 	}
 	
 	/** INSERT **/
 	@PostMapping("add")
-	public ModelAndView setProductReviewAdd(ProductReviewDTO productReviewDTO, HttpSession session, ModelAndView modelAndView) throws Exception {		
+	public ModelAndView setLessonReviewAdd(LessonReviewDTO lessonReviewDTO, HttpSession session, ModelAndView modelAndView) throws Exception {		
 		//MemberDTO 필요
 //		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 
-		productReviewDTO.setMemberId("mhj");
-//		productReviewDTO.setMemberId(memberDTO.getMemberId());
+		lessonReviewDTO.setMemberId("mhj");
+//		lessonReviewDTO.setMemberId(memberDTO.getMemberId());
 		
-		int result = productReviewService.setProductReviewAdd(productReviewDTO, null);
+		int result = lessonReviewService.setLessonReviewAdd(lessonReviewDTO, null);
 		
 		modelAndView.addObject("result", result);
 		modelAndView.setViewName("common/ajaxResult");
@@ -51,8 +51,8 @@ public class ProductReviewController {
 	}
 	
 	/** UPDATE **/
-	public ModelAndView setProductReviewUpdate(ProductReviewDTO productReviewDTO, ModelAndView modelAndView) throws Exception {
-		int result = productReviewService.setProductReviewUpdate(productReviewDTO);
+	public ModelAndView setLessonReviewUpdate(LessonReviewDTO lessonReviewDTO, ModelAndView modelAndView) throws Exception {
+		int result = lessonReviewService.setLessonReviewUpdate(lessonReviewDTO);
 		
 		modelAndView.addObject("result", result);
 		modelAndView.setViewName("common/ajaxResult");
@@ -61,13 +61,13 @@ public class ProductReviewController {
 	}
 	
 	/** DELETE **/
-	public ModelAndView setProductDelete(ProductReviewDTO productReviewDTO, ModelAndView modelAndView) throws Exception {
-		int result = productReviewService.setProductReviewDelete(productReviewDTO);
+	public ModelAndView setLessonDelete(LessonReviewDTO lessonReviewDTO, ModelAndView modelAndView) throws Exception {
+		int result = lessonReviewService.setLessonReviewDelete(lessonReviewDTO);
 		
 		modelAndView.addObject("result", result);
 		modelAndView.setViewName("common/ajaxResult");
 		
 		return modelAndView;
 	}
-	
+
 }

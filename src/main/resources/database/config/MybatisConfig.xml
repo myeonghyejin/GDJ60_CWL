@@ -14,6 +14,9 @@
   		<typeAlias type="com.team.cwl.product.qna.ProductQnADTO" alias="ProductQnADTO"/>
   		<typeAlias type="com.team.cwl.product.review.ProductReviewDTO" alias="ProductReviewDTO"/>
   		
+  		<typeAlias type="com.team.cwl.lesson.LessonDTO" alias="LessonDTO"/>
+  		<typeAlias type="com.team.cwl.lesson.review.LessonReviewDTO" alias="LessonReviewDTO"/>
+  		
   		<typeAlias type="com.team.cwl.util.Pagination" alias="Pagination"/>
   	</typeAliases>
   </configuration>

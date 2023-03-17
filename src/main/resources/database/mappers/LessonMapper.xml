@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team.cwl.lesson.LessonDAO">
+
+	<!-- SQL -->
+  	<sql id="lessonCondition">
+    <where>
+		<if test="condition == 'lessonTitle'">
+			LESSONTITLE LIKE '%' || #{search} || '%'
+		</if>
+		<if test="condition == 'lessonContents'">
+			LESSONCONTENTS LIKE '%' || #{search} || '%'
+		</if>
+		<if test="condition == 'memberId'">
+			MEMBERID LIKE '%' || #{search} || '%'
+		</if>
+		</where>
+	</sql>
+
+	<!-- SELECT -->
+  	<select id="getLessonList" resultType="LessonDTO">
+  		SELECT * FROM
+			(
+				SELECT ROWNUM R, C.* FROM
+					(
+						SELECT * FROM LESSON
+						<include refid="lessonCondition"></include>
+						ORDER BY LESSONNUM DESC
+					) C
+			)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+  	</select>
+  	
+  	<select id="getLessonDetail" resultType="LessonDTO" parameterType="LessonDTO">
+  		SELECT * FROM LESSON
+  		WHERE LESSONNUM = #{lessonNum}
+  	</select>
+	
+	<select id="getTotalCount" resultType="Long" parameterType="Pagination">
+		SELECT COUNT(LESSONNUM) FROM LESSON
+		<include refid="lessonCondition"></include>
+	</select>
+	
+	<!-- INSERT -->
+	<insert id="setLessonAdd" parameterType="LessonDTO">
+		<selectKey keyProperty="lessonNum" resultType="Long" order="BEFORE">
+			SELECT LESSON_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO LESSON
+		VALUES(#{lessonNum}, #{memberId}, #{lessonTitle}, #{lessonContents}, #{lessonHit}, SYSDATE)
+	</insert>
+	
+	<!-- UPDATE -->
+	<update id="setLessonUpdate" parameterType="LessonDTO">
+		UPDATE LESSON SET LESSONTITLE = #{lessonTitle}, LESSONCONTENTS = #{lessonContents}
+		WHERE LESSONNUM = #{lessonNum}
+	</update>
+	
+	<!-- DELETE -->
+	<delete id="setLessonDelete" parameterType="LessonDTO">
+		DELETE LESSON
+		WHERE LESSONNUM = #{lessonNum}
+	</delete>
+
+</mapper>

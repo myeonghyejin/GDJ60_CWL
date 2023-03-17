@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- SQL -->
 	<sql id="productReviewCondition">
 		<where>
-			<if test="condition == 'productQnAContents'">
+			<if test="condition == 'productReviewContents'">
 				CONTENTS LIKE '%' || #{search} || '%'
 			</if>
 			<if test="condition == 'memberId'">
@@ -43,7 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   			SELECT PRODUCTREVIEW_SEQ.NEXTVAL FROM DUAL
   		</selectKey>
   		INSERT INTO PRODUCTREVIEW
-		VALUES (#{productReviewNum}, #{productNum}, #{memberId}, #{productReviewContents}, SYSDATE, 0)
+		VALUES (#{productReviewNum}, #{productNum}, #{memberId}, #{productReviewContents}, SYSDATE, #{productRating})
 	</insert>
 	
 	<!-- UPDATE -->

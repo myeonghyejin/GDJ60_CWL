@@ -26,7 +26,7 @@ public class ProductQnAController {
 		List<ProductQnADTO> ar = productQnAService.getProductQnAList(pagination);
 		
 		modelAndView.addObject("list", ar);
-		modelAndView.setViewName("product/qnaList");
+		modelAndView.setViewName("product/qna");
 		
 		return modelAndView;
 	}
@@ -35,7 +35,10 @@ public class ProductQnAController {
 	@PostMapping("add")
 	public ModelAndView setProductQnAAdd(ProductQnADTO productQnADTO, ModelAndView modelAndView) throws Exception {
 		//MemberDTO 필요
+//		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+
 		productQnADTO.setMemberId("mhj");
+//		productQnADTO.setMemberId(memberDTO.getMemberId());
 		
 		int result = productQnAService.setProductQnAAdd(productQnADTO);
 		

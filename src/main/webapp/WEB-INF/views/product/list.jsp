@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>BOARD</title>
+	<title>PRODUCT</title>
 	<c:import url="../template/commonCss.jsp"></c:import>
 </head>
 <body>
@@ -13,7 +13,7 @@
 	<div class="container-fluid my-5">
 		<!-- Title -->
 		<div class="row col-md-4 mx-auto text-center border-bottom border-dark pb-2">
-			<p class="fs-2" style="font-family: 'Impact'">FREE BOARD</p>
+			<p class="fs-2" style="font-family: 'Impact'">PRODUCT</p>
 		</div>
 	
 		<div class="row col-md-4 mx-auto my-5">
@@ -30,13 +30,13 @@
 				<tbody>
 					<c:forEach items="${list}" var="DTO">
 						<tr>
-							<td>${DTO.boardNum}</td>
+							<td>${DTO.productNum}</td>
 							<td>
-								<a href="./detail?boardNum=${DTO.boardNum}">${DTO.boardTitle}</a>
+								<a href="./detail?productNum=${DTO.productNum}">${DTO.productTitle}</a>
 							</td>
 							<td>${DTO.memberId}</td>
-							<td>${DTO.boardDate}</td>
-							<td>${DTO.boardHit}</td>
+							<td>${DTO.productDate}</td>
+							<td>${DTO.productHit}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -108,6 +108,7 @@
 			</div>
 	<%-- 	</c:if> --%>
 	</div>
-	</div>
+</div>
+	<c:import url="../template/commonJs.jsp"></c:import>
 </body>
 </html>

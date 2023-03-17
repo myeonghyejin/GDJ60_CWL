@@ -14,13 +14,13 @@
 		<!-- Contents -->
 		<div class="row col-md-4 mx-auto my-5">
 			<c:choose>
-				<c:when test="${not empty DTO.boardNum}">
+				<c:when test="${not empty DTO.lessonNum}">
 					<div class="row mx-auto text-center border-bottom border-dark pb-4">
-						<p class="fs-6">번호 ${DTO.boardNum} | 작성자 ${DTO.memberId} | 날짜 ${DTO.boardDate} | 조회수 ${DTO.boardHit}</p>
+						<p class="fs-6">번호 ${DTO.lessonNum} | 작성자 ${DTO.memberId} | 날짜 ${DTO.lessonDate} | 조회수 ${DTO.lessonHit}</p>
 					</div>
 					<div class="row my-4">
-						<p class="fs-4 fw-bold text-center">${DTO.boardTitle}</p>
-						<p class="fs-5">${DTO.boardContents}</p>
+						<p class="fs-4 fw-bold text-center">${DTO.lessonTitle}</p>
+						<p class="fs-5">${DTO.lessonContents}</p>
 					</div>
 				</c:when>
 				<c:otherwise>
@@ -35,8 +35,8 @@
 	<%--  	<c:if test="${member.memderId eq DTO.memderId}"> --%>
 			<form action="./update" id="frm">
 				<div class="row col-md-4 justify-content-center mx-auto">
-					<a href="./reply?boardNum=${DTO.boardNum}" class="btn btn-outline-primary col-2 mx-1">답글 달기</a>
-					<input type="hidden" name="boardNum" value="${DTO.boardNum}">
+					<a href="./reply?lessonNum=${DTO.lessonNum}" class="btn btn-outline-primary col-2 mx-1">답글 달기</a>
+					<input type="hidden" name="lessonNum" value="${DTO.lessonNum}">
 					<button id="update" type="submit" class="btn btn-outline-primary col-2 mx-1">수정</button>
 					<button id="delete" type="button" class="btn btn-outline-primary col-2 mx-1">삭제</button>
 				</div>
@@ -47,15 +47,15 @@
 		</div>
 		
  	<!-- Reply -->
-		<div class="row col-md-4 justify-content-center mx-auto" id="boardCommentListResult">
+		<div class="row col-md-4 justify-content-center mx-auto" id="lessonCommentListResult">
 		</div>
 		
 		<div class="row col-md-4 mx-auto my-5">
 			<div class="mb-3">
-			  <textarea class="form-control" rows="3" id="boardCommentContents"></textarea>
+			  <textarea class="form-control" rows="3" id="lessonCommentContents"></textarea>
 			</div>
 			<div class="mb-3">
-				<button type="submit" class="btn btn-primary col-2 mx-1" id="boardCommentAdd" data-board-comment="${DTO.boardNum}">등록</button>
+				<button type="submit" class="btn btn-primary col-2 mx-1" id="lessonCommentAdd" data-lesson-comment="${DTO.lessonNum}">등록</button>
 			</div>
 		</div>
 		
@@ -85,6 +85,6 @@
 	</div>
 	
 	<c:import url="../template/commonJs.jsp"></c:import>
-	<script src="/resources/js/boardComment.js"></script>
+	<script src="/resources/js/lessonComment.js"></script>
 </body>
 </html>

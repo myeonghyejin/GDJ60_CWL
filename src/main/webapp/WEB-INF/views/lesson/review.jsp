@@ -6,19 +6,19 @@
 <table class="table table-striped">
 	<c:forEach items="${list}" var="DTO">
 		<tr>
-			<td id="contents${DTO.productQnANum}">
-				${DTO.productQnAContents}
+			<td id="contents${DTO.lessonReviewNum}">
+				${DTO.lessonReviewContents}
 			</td>
 			<td>${DTO.memberId}</td>
-			<td>${DTO.productQnADate}</td>
+			<td>${DTO.lessonReviewDate}</td>
 			<td>
-				<c:if test="${member.id eq DTO.memberId}">
-					<button class="btn btn-info upd" data-comment-num="${DTO.productQnANum}" data-bs-toggle="modal" data-bs-target="#contentsModal">수정</button>
+				<c:if test="${member.memberId eq DTO.memberId}">
+					<button class="btn btn-info upd" data-comment-num="${DTO.lessonReviewNum}" data-bs-toggle="modal" data-bs-target="#contentsModal">수정</button>
 				</c:if>
 			</td>
 			<td>
-				<c:if test="${member.id eq DTO.memberId}">
-					<button class="btn btn-danger del" data-comment-num="${DTO.productQnANum}">삭제</button>
+				<c:if test="${member.memberId eq DTO.memberId}">
+					<button class="btn btn-danger del" data-comment-num="${DTO.lessonReviewNum}">삭제</button>
 				</c:if>
 			</td>
 		</tr>

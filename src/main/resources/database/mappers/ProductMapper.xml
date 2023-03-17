@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team.cwl.product.ProductDAO">
+
+	<!-- SQL -->
+  	<sql id="productCondition">
+    <where>
+		<if test="condition == 'productTitle'">
+			PRODUCTTITLE LIKE '%' || #{search} || '%'
+		</if>
+		<if test="condition == 'productContents'">
+			PRODUCTCONTENTS LIKE '%' || #{search} || '%'
+		</if>
+		<if test="condition == 'memberId'">
+			MEMBERID LIKE '%' || #{search} || '%'
+		</if>
+		</where>
+	</sql>
+
+	<!-- SELECT -->
+  	<select id="getProductList" resultType="ProductDTO">
+  		SELECT * FROM
+			(
+				SELECT ROWNUM R, C.* FROM
+					(
+						SELECT * FROM PRODUCT
+						<include refid="productCondition"></include>
+						ORDER BY PRODUCTNUM DESC
+					) C
+			)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+  	</select>
+  	
+  	<select id="getProductDetail" resultType="ProductDTO" parameterType="ProductDTO">
+  		SELECT * FROM PRODUCT
+  		WHERE PRODUCTNUM = #{productNum}
+  	</select>
+	
+	<select id="getTotalCount" resultType="Long" parameterType="Pagination">
+		SELECT COUNT(PRODUCTNUM) FROM PRODUCT
+		<include refid="productCondition"></include>
+	</select>
+	
+	<!-- INSERT -->
+	<insert id="setProductAdd" parameterType="ProductDTO">
+		<selectKey keyProperty="productNum" resultType="Long" order="BEFORE">
+			SELECT PRODUCT_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO PRODUCT
+		VALUES(#{productNum}, #{memberId}, #{productName}, #{productDetail}, #{productStock}, #{productPrice}, SYSDATE, #{productState})
+	</insert>
+	
+	<!-- UPDATE -->
+	<update id="setProductUpdate" parameterType="ProductDTO">
+		UPDATE PRODUCT SET PRODUCTNAME = #{productName}, PRODUCTDETAIL = #{productDetail}, PRODUCTSTOCK = #{productStock}, PRODUCTPRICE = #{productPrice}, PRODUCTSTATE = #{productState}
+		WHERE PRODUCTNUM = #{productNum}
+	</update>
+	
+	<!-- DELETE -->
+	<delete id="setProductDelete" parameterType="ProductDTO">
+		DELETE PRODUCT
+		WHERE PRODUCTNUM = #{productNum}
+	</delete>
+
+</mapper>

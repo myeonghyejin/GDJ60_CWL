@@ -50,6 +50,4 @@ public class BoardDAO {
 		return sqlSession.delete(NAMESPACE+"setBoardDelete", boardDTO);
 	}
 	
-	
-	
 }

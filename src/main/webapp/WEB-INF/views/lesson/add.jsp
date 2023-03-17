@@ -21,12 +21,12 @@
 					<input type="text" name="memberId" class="form-control" id="memberId" value="${DTO.memberId}" readonly><br>
 				</div>
 				<div class="fw-bold fs-5 col-12">
-					<label for="boardTitle" class="form-label">제목</label>
-					<input type="text" name="boardTitle" class="form-control" id="boardTitle" placeholder="제목 입력"><br>
+					<label for="lessonTitle" class="form-label">제목</label>
+					<input type="text" name="lessonTitle" class="form-control" id="lessonTitle" placeholder="제목 입력"><br>
 				</div>			
 				<div class="fw-bold fs-5 col-12">
-					<label for="boardContents" class="form-label">내용</label>
-					<textarea name="boardContents" class="form-control" id="boardContents" rows="3" placeholder="상세 정보 입력"></textarea><br>
+					<label for="lessonContents" class="form-label">내용</label>
+					<textarea name="lessonContents" class="form-control" id="lessonContents" rows="3" placeholder="상세 정보 입력"></textarea><br>
 				</div>	
 				<div class="row justify-content-center my-5">
 					<button type="submit" class="btn btn-primary col-2">글쓰기</button>
@@ -35,7 +35,7 @@
 	   </form>
 	</div>
 	<script>
-		$('#boardContents').summernote();
+		$('#lessonContents').summernote();
 	</script>
 	<c:import url="../template/commonJs.jsp"></c:import>
 </body>
