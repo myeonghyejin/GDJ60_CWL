@@ -4,14 +4,14 @@ import java.util.List;
 
 
 public interface CartService {
-	List<CartDTO> cartA();
-	void insert (CartDTO cartDTO);
-	List<CartDTO> cartList(String memberId);
-	void delete (Long cartNum);
-	void deleteAll(String memberId);
-	void update (Long cartNum);
-	int sumMoney(String memberId);
-	int cartCount(String memberId, Long productNum);
-	void updateCart(CartDTO cartDTO);
-	void modifyCart(CartDTO cartDTO);	
+	public List<CartDTO> cartA() throws Exception;
+	public int setCartAdd (CartDTO cartDTO) throws Exception;
+	public List<CartDTO> getCartList(String memberId) throws Exception;
+	public void setCartDelete (Long cartNum) throws Exception;
+	public void setCartDeleteAll(String memberId) throws Exception;
+	public void update (Long cartNum) throws Exception;
+	public int sumMoney(String memberId) throws Exception;
+	public int cartCount(String memberId, Long productNum) throws Exception;
+	public void updateCart(CartDTO cartDTO) throws Exception;
+	public void modifyCart(CartDTO cartDTO) throws Exception;	
 }

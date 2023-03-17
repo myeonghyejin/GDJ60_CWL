@@ -2,16 +2,14 @@ package com.team.cwl.cart;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public abstract class CartServiceImpl implements CartService {
+public class CartServiceImpl implements CartService {
 	
 	@Autowired
-	private CartDAO cartDAO;
+	private CartDAOImpl cartDAOImpl;
 	
 	@Override
 	public List<CartDTO> cartA() {
@@ -19,23 +17,26 @@ public abstract class CartServiceImpl implements CartService {
 	}
 	
 	@Override
-	public void insert(CartDTO cartDTO) {
-		cartDAO.insert(cartDTO);
+	public int setCartAdd(CartDTO cartDTO) throws Exception {
+		int result = cartDAOImpl.setCartAdd(cartDTO);
+		
+		return result;
 	}
 	
 	@Override
-	public List<CartDTO> cartList(String memberId) {
-		return cartDAO.cartList(memberId);
+	public List<CartDTO> getCartList(String memberId) throws Exception {
+		return cartDAOImpl.getCartList(memberId);
 	}
 	
 	@Override
-	public void delete(Long cartNum) {
-		cartDAO.delete(cartNum);
+	public void setCartDelete(Long cartNum) throws Exception {
+		cartDAOImpl.setCartDelete(cartNum);
+		
 	}
 	
 	@Override
-	public void deleteAll(String memberId) {
-		cartDAO.deleteAll(memberId);
+	public void setCartDeleteAll(String memberId) throws Exception {
+		cartDAOImpl.setCartDeleteAll(memberId);
 	}
 	
 	@Override
@@ -45,7 +46,7 @@ public abstract class CartServiceImpl implements CartService {
 	
 	@Override
 	public int sumMoney(String memberId) {
-		return cartDAO.sumMoney(memberId);
+		return cartDAOImpl.sumMoney(memberId);
 	}
 	
 	@Override
@@ -60,6 +61,6 @@ public abstract class CartServiceImpl implements CartService {
 	
 	@Override
 	public void modifyCart(CartDTO cartDTO) {
-		cartDAO.modifyCart(cartDTO);
+		cartDAOImpl.modifyCart(cartDTO);
 	}
 }

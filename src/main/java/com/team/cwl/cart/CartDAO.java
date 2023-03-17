@@ -2,17 +2,26 @@ package com.team.cwl.cart;
 
 import java.util.List;
 
-
 public interface CartDAO {
-	List<CartDTO> cartA();
-	void insert(CartDTO cartDTO); // 장바구니 추가
-	List<CartDTO> cartList(String memberId); // 장바구니 목록
-	void delete(Long cartNum); // 장바구니 개별 삭제
-	void deleteAll(String memberId); // 장바구니 비우기
-	void update (Long cartNum);
-	int sumMoney(String memberId); // 장바구니 금액 합계
-	int carCount(String memberId, Long productNum); // 장바구니 상품 갯수
-	void updateCart(CartDTO cartDTO); // 장바구니 수정
-	void modifyCart(CartDTO cartDTO);
+	
+	public List<CartDTO> cartA() throws Exception;
+	// 장바구니 추가
+	public int setCartAdd(CartDTO cartDTO) throws Exception;
+	// 장바구니 목록
+	public List<CartDTO> getCartList(String memberId) throws Exception;
+	// 장바구니 개별 삭제
+	public void setCartDelete(Long cartNum) throws Exception;
+	// 장바구니 비우기
+	public void setCartDeleteAll(String memberId) throws Exception;
+	
+	public void setCartUpdate (Long cartNum) throws Exception;
+	// 장바구니 금액 합계
+	public int sumMoney(String memberId) throws Exception; 
+	// 장바구니 상품 갯수
+	public int carCount(String memberId, Long productNum) throws Exception;
+	// 장바구니 수정
+	public void updateCart(CartDTO cartDTO) throws Exception;
+	
+	public void modifyCart(CartDTO cartDTO) throws Exception;
 	
 }

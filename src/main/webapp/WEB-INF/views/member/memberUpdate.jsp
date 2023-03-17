@@ -46,8 +46,8 @@
 				</div>
 				
 				<div class="mb-3">
-					<label for="memberSI" class="form-label fw-bold">자기소개</label>
-					<textarea rows="10" cols="10" name="memberSI"></textarea>
+					<label for="memberSI" class="form-label fw-bold">자기소개</label><br>
+					<textarea rows="" cols="" name="memberSI"></textarea>
 				</div>
 				
 				<div class="mb-3">

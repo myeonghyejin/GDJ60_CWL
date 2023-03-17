@@ -3,13 +3,13 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.team.cwl.cart.CartDAO">
-	<insert id="insert" parameterType="CartDTO">
+<mapper namespace="com.team.cwl.cart.CartDAOImpl">
+	<insert id="setCartAdd" parameterType="CartDTO">
 		INSERT INTO CART (CARTNUM, PRODUCTNUM, MEMBERID, CARTAMOUNT)
 		VALUES (CART_SEQ.NEXTVAL, #{productNum}, #{memberId}, #{cartAmount})
 	</insert>
 	
-	<select id="cartList" resultType="CartDTO">
+	<select id="getCartList" resultType="CartDTO">
 		SELECT CARTNUM, P.PRODUCTNUM, C.MEMBERID, PRODUCTNUM, CARTAMOUNT, PRODUCTPRICE, (PRODUCTPRICE*CARTAMOUNT) MONEY 
 		FROM MEMBER M, CART C, PRODUCT P
 		WHERE M.MEMBERID=C.MEMBERID AND C.PRODUCTNUM=P.PRODUCTNUM AND C.MEMBERID=#{memberId} ORDER BY CARTNUM

@@ -9,10 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public abstract class CartDAOImpl implements CartDAO {
+public class CartDAOImpl implements CartDAO {
 	
 	@Autowired
 	private SqlSession sqlSession;
+	private final String NAMESPACE = "com.team.cwl.cart.CartDAOImpl.";
 	
 	public List<CartDTO> cartA() {
 		return null;
@@ -20,34 +21,34 @@ public abstract class CartDAOImpl implements CartDAO {
 	
 	// 장바구니에 담기
 	@Override
-	public void insert(CartDTO cartDTO) {
-		sqlSession.insert("cart.insert", cartDTO);
+	public int setCartAdd(CartDTO cartDTO) {
+		return sqlSession.insert(NAMESPACE+"setCartAdd", cartDTO);
 	}
 	
 	@Override
-	public List<CartDTO> cartList(String memberId) {
-		return sqlSession.selectList("cart.cartList", memberId);
+	public List<CartDTO> getCartList(String memberId) {
+		return sqlSession.selectList(NAMESPACE+"getCartList", memberId);
 	}
 	
 	@Override
-	public void delete(Long cartNum) {
-		sqlSession.delete("cart.delete", cartNum);
+	public void setCartDelete(Long cartNum) {
+		sqlSession.delete(NAMESPACE+"setCartDelete", cartNum);
 	}
 	
 	@Override
-	public void deleteAll(String memberId) {
-		sqlSession.delete("cart.deleteAll", memberId);
+	public void setCartDeleteAll(String memberId) {
+		sqlSession.delete(NAMESPACE+"setCartDeleteAll", memberId);
 		
 	}
 	
 	@Override
-	public void update(Long cartNum) {
+	public void setCartUpdate(Long cartNum) {
 		
 	}
 	
 	@Override
 	public int sumMoney(String memberId) {
-		return sqlSession.selectOne("cart.sumMoney", memberId);
+		return sqlSession.selectOne(NAMESPACE+"cart.sumMoney", memberId);
 	}
 	
 	@Override
@@ -62,6 +63,6 @@ public abstract class CartDAOImpl implements CartDAO {
 	
 	@Override
 	public void modifyCart(CartDTO cartDTO) {
-		sqlSession.update("cart.modify", cartDTO);
+		sqlSession.update(NAMESPACE+"cart.modify", cartDTO);
 	}
 }
