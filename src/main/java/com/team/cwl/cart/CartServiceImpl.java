@@ -17,10 +17,8 @@ public class CartServiceImpl implements CartService {
 	}
 	
 	@Override
-	public int setCartAdd(CartDTO cartDTO) throws Exception {
-		int result = cartDAOImpl.setCartAdd(cartDTO);
-		
-		return result;
+	public void setCartAdd(CartDTO cartDTO) throws Exception {
+		cartDAOImpl.setCartAdd(cartDTO);
 	}
 	
 	@Override

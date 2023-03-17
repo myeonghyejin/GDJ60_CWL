@@ -17,6 +17,7 @@ public class MemberService {
 		if(memberDTO != null) {
 			check = false;
 		}		
+		
 		return check;
 	}
 	

@@ -9,7 +9,7 @@ public class MemberDTO {
 	private String memberGender;
 	private String memberSI;
 	private Long memberAge;
-	private byte profileEmojiNum;
+	private byte[] profileEmojiNum;
 	private RoleDTO roleDTO;
 	
 	
@@ -61,10 +61,10 @@ public class MemberDTO {
 	public void setMemberAge(Long memberAge) {
 		this.memberAge = memberAge;
 	}
-	public byte getProfileEmojiNum() {
+	public byte[] getProfileEmojiNum() {
 		return profileEmojiNum;
 	}
-	public void setProfileEmojiNum(byte profileEmojiNum) {
+	public void setProfileEmojiNum(byte[] profileEmojiNum) {
 		this.profileEmojiNum = profileEmojiNum;
 	}
 	public RoleDTO getRoleDTO() {

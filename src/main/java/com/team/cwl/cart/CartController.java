@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/cart/**")
+@RequestMapping("/cart/*")
 public class CartController { 
 	
-	@Autowired(required=false)
+	@Autowired//(required=false)
 	private CartService cartService;
 	
 	@RequestMapping(value = "add")

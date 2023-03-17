@@ -24,16 +24,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			ROLE R
 			ON (MR.ROLENUM = R.ROLENUM)
 		WHERE M.MEMBERID = #{memberId}  	
-		
-		<!-- SELECT M.*, R.*
-		FROM MEMBER M
-			INNER JOIN
-			MEMBERROLE MR
-			ON (M.MEMBERID = MR.MEMBERID)
-			INNER JOIN
-			ROLE R
-			ON (MR.ROLENUM = R.ROLENUM)
-		WHERE M.MEMBERID = #{memberId} -->
 	</select>
 	
 	<resultMap type="MemberDTO" id="getMemberLoginResult">
