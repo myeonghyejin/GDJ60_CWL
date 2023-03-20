@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script>
 $(function(){
  
@@ -34,7 +35,7 @@ $(function(){
     <!-- map.count가 0이 아닐때, 즉 자료가 있을때 -->
     <!-- form을 실행한다.  -->
     <!-- form의 id를 form1로 하고, method 방식을 post로 한다. 그리고 update페이지로 이동시킨다. -->
-        <form id="form1" name="form1" method="post" action="/cart/update">
+        <form id="form1" name="form1" method="post" action="${path}/cart/update">
             <table border="1" style="width:400px">
                 <tr>
                     <th>상품명</th>
@@ -68,17 +69,14 @@ $(function(){
                 <tr>
                     <td colspan="5" align="right">
                         장바구니 금액 합계 :
-                        <fmt:formatNumber value="${map.sumMoney}"
-                            pattern="#,###,###" /><br>
+                        <fmt:formatNumber value="${map.sumMoney}" pattern="#,###,###" /><br>
                         배송료 : ${map.fee}<br>
-                        총합계 : <fmt:formatNumber value="${map.sum}"
-                            pattern="#,###,###" />
+                        총합계 : <fmt:formatNumber value="${map.sum}" pattern="#,###,###" />
                     </td>
                 </tr>
             </table>
             <button id="btnUpdate">수정</button>
             <button type="button" id="btnDelete">장바구니 비우기</button>
-
         </form>
     </c:otherwise>
 </c:choose>

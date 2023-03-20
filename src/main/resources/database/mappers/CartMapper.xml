@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		LEFT OUTER JOIN
 		PRODUCT P
 		ON (C.PRODUCTNUM = P.PRODUCTNUM)
-		<!-- WHERE C.PRODUCTNUM=P.PRODUCTNUM AND MEMBERID -->
+		<!-- WHERE C.PRODUCTNUM=P.PRODUCTNUM AND MEMBERID=#{memberId} -->
 	</select>
 	
 	<delete id="delete">

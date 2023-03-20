@@ -50,7 +50,7 @@ public class CartDAOImpl implements CartDAO {
 	}
 	
 	@Override
-	public int carCount(String memberId, Long productNum) {
+	public int cartCount(String memberId, Long productNum) {
 		return 0;
 	}
 	

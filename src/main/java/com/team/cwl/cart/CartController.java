@@ -30,12 +30,14 @@ public class CartController {
 	public ModelAndView setCartAdd(@ModelAttribute CartDTO cartDTO, HttpSession session) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		
-		String memberId = (String)session.getAttribute("memberId");
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");		
+		String memberId = memberDTO.getMemberId();
 		
-		String message = "";
+		String message = "로그인 해야함";
 		
 		if(memberId == null) {
 			message = "로그인 후 이용이 가능합니다.";
+			System.out.println("로그인 후 이용이 가능합니다.");
 			
 		}
 		cartDTO.setMemberId(memberId);

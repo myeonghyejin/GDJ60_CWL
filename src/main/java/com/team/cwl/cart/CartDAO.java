@@ -18,7 +18,7 @@ public interface CartDAO {
 	// 장바구니 금액 합계
 	public int sumMoney(String memberId) throws Exception; 
 	// 장바구니 상품 갯수
-	public int carCount(String memberId, Long productNum) throws Exception;
+	public int cartCount(String memberId, Long productNum) throws Exception;
 	// 장바구니 수정
 	public void updateCart(CartDTO cartDTO) throws Exception;
 	
