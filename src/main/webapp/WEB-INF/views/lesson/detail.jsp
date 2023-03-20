@@ -35,7 +35,6 @@
 	<%--  	<c:if test="${member.memderId eq DTO.memderId}"> --%>
 			<form action="./update" id="frm">
 				<div class="row col-md-4 justify-content-center mx-auto">
-					<a href="./reply?lessonNum=${DTO.lessonNum}" class="btn btn-outline-primary col-2 mx-1">답글 달기</a>
 					<input type="hidden" name="lessonNum" value="${DTO.lessonNum}">
 					<button id="update" type="submit" class="btn btn-outline-primary col-2 mx-1">수정</button>
 					<button id="delete" type="button" class="btn btn-outline-primary col-2 mx-1">삭제</button>

@@ -34,14 +34,14 @@ public class ProductDAO {
 	public int setProductAdd(ProductDTO productDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"setProductAdd", productDTO);
 	}
+	
+	public int setProductImgAdd(ProductImgDTO productImgDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setProductImgAdd", productImgDTO);
+	}
 
 	/** UPDATE **/
 	public int setProductUpdate(ProductDTO productDTO) throws Exception {
 		return sqlSession.update(NAMESPACE+"setProductUpdate", productDTO);
-	}
-	
-	public int setProductHitUpdate(ProductDTO productDTO) throws Exception {
-		return sqlSession.update(NAMESPACE+"setProductHitUpdate", productDTO);
 	}
 
 	/** DELETE **/

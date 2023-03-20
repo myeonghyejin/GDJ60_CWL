@@ -7,7 +7,7 @@ public class Pagination {
 	
 	public Long getPage() {
 		if(this.page == null || this.page < 1) {
-			this.page = 5L;
+			this.page = 1L;
 		}
 		return page;
 	}

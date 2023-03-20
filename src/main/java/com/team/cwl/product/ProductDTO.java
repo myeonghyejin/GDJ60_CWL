@@ -11,7 +11,9 @@ public class ProductDTO {
 	private Long productStock;
 	private Long productPrice;
 	private Date productDate;
-	private Double productState;
+	private Integer productState;
+	
+	private ProductImgDTO productImgDTO;
 
 	public Long getProductNum() {
 		return productNum;
@@ -55,11 +57,17 @@ public class ProductDTO {
 	public void setProductDate(Date productDate) {
 		this.productDate = productDate;
 	}
-	public Double getProductState() {
+	public Integer getProductState() {
 		return productState;
 	}
-	public void setProductState(Double productState) {
+	public void setProductState(Integer productState) {
 		this.productState = productState;
+	}
+	public ProductImgDTO getProductImgDTO() {
+		return productImgDTO;
+	}
+	public void setProductImgDTO(ProductImgDTO productImgDTO) {
+		this.productImgDTO = productImgDTO;
 	}
 
 }

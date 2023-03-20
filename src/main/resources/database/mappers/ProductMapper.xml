@@ -35,10 +35,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
   	</select>
   	
-  	<select id="getProductDetail" resultType="ProductDTO" parameterType="ProductDTO">
+  	<select id="getProductDetail" resultMap="getProductDetailResult" parameterType="ProductDTO">
   		SELECT * FROM PRODUCT
+  			LEFT OUTER JOIN
+  			PRODUCTIMG
+  			USING (PRODUCTNUM)
   		WHERE PRODUCTNUM = #{productNum}
   	</select>
+  	
+  	<resultMap type="ProductDTO" id="getProductDetailResult">
+		<id column="PRODUCTNUM" property="productNum"/>
+		<result column="MEMBERID" property="memberId"/>
+		<result column="PRODUCTNAME" property="productName"/>
+		<result column="PRODUCTDETAIL" property="productDetail"/>
+		<result column="PRODUCTSTOCK" property="productStock"/>
+		<result column="PRODUCTPRICE" property="productPrice"/>
+		<result column="PRODUCTDATE" property="productDate"/>
+		<result column="PRODUCTSTATE" property="productState"/>
+		<association property="productImgDTO" javaType="productImgDTO">
+  			<id column="PRODUCTIMGNUM" property="productImgNum"/>
+  			<result column="IMGNAME" property="imgName"/>
+  			<result column="ORINAME" property="oriName"/>
+  		</association>
+	</resultMap>
 	
 	<select id="getTotalCount" resultType="Long" parameterType="Pagination">
 		SELECT COUNT(PRODUCTNUM) FROM PRODUCT
@@ -52,6 +71,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</selectKey>
 		INSERT INTO PRODUCT
 		VALUES(#{productNum}, #{memberId}, #{productName}, #{productDetail}, #{productStock}, #{productPrice}, SYSDATE, #{productState})
+	</insert>
+	
+	<insert id="setProductImgAdd" parameterType="ProductImgDTO">
+		INSERT INTO PRODUCTIMG
+		VALUES (PRODUCTIMG_SEQ.NEXTVAL, #{productNum}, #{imgName}, #{originalName})
 	</insert>
 	
 	<!-- UPDATE -->

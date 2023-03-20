@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</sql>
 
 	<!-- SELECT -->
-	<select id="getBoardCommentList" resultType="BoardDTO" parameterType="BoardDTO">
+	<select id="getBoardCommentList" resultType="BoardCommentDTO" parameterType="BoardCommentDTO">
 		SELECT * FROM
   		(
 	  		SELECT ROWNUM R, C.* FROM
@@ -34,24 +34,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	</select>
 	
 	<select id="getTotalCount" resultType="Long" parameterType="Pagination">
-		SELECT COUNT(BOARDCOMMENTNUM) FROM BOARDCOMMNET
+		SELECT COUNT(BOARDCOMMENTNUM) FROM BOARDCOMMENT
 		<include refid="commentCondition"></include>
 	</select>
 	
 	<!-- INSERT -->
-	<insert id="setBoardCommentAdd" parameterType="BoardDTO">
+	<insert id="setBoardCommentAdd" parameterType="BoardCommentDTO">
 		INSERT INTO BOARDCOMMENT
 		VALUES (BOARDCOMMENT_SEQ.NEXTVAL, #{boardNum}, #{memberId}, #{boardCommentContents}, SYSDATE)
 	</insert>
 	
 	<!-- UPDATE -->
-	<update id="setBoardCommentUpdate" parameterType="BoardDTO">
+	<update id="setBoardCommentUpdate" parameterType="BoardCommentDTO">
 		UPDATE BOARDCOMMENT SET BOARDCOMMENTCONTENTS = #{boardCommentContents}
 		WHERE BOARDCOMMENTNUM = #{boardCommentNum}
 	</update>
 	
 	<!-- DELETE -->
-	<delete id="setBoardCommentDelete" parameterType="BoardDTO">
+	<delete id="setBoardCommentDelete" parameterType="BoardCommentDTO">
 		DELETE BOARDCOMMENT
 		WHERE BOARDCOMMENTNUM = #{boardCommentNum}
 	</delete>

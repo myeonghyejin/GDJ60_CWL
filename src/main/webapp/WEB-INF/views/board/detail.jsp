@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>DETAIL</title>
 	<c:import url="../template/commonCss.jsp"></c:import>
 </head>
 <body>
@@ -32,58 +32,54 @@
 		</div>
 		
 		<!-- Buttons -->
-	<%--  	<c:if test="${member.memderId eq DTO.memderId}"> --%>
+<%-- 	<c:if test="${member.memderId eq DTO.memderId}"> --%>
 			<form action="./update" id="frm">
 				<div class="row col-md-4 justify-content-center mx-auto">
-					<a href="./reply?boardNum=${DTO.boardNum}" class="btn btn-outline-primary col-2 mx-1">답글 달기</a>
 					<input type="hidden" name="boardNum" value="${DTO.boardNum}">
 					<button id="update" type="submit" class="btn btn-outline-primary col-2 mx-1">수정</button>
 					<button id="delete" type="button" class="btn btn-outline-primary col-2 mx-1">삭제</button>
 				</div>
 			</form>
-	<%--  	</c:if> --%>
+<%-- 	</c:if> --%>
 		<div class="row col-md-4 justify-content-center mx-auto my-2">
 			<a href="./list" class="btn btn-primary col-2 mx-1">목록</a>
 		</div>
 		
- 	<!-- Reply -->
-		<div class="row col-md-4 justify-content-center mx-auto" id="boardCommentListResult">
+		<div class="row my-5" id="commentListResult">
 		</div>
-		
-		<div class="row col-md-4 mx-auto my-5">
+	
+		<div class="row my-5">
 			<div class="mb-3">
-			  <textarea class="form-control" rows="3" id="boardCommentContents"></textarea>
+				<textarea class="form-control" rows="3" id="replyContents"></textarea>
 			</div>
 			<div class="mb-3">
-				<button type="submit" class="btn btn-primary col-2 mx-1" id="boardCommentAdd" data-board-comment="${DTO.boardNum}">등록</button>
+				<button type="button" class="btn btn-primary" id="replyAdd" data-board-comment="${DTO.boardNum}">작성</button>
 			</div>
 		</div>
-		
-		<!-- Update Form -->
+	
+		<!--  Update Form Modal -->
 		<!-- Modal -->
 		<div class="modal fade" id="contentsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="exampleModalLabel">수정</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			<div class="modal-content">
+				<div class="modal-header">
+				<h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
 					<div class="form-floating">
-						<textarea class="form-control" id="contents"></textarea>
-						<label for="floatingTextarea">Comments</label>
+						<textarea class="form-control" placeholder="Leave a comment here" id="contents"></textarea>
+						<label for="contents">Comments</label>
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModal">취소</button>
-					<button type="button" class="btn btn-primary" data-comment-num="" id="contentsConfirm">확인</button>
-				</div>
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModal">Cancel</button>
+				<button type="button" class="btn btn-primary" data-comment-num="" id="contentsConfirm">확인</button>
 				</div>
 			</div>
+			</div>
 		</div>
-		
 	</div>
-	
 	<c:import url="../template/commonJs.jsp"></c:import>
 	<script src="/resources/js/boardComment.js"></script>
 </body>

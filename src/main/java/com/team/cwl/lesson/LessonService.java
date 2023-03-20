@@ -24,7 +24,6 @@ public class LessonService {
 	}
 
 	public LessonDTO getLessonDetail(LessonDTO lessonDTO) throws Exception {
-		lessonDAO.setLessonHitUpdate(lessonDTO);
 		return lessonDAO.getLessonDetail(lessonDTO);
 	}
 
@@ -36,6 +35,10 @@ public class LessonService {
 	/** UPDATE **/
 	public int setLessonUpdate(LessonDTO lessonDTO) throws Exception {
 		return lessonDAO.setLessonUpdate(lessonDTO);
+	}
+	
+	public int setLessonHitUpdate(LessonDTO lessonDTO) throws Exception {
+		return lessonDAO.setLessonHitUpdate(lessonDTO);
 	}
 
 	/** DELETE **/

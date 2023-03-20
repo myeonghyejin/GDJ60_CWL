@@ -35,6 +35,8 @@ public class LessonController {
 	public ModelAndView getLessonDetail(LessonDTO lessonDTO, ModelAndView modelAndView) throws Exception {
 		lessonDTO = lessonService.getLessonDetail(lessonDTO);
 		
+		lessonService.setLessonHitUpdate(lessonDTO);
+		
 		modelAndView.addObject("DTO", lessonDTO);
 		modelAndView.setViewName("lesson/detail");
 		
@@ -57,7 +59,7 @@ public class LessonController {
 		
 		String message = "등록에 실패했습니다.";
 		
-		if(result > 1) {
+		if(result > 0) {
 			message = "등록에 성공했습니다.";
 		}
 		
@@ -90,7 +92,7 @@ public class LessonController {
 		
 		String message = "수정에 실패했습니다.";
 		
-		if(result > 1) {
+		if(result > 0) {
 			message = "수정에 성공했습니다.";
 		}
 		
@@ -108,7 +110,7 @@ public class LessonController {
 		
 		String message = "삭제에 실패했습니다.";
 		
-		if(result > 1) {
+		if(result > 0) {
 			message = "삭제에 성공했습니다.";
 		}
 		

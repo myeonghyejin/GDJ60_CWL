@@ -35,6 +35,8 @@ public class BoardController {
 	public ModelAndView getBoardDetail(BoardDTO boardDTO, ModelAndView modelAndView) throws Exception {
 		boardDTO = boardService.getBoardDetail(boardDTO);
 		
+		boardService.setBoardHitUpdate(boardDTO);
+		
 		modelAndView.addObject("DTO", boardDTO);
 		modelAndView.setViewName("board/detail");
 		
@@ -57,7 +59,7 @@ public class BoardController {
 		
 		String message = "등록에 실패했습니다.";
 		
-		if(result > 1) {
+		if(result > 0) {
 			message = "등록에 성공했습니다.";
 		}
 		
@@ -90,7 +92,7 @@ public class BoardController {
 		
 		String message = "수정에 실패했습니다.";
 		
-		if(result > 1) {
+		if(result > 0) {
 			message = "수정에 성공했습니다.";
 		}
 		
@@ -108,7 +110,7 @@ public class BoardController {
 		
 		String message = "삭제에 실패했습니다.";
 		
-		if(result > 1) {
+		if(result > 0) {
 			message = "삭제에 성공했습니다.";
 		}
 		

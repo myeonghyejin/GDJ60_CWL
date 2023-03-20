@@ -24,7 +24,6 @@
 						<th>TITLE</th>
 						<th>WRITER</th>
 						<th>DATE</th>
-						<th>HIT</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -32,11 +31,10 @@
 						<tr>
 							<td>${DTO.productNum}</td>
 							<td>
-								<a href="./detail?productNum=${DTO.productNum}">${DTO.productTitle}</a>
+								<a href="./detail?productNum=${DTO.productNum}">${DTO.productName}</a>
 							</td>
 							<td>${DTO.memberId}</td>
 							<td>${DTO.productDate}</td>
-							<td>${DTO.productHit}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -110,5 +108,6 @@
 	</div>
 </div>
 	<c:import url="../template/commonJs.jsp"></c:import>
+	<script src="../resources/js/paging.js"></script>
 </body>
 </html>

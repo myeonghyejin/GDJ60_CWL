@@ -54,6 +54,7 @@ public class BoardDAOTest extends MyTestCase {
 		
 			int result = boardDAO.setBoardAdd(boardDTO);
 		}
+		
 	}
 
 }

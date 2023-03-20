@@ -31,7 +31,6 @@ public class BoardService {
 	}
 
 	public BoardDTO getBoardDetail(BoardDTO boardDTO) throws Exception {
-		boardDAO.setBoardHitUpdate(boardDTO);
 		return boardDAO.getBoardDetail(boardDTO);
 	}
 
@@ -43,6 +42,10 @@ public class BoardService {
 	/** UPDATE **/
 	public int setBoardUpdate(BoardDTO boardDTO) throws Exception {
 		return boardDAO.setBoardUpdate(boardDTO);
+	}
+	
+	public int setBoardHitUpdate(BoardDTO boardDTO) throws Exception {
+		return boardDAO.setBoardHitUpdate(boardDTO);
 	}
 
 	/** DELETE **/

@@ -9,17 +9,14 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.team.cwl.MyTestCase;
-import com.team.cwl.board.BoardDTO;
-import com.team.cwl.product.qna.ProductQnADAO;
-import com.team.cwl.product.qna.ProductQnADTO;
 
-public class ProductQnADAOTest extends MyTestCase {
+public class ProductDAOTest extends MyTestCase {
 	
 	@Autowired
-	private ProductQnADAO productQnADAO;
+	private ProductDAO productDAO;
 	
 	@Test
-	public void setProductQnAAddTest() throws Exception {
+	public void setProductAddTest() throws Exception {
 		
 		for (int i=0; i<30; i++) {
 			Random r = new Random();
@@ -30,18 +27,21 @@ public class ProductQnADAOTest extends MyTestCase {
 			Calendar calendar = new GregorianCalendar();
 			calendar.set(Calendar.YEAR, 2023);
 			calendar.set(Calendar.MONTH, 02); // 11 = december
-			calendar.set(Calendar.DAY_OF_MONTH, 16); 
+			calendar.set(Calendar.DAY_OF_MONTH, 20); 
 			
 			Date date = new Date(calendar.getTimeInMillis());	
 		
-			ProductQnADTO productQnADTO = new ProductQnADTO();
+			ProductDTO productDTO = new ProductDTO();
 			
-			productQnADTO.setProductNum(1L);
-			productQnADTO.setMemberId("mhj");
-			productQnADTO.setProductQnAContents("딱딱복숭아");
-			productQnADTO.setProductQnADate(date);
+			productDTO.setMemberId("mhj");
+			productDTO.setProductName("말랑복숭아");
+			productDTO.setProductDetail("딱딱복숭아");
+			productDTO.setProductStock(320L);
+			productDTO.setProductPrice(32000L);
+			productDTO.setProductDate(date);
+			productDTO.setProductState(1);
 		
-			int result = productQnADAO.setProductQnAAdd(productQnADTO);
+			int result = productDAO.setProductAdd(productDTO);
 		}
 		
 	}

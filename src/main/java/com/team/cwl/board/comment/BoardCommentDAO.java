@@ -28,17 +28,17 @@ public class BoardCommentDAO {
 	
 	/** INSERT **/
 	public int setBoardCommentAdd(BoardCommentDTO boardCommentDTO) throws Exception {
-		return sqlSession.insert(NAMESPACE+"getBoardCommentAdd", boardCommentDTO);
+		return sqlSession.insert(NAMESPACE+"setBoardCommentAdd", boardCommentDTO);
 	}
 	
 	/** UPDATE **/
 	public int setBoardCommentUpdate(BoardCommentDTO boardCommentDTO) throws Exception {
-		return sqlSession.update(NAMESPACE+"getBoardCommentUpdate", boardCommentDTO);
+		return sqlSession.update(NAMESPACE+"setBoardCommentUpdate", boardCommentDTO);
 	}
 	
 	/** DELETE **/
 	public int setBoardCommentDelete(BoardCommentDTO boardCommentDTO) throws Exception {
-		return sqlSession.delete(NAMESPACE+"getBoardCommentDelete", boardCommentDTO);
+		return sqlSession.delete(NAMESPACE+"setBoardCommentDelete", boardCommentDTO);
 	}
 
 }

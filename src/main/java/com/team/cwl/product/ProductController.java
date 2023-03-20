@@ -2,11 +2,14 @@ package com.team.cwl.product;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.cwl.util.Pagination;
@@ -26,7 +29,7 @@ public class ProductController {
 		List<ProductDTO> ar = productService.getProductList(pagination);
 		
 		modelAndView.addObject("list", ar);
-		modelAndView.setViewName("lesson/list");
+		modelAndView.setViewName("product/list");
 		
 		return modelAndView;
 	}
@@ -36,7 +39,7 @@ public class ProductController {
 		productDTO = productService.getProductDetail(productDTO);
 		
 		modelAndView.addObject("DTO", productDTO);
-		modelAndView.setViewName("lesson/detail");
+		modelAndView.setViewName("product/detail");
 		
 		return modelAndView;	
 	}
@@ -52,12 +55,12 @@ public class ProductController {
 	
 	//DB에 Insert
 	@PostMapping("add")
-	public ModelAndView setProductAdd(ProductDTO productDTO, ModelAndView modelAndView) throws Exception {
-		int result = productService.setProductAdd(productDTO);
+	public ModelAndView setProductAdd(ProductDTO productDTO, MultipartFile multipartFile, HttpSession session, ModelAndView modelAndView) throws Exception {
+		int result = productService.setProductAdd(productDTO, multipartFile, session);
 		
 		String message = "등록에 실패했습니다.";
 		
-		if(result > 1) {
+		if(result > 0) {
 			message = "등록에 성공했습니다.";
 		}
 		
@@ -78,7 +81,7 @@ public class ProductController {
 		productDTO = productService.getProductDetail(productDTO);
 		
 		modelAndView.addObject("DTO", productDTO);
-		modelAndView.setViewName("lesson/update");
+		modelAndView.setViewName("product/update");
 		
 		return modelAndView;
 	}
@@ -90,7 +93,7 @@ public class ProductController {
 		
 		String message = "수정에 실패했습니다.";
 		
-		if(result > 1) {
+		if(result > 0) {
 			message = "수정에 성공했습니다.";
 		}
 		
@@ -108,7 +111,7 @@ public class ProductController {
 		
 		String message = "삭제에 실패했습니다.";
 		
-		if(result > 1) {
+		if(result > 0) {
 			message = "삭제에 성공했습니다.";
 		}
 		

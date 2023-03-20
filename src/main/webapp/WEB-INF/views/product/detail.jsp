@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>DETAIL</title>
 	<c:import url="../template/commonCss.jsp"></c:import>
 </head>
 <body>
@@ -16,11 +16,11 @@
 			<c:choose>
 				<c:when test="${not empty DTO.productNum}">
 					<div class="row mx-auto text-center border-bottom border-dark pb-4">
-						<p class="fs-6">번호 ${DTO.productNum} | 작성자 ${DTO.memberId} | 날짜 ${DTO.productDate} | 조회수 ${DTO.productHit}</p>
+						<p class="fs-4 fw-bold text-center">${DTO.productName}</p>
+						<p class="fs-6">번호 ${DTO.productNum} | 작성자 ${DTO.memberId} | 날짜 ${DTO.productDate}</p>
 					</div>
 					<div class="row my-4">
-						<p class="fs-4 fw-bold text-center">${DTO.productTitle}</p>
-						<p class="fs-5">${DTO.productContents}</p>
+						<p class="fs-5">${DTO.productDetail}</p>
 					</div>
 				</c:when>
 				<c:otherwise>
@@ -35,7 +35,6 @@
 	<%--  	<c:if test="${member.memderId eq DTO.memderId}"> --%>
 			<form action="./update" id="frm">
 				<div class="row col-md-4 justify-content-center mx-auto">
-					<a href="./reply?productNum=${DTO.productNum}" class="btn btn-outline-primary col-2 mx-1">답글 달기</a>
 					<input type="hidden" name="productNum" value="${DTO.productNum}">
 					<button id="update" type="submit" class="btn btn-outline-primary col-2 mx-1">수정</button>
 					<button id="delete" type="button" class="btn btn-outline-primary col-2 mx-1">삭제</button>

@@ -107,7 +107,9 @@
 				<a href=./add class="btn btn-primary col-3">게시글 등록</a>
 			</div>
 	<%-- 	</c:if> --%>
+		</div>
 	</div>
-	</div>
+	<c:import url="../template/commonJs.jsp"></c:import>
+	<script src="../resources/js/paging.js"></script>
 </body>
 </html>

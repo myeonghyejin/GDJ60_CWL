@@ -51,12 +51,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			SELECT LESSON_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
 		INSERT INTO LESSON
-		VALUES(#{lessonNum}, #{memberId}, #{lessonTitle}, #{lessonContents}, #{lessonHit}, SYSDATE)
+		VALUES(#{lessonNum}, #{memberId}, #{lessonTitle}, #{lessonContents}, 0, SYSDATE, null)
 	</insert>
 	
 	<!-- UPDATE -->
 	<update id="setLessonUpdate" parameterType="LessonDTO">
 		UPDATE LESSON SET LESSONTITLE = #{lessonTitle}, LESSONCONTENTS = #{lessonContents}
+		WHERE LESSONNUM = #{lessonNum}
+	</update>
+	
+	<update id="setLessonHitUpdate" parameterType="LessonDTO">
+		UPDATE LESSON SET LESSONHIT = #{lessonHit} + 1
 		WHERE LESSONNUM = #{lessonNum}
 	</update>
 	
