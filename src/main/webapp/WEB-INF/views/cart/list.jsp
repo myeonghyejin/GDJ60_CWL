@@ -34,7 +34,7 @@ $(function(){
     <!-- map.count가 0이 아닐때, 즉 자료가 있을때 -->
     <!-- form을 실행한다.  -->
     <!-- form의 id를 form1로 하고, method 방식을 post로 한다. 그리고 update페이지로 이동시킨다. -->
-        <form id="form1" name="form1" method="post" action="${path}/cart/update">
+        <form id="form1" name="form1" method="post" action="/cart/update">
             <table border="1" style="width:400px">
                 <tr>
                     <th>상품명</th>

@@ -4,24 +4,27 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.team.cwl.member.MemberDTO;
+import com.team.cwl.member.MemberService;
+
 
 @Controller
 @RequestMapping("/cart/*")
 public class CartController { 
 	
 	@Autowired//(required=false)
-	private CartService cartService;
+	private CartServiceImpl cartServiceImpl;
 	
 	@RequestMapping(value = "add")
 	public ModelAndView setCartAdd(@ModelAttribute CartDTO cartDTO, HttpSession session) throws Exception {
@@ -36,7 +39,7 @@ public class CartController {
 			
 		}
 		cartDTO.setMemberId(memberId);
-		cartService.setCartAdd(cartDTO);
+		cartServiceImpl.setCartAdd(cartDTO);
 		
 		modelAndView.addObject("result", message);
 		modelAndView.setViewName("redirect:/cart/list");
@@ -44,15 +47,23 @@ public class CartController {
 	}
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public ModelAndView getCartList(HttpSession session, ModelAndView modelAndView) throws Exception {
+	public ModelAndView getCartList(HttpSession session) throws Exception {
+		ModelAndView modelAndView = new ModelAndView();
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		String memeberId = (String)session.getAttribute("memberId");
+//		MemberDTO memberDTO=(MemberDTO)session.getAttribute("member");
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		String memberId = memberDTO.getMemberId();
+		System.out.println(memberId);
+		System.out.println(memberDTO.getMemberId());
+//		System.out.println(memberId+"Login");
+//		System.out.println(cartDTO.getMemberId()+"Login");
 		
-		if(memeberId != null) {
-			List<CartDTO> list = cartService.getCartList(memeberId); // 장바구니 목록
-			int sumMoney = cartService.sumMoney(memeberId); // 금액 합계
+		
+		if(memberId != null) {
+			List<CartDTO> list = cartServiceImpl.getCartList(memberId); // 장바구니 목록
+			int sumMoney = cartServiceImpl.sumMoney(memberId); // 금액 합계
 			int fee = sumMoney >= 30000 ? 0 : 2500; // 3만원 이상이면 배송료 0원, 미만이면 2500원
 			
 			// HashMap에 장바구니에 넣을 각종 값들을 저장
@@ -62,19 +73,23 @@ public class CartController {
 			map.put("list", list); // 장바구니 목록
 			map.put("count", list.size()); // 레코드 갯수
 			
-			modelAndView.setViewName("/cart/list"); // 이동할 페이지의 이름
 			modelAndView.addObject("map", map); // 데이터 저장
+			modelAndView.setViewName("/cart/list"); // 이동할 페이지의 이름
 			
 			return modelAndView;
 		} else {
 			// 로그인을 하지 않았으면 로그인 페이지로 이동
-			return new ModelAndView("/member/memberLogin", "", null);
+			System.out.println("로그인 안함");
+			modelAndView.setViewName("member/memberLogin");
 		}
+		return modelAndView;
+		
+		
 	}
 	
 	@RequestMapping(value = "delete")
 	public String delete(@RequestParam Long cartNum) throws Exception {
-		cartService.setCartDelete(cartNum);
+		cartServiceImpl.setCartDelete(cartNum);
 		return "redirect:/cart/list";
 	}
 	
@@ -82,9 +97,16 @@ public class CartController {
 	public String deleteAll(HttpSession session) throws Exception {
 		String memberId = (String)session.getAttribute("memberId");
 		if(memberId != null) {
-			cartService.setCartDeleteAll(memberId);
+			cartServiceImpl.setCartDeleteAll(memberId);
 		}
 		return "redirect:/cart/list";
+	}
+	
+	@RequestMapping(value = "update")
+	public ModelAndView update() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("cart/update");
+		return modelAndView;
 	}
 	
 }

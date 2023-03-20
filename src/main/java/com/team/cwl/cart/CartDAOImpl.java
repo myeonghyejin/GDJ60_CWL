@@ -2,8 +2,6 @@ package com.team.cwl.cart;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -48,7 +46,7 @@ public class CartDAOImpl implements CartDAO {
 	
 	@Override
 	public int sumMoney(String memberId) {
-		return sqlSession.selectOne(NAMESPACE+"cart.sumMoney", memberId);
+		return sqlSession.selectOne(NAMESPACE+"sumMoney", memberId);
 	}
 	
 	@Override

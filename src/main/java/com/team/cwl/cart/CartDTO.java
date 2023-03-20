@@ -5,7 +5,27 @@ public class CartDTO {
 	private Long productNum;
 	private String memberId;
 	private Long cartAmount;
+	private Long productPrice;
+	private Long money;
 	
+	
+	
+	
+	public Long getMoney() {
+		return money;
+	}
+
+	public void setMoney(Long money) {
+		this.money = money;
+	}
+
+	public Long getProductPrice() {
+		return productPrice;
+	}
+
+	public void setProductPrice(Long productPrice) {
+		this.productPrice = productPrice;
+	}
 	
 	public Long getCartNum() {
 		return cartNum;
@@ -41,7 +61,7 @@ public class CartDTO {
 
 	@Override
 	public String toString() {
-		return "CartDTO [cartNum=" + cartNum + "productNum=" + productNum + "memberId=" + memberId + "cartAmount" + cartAmount + "]";
+		return "CartDTO [cartNum=" + cartNum + "memberId=" + memberId + "productNum=" + productNum + "productPrice=" + productPrice + "money=" + money + "cartAmount" + cartAmount + "]";
 	}
 	
 	
