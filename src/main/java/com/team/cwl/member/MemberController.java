@@ -23,7 +23,6 @@ public class MemberController {
 	public void setMemberAgree() throws Exception {
 		
 	}
-	
 	@PostMapping("memberIdCheck")
 	public ModelAndView getMemberIdCheck(MemberDTO memberDTO) throws Exception {
 		boolean check = memberService.getMemberIdCheck(memberDTO);
@@ -34,6 +33,7 @@ public class MemberController {
 		return modelAndView;
 	}
 	
+	// 회원가입 페이지 이동
 	@RequestMapping(value = "memberAdd", method = RequestMethod.GET)
 	public ModelAndView setMemberAdd() throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
@@ -41,6 +41,7 @@ public class MemberController {
 		return modelAndView;
 	}
 	
+	// 회원 가입
 	@RequestMapping(value = "memberAdd", method = RequestMethod.POST)
 	public ModelAndView setMemberAdd(MemberDTO memberDTO) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();		

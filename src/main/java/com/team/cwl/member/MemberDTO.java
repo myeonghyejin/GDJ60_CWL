@@ -10,6 +10,8 @@ public class MemberDTO {
 	private String memberSI;
 	private Long memberAge;
 	private byte[] profileEmojiNum;
+	private String memberAddress;
+	private Long memberMoney;
 	private RoleDTO roleDTO;
 	
 	
@@ -67,12 +69,33 @@ public class MemberDTO {
 	public void setProfileEmojiNum(byte[] profileEmojiNum) {
 		this.profileEmojiNum = profileEmojiNum;
 	}
+	public String getMemberAddress() {
+		return memberAddress;
+	}
+	public void setMemberAddress(String memberAddress) {
+		this.memberAddress = memberAddress;
+	}
+	public Long getMemberMoney() {
+		return memberMoney;
+	}
+	public void setMemberMoney(Long memberMoney) {
+		this.memberMoney = memberMoney;
+	}
 	public RoleDTO getRoleDTO() {
 		return roleDTO;
 	}
 	public void setRoleDTO(RoleDTO roleDTO) {
 		this.roleDTO = roleDTO;
 	}
+	
+	@Override
+	public String toString() {
+		return "MemberDTO [memberId=" + memberId + ", memberPw=" + memberPw + ", memberName=" + memberName + ", memberPhone=" + memberPhone 
+				+ ", memberEmail=" + memberEmail + ", memberGender=" + memberGender + ", memberSI=" + memberSI 
+				+ ", memberAge=" + memberAge + ", profileEmojiNum=" + profileEmojiNum + ", memberAddress=" + memberAddress + ", memberMoney=" + memberMoney
+				+ ", roleDTO=" + roleDTO + "]";
+	}
+	
 	
 	
 	

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.team.cwl.order.OrderMapper">
+	<!-- 주문 상품 정보 -->
+	<select id="getGoodsInfo" resultType="com.team.cwl.order.OrderPageItemDTO">
+		SELECT PRODUCTNUM, PRODUCTNAME, PRODUCTPRICE
+		FROM PRODUCT
+		WHERE PRODUCTNUM=#{productNum}	
+	</select>
+	
+	<select id="getOrderInfo" resultType="com.team.cwl.order.OrderItemDTO">
+		SELECT PRODUCTNUM, PRODUCTPRICE
+		FROM PRODUCT
+		WHERE PRODUCTNUM = #{PRODUCTNUM}
+	</select>	
+	
+	<!-- 주문 테이블 등록 -->
+	<insert id="enrollOrder">
+		INSERT INTO ORDER (ORDERNUM, MEMBERID, ORDERADDRESS, ORDERSTATE, ORDERFEE)
+		VALUES (#{orderNum}, #{memberId}, #{orderAddress}, '배송준비', #{orderFee})	
+	</insert>	
+	
+	<!-- 주문 아이템 테이블 등록 -->
+	<insert id="enrollOrderItem">
+		INSERT INTO ORDERITEM(ORDERNUM, PRODUCTNUM, ORDERCOUNT, PRODUCTPRICE)
+		VALUES (#{orderNum}, #{productNum}, #{orderCount}, #{productPrice})
+	</insert>	
+	
+	<!-- 주문 금액 차감 -->
+	<update id="deductMoney">
+		UPDATE MEMBER SET MONEY = #{money} WHERE MEMBERID = #{memberId}
+	</update>	
+	
+	<!-- 주문 재고 차감 -->
+	<update id="deductStock">
+		UPDATE PRODCUT SET PRODUCTSTOCK = #{productStock} WHERE PRODUCTNUM = #{productNum}
+	</update>	
+	
+	<!-- 주문취소 -->
+	<update id="orderCancle">
+		UPDATE ORDER SET ORDERSTATE = '주문취소' WHERE ORDERNUM = #{orderNum}		
+	</update>	
+
+	<!-- 주문 상품 정보(주문취소) -->
+	<select id="getOrderItemInfo" resultType="com.team.cwl.order.OrderItemDTO">
+		SELECT * FROM ORDERITEM
+		WHERE ORDERNUM = #{orderNum}
+	</select>
+	
+	<!-- 주문 정보(주문 취소) -->
+	<select id="getOrder" resultType="com.team.cwl.order.OrderDTO">
+		SELECT * FROM ORDER
+		WHERE ORDERNUM = #{orderNum}
+	</select>
+
+  </mapper>

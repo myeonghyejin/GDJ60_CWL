@@ -11,6 +11,12 @@
   		
   		<typeAlias type="com.team.cwl.cart.CartDTO" alias="CartDTO"/>
   		
+  		<typeAlias type="com.team.cwl.order.OrderDTO" alias="OrderDTO"/>
+  		<typeAlias type="com.team.cwl.order.OrderCancelDTO" alias="OrderCancelDTO"/>
+  		<typeAlias type="com.team.cwl.order.OrderItemDTO" alias="OrderItemDTO"/>
+  		<typeAlias type="com.team.cwl.order.OrderPageDTO" alias="OrderPageDTO"/>
+  		<typeAlias type="com.team.cwl.order.OrderPageItemDTO" alias="OrderPageItemDTO"/>
+  		
   		<typeAlias type="java.lang.Long" alias="Long"/>
   	</typeAliases>
   	
