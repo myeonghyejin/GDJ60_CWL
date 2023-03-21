@@ -26,6 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					(
 						SELECT * FROM PRODUCTREVIEW
 						<include refid="productReviewCondition"></include>
+						WHERE PRODUCTNUM = #{productNum}
 						ORDER BY PRODUCTREVIEWNUM DESC
 					) C
 			)
@@ -33,8 +34,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getTotalCount" resultType="Long" parameterType="Pagination">
-		SELECT COUNT(PRODUCTQNANUM) FROM PRODUCTREVIEW
+		SELECT COUNT(PRODUCTREVIEWNUM) FROM PRODUCTREVIEW
 		<include refid="productReviewCondition"></include>
+		WHERE PRODUCTNUM = #{productNum}
 	</select>
 	
 	<!-- INSERT -->

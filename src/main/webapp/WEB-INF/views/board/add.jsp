@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>ADD</title>
-	<c:import url="../template/commonCss.jsp"></c:import>
+	<c:import url="../template/common_css.jsp"></c:import>
 	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
@@ -22,11 +22,11 @@
 				</div>
 				<div class="fw-bold fs-5 col-12">
 					<label for="boardTitle" class="form-label">제목</label>
-					<input type="text" name="boardTitle" class="form-control" id="boardTitle" placeholder="제목 입력"><br>
+					<input type="text" name="boardTitle" class="form-control" id="boardTitle"><br>
 				</div>			
 				<div class="fw-bold fs-5 col-12">
 					<label for="boardContents" class="form-label">내용</label>
-					<textarea name="boardContents" class="form-control" id="boardContents" rows="3" placeholder="상세 정보 입력"></textarea><br>
+					<textarea name="boardContents" class="form-control" id="boardContents" rows="3"></textarea><br>
 				</div>	
 				<div class="row justify-content-center my-5">
 					<button type="submit" class="btn btn-primary col-2">글쓰기</button>
@@ -37,6 +37,6 @@
 	<script>
 		$('#boardContents').summernote();
 	</script>
-	<c:import url="../template/commonJs.jsp"></c:import>
+	<c:import url="../template/common_js.jsp"></c:import>
 </body>
 </html>

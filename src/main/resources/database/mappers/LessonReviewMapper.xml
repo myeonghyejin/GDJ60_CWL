@@ -26,6 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					(
 						SELECT * FROM LESSONREVIEW
 						<include refid="lessonReviewCondition"></include>
+						WHERE LESSONNUM = #{lessonNum}
 						ORDER BY LESSONREVIEWNUM DESC
 					) C
 			)
@@ -33,8 +34,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getTotalCount" resultType="Long" parameterType="Pagination">
-		SELECT COUNT(LESSONQNANUM) FROM LESSONREVIEW
+		SELECT COUNT(LESSONREVIEWNUM) FROM LESSONREVIEW
 		<include refid="lessonReviewCondition"></include>
+		WHERE LESSONNUM = #{lessonNum}
 	</select>
 	
 	<!-- INSERT -->

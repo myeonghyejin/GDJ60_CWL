@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<c:import url="../template/commonCss.jsp"></c:import>
+	<c:import url="../template/common_css.jsp"></c:import>
 	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
@@ -19,7 +19,7 @@
 		</div>
 		
 		<!-- Contents -->
-		<form action="./update" method = "post">
+		<form action="./update" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="lessonNum" value="${DTO.lessonNum}">
 			<div class="row col-md-4 mx-auto my-5">
 				<div class="fw-bold fs-5 col-12">
@@ -44,6 +44,6 @@
 	<script>
 		$('#lessonContents').summernote();
 	</script>
-	<c:import url="../template/commonJs.jsp"></c:import>
+	<c:import url="../template/common_js.jsp"></c:import>
 </body>
 </html>

@@ -2,6 +2,36 @@ package com.team.cwl.util;
 
 public class Pagination {
 	
+	/** **/
+	private Long boardNum;
+	
+	public Long getBoardNum() {
+		return boardNum;
+	}
+	public void setBoardNum(Long boardNum) {
+		this.boardNum = boardNum;
+	}
+
+	private Long lessonNum;
+	
+	public Long getLessonNum() {
+		return lessonNum;
+	}
+	public void setLessonNum(Long lessonNum) {
+		this.lessonNum = lessonNum;
+	}
+	
+	private Long productNum;
+
+	public Long getProductNum() {
+		return productNum;
+	}
+	public void setProductNum(Long productNum) {
+		this.productNum = productNum;
+	}
+
+//---------------------------------------
+
 	//Client가 보고 싶은 페이지 번호 (Parameter)
 	private Long page;
 	

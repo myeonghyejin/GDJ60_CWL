@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>DETAIL</title>
-	<c:import url="../template/commonCss.jsp"></c:import>
+	<c:import url="../template/common_css.jsp"></c:import>
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
@@ -73,14 +73,15 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModal">Cancel</button>
-				<button type="button" class="btn btn-primary" data-comment-num="" id="contentsConfirm">확인</button>
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModal">Cancel</button>
+					<button type="button" class="btn btn-primary" data-comment-num="" id="contentsConfirm">확인</button>
 				</div>
 			</div>
 			</div>
 		</div>
 	</div>
-	<c:import url="../template/commonJs.jsp"></c:import>
+	<c:import url="../template/common_js.jsp"></c:import>
 	<script src="/resources/js/boardComment.js"></script>
+	<script type="text/javascript" src="../resources/js/boardForm.js"></script>
 </body>
 </html>

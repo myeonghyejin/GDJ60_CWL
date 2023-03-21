@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>ADD</title>
-	<c:import url="../template/commonCss.jsp"></c:import>
+	<c:import url="../template/common_css.jsp"></c:import>
 	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
@@ -14,7 +14,7 @@
 	<c:import url="../template/header.jsp"></c:import>
 	<div class="container-fluid my-5">
 		<!-- Contents -->
-		<form action="./add" method = "post">
+		<form action="./add" method="post" enctype="multipart/form-data">
 			<div class="row col-md-4 mx-auto my-5">
 				<div class="fw-bold fs-5 col-12">
 					<label for="memberId" class="form-label">작성자</label>
@@ -22,11 +22,11 @@
 				</div>
 				<div class="fw-bold fs-5 col-12">
 					<label for="lessonTitle" class="form-label">제목</label>
-					<input type="text" name="lessonTitle" class="form-control" id="lessonTitle" placeholder="제목 입력"><br>
+					<input type="text" name="lessonTitle" class="form-control" id="lessonTitle"><br>
 				</div>			
 				<div class="fw-bold fs-5 col-12">
 					<label for="lessonContents" class="form-label">내용</label>
-					<textarea name="lessonContents" class="form-control" id="lessonContents" rows="3" placeholder="상세 정보 입력"></textarea><br>
+					<textarea name="lessonContents" class="form-control" id="lessonContents" rows="3"></textarea><br>
 				</div>	
 				<div class="row justify-content-center my-5">
 					<button type="submit" class="btn btn-primary col-2">글쓰기</button>
@@ -37,6 +37,6 @@
 	<script>
 		$('#lessonContents').summernote();
 	</script>
-	<c:import url="../template/commonJs.jsp"></c:import>
+	<c:import url="../template/common_js.jsp"></c:import>
 </body>
 </html>

@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<c:import url="../template/commonCss.jsp"></c:import>
+	<c:import url="../template/common_css.jsp"></c:import>
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
@@ -45,16 +45,16 @@
 			<a href="./list" class="btn btn-primary col-2 mx-1">목록</a>
 		</div>
 		
- 	<!-- Reply -->
-		<div class="row col-md-4 justify-content-center mx-auto" id="lessonCommentListResult">
+ 		<!-- Reply -->
+		<div class="row my-5" id="commentListResult">
 		</div>
-		
-		<div class="row col-md-4 mx-auto my-5">
+	
+		<div class="row my-5">
 			<div class="mb-3">
-			  <textarea class="form-control" rows="3" id="lessonCommentContents"></textarea>
+				<textarea class="form-control" rows="3" id="replyContents"></textarea>
 			</div>
 			<div class="mb-3">
-				<button type="submit" class="btn btn-primary col-2 mx-1" id="lessonCommentAdd" data-lesson-comment="${DTO.lessonNum}">등록</button>
+				<button type="button" class="btn btn-primary" id="replyAdd" data-lesson-review="${DTO.lessonNum}">작성</button>
 			</div>
 		</div>
 		
@@ -83,7 +83,7 @@
 		
 	</div>
 	
-	<c:import url="../template/commonJs.jsp"></c:import>
-	<script src="/resources/js/lessonComment.js"></script>
+	<c:import url="../template/common_js.jsp"></c:import>
+	<script src="/resources/js/lessonReview.js"></script>
 </body>
 </html>

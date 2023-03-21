@@ -2,6 +2,8 @@ package com.team.cwl.product.qna;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,10 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.cwl.member.MemberDTO;
 import com.team.cwl.util.Pagination;
 
 @Controller
-@RequestMapping("/ProductQnA/*")
+@RequestMapping("/product/qna/*")
 public class ProductQnAController {
 
 	@Autowired
@@ -33,12 +36,9 @@ public class ProductQnAController {
 	
 	/** INSERT **/
 	@PostMapping("add")
-	public ModelAndView setProductQnAAdd(ProductQnADTO productQnADTO, ModelAndView modelAndView) throws Exception {
-		//MemberDTO 필요
-//		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-
-		productQnADTO.setMemberId("mhj");
-//		productQnADTO.setMemberId(memberDTO.getMemberId());
+	public ModelAndView setProductQnAAdd(ProductQnADTO productQnADTO, HttpSession session, ModelAndView modelAndView) throws Exception {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		productQnADTO.setMemberId(memberDTO.getMemberId());
 		
 		int result = productQnAService.setProductQnAAdd(productQnADTO);
 		

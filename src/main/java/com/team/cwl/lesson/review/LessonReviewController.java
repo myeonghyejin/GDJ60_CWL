@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.cwl.member.MemberDTO;
 import com.team.cwl.util.Pagination;
 
 @Controller
-@RequestMapping("/lessonReview/*")
+@RequestMapping("/lesson/review/*")
 public class LessonReviewController {
 	
 	@Autowired
@@ -28,7 +29,7 @@ public class LessonReviewController {
 		List<LessonReviewDTO> ar = lessonReviewService.getLessonReviewList(pagination);
 		
 		modelAndView.addObject("list", ar);
-		modelAndView.setViewName("lesson/reviewList");
+		modelAndView.setViewName("lesson/review");
 		
 		return modelAndView;
 	}
@@ -36,11 +37,8 @@ public class LessonReviewController {
 	/** INSERT **/
 	@PostMapping("add")
 	public ModelAndView setLessonReviewAdd(LessonReviewDTO lessonReviewDTO, HttpSession session, ModelAndView modelAndView) throws Exception {		
-		//MemberDTO 필요
-//		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-
-		lessonReviewDTO.setMemberId("mhj");
-//		lessonReviewDTO.setMemberId(memberDTO.getMemberId());
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		lessonReviewDTO.setMemberId(memberDTO.getMemberId());
 		
 		int result = lessonReviewService.setLessonReviewAdd(lessonReviewDTO, null);
 		

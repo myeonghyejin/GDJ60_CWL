@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.cwl.member.MemberDTO;
 import com.team.cwl.util.Pagination;
 
 @Controller
-@RequestMapping("/ProductReview/*")
+@RequestMapping("/product/review/*")
 public class ProductReviewController {
 
 	@Autowired
@@ -36,11 +37,8 @@ public class ProductReviewController {
 	/** INSERT **/
 	@PostMapping("add")
 	public ModelAndView setProductReviewAdd(ProductReviewDTO productReviewDTO, HttpSession session, ModelAndView modelAndView) throws Exception {		
-		//MemberDTO 필요
-//		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-
-		productReviewDTO.setMemberId("mhj");
-//		productReviewDTO.setMemberId(memberDTO.getMemberId());
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		productReviewDTO.setMemberId(memberDTO.getMemberId());
 		
 		int result = productReviewService.setProductReviewAdd(productReviewDTO, null);
 		

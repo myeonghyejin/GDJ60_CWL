@@ -4,12 +4,13 @@
 <html>
 <head>
 	<title>Home</title>
+	<c:import url="./template/common_css.jsp"></c:import>
 </head>
 <body>
-<h1>
-	Hello world!
-</h1>
-
-<P>  The time on the server is ${serverTime}. </P>
+	<c:import url="./template/header.jsp"></c:import>
+	
+	
+	
+	<c:import url="./template/common_js.jsp"></c:import>
 </body>
 </html>

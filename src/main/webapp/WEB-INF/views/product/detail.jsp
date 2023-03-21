@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>DETAIL</title>
-	<c:import url="../template/commonCss.jsp"></c:import>
+	<c:import url="../template/common_css.jsp"></c:import>
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
@@ -45,16 +45,29 @@
 			<a href="./list" class="btn btn-primary col-2 mx-1">목록</a>
 		</div>
 		
- 	<!-- Reply -->
-		<div class="row col-md-4 justify-content-center mx-auto" id="productCommentListResult">
+ 		<!-- QnA -->
+		<div class="row my-5" id="productQnAListResult">
 		</div>
-		
-		<div class="row col-md-4 mx-auto my-5">
+	
+		<div class="row my-5">
 			<div class="mb-3">
-			  <textarea class="form-control" rows="3" id="productCommentContents"></textarea>
+				<textarea class="form-control" rows="3" id="productQnAContents"></textarea>
 			</div>
 			<div class="mb-3">
-				<button type="submit" class="btn btn-primary col-2 mx-1" id="productCommentAdd" data-product-comment="${DTO.productNum}">등록</button>
+				<button type="button" class="btn btn-primary" id="productQnAAdd" data-product-qna="${DTO.productNum}">작성</button>
+			</div>
+		</div>
+		
+		<!-- Review -->
+		<div class="row my-5" id="productReviewListResult">
+		</div>
+	
+		<div class="row my-5">
+			<div class="mb-3">
+				<textarea class="form-control" rows="3" id="productReviewContents"></textarea>
+			</div>
+			<div class="mb-3">
+				<button type="button" class="btn btn-primary" id="productReviewAdd" data-product-review="${DTO.productNum}">작성</button>
 			</div>
 		</div>
 		
@@ -83,7 +96,8 @@
 		
 	</div>
 	
-	<c:import url="../template/commonJs.jsp"></c:import>
-	<script src="/resources/js/productComment.js"></script>
+	<c:import url="../template/common_js.jsp"></c:import>
+	<script src="/resources/js/productQnA.js"></script>
+	<script src="/resources/js/productReview.js"></script>
 </body>
 </html>

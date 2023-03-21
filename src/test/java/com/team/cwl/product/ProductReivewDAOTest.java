@@ -9,17 +9,18 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.team.cwl.MyTestCase;
-import com.team.cwl.board.BoardDTO;
 import com.team.cwl.product.qna.ProductQnADAO;
 import com.team.cwl.product.qna.ProductQnADTO;
+import com.team.cwl.product.review.ProductReviewDAO;
+import com.team.cwl.product.review.ProductReviewDTO;
 
-public class ProductQnADAOTest extends MyTestCase {
+public class ProductReivewDAOTest extends MyTestCase {
 	
 	@Autowired
-	private ProductQnADAO productQnADAO;
+	private ProductReviewDAO productReviewDAO;
 	
 	@Test
-	public void setProductQnAAddTest() throws Exception {
+	public void setProductReviewAddTest() throws Exception {
 		
 		for (int i=0; i<30; i++) {
 			Random r = new Random();
@@ -34,14 +35,15 @@ public class ProductQnADAOTest extends MyTestCase {
 			
 			Date date = new Date(calendar.getTimeInMillis());	
 		
-			ProductQnADTO productQnADTO = new ProductQnADTO();
+			ProductReviewDTO productReviewDTO = new ProductReviewDTO();
 			
-			productQnADTO.setProductNum(1L);
-			productQnADTO.setMemberId("id3");
-			productQnADTO.setProductQnAContents("딱딱복숭아");
-			productQnADTO.setProductQnADate(date);
+			productReviewDTO.setProductNum(1L);
+			productReviewDTO.setMemberId("id3");
+			productReviewDTO.setProductReviewContents("딱딱복숭아");
+			productReviewDTO.setProductReviewDate(date);
+			productReviewDTO.setProductRating(3.8);
 		
-			int result = productQnADAO.setProductQnAAdd(productQnADTO);
+			int result = productReviewDAO.setProductReviewAdd(productReviewDTO);
 		}
 		
 	}

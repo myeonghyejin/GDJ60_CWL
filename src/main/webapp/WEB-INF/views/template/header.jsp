@@ -14,12 +14,12 @@
 	        </ul>
 		    <ul class="navbar-nav">
 	        	<c:if test="${empty member}">
-		        	<li class="nav-item"><a class="nav-link" style="font-size: 11px" href="/member/login">LOGIN</a></li>
+		        	<li class="nav-item"><a class="nav-link" style="font-size: 11px" href="/member/memberLogin">LOGIN</a></li>
 		            <li class="nav-item"><a class="nav-link" style="font-size: 11px" href="/member/memberAgree">JOIN</a></li>
 	        	</c:if>
 	        	<c:if test="${not empty member}">
-		        	<li class="nav-item"><a class="nav-link" style="font-size: 11px" href="/member/myPage">MYPAGE</a></li>
-		            <li class="nav-item"><a class="nav-link" style="font-size: 11px" href="/member/logout">LOGOUT</a></li>
+		        	<li class="nav-item"><a class="nav-link" style="font-size: 11px" href="/member/memberPage">MYPAGE</a></li>
+		            <li class="nav-item"><a class="nav-link" style="font-size: 11px" href="/member/memberLogout">LOGOUT</a></li>
 				</c:if>
 		    </ul>
 		</div>

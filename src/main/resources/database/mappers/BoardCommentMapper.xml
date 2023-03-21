@@ -19,14 +19,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</sql>
 
 	<!-- SELECT -->
-	<select id="getBoardCommentList" resultType="BoardCommentDTO" parameterType="BoardCommentDTO">
+	<select id="getBoardCommentList" resultType="BoardCommentDTO" parameterType="Pagination">
 		SELECT * FROM
   		(
 	  		SELECT ROWNUM R, C.* FROM
 		  		(
 		  			SELECT * FROM BOARDCOMMENT 
 		  			<include refid="commentCondition"></include>
-		  			ORDER BY BOARDCOMMENTNUM DESC
+		  			WHERE BOARDNUM = #{boardNum}
+		  			ORDER BY BOARDNUM DESC
 		  		) C
 		  	
 		)
@@ -36,6 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getTotalCount" resultType="Long" parameterType="Pagination">
 		SELECT COUNT(BOARDCOMMENTNUM) FROM BOARDCOMMENT
 		<include refid="commentCondition"></include>
+		WHERE BOARDNUM = #{boardNum}
 	</select>
 	
 	<!-- INSERT -->

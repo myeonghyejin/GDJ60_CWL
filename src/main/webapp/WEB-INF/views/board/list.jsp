@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>BOARD</title>
-	<c:import url="../template/commonCss.jsp"></c:import>
+	<c:import url="../template/common_css.jsp"></c:import>
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
@@ -109,7 +109,7 @@
 	<%-- 	</c:if> --%>
 		</div>
 	</div>
-	<c:import url="../template/commonJs.jsp"></c:import>
+	<c:import url="../template/common_js.jsp"></c:import>
 	<script src="../resources/js/paging.js"></script>
 </body>
 </html>

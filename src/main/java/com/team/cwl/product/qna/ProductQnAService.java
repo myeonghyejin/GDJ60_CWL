@@ -27,6 +27,20 @@ public class ProductQnAService {
 		return productQnADAO.setProductQnAAdd(productQnADTO);
 	}
 	
+	public int setProductQnAReplyAdd(ProductQnADTO productQnADTO) throws Exception {
+		ProductQnADTO parent = productQnADAO.getProductQnADetail(productQnADTO);
+		
+		productQnADTO.setProductQnARef(parent.getProductQnARef());
+		productQnADTO.setProductQnAStep(parent.getProductQnAStep()+1);
+		productQnADTO.setProductQnADepth(parent.getProductQnADepth()+1);
+		
+		int result = productQnADAO.setStepUpdate(parent);
+	
+		result = productQnADAO.setProductQnAReplyAdd(productQnADTO);
+		
+		return result;
+	}
+	
 	/** UPDATE **/
 	public int setProductQnAUpdate(ProductQnADTO productQnADTO) throws Exception {
 		return productQnADAO.setProductQnAUpdate(productQnADTO);
