@@ -33,7 +33,6 @@ $("#productQnAAdd").click(function(){
 
     fetch('../product/qna/add', {
         method:'POST',
-        //headers:{},
         body:form1,
     }).then((response)=> response.text())
     .then((res)=>{
@@ -48,13 +47,13 @@ $("#productQnAAdd").click(function(){
 })
 
 //delete
-$("#productQnAListResult").on("click",".del",function(e){
+$("#productQnAListResult").on("click",".delete",function(e){
     fetch("../product/qna/delete", {
         method:'POST',
         headers:{
            "Content-type":"application/x-www-form-urlencoded"
        },
-       body:"num="+$(this).attr("data-comment-num")
+       body:"num="+$(this).attr("data-qna-num")
        }).then((response)=>{return response.text()})   
          .then((res)=>{
            if(res.trim()>0){
@@ -70,9 +69,9 @@ $("#productQnAListResult").on("click",".del",function(e){
 
 //update
 $("#productQnAListResult").on("click", ".update", function(e){
-    let num = $(this).attr("data-comment-num");
-    $("#contents").val($("#contents"+num).text());
-    $("#contentsConfirm").attr("data-comment-num", num);
+    let num = $(this).attr("data-qna-num");
+    $("#productQnAContents").val($("#productQnAContents"+num).text());
+    $("#contentsConfirm").attr("data-qna-num", num);
     e.preventDefault();
 })
 
@@ -84,7 +83,7 @@ $("#contentsConfirm").click(function(){
         headers:{
             "Content-type":"application/x-www-form-urlencoded"
         },
-        body: "num="+$(this).attr("data-comment-num")+"&contents="+$("#contents").val()
+        body: "num="+$(this).attr("data-qna-num")+"&productQnAContents="+$("#productQnAContents").val()
     }).then( (response) => response.text())
       .then( (res) => {
         if(res.trim()>0){

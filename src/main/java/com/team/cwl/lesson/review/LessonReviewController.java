@@ -49,6 +49,7 @@ public class LessonReviewController {
 	}
 	
 	/** UPDATE **/
+	@PostMapping("update")
 	public ModelAndView setLessonReviewUpdate(LessonReviewDTO lessonReviewDTO, ModelAndView modelAndView) throws Exception {
 		int result = lessonReviewService.setLessonReviewUpdate(lessonReviewDTO);
 		
@@ -59,6 +60,7 @@ public class LessonReviewController {
 	}
 	
 	/** DELETE **/
+	@PostMapping("delete")
 	public ModelAndView setLessonDelete(LessonReviewDTO lessonReviewDTO, ModelAndView modelAndView) throws Exception {
 		int result = lessonReviewService.setLessonReviewDelete(lessonReviewDTO);
 		

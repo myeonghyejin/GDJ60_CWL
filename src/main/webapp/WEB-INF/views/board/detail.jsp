@@ -45,15 +45,20 @@
 			<a href="./list" class="btn btn-primary col-2 mx-1">목록</a>
 		</div>
 		
-		<div class="row my-5" id="commentListResult">
+		<!-- Comment -->
+		<div class="row mt-5">
+			<p class="fs-2" style="font-family: 'Impact'">COMMENT</p>
+		</div>
+		
+		<div class="row" id="boardCommentListResult">
 		</div>
 	
 		<div class="row my-5">
 			<div class="mb-3">
-				<textarea class="form-control" rows="3" id="replyContents"></textarea>
+				<textarea class="form-control" rows="3" id="boardCommentContents"></textarea>
 			</div>
 			<div class="mb-3">
-				<button type="button" class="btn btn-primary" id="replyAdd" data-board-comment="${DTO.boardNum}">작성</button>
+				<button type="button" class="btn btn-primary" id="boardCommentAdd" data-board-comment="${DTO.boardNum}">작성</button>
 			</div>
 		</div>
 	
@@ -63,18 +68,18 @@
 			<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-				<h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+				<h1 class="modal-title fs-5" id="exampleModalLabel">EDIT</h1>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
 					<div class="form-floating">
-						<textarea class="form-control" placeholder="Leave a comment here" id="contents"></textarea>
-						<label for="contents">Comments</label>
+						<textarea class="form-control" id="boardCommentContents"></textarea>
+						<label for="boardCommentContents">Comments</label>
 					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModal">Cancel</button>
-					<button type="button" class="btn btn-primary" data-comment-num="" id="contentsConfirm">확인</button>
+					<button type="button" class="btn btn-primary" data-boardcomment-num="" id="contentsConfirm">확인</button>
 				</div>
 			</div>
 			</div>

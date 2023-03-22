@@ -13,12 +13,12 @@
 			<td>${DTO.productReviewDate}</td>
 			<td>
 				<c:if test="${member.memberId eq DTO.memberId}">
-					<button class="btn btn-info upd" data-comment-num="${DTO.productReviewNum}" data-bs-toggle="modal" data-bs-target="#contentsModal">수정</button>
+					<button class="btn btn-info update" data-review-num="${DTO.productReviewNum}" data-bs-toggle="modal" data-bs-target="#contentsModal">수정</button>
 				</c:if>
 			</td>
 			<td>
 				<c:if test="${member.memberId eq DTO.memberId}">
-					<button class="btn btn-danger del" data-comment-num="${DTO.productReviewNum}">삭제</button>
+					<button class="btn btn-danger delete" data-review-num="${DTO.productReviewNum}">삭제</button>
 				</c:if>
 			</td>
 		</tr>

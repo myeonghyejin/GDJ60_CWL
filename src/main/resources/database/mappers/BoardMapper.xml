@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</sql>
 
 	<!-- SELECT -->
-  	<select id="getBoardList" resultType="BoardDTO">
+  	<select id="getBoardList" resultType="BoardDTO" parameterType="Pagination">
   		SELECT * FROM
 			(
 				SELECT ROWNUM R, C.* FROM

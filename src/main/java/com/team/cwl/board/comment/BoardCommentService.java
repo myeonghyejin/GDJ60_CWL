@@ -2,6 +2,8 @@ package com.team.cwl.board.comment;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +25,7 @@ public class BoardCommentService {
 	}
 	
 	/** INSERT **/
-	public int setBoardCommentAdd(BoardCommentDTO boardCommentDTO) throws Exception {
+	public int setBoardCommentAdd(BoardCommentDTO boardCommentDTO, HttpSession session) throws Exception {
 		return boardCommentDAO.setBoardCommentAdd(boardCommentDTO);
 	}
 	
@@ -33,7 +35,7 @@ public class BoardCommentService {
 	}
 	
 	/** DELETE **/
-	public int setBoardCommentDelete(BoardCommentDTO boardCommentDTO) throws Exception {
+	public int setBoardCommentDelete(BoardCommentDTO boardCommentDTO, HttpSession session) throws Exception {
 		return boardCommentDAO.setBoardCommentDelete(boardCommentDTO);
 	}
 

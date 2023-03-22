@@ -41,19 +41,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- INSERT -->
-	<insert id="setBoardCommentAdd" parameterType="BoardCommentDTO">
+	<insert id="setBoardCommentAdd" parameterType="BoardDTO">
 		INSERT INTO BOARDCOMMENT
 		VALUES (BOARDCOMMENT_SEQ.NEXTVAL, #{boardNum}, #{memberId}, #{boardCommentContents}, SYSDATE)
 	</insert>
 	
 	<!-- UPDATE -->
-	<update id="setBoardCommentUpdate" parameterType="BoardCommentDTO">
+	<update id="setBoardCommentUpdate" parameterType="BoardDTO">
 		UPDATE BOARDCOMMENT SET BOARDCOMMENTCONTENTS = #{boardCommentContents}
 		WHERE BOARDCOMMENTNUM = #{boardCommentNum}
 	</update>
 	
 	<!-- DELETE -->
-	<delete id="setBoardCommentDelete" parameterType="BoardCommentDTO">
+	<delete id="setBoardCommentDelete" parameterType="BoardDTO">
 		DELETE BOARDCOMMENT
 		WHERE BOARDCOMMENTNUM = #{boardCommentNum}
 	</delete>

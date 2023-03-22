@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>LESSON</title>
 	<c:import url="../template/common_css.jsp"></c:import>
 </head>
 <body>
@@ -46,15 +46,23 @@
 		</div>
 		
  		<!-- Reply -->
-		<div class="row my-5" id="commentListResult">
+ 		<div class="row mt-5">
+			<p class="fs-2" style="font-family: 'Impact'">REVIEW</p>
+		</div>
+ 		
+		<div class="row" id="lessonReviewListResult">
 		</div>
 	
 		<div class="row my-5">
 			<div class="mb-3">
-				<textarea class="form-control" rows="3" id="replyContents"></textarea>
+				<label for="lessonRating" class="form-label">RATING</label>
+				<input type="text" name="lessonRating" class="form-control" id="lessonRating"><br>
 			</div>
 			<div class="mb-3">
-				<button type="button" class="btn btn-primary" id="replyAdd" data-lesson-review="${DTO.lessonNum}">작성</button>
+				<textarea class="form-control" rows="3" id="lessonReviewContents"></textarea>
+			</div>
+			<div class="mb-3">
+				<button type="button" class="btn btn-primary" id="lessonReviewAdd" data-lesson-review="${DTO.lessonNum}">작성</button>
 			</div>
 		</div>
 		
@@ -69,13 +77,13 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-floating">
-						<textarea class="form-control" id="contents"></textarea>
-						<label for="floatingTextarea">Comments</label>
+						<textarea class="form-control" id="lessonReviewContent"></textarea>
+						<label for="lessonReviewContent">Comments</label>
 					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModal">취소</button>
-					<button type="button" class="btn btn-primary" data-comment-num="" id="contentsConfirm">확인</button>
+					<button type="button" class="btn btn-primary" data-lessonReview-num="" id="contentsConfirm">확인</button>
 				</div>
 				</div>
 			</div>

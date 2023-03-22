@@ -37,6 +37,8 @@ public class LessonController {
 		
 		lessonService.setLessonHitUpdate(lessonDTO);
 		
+		System.out.println(lessonDTO.getLessonNum());
+		
 		modelAndView.addObject("DTO", lessonDTO);
 		modelAndView.setViewName("lesson/detail");
 		

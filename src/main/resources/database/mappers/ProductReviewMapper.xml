@@ -40,7 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- INSERT -->
-	<insert id="setProductReviewAdd" parameterType="ProductReviewDTO">
+	<insert id="setProductReviewAdd" parameterType="ProductDTO">
 		<selectKey keyProperty="productReviewNum" resultType="Long" order="BEFORE">
   			SELECT PRODUCTREVIEW_SEQ.NEXTVAL FROM DUAL
   		</selectKey>
@@ -49,13 +49,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<!-- UPDATE -->
-	<update id="setProductReviewUpdate" parameterType="ProductReviewDTO">
+	<update id="setProductReviewUpdate" parameterType="ProductDTO">
 		UPDATE PRODUCTREVIEW SET PRODUCTREVIEWCONTENTS = #{productReviewContents}
 		WHERE PRODUCTREVIEWNUM = #{productReviewNum}
 	</update>
 	
 	<!-- DELETE -->
-	<delete id="setProductReviewDelete" parameterType="ProductReviewDTO">
+	<delete id="setProductReviewDelete" parameterType="ProductDTO">
 		DELETE PRODUCTREVIEW
 		WHERE PRODUCTREVIEWNUM = #{productReviewNum}
 	</delete>

@@ -2,6 +2,8 @@ package com.team.cwl.board;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,8 +27,8 @@ public class BoardController {
 	public ModelAndView getBoardList(Pagination pagination, ModelAndView modelAndView) throws Exception {
 		List<BoardDTO> ar = boardService.getBoardList(pagination);
 		
-		modelAndView.addObject("list", ar);
 		modelAndView.setViewName("board/list");
+		modelAndView.addObject("list", ar);
 		
 		return modelAndView;
 	}
@@ -37,8 +39,8 @@ public class BoardController {
 		
 		boardService.setBoardHitUpdate(boardDTO);
 		
-		modelAndView.addObject("DTO", boardDTO);
 		modelAndView.setViewName("board/detail");
+		modelAndView.addObject("DTO", boardDTO);
 		
 		return modelAndView;	
 	}
@@ -79,8 +81,8 @@ public class BoardController {
 		
 		boardDTO = boardService.getBoardDetail(boardDTO);
 		
-		modelAndView.addObject("DTO", boardDTO);
 		modelAndView.setViewName("board/update");
+		modelAndView.addObject("DTO", boardDTO);
 		
 		return modelAndView;
 	}

@@ -48,13 +48,13 @@ $("#productReviewAdd").click(function(){
 })
 
 //delete
-$("#productReviewListResult").on("click",".del",function(e){
+$("#productReviewListResult").on("click",".delete",function(e){
     fetch("../product/review/delete", {
         method:'POST',
         headers:{
            "Content-type":"application/x-www-form-urlencoded"
        },
-       body:"num="+$(this).attr("data-comment-num")
+       body:"num="+$(this).attr("data-review-num")
        }).then((response)=>{return response.text()})
          .then((res)=>{
            if(res.trim()>0){
@@ -70,9 +70,9 @@ $("#productReviewListResult").on("click",".del",function(e){
 
 //update
 $("#productReviewListResult").on("click", ".update", function(e){
-    let num = $(this).attr("data-comment-num");
-    $("#contents").val($("#contents"+num).text());
-    $("#contentsConfirm").attr("data-comment-num", num);
+    let num = $(this).attr("data-review-num");
+    $("#productReviewContents").val($("#productReviewContents"+num).text());
+    $("#contentsConfirm").attr("data-review-num", num);
     e.preventDefault();
 })
 
@@ -84,7 +84,7 @@ $("#contentsConfirm").click(function(){
         headers:{
             "Content-type":"application/x-www-form-urlencoded"
         },
-        body: "num="+$(this).attr("data-comment-num")+"&contents="+$("#contents").val()
+        body: "num="+$(this).attr("data-review-num")+"&productReviewContents="+$("#productReviewContents").val()
     }).then( (response) => response.text())
       .then( (res) => {
         if(res.trim()>0){

@@ -2,6 +2,8 @@ package com.team.cwl.board.comment;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,10 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.cwl.member.MemberDTO;
 import com.team.cwl.util.Pagination;
 
 @Controller
-@RequestMapping("/boardComment/*")
+@RequestMapping("/board/comment/*")
 public class BoardCommentController {
 	
 	@Autowired
@@ -33,11 +36,12 @@ public class BoardCommentController {
 	
 	/** INSERT **/
 	@PostMapping("add")
-	public ModelAndView setBoardCommentAdd(BoardCommentDTO boardCommentDTO, ModelAndView modelAndView) throws Exception {
-		//MemberDTO 필요
-		boardCommentDTO.setMemberId("mhj");
+	public ModelAndView setBoardCommentAdd(BoardCommentDTO boardCommentDTO, HttpSession session, ModelAndView modelAndView) throws Exception {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		
-		int result = boardCommentService.setBoardCommentAdd(boardCommentDTO);
+		boardCommentDTO.setMemberId(memberDTO.getMemberId());
+		
+		int result = boardCommentService.setBoardCommentAdd(boardCommentDTO, null);
 		
 		modelAndView.addObject("result", result);
 		modelAndView.setViewName("common/ajaxResult");
@@ -59,7 +63,7 @@ public class BoardCommentController {
 	/** DELETE **/
 	@PostMapping("delete")
 	public ModelAndView setBoardCommentDelete(BoardCommentDTO boardCommentDTO, ModelAndView modelAndView) throws Exception {
-		int result = boardCommentService.setBoardCommentDelete(boardCommentDTO);
+		int result = boardCommentService.setBoardCommentDelete(boardCommentDTO, null);
 		
 		modelAndView.addObject("result", result);
 		modelAndView.setViewName("common/ajaxResult");

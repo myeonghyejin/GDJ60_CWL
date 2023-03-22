@@ -45,21 +45,12 @@
 			<a href="./list" class="btn btn-primary col-2 mx-1">목록</a>
 		</div>
 		
- 		<!-- QnA -->
-		<div class="row my-5" id="productQnAListResult">
-		</div>
-	
-		<div class="row my-5">
-			<div class="mb-3">
-				<textarea class="form-control" rows="3" id="productQnAContents"></textarea>
-			</div>
-			<div class="mb-3">
-				<button type="button" class="btn btn-primary" id="productQnAAdd" data-product-qna="${DTO.productNum}">작성</button>
-			</div>
+		<!-- Review -->
+		<div class="row mt-5">
+			<p class="fs-2" style="font-family: 'Impact'">REVIEW</p>
 		</div>
 		
-		<!-- Review -->
-		<div class="row my-5" id="productReviewListResult">
+		<div class="row" id="productReviewListResult">
 		</div>
 	
 		<div class="row my-5">
@@ -82,8 +73,48 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-floating">
-						<textarea class="form-control" id="contents"></textarea>
-						<label for="floatingTextarea">Comments</label>
+						<textarea class="form-control" id="productReviewContents"></textarea>
+						<label for="productReviewContents">Comments</label>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModal">취소</button>
+					<button type="button" class="btn btn-primary" data-comment-num="" id="contentsConfirm">확인</button>
+				</div>
+				</div>
+			</div>
+		</div>
+		
+ 		<!-- QnA -->
+ 		<div class="row mt-5">
+			<p class="fs-2" style="font-family: 'Impact'">QNA</p>
+		</div>
+ 		
+		<div class="row" id="productQnAListResult">
+		</div>
+	
+		<div class="row my-5">
+			<div class="mb-3">
+				<textarea class="form-control" rows="3" id="productQnAContents"></textarea>
+			</div>
+			<div class="mb-3">
+				<button type="button" class="btn btn-primary" id="productQnAAdd" data-product-qna="${DTO.productNum}">작성</button>
+			</div>
+		</div>
+		
+		<!-- Update Form -->
+		<!-- Modal -->
+		<div class="modal fade" id="contentsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel">수정</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="form-floating">
+						<textarea class="form-control" id="productQnAContents"></textarea>
+						<label for="productQnAContents">Comments</label>
 					</div>
 				</div>
 				<div class="modal-footer">
