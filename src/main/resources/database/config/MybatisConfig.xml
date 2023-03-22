@@ -9,13 +9,26 @@
   		<typeAlias type="com.team.cwl.member.MemberDTO" alias="MemberDTO"/>
   		<typeAlias type="com.team.cwl.member.RoleDTO" alias="RoleDTO"/>
   		
-  		<typeAlias type="com.team.cwl.cart.CartDTO" alias="CartDTO"/>
+  		<!-- <typeAlias type="com.team.cwl.cart.CartDTO" alias="CartDTO"/> -->
+  		<typeAlias type="com.team.cwl.cart2.CartDTO2" alias="CartDTO2"/>
+  		<typeAlias type="com.team.cwl.cart2.CartMapper2" alias="CartMapper2"/>
   		
   		<typeAlias type="com.team.cwl.order.OrderDTO" alias="OrderDTO"/>
   		<typeAlias type="com.team.cwl.order.OrderCancelDTO" alias="OrderCancelDTO"/>
   		<typeAlias type="com.team.cwl.order.OrderItemDTO" alias="OrderItemDTO"/>
   		<typeAlias type="com.team.cwl.order.OrderPageDTO" alias="OrderPageDTO"/>
   		<typeAlias type="com.team.cwl.order.OrderPageItemDTO" alias="OrderPageItemDTO"/>
+  		
+  		<typeAlias type="com.team.cwl.board.BoardDTO" alias="BoardDTO"/>
+		<typeAlias type="com.team.cwl.board.comment.BoardCommentDTO" alias="BoardCommentDTO"/>
+  		
+  		<typeAlias type="com.team.cwl.product.ProductDTO" alias="ProductDTO"/>
+		<typeAlias type="com.team.cwl.product.ProductImgDTO" alias="ProductImgDTO"/>
+		<typeAlias type="com.team.cwl.product.qna.ProductQnADTO" alias="ProductQnADTO"/>
+		<typeAlias type="com.team.cwl.product.review.ProductReviewDTO" alias="ProductReviewDTO"/>
+		
+		<typeAlias type="com.team.cwl.util.Pagination" alias="Pagination"/>
+  		
   		
   		<typeAlias type="java.lang.Long" alias="Long"/>
   	</typeAliases>

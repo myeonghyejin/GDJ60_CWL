@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.team.cwl.cart2.CartMapper2">
+
+	<!-- 카트 추가 -->
+	<insert id="addCart">
+		insert into cart2(memberId, productNum, productAmount)
+		values(#{memberId}, #{productNum}, #{productAmount}) 
+	</insert>
+	
+	
+	<!-- 카트 삭제 -->
+	<delete id="deleteCart">
+		delete from cart2 where cartNum = #{cartNum}
+	</delete>
+	
+	<!-- 카트 수량 수정 -->
+	<update id="modifyCount">
+		update cart2 set productAmount=#{productAmount} where cartNum = #{cartNum}
+	</update>
+	
+	
+	<!-- 카트 목록 -->
+	<select id="getCartList" resultType="com.team.cwl.cart2.CartDTO2">
+		select a.cartNum, a.memberId, a.productNum, a.productAmount, p.productName, p.productPrice
+		from cart2 a
+		left outer join
+		product p on a.productNum = p.productNum
+		where memberId = #{memberId}
+	</select>
+	
+	<!-- 카트 확인 -->
+	<select id="checkCart" resultType="com.team.cwl.cart2.CartDTO2">
+		select * from cart2 
+		where memberId = #{memberId} and productNum = #{productNum}
+	</select>	
+	
+	<delete id="deleteOrderCart">
+		delete from cart2 where memberId = #{memberId} and productNum = #{productNum}
+	</delete>	
+	
+	
+  </mapper>

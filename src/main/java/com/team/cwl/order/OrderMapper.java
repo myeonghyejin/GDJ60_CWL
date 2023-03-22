@@ -22,7 +22,7 @@ public interface OrderMapper {
 	public int deductMoney(MemberDTO memberDTO);
 	
 	// 주문 재고 차감
-	public int deductStock(ProductDTO productDTO);
+//	public int deductStock(ProductDTO productDTO);
 	
 	// 주문 취소
 	public int orderCancel(String orderId);

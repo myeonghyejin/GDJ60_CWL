@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team.cwl.board.comment.BoardCommentDAO">
+
+	<!-- SQL -->
+  	<sql id="commentCondition">
+    <where>
+		<if test="condition == 'boardCommentContents'">
+			BOARDCOMMENTCONTENTS LIKE '%' || #{search} || '%'
+		</if>
+		<if test="condition == 'memberId'">
+			MEMBERID LIKE '%' || #{search} || '%'
+		</if>
+		</where>
+	</sql>
+
+	<!-- SELECT -->
+	<select id="getBoardCommentList" resultType="BoardCommentDTO" parameterType="Pagination">
+		SELECT * FROM
+  		(
+	  		SELECT ROWNUM R, C.* FROM
+		  		(
+		  			SELECT * FROM BOARDCOMMENT 
+		  			<include refid="commentCondition"></include>
+		  			WHERE BOARDNUM = #{boardNum}
+		  			ORDER BY BOARDNUM DESC
+		  		) C
+		  	
+		)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+  	</select>
+	
+	<select id="getTotalCount" resultType="Long" parameterType="Pagination">
+		SELECT COUNT(BOARDCOMMENTNUM) FROM BOARDCOMMENT
+		<include refid="commentCondition"></include>
+		WHERE BOARDNUM = #{boardNum}
+	</select>
+	
+	<!-- INSERT -->
+	<insert id="setBoardCommentAdd" parameterType="BoardDTO">
+		INSERT INTO BOARDCOMMENT
+		VALUES (BOARDCOMMENT_SEQ.NEXTVAL, #{boardNum}, #{memberId}, #{boardCommentContents}, SYSDATE)
+	</insert>
+	
+	<!-- UPDATE -->
+	<update id="setBoardCommentUpdate" parameterType="BoardDTO">
+		UPDATE BOARDCOMMENT SET BOARDCOMMENTCONTENTS = #{boardCommentContents}
+		WHERE BOARDCOMMENTNUM = #{boardCommentNum}
+	</update>
+	
+	<!-- DELETE -->
+	<delete id="setBoardCommentDelete" parameterType="BoardDTO">
+		DELETE BOARDCOMMENT
+		WHERE BOARDCOMMENTNUM = #{boardCommentNum}
+	</delete>
+
+</mapper>

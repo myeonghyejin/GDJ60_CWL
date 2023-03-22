@@ -15,17 +15,17 @@ import com.team.cwl.member.MemberDTO;
 @Service
 public class OrderServiceImpl implements OrderService {
 	
-	@Autowired
+	@Autowired(required=false)
 	private OrderMapper orderMapper;
 	
-	@Autowired
-	private MemberMapper memberMapper;
-	
-	@Autowired
-	private CartMapper cartMapper;
-	
-	@Autowired
-	private ProductMapper productMapper;
+//	@Autowired
+//	private MemberMapper memberMapper;
+//	
+//	@Autowired
+//	private CartMapper cartMapper;
+//	
+//	@Autowired
+//	private ProductMapper productMapper;
 	
 	@Override
 	public List<OrderPageItemDTO> getGoodsInfo(List<OrderPageItemDTO> orders) {
@@ -50,7 +50,7 @@ public class OrderServiceImpl implements OrderService {
 		// 회원정보
 		MemberDTO member = memberMapper.getMemberInfo(ord.getMemberId());
 		// 주문정보
-		List<OrderItemDTO> ords = new ArrayList<>();
+//		List<OrderItemDTO> ords = new ArrayList<>();
 		for(OrderItemDTO oit : ord.getOrders()) {
 			OrderItemDTO orderItem = orderMapper.getOrderInfo(oit.getProductNum());
 			// 수량 세팅
@@ -86,13 +86,13 @@ public class OrderServiceImpl implements OrderService {
 		orderMapper.deductMoney(member);
 		
 		// 재고 변동 적용
-		for(OrderItemDTO oit : ord.getOrders()) {
-			// 변동 재고 값 구하기
-			ProductDTO productDTO = ProductMapper.getGoodsInfo(oit.getProductNum());
-			productDTO.setProductStock(productDTO.getProductStock() - oit.getOrderCount());
-			// 변동 값 DB 적용
-			orderMapper.deductStock(productDTO);
-		}
+//		for(OrderItemDTO oit : ord.getOrders()) {
+//			// 변동 재고 값 구하기
+//			ProductDTO productDTO = ProductMapper.getGoodsInfo(oit.getProductNum());
+//			productDTO.setProductStock(productDTO.getProductStock() - oit.getOrderCount());
+//			// 변동 값 DB 적용
+//			orderMapper.deductStock(productDTO);
+//		}
 		
 		// 장바구니 제거
 		for(OrderItemDTO oit : ord.getOrders()) {
@@ -134,9 +134,9 @@ public class OrderServiceImpl implements OrderService {
 		orderMapper.deductMoney(member);
 		// 재고
 		for(OrderItemDTO ord : orw.getOrders()) {
-			ProductDTO productDTO = productMapper.getGoodsInfo(ord.getProductNum());
-			productDTO.setProductStock(productDTO.getProductStock() + ord.getOrderCount());
-			orderMapper.deductStock(productDTO);
+//			ProductDTO productDTO = productMapper.getGoodsInfo(ord.getProductNum());
+//			productDTO.setProductStock(productDTO.getProductStock() + ord.getOrderCount());
+//			orderMapper.deductStock(productDTO);
 		}
 		
 	}

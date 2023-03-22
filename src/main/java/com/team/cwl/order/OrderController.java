@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.team.cwl.member.MemberDTO;
 import com.team.cwl.member.MemberService;
@@ -15,32 +17,31 @@ import com.team.cwl.member.MemberService;
 @Controller
 public class OrderController {
 	
-	@Autowired
+	@Autowired(required=false)
 	private OrderService orderService;
 	
-	@Autowired
+	@Autowired(required=false)
 	private MemberService memberService;
 	
-	@Autowired
-	private MemberDTO memberDTO;
+	
 	
 	@GetMapping("/order/{memberId}")
 	public String orderPageGET(@PathVariable("memberId") String memberId, OrderPageDTO orderPageDTO, Model model) {
 		
 		model.addAttribute("orderList", orderService.getGoodsInfo(orderPageDTO.getOrders()));
-		model.addAttribute("memberPage", memberService.getMemberPage(memberDTO));
+		model.addAttribute("memberPage", memberService.getMemberPage(memberId));
 		
 		return "/order";
 	}
 	
-	
+	@PostMapping("/order/")
 	public String orderPagePost(OrderDTO orderDTO, HttpServletRequest request) {
 		System.out.println(orderDTO);
 		
 		orderService.order(orderDTO);
 		
 		MemberDTO member = new MemberDTO();
-		memberDTO.setMemberId(orderDTO.getMemberId());
+		member.setMemberId(orderDTO.getMemberId());
 		
 		HttpSession session = request.getSession();
 		
