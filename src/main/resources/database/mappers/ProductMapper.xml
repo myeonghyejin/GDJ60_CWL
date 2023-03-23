@@ -59,6 +59,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		</association>
 	</resultMap>
 	
+	<select id="getProductImgList" resultType="ProductImgDTO" parameterType="ProductDTO">
+		SELECT * FROM PRODUCTIMG
+		WHERE PRODUCTNUM = #{productNum}
+	</select>
+	
 	<select id="getTotalCount" resultType="Long" parameterType="Pagination">
 		SELECT COUNT(PRODUCTNUM) FROM PRODUCT
 		<include refid="productCondition"></include>
@@ -88,6 +93,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="setProductDelete" parameterType="ProductDTO">
 		DELETE PRODUCT
 		WHERE PRODUCTNUM = #{productNum}
+	</delete>
+
+	<delete id="setProductImgDelete">
+		DELETE LESSONIMG
+		WHERE IMGNUM = #{imgNum}
 	</delete>
 
 </mapper>

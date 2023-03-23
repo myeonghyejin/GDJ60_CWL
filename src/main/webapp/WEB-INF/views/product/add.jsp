@@ -30,11 +30,11 @@
 				</div>
 				<div class="fw-bold fs-5 col-12">
 					<label for="productStock" class="form-label">재고</label>
-					<input type="text" name="productStock" class="form-control" id="productStock" value="${DTO.productStock}"><br>
+					<input type="text" name="productStock" class="form-control" id="productStock""><br>
 				</div>
 				<div class="fw-bold fs-5 col-12">
 					<label for="productPrice" class="form-label">가격</label>
-					<input type="text" name="productPrice" class="form-control" id="productPrice" value="${DTO.productPrice}"><br>
+					<input type="text" name="productPrice" class="form-control" id="productPrice""><br>
 				</div>
 				<div class="fw-bold fs-5 col-12 input-group">
 					<input type="file" class="form-control" id="productImg" aria-describedby="productImg" name="multipartfile" aria-label="Upload">

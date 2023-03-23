@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  			SELECT * FROM BOARDCOMMENT 
 		  			<include refid="commentCondition"></include>
 		  			WHERE BOARDNUM = #{boardNum}
-		  			ORDER BY BOARDNUM DESC
+		  			ORDER BY BOARDCOMMENTDATE DESC
 		  		) C
 		  	
 		)
@@ -41,19 +41,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- INSERT -->
-	<insert id="setBoardCommentAdd" parameterType="BoardDTO">
+	<insert id="setBoardCommentAdd" parameterType="BoardCommentDTO">
+		<selectKey keyProperty="boardCommentNum" resultType="Long" order="BEFORE">
+  			SELECT BOARDCOMMENT_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
 		INSERT INTO BOARDCOMMENT
-		VALUES (BOARDCOMMENT_SEQ.NEXTVAL, #{boardNum}, #{memberId}, #{boardCommentContents}, SYSDATE)
+		VALUES (#{boardCommentNum}, #{boardNum}, #{memberId}, #{boardCommentContents}, SYSDATE)
 	</insert>
 	
 	<!-- UPDATE -->
-	<update id="setBoardCommentUpdate" parameterType="BoardDTO">
+	<update id="setBoardCommentUpdate" parameterType="BoardCommentDTO">
 		UPDATE BOARDCOMMENT SET BOARDCOMMENTCONTENTS = #{boardCommentContents}
 		WHERE BOARDCOMMENTNUM = #{boardCommentNum}
 	</update>
 	
 	<!-- DELETE -->
-	<delete id="setBoardCommentDelete" parameterType="BoardDTO">
+	<delete id="setBoardCommentDelete" parameterType="BoardCommentDTO">
 		DELETE BOARDCOMMENT
 		WHERE BOARDCOMMENTNUM = #{boardCommentNum}
 	</delete>

@@ -2,12 +2,11 @@
 getList(1);
 
 function getList(page){
-    fetch("/board/comment/list?boardNum="+boardCommentAdd.getAttribute('data-board-comment')+"&page="+page, {
+    fetch("/board/comment/list?boardNum="+boardCommentAdd.getAttribute('data-board-num')+"&page="+page, {
         method:'GET'
     })
     .then((response)=>response.text())
     .then((res)=>{
-        
         $("#boardCommentListResult").html(res.trim());
     })
 }
@@ -16,19 +15,17 @@ function getList(page){
 $("#boardCommentListResult").on("click",".page-link", function(e){
     let page = $(this).attr("data-board-page");
     getList(page);
-    
     e.preventDefault();
 });
 
 //add
 $("#boardCommentAdd").click(function(){
-
     $.ajax({
         url:'../board/comment/add',
         type:'POST',
         data:{
             'boardCommentContents': $("#boardCommentContents").val(),
-            'boardNum': $("#boardCommentAdd").attr('data-board-comment')
+            'boardNum': $("#boardCommentAdd").attr('data-board-num')
         },
         success:(res)=>{
             if(res.trim()==1){
@@ -63,9 +60,10 @@ $("#boardCommentListResult").on("click",".delete",function(e){
 })
 
 //update
+let boardCommentNum = '';
 $("#boardCommentListResult").on("click", ".update", function(e){
-    let boardCommentNum = $(this).attr("data-boardcomment-num");
-    $("#boardCommentContents").val($("#boardCommentContents"+boardCommentNum).text());
+    boardCommentNum = $(this).attr("data-boardcomment-num");
+    $("#boardCommentEdit").val($("#boardCommentContents"+boardCommentNum).text().trim());
     $("#contentsConfirm").attr("data-boardcomment-num", boardCommentNum);
     e.preventDefault();
 })
@@ -76,8 +74,8 @@ $("#contentsConfirm").click(function(){
         url:'../board/comment/update',
         type:'POST',
         data:{
-            'boardCommentNum': $(this).attr("data-boardcomment-num"),
-            'boardCommentContents': $("#boardCommentContents").val()
+            'boardCommentNum': boardCommentNum,
+            'boardCommentContents': $("#boardCommentEdit").val()
         },
         success:(res)=>{
             if(res.trim()>0){

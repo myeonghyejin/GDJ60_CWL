@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team.cwl.lesson.review.LessonReviewDAO">
+
+	<!-- SQL -->
+	<sql id="lessonReviewCondition">
+		<where>
+			<if test="condition == 'lessonReviewContents'">
+				CONTENTS LIKE '%' || #{search} || '%'
+			</if>
+			<if test="condition == 'memberId'">
+				WRITER LIKE '%' || #{search} || '%'
+			</if>
+		</where>
+	</sql>
+
+	<!-- SELECT -->
+	<select id="getLessonReviewList" resultType="LessonReviewDTO" parameterType="Pagination">
+		SELECT * FROM
+			(
+				SELECT ROWNUM R, C.* FROM
+					(
+						SELECT * FROM LESSONREVIEW
+						<include refid="lessonReviewCondition"></include>
+						WHERE LESSONNUM = #{lessonNum}
+						ORDER BY LESSONREVIEWDATE DESC
+					) C
+			)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+	</select>
+	
+	<select id="getTotalCount" resultType="Long" parameterType="Pagination">
+		SELECT COUNT(LESSONREVIEWNUM) FROM LESSONREVIEW
+		<include refid="lessonReviewCondition"></include>
+		WHERE LESSONNUM = #{lessonNum}
+	</select>
+	
+	<!-- INSERT -->
+	<insert id="setLessonReviewAdd" parameterType="LessonReviewDTO">
+  		INSERT INTO LESSONREVIEW
+		VALUES (LESSONREVIEW_SEQ.NEXTVAL, #{lessonNum}, #{memberId}, #{lessonReviewContents}, SYSDATE, #{lessonRating})
+	</insert>
+	
+	<!-- UPDATE -->
+	<update id="setLessonReviewUpdate" parameterType="LessonReviewDTO">
+		UPDATE LESSONREVIEW SET LESSONREVIEWCONTENTS = #{lessonReviewContents}
+		WHERE LESSONREVIEWNUM = #{lessonReviewNum}
+	</update>
+	
+	<!-- DELETE -->
+	<delete id="setLessonReviewDelete" parameterType="LessonReviewDTO">
+		DELETE LESSONREVIEW
+		WHERE LESSONREVIEWNUM = #{lessonReviewNum}
+	</delete>
+
+</mapper>

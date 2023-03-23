@@ -1,6 +1,7 @@
 package com.team.cwl.product;
 
 import java.sql.Date;
+import java.util.List;
 
 public class ProductDTO {
 	
@@ -13,7 +14,7 @@ public class ProductDTO {
 	private Date productDate;
 	private Integer productState;
 	
-	private ProductImgDTO productImgDTO;
+	private List<ProductImgDTO> productImgDTOs;
 
 	public Long getProductNum() {
 		return productNum;
@@ -63,11 +64,10 @@ public class ProductDTO {
 	public void setProductState(Integer productState) {
 		this.productState = productState;
 	}
-	public ProductImgDTO getProductImgDTO() {
-		return productImgDTO;
+	public List<ProductImgDTO> getProductImgDTOs() {
+		return productImgDTOs;
 	}
-	public void setProductImgDTO(ProductImgDTO productImgDTO) {
-		this.productImgDTO = productImgDTO;
+	public void setProductImgDTOs(List<ProductImgDTO> productImgDTOs) {
+		this.productImgDTOs = productImgDTOs;
 	}
-
 }
