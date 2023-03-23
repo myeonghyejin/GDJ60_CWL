@@ -39,6 +39,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		SELECT * FROM LESSON
   		WHERE LESSONNUM = #{lessonNum}
   	</select>
+  	
+  	<select id="getLessonImgList" resultType="LessonImgDTO" parameterType="LessonDTO">
+  		SELECT * FROM LESSONIMG
+  		WHERE LESSONNUM = #{lessonNum}
+  	</select>
 	
 	<select id="getTotalCount" resultType="Long" parameterType="Pagination">
 		SELECT COUNT(LESSONNUM) FROM LESSON
@@ -51,7 +56,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			SELECT LESSON_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
 		INSERT INTO LESSON
-		VALUES(#{lessonNum}, #{memberId}, #{lessonTitle}, #{lessonContents}, 0, SYSDATE, null)
+		VALUES(#{lessonNum}, #{memberId}, #{lessonTitle}, #{lessonContents}, 0, SYSDATE)
+	</insert>
+	
+	<insert id="setLessonImgAdd" parameterType="LessonImgDTO">
+		INSERT INTO LESSONIMG
+		VALUES (LESSONIMG_SEQ.NEXTVAL, #{lessonNum}, #{imgName}, #{originalName})
 	</insert>
 	
 	<!-- UPDATE -->
@@ -69,6 +79,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="setLessonDelete" parameterType="LessonDTO">
 		DELETE LESSON
 		WHERE LESSONNUM = #{lessonNum}
+	</delete>
+	
+	<delete id="setLessonImgDelete" parameterType="Long">
+		DELETE LESSONIMG WHERE IMGNUM = #{imgNum}
 	</delete>
 
 </mapper>

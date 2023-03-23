@@ -18,6 +18,7 @@
   		
   		<typeAlias type="com.team.cwl.lesson.LessonDTO" alias="LessonDTO"/>
   		<typeAlias type="com.team.cwl.lesson.review.LessonReviewDTO" alias="LessonReviewDTO"/>
+  		<typeAlias type="com.team.cwl.lesson.LessonImgDTO" alias="LessonImgDTO"/>
   		
   		<typeAlias type="com.team.cwl.member.MemberDTO" alias="MemberDTO"/>
   		<typeAlias type="com.team.cwl.member.RoleDTO" alias="RoleDTO"/>

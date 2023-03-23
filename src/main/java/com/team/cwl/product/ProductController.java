@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.cwl.member.MemberDTO;
 import com.team.cwl.util.Pagination;
 
 @Controller

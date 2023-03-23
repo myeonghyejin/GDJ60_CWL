@@ -46,16 +46,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- INSERT -->
 	<insert id="setProductQnAAdd" parameterType="ProductQnADTO">
-		<selectKey keyProperty="productQnANum" resultType="Long" order="BEFORE">
-			SELECT PRODUCTQNA_SEQ.NEXTVAL FROM DUAL
-		</selectKey>
+  		<selectKey keyProperty="productQnANum" resultType="Long" order="BEFORE">
+  			SELECT PRODUCTQNA_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
   		INSERT INTO PRODUCTQNA
 		VALUES (#{productQnANum}, #{productNum}, #{memberId}, #{productQnAContents}, SYSDATE, #{productQnANum}, 0, 0)
 	</insert>
 	
 	<insert id="setProductQnAReplyAdd" parameterType="ProductQnADTO">
 		INSERT INTO PRODUCTQNA
-		VALUES (PRODUCT_SEQ.NEXTVAL, #{productNum}, #{memberId}, #{productQnAContents}, SYSDATE, #{productQnARef}, #{productQnAStep}, #{productQnADepth})
+		VALUES (PRODUCTQNA_SEQ.NEXTVAL, #{productNum}, #{memberId}, #{productQnAContents}, SYSDATE, #{productQnARef}, #{productQnAStep}, #{productQnADepth})
 	</insert>
 	
 	<!-- UPDATE -->

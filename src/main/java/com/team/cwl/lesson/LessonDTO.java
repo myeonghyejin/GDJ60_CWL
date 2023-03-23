@@ -1,6 +1,7 @@
 package com.team.cwl.lesson;
 
 import java.sql.Date;
+import java.util.List;
 
 public class LessonDTO {
 	
@@ -10,6 +11,8 @@ public class LessonDTO {
 	private String lessonContents;
 	private Long lessonHit;
 	private Date lessonDate;
+	
+	private List<LessonImgDTO> lessonImgDTOs;
 	
 	public Long getLessonNum() {
 		return lessonNum;
@@ -47,5 +50,10 @@ public class LessonDTO {
 	public void setLessonDate(Date lessonDate) {
 		this.lessonDate = lessonDate;
 	}
-
+	public List<LessonImgDTO> getLessonImgDTOs() {
+		return lessonImgDTOs;
+	}
+	public void setLessonImgDTOs(List<LessonImgDTO> lessonImgDTOs) {
+		this.lessonImgDTOs = lessonImgDTOs;
+	}
 }

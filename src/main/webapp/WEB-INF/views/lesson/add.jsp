@@ -27,10 +27,12 @@
 				<div class="fw-bold fs-5 col-12">
 					<label for="lessonContents" class="form-label">내용</label>
 					<textarea name="lessonContents" class="form-control" id="lessonContents" rows="3"></textarea><br>
-				</div>	
-				<div class="fw-bold fs-5 col-12 input-group">
-					<input type="file" class="form-control" id="lessonImg" aria-describedby="lessonImg" name="multipartfile" aria-label="Upload">
-  					<button class="btn btn-outline-secondary" type="button" id="lessonImg" name="multipartfile">X</button>
+				</div>
+				<div id="imgList">
+					<div class="fw-bold fs-5 col-12 input-group">
+						<input type="file" class="form-control" name="imgs">
+						<button type="button" class="btn btn-outline-primary" id="imgAdd">ADD</button>
+					</div>	
 				</div>
 				<div class="row justify-content-center my-5">
 					<button type="submit" class="btn btn-primary col-2">글쓰기</button>
@@ -38,7 +40,9 @@
 			</div>
 	   </form>
 	</div>
+	<script src="../resources/js/fileManager.js"></script>
 	<script>
+		setMax(4);
 		$('#lessonContents').summernote();
 	</script>
 	<c:import url="../template/common_js.jsp"></c:import>

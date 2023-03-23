@@ -25,6 +25,10 @@ public class LessonDAO {
 	public LessonDTO getLessonDetail(LessonDTO lessonDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"getLessonDetail", lessonDTO);
 	}
+	
+	public List<LessonImgDTO> getLessonImgList(LessonDTO lessonDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getLessonImgList", lessonDTO);
+	}
 
 	public Long getTotalCount(Pagination pagination) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"getTotalCount", pagination);
@@ -33,6 +37,10 @@ public class LessonDAO {
 	/** INSERT **/
 	public int setLessonAdd(LessonDTO lessonDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"setLessonAdd", lessonDTO);
+	}
+	
+	public int setLessonImgAdd(LessonImgDTO lessonImgDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"setLessonImgAdd", lessonImgDTO);
 	}
 
 	/** UPDATE **/
@@ -47,6 +55,10 @@ public class LessonDAO {
 	/** DELETE **/
 	public int setLessonDelete(LessonDTO lessonDTO) throws Exception {
 		return sqlSession.delete(NAMESPACE+"setLessonDelete", lessonDTO);
+	}
+	
+	public int setLessonImgDelete(Long imgNum) throws Exception {
+		return sqlSession.delete(NAMESPACE+"setLessonImgDelete", imgNum);
 	}
 
 }

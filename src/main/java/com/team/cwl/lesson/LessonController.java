@@ -2,13 +2,17 @@ package com.team.cwl.lesson;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.cwl.member.MemberDTO;
 import com.team.cwl.util.Pagination;
 
 @Controller
@@ -37,8 +41,6 @@ public class LessonController {
 		
 		lessonService.setLessonHitUpdate(lessonDTO);
 		
-		System.out.println(lessonDTO.getLessonNum());
-		
 		modelAndView.addObject("DTO", lessonDTO);
 		modelAndView.setViewName("lesson/detail");
 		
@@ -56,8 +58,12 @@ public class LessonController {
 	
 	//DB에 Insert
 	@PostMapping("add")
-	public ModelAndView setLessonAdd(LessonDTO lessonDTO, ModelAndView modelAndView) throws Exception {
-		int result = lessonService.setLessonAdd(lessonDTO);
+	public ModelAndView setLessonAdd(LessonDTO lessonDTO, MultipartFile [] imgs, HttpSession session, ModelAndView modelAndView) throws Exception {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		
+		lessonDTO.setMemberId(memberDTO.getMemberId());
+		
+		int result = lessonService.setLessonAdd(lessonDTO, imgs, session);
 		
 		String message = "등록에 실패했습니다.";
 		
@@ -89,8 +95,8 @@ public class LessonController {
 	
 	//DB에 Insert
 	@PostMapping("update")
-	public ModelAndView setLessonUpdate(LessonDTO lessonDTO, ModelAndView modelAndView) throws Exception {
-		int result = lessonService.setLessonUpdate(lessonDTO);
+	public ModelAndView setLessonUpdate(LessonDTO lessonDTO, MultipartFile [] imgs, HttpSession session, Long [] imgNums, ModelAndView modelAndView) throws Exception {
+		int result = lessonService.setLessonUpdate(lessonDTO, imgs, session, imgNums);
 		
 		String message = "수정에 실패했습니다.";
 		
@@ -107,8 +113,10 @@ public class LessonController {
 	
 	/** DELETE **/
 	@PostMapping("delete")
-	public ModelAndView setLessonDelete(LessonDTO lessonDTO, ModelAndView modelAndView) throws Exception {
-		int result = lessonService.setLessonDelete(lessonDTO);
+	public ModelAndView setLessonDelete(LessonDTO lessonDTO, HttpSession session, ModelAndView modelAndView) throws Exception {
+		modelAndView.setViewName("common/result");
+		
+		int result = lessonService.setLessonDelete(lessonDTO, session);
 		
 		String message = "삭제에 실패했습니다.";
 		
@@ -118,9 +126,16 @@ public class LessonController {
 		
 		modelAndView.addObject("result", message);
 		modelAndView.addObject("URL", "./list");
-		modelAndView.setViewName("common/result");
 		
 		return modelAndView;
 	}
-
+	
+	@PostMapping("imgDelete")
+	public ModelAndView setLessonImgDelete(Long imgNum, ModelAndView modelAndView) throws Exception {
+		int result = lessonService.setLessonImgDelete(imgNum);
+		modelAndView.addObject("result", result);
+		modelAndView.setViewName("common/ajaxResult");
+		
+		return modelAndView;
+	}
 }

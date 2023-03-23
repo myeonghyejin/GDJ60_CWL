@@ -47,7 +47,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- UPDATE -->
 	<update id="setProductReviewUpdate" parameterType="ProductReviewDTO">
-		UPDATE PRODUCTREVIEW SET PRODUCTREVIEWCONTENTS = #{productReviewContents}
+		UPDATE PRODUCTREVIEW SET PRODUCTREVIEWCONTENTS = #{productReviewContents}, PRODUCTRATING = #{productRating}
 		WHERE PRODUCTREVIEWNUM = #{productReviewNum}
 	</update>
 	

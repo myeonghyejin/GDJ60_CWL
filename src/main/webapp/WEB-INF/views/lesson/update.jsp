@@ -41,7 +41,11 @@
 			</div>
 	   </form>
 	</div>
+	<script src="../resources/js/fileManager.js"></script>
 	<script>
+		setMax(4);
+		setCount('${DTO.lessonImgDTOs.size()}');
+		setParam("imgs")
 		$('#lessonContents').summernote();
 	</script>
 	<c:import url="../template/common_js.jsp"></c:import>

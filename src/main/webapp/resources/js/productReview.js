@@ -2,18 +2,18 @@
 getList(1);
 
 function getList(page){
-    fetch("/product/review/list?productNum="+productReviewAdd.getAttribute('data-product-num')+"&page="+page, {
-        method:'GET'
-    })
-    .then((response)=>response.text())
-    .then((res)=>{
-        $("#productReviewListResult").html(res.trim());
+    $.ajax({
+        url:'../product/review/list?productNum='+productReviewAdd.getAttribute('data-product-num-review')+"&page="+page,
+        type:'GET',
+        success:(res)=>{
+            $("#productReviewListResult").html(res.trim());
+        }
     })
 }
 
 //page
 $("#productReviewListResult").on("click",".page-link", function(e){
-    let page = $(this).attr("data-board-page");
+    let page = $(this).attr("data-review-page");
     getList(page);
     e.preventDefault();
 });
@@ -26,7 +26,7 @@ $("#productReviewAdd").click(function(){
         data:{
         	'productRating': $("#productRating").val(),
             'productReviewContents': $("#productReviewContents").val(),
-            'productNum': $("#productReviewAdd").attr('data-product-num')
+            'productNum': $("#productReviewAdd").attr('data-product-num-review')
         },
         success:(res)=>{
             if(res.trim()==1){
@@ -65,25 +65,26 @@ $("#productReviewListResult").on("click",".delete",function(e){
 let productReviewNum = '';
 $("#productReviewListResult").on("click", ".update", function(e){
     productReviewNum = $(this).attr("data-productreview-num");
+    $("#productRatingEdit").val($("#productRating"+productReviewNum).text().trim());
     $("#productReviewEdit").val($("#productReviewContents"+productReviewNum).text().trim());
-    $("#contentsConfirm").attr("data-productreview-num", productReviewNum);
+    $("#reviewConfirm").attr("data-productreview-num", productReviewNum);
     e.preventDefault();
 })
 
 //confirm
-$("#contentsConfirm").click(function(){
+$("#reviewConfirm").click(function(){
     $.ajax({
         url:'../product/review/update',
         type:'POST',
         data:{
-        	'productRating': $("#productRating").val(),
+        	'productRating': $("#productRatingEdit").val(),
             'productReviewNum': productReviewNum,
             'productReviewContents': $("#productReviewEdit").val()
         },
         success:(res)=>{
             if(res.trim()>0){
                 alert('후기가 수정되었습니다');
-                $("#closeModal").click();
+                $("#closeReviewModal").click();
                 getList(1);            
             }else {
                 alert('수정 실패!');
