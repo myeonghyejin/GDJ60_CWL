@@ -49,6 +49,7 @@ public class ProductReviewController {
 	}
 	
 	/** UPDATE **/
+	@PostMapping("update")
 	public ModelAndView setProductReviewUpdate(ProductReviewDTO productReviewDTO, ModelAndView modelAndView) throws Exception {
 		int result = productReviewService.setProductReviewUpdate(productReviewDTO);
 		
@@ -59,6 +60,7 @@ public class ProductReviewController {
 	}
 	
 	/** DELETE **/
+	@PostMapping("delete")
 	public ModelAndView setProductDelete(ProductReviewDTO productReviewDTO, ModelAndView modelAndView) throws Exception {
 		int result = productReviewService.setProductReviewDelete(productReviewDTO);
 		

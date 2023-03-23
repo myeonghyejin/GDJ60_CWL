@@ -5,7 +5,7 @@
 <table class="table table-striped">
 	<c:forEach items="${list}" var="DTO">
 		<tr>
-			<td id="boardCommentContents${DTO.boardNum}">
+			<td id="boardCommentContents${DTO.boardCommentNum}">
 				${DTO.boardCommentContents}
 			</td>
 			<td>${DTO.memberId}</td>
