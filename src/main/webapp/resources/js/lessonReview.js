@@ -55,19 +55,16 @@ $("#lessonReviewListResult").on("click",".delete",function(e){
         headers:{
            "Content-type":"application/x-www-form-urlencoded"
        },
-       body:"num="+$(this).attr("data-lessonReview-num")
-           //응답객체에서 Data 추출
-       }).then((response)=>{return response.text()}) //then(function(response){return response.text()})   
-           //추출한 Data 사용
+       body:"lessonReviewNum="+$(this).attr("data-lessonReview-num")
+       }).then((response)=>{return response.text()})
          .then((res)=>{
            if(res.trim()>0){
-               alert('댓글이 삭제 되었습니다');
+               alert('후기가 삭제되었습니다');
                getList(1);
            }else {
                alert('삭제 실패');
            }
          })
-
          e.preventDefault();
 })
   
@@ -76,7 +73,7 @@ let lessonReviewNum = '';
 $("#lessonReviewListResult").on("click", ".update", function(e){
     lessonReviewNum = $(this).attr("data-lessonReview-num");
     console.log(lessonReviewNum)
-    $("#lessonReviewContent").val($("#lessonReviewContents"+lessonReviewNum).text());
+    $("#lessonReviewEdit").val($("#lessonReviewContents"+lessonReviewNum).text().trim());
     $("#contentsConfirm").attr("data-lessonReview-num", lessonReviewNum);
     e.preventDefault();
 })
@@ -88,12 +85,12 @@ $("#contentsConfirm").click(function(){
         type:'POST',
         data:{
             'lessonReviewNum': lessonReviewNum,
-            'lessonReviewContents': $("#lessonReviewContent").val(),
+            'lessonReviewContents': $("#lessonReviewEdit").val(),
             'lessonRating': $("#lessonRating").val()
         },
         success:(res)=>{
             if(res.trim()>0){
-                alert('수정 성공');
+                alert('후기가 수정되었습니다');
                 $("#closeModal").click();
                 getList(1);            
             }else {

@@ -77,8 +77,8 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-floating">
-						<textarea class="form-control" id="lessonReviewContent"></textarea>
-						<label for="lessonReviewContent">Comments</label>
+						<textarea class="form-control" id="lessonReviewEdit"></textarea>
+						<label for="lessonReviewEdit">Comments</label>
 					</div>
 				</div>
 				<div class="modal-footer">

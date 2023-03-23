@@ -49,6 +49,7 @@ public class ProductQnAController {
 	}
 	
 	/** UPDATE **/
+	@PostMapping("update")
 	public ModelAndView setProductQnAUpdate(ProductQnADTO productQnADTO, ModelAndView modelAndView) throws Exception {
 		int result = productQnAService.setProductQnAUpdate(productQnADTO);
 		
@@ -59,6 +60,7 @@ public class ProductQnAController {
 	}
 	
 	/** DELETE **/
+	@PostMapping("delete")
 	public ModelAndView setProductQnADelete(ProductQnADTO productQnADTO, ModelAndView modelAndView) throws Exception {
 		int result = productQnAService.setProductQnADelete(productQnADTO);
 		

@@ -45,32 +45,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- INSERT -->
-	<insert id="setProductQnAAdd" parameterType="ProductDTO">
+	<insert id="setProductQnAAdd" parameterType="ProductQnADTO">
 		<selectKey keyProperty="productQnANum" resultType="Long" order="BEFORE">
-  			SELECT PRODUCTQNA_SEQ.NEXTVAL FROM DUAL
-  		</selectKey>
+			SELECT PRODUCTQNA_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
   		INSERT INTO PRODUCTQNA
 		VALUES (#{productQnANum}, #{productNum}, #{memberId}, #{productQnAContents}, SYSDATE, #{productQnANum}, 0, 0)
 	</insert>
 	
-	<insert id="setProductQnAReplyAdd" parameterType="ProductDTO">
+	<insert id="setProductQnAReplyAdd" parameterType="ProductQnADTO">
 		INSERT INTO PRODUCTQNA
 		VALUES (PRODUCT_SEQ.NEXTVAL, #{productNum}, #{memberId}, #{productQnAContents}, SYSDATE, #{productQnARef}, #{productQnAStep}, #{productQnADepth})
 	</insert>
 	
 	<!-- UPDATE -->
-	<update id="setProductQnAUpdate" parameterType="ProductDTO">
+	<update id="setProductQnAUpdate" parameterType="ProductQnADTO">
 		UPDATE PRODUCTQNA SET PRODUCTQNACONTENTS = #{productQnAContents}
 		WHERE PRODUCTQNANUM = #{productQnANum}
 	</update>
 	
-	<update id="setStepUpdate" parameterType="ProductDTO">
+	<update id="setStepUpdate" parameterType="ProductQnADTO">
 		UPDATE PRODUCTQNA SET PRODUCTQNASTEP = PRODUCTQNASTEP + 1
 		WHERE PRODUCTQNAREF = #{productQnARef} AND PRODUCTQNASTEP > #{productQnAStep}
 	</update>
 	
 	<!-- DELETE -->
-	<delete id="setProductQnADelete" parameterType="ProductDTO">
+	<delete id="setProductQnADelete" parameterType="ProductQnADTO">
 		DELETE PRODUCTQNA
 		WHERE PRODUCTQNANUM = #{productQnANum}
 	</delete>

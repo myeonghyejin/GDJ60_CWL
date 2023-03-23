@@ -58,7 +58,7 @@
 				<textarea class="form-control" rows="3" id="boardCommentContents"></textarea>
 			</div>
 			<div class="mb-3">
-				<button type="button" class="btn btn-primary" id="boardCommentAdd" data-board-comment="${DTO.boardNum}">작성</button>
+				<button type="button" class="btn btn-primary" id="boardCommentAdd" data-board-num="${DTO.boardNum}">작성</button>
 			</div>
 		</div>
 	
@@ -73,8 +73,8 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-floating">
-						<textarea class="form-control" id="boardCommentContents"></textarea>
-						<label for="boardCommentContents">Comments</label>
+						<textarea class="form-control" id="boardCommentEdit"></textarea>
+						<label for="boardCommentEdit">Comments</label>
 					</div>
 				</div>
 				<div class="modal-footer">

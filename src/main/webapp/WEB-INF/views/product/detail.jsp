@@ -55,10 +55,14 @@
 	
 		<div class="row my-5">
 			<div class="mb-3">
+				<label for="productRating" class="form-label">RATING</label>
+				<input type="text" name="productRating" class="form-control" id="productRating"><br>
+			</div>
+			<div class="mb-3">
 				<textarea class="form-control" rows="3" id="productReviewContents"></textarea>
 			</div>
 			<div class="mb-3">
-				<button type="button" class="btn btn-primary" id="productReviewAdd" data-product-review="${DTO.productNum}">작성</button>
+				<button type="button" class="btn btn-primary" id="productReviewAdd" data-product-num="${DTO.productNum}">작성</button>
 			</div>
 		</div>
 		
@@ -73,13 +77,13 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-floating">
-						<textarea class="form-control" id="productReviewContents"></textarea>
-						<label for="productReviewContents">Comments</label>
+						<textarea class="form-control" id="productReviewEdit"></textarea>
+						<label for="productReviewEdit">Comments</label>
 					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModal">취소</button>
-					<button type="button" class="btn btn-primary" data-comment-num="" id="contentsConfirm">확인</button>
+					<button type="button" class="btn btn-primary" data-productreview-num="" id="contentsConfirm">확인</button>
 				</div>
 				</div>
 			</div>
@@ -98,7 +102,7 @@
 				<textarea class="form-control" rows="3" id="productQnAContents"></textarea>
 			</div>
 			<div class="mb-3">
-				<button type="button" class="btn btn-primary" id="productQnAAdd" data-product-qna="${DTO.productNum}">작성</button>
+				<button type="button" class="btn btn-primary" id="productQnAAdd" data-product-num="${DTO.productNum}">작성</button>
 			</div>
 		</div>
 		
@@ -113,13 +117,13 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-floating">
-						<textarea class="form-control" id="productQnAContents"></textarea>
-						<label for="productQnAContents">Comments</label>
+						<textarea class="form-control" id="productQnAEdit"></textarea>
+						<label for="productQnAEdit">Comments</label>
 					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModal">취소</button>
-					<button type="button" class="btn btn-primary" data-comment-num="" id="contentsConfirm">확인</button>
+					<button type="button" class="btn btn-primary" data-productqna-num="" id="contentsConfirm">확인</button>
 				</div>
 				</div>
 			</div>

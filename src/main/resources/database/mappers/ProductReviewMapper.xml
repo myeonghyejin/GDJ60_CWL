@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						SELECT * FROM PRODUCTREVIEW
 						<include refid="productReviewCondition"></include>
 						WHERE PRODUCTNUM = #{productNum}
-						ORDER BY PRODUCTREVIEWNUM DESC
+						ORDER BY PRODUCTREVIEWDATE DESC
 					) C
 			)
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
@@ -40,22 +40,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- INSERT -->
-	<insert id="setProductReviewAdd" parameterType="ProductDTO">
-		<selectKey keyProperty="productReviewNum" resultType="Long" order="BEFORE">
-  			SELECT PRODUCTREVIEW_SEQ.NEXTVAL FROM DUAL
-  		</selectKey>
+	<insert id="setProductReviewAdd" parameterType="ProductReviewDTO">
   		INSERT INTO PRODUCTREVIEW
-		VALUES (#{productReviewNum}, #{productNum}, #{memberId}, #{productReviewContents}, SYSDATE, #{productRating})
+		VALUES (PRODUCTREVIEW_SEQ.NEXTVAL, #{productNum}, #{memberId}, #{productReviewContents}, SYSDATE, #{productRating})
 	</insert>
 	
 	<!-- UPDATE -->
-	<update id="setProductReviewUpdate" parameterType="ProductDTO">
+	<update id="setProductReviewUpdate" parameterType="ProductReviewDTO">
 		UPDATE PRODUCTREVIEW SET PRODUCTREVIEWCONTENTS = #{productReviewContents}
 		WHERE PRODUCTREVIEWNUM = #{productReviewNum}
 	</update>
 	
 	<!-- DELETE -->
-	<delete id="setProductReviewDelete" parameterType="ProductDTO">
+	<delete id="setProductReviewDelete" parameterType="ProductReviewDTO">
 		DELETE PRODUCTREVIEW
 		WHERE PRODUCTREVIEWNUM = #{productReviewNum}
 	</delete>
