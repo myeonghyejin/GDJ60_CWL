@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.team.cwl.lesson.LessonImgDTO;
 import com.team.cwl.util.FileManager;
 import com.team.cwl.util.Pagination;
 
@@ -35,34 +36,69 @@ public class ProductService {
 	}
 
 	/** INSERT **/
-	public int setProductAdd(ProductDTO productDTO, MultipartFile multipartFile, HttpSession session) throws Exception {
+	public int setProductAdd(ProductDTO productDTO, MultipartFile [] multipartFiles, HttpSession session) throws Exception {
 		int result = productDAO.setProductAdd(productDTO);
 		
-		//file HDD에 저장
 		String realPath = session.getServletContext().getRealPath("resources/upload/product/");
+
 		System.out.println(realPath);
-					
-		String imgName = fileManager.fileSave(multipartFile, realPath);
 		
-		//DB에 Insert
-		ProductImgDTO productImgDTO = new ProductImgDTO();
-		productImgDTO.setProductNum(productDTO.getProductNum());
-		productImgDTO.setImgName(imgName);
-		productImgDTO.setOriginalName(multipartFile.getOriginalFilename());
-					
-		result = productDAO.setProductImgAdd(productImgDTO);
-		
+		for(MultipartFile multipartFile : multipartFiles) {
+			String imgName = fileManager.fileSave(multipartFile, realPath);
+
+			ProductImgDTO productImgDTO = new ProductImgDTO();
+			productImgDTO.setProductNum(productDTO.getProductNum());
+			productImgDTO.setImgName(imgName);
+			productImgDTO.setOriginalName(multipartFile.getOriginalFilename());
+			
+			result = productDAO.setProductImgAdd(productImgDTO);	
+		}
 		return result;
 	}
 
 	/** UPDATE **/
-	public int setProductUpdate(ProductDTO productDTO) throws Exception {
-		return productDAO.setProductUpdate(productDTO);
+	public int setProductUpdate(ProductDTO productDTO, MultipartFile [] multipartFiles, HttpSession session, Long [] imgNums) throws Exception {
+		int result = productDAO.setProductAdd(productDTO);
+		
+		if(imgNums != null) {
+			for(Long imgNum : imgNums) {
+				productDAO.setProductImgDelete(imgNum);
+			}
+		}
+		
+		String realPath = session.getServletContext().getRealPath("resources/upload/product/");
+
+		for(MultipartFile multipartFile : multipartFiles) {
+			String imgName = fileManager.fileSave(multipartFile, realPath);
+
+			ProductImgDTO productImgDTO = new ProductImgDTO();
+			productImgDTO.setProductNum(productDTO.getProductNum());
+			productImgDTO.setImgName(imgName);
+			productImgDTO.setOriginalName(multipartFile.getOriginalFilename());
+			
+			result = productDAO.setProductImgAdd(productImgDTO);	
+		}
+		return result;
 	}
 
 	/** DELETE **/
-	public int setProductDelete(ProductDTO productDTO) throws Exception {
+	public int setProductDelete(ProductDTO productDTO, HttpSession session) throws Exception {
+		List<ProductImgDTO> ar = productDAO.getProductImgList(productDTO);
+		
+		int result = productDAO.setProductDelete(productDTO);
+		
+		if(result > 0) {			
+			String realPath = session.getServletContext().getRealPath("resources/upload/lesson/");
+			
+			for(ProductImgDTO productImgDTO : ar) {
+				boolean check = fileManager.fileDelete(realPath, productImgDTO.getImgName());
+			}
+			
+		}
 		return productDAO.setProductDelete(productDTO);
 	}
-
+	
+	public int setProductImgDelete(Long imgNum) throws Exception {
+		return productDAO.setProductImgDelete(imgNum);
+	}
 }

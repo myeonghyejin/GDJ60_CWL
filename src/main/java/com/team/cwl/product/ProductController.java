@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,8 +57,12 @@ public class ProductController {
 	
 	//DB에 Insert
 	@PostMapping("add")
-	public ModelAndView setProductAdd(ProductDTO productDTO, MultipartFile multipartFile, HttpSession session, ModelAndView modelAndView) throws Exception {
-		int result = productService.setProductAdd(productDTO, multipartFile, session);
+	public ModelAndView setProductAdd(ProductDTO productDTO, MultipartFile [] imgs, HttpSession session, ModelAndView modelAndView) throws Exception {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		
+		productDTO.setMemberId(memberDTO.getMemberId());
+		
+		int result = productService.setProductAdd(productDTO, imgs, session);
 		
 		String message = "등록에 실패했습니다.";
 		
@@ -89,8 +94,8 @@ public class ProductController {
 	
 	//DB에 Insert
 	@PostMapping("update")
-	public ModelAndView setProductUpdate(ProductDTO productDTO, ModelAndView modelAndView) throws Exception {
-		int result = productService.setProductUpdate(productDTO);
+	public ModelAndView setProductUpdate(ProductDTO productDTO, MultipartFile [] imgs, HttpSession session, Long [] imgNums, ModelAndView modelAndView) throws Exception {
+		int result = productService.setProductUpdate(productDTO, imgs, session, imgNums);
 		
 		String message = "수정에 실패했습니다.";
 		
@@ -107,8 +112,10 @@ public class ProductController {
 	
 	/** DELETE **/
 	@PostMapping("delete")
-	public ModelAndView setLessonDelete(ProductDTO productDTO, ModelAndView modelAndView) throws Exception {
-		int result = productService.setProductDelete(productDTO);
+	public ModelAndView setProductDelete(ProductDTO productDTO, HttpSession session, ModelAndView modelAndView) throws Exception {
+		modelAndView.setViewName("common/result");
+		
+		int result = productService.setProductDelete(productDTO, session);
 		
 		String message = "삭제에 실패했습니다.";
 		
@@ -118,9 +125,17 @@ public class ProductController {
 		
 		modelAndView.addObject("result", message);
 		modelAndView.addObject("URL", "./list");
-		modelAndView.setViewName("common/result");
 		
 		return modelAndView;
 	}
 
+	@PostMapping("imgDelete")
+	public ModelAndView setProductImgDelete(Long imgNum, ModelAndView modelAndView) throws Exception {
+		int result = productService.setProductImgDelete(imgNum);
+		modelAndView.addObject("result", result);
+		modelAndView.setViewName("common/ajaxResult");
+		
+		return modelAndView;
+	}
+	
 }

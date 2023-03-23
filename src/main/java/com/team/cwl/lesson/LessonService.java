@@ -68,9 +68,6 @@ public class LessonService {
 		String realPath = session.getServletContext().getRealPath("resources/upload/lesson/");
 
 		for(MultipartFile multipartFile : multipartFiles) {
-			if(multipartFile.isEmpty()) {
-				continue;
-			}
 			String imgName = fileManager.fileSave(multipartFile, realPath);
 
 			LessonImgDTO lessonImgDTO = new LessonImgDTO();

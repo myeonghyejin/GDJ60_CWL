@@ -25,6 +25,10 @@ public class ProductDAO {
 	public ProductDTO getProductDetail(ProductDTO productDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"getProductDetail", productDTO);
 	}
+	
+	public List<ProductImgDTO> getProductImgList(ProductDTO productDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getProductImgList", productDTO);
+	}
 
 	public Long getTotalCount(Pagination pagination) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"getTotalCount", pagination);
@@ -47,6 +51,10 @@ public class ProductDAO {
 	/** DELETE **/
 	public int setProductDelete(ProductDTO productDTO) throws Exception {
 		return sqlSession.delete(NAMESPACE+"setProductDelete", productDTO);
+	}
+	
+	public int setProductImgDelete(Long imgNum) throws Exception {
+		return sqlSession.delete(NAMESPACE+"setProductImgDelete", imgNum);
 	}
 
 }

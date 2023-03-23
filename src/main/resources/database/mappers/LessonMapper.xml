@@ -82,7 +82,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<delete id="setLessonImgDelete" parameterType="Long">
-		DELETE LESSONIMG WHERE IMGNUM = #{imgNum}
+		DELETE LESSONIMG
+		WHERE IMGNUM = #{imgNum}
 	</delete>
 
 </mapper>
