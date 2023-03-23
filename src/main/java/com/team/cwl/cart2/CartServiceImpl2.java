@@ -5,19 +5,19 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.team.cwl.cart2.CartMapper2;
+
 
 @Service
 public class CartServiceImpl2 implements CartService2 {
 	
 	@Autowired
-	private CartMapper2 cartMapper2;
+	private CartMapper cartMapper;
 	
 	@Override
-	public int addCart(CartDTO2 cart) {
+	public int cartAdd(CartDTO2 cart) {
 
 		// 장바구니 데이터 체크
-		CartDTO2 checkCart = cartMapper2.checkCart(cart);
+		CartDTO2 checkCart = cartMapper.checkCart(cart);
 		
 		if(checkCart != null) {
 			return 2;
@@ -25,7 +25,7 @@ public class CartServiceImpl2 implements CartService2 {
 		
 		// 장바구니 등록 & 에러 시 0반환
 		try {
-			return cartMapper2.addCart(cart);
+			return cartMapper.cartAdd(cart);
 		} catch (Exception e) {
 			return 0;
 		}		
@@ -33,9 +33,9 @@ public class CartServiceImpl2 implements CartService2 {
 	}
 
 	@Override
-	public List<CartDTO2> getCartList(String memberId) {
+	public List<CartDTO2> cartList(String memberId) {
 		
-		List<CartDTO2> cart = cartMapper2.getCartList(memberId);
+		List<CartDTO2> cart = cartMapper.cartList(memberId);
 		
 		for(CartDTO2 dto : cart) {
 			
@@ -49,15 +49,13 @@ public class CartServiceImpl2 implements CartService2 {
 	}
 	
 	@Override
-	public int modifyCount(CartDTO2 cart) {
-		
-		return cartMapper2.modifyCount(cart);
+	public int modifyCount(CartDTO2 cart) {	
+		return cartMapper.modifyCount(cart);
 	}	
 	
 	@Override
-	public int deleteCart(Long cartId) {
-
-		return cartMapper2.deleteCart(cartId);
+	public int cartDelete(Long cartId) {
+		return cartMapper.cartDelete(cartId);
 	}	
 	
 }

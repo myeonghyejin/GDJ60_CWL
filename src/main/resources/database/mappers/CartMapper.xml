@@ -2,33 +2,33 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="com.team.cwl.cart2.CartMapper2">
+  <mapper namespace="com.team.cwl.cart2.CartMapper">
 
 	<!-- 카트 추가 -->
-	<insert id="addCart">
+	<insert id="cartAdd">
 		insert into cart2(memberId, productNum, productAmount)
 		values(#{memberId}, #{productNum}, #{productAmount}) 
 	</insert>
 	
 	
 	<!-- 카트 삭제 -->
-	<delete id="deleteCart">
+	<delete id="cartdelete" parameterType="CartDTO2">
 		delete from cart2 where cartNum = #{cartNum}
 	</delete>
 	
 	<!-- 카트 수량 수정 -->
-	<update id="modifyCount">
+	<update id="modifyCount" parameterType="CartDTO2">
 		update cart2 set productAmount=#{productAmount} where cartNum = #{cartNum}
 	</update>
 	
 	
 	<!-- 카트 목록 -->
-	<select id="getCartList" resultType="com.team.cwl.cart2.CartDTO2">
+	<select id="cartList" resultType="com.team.cwl.cart2.CartDTO2">
 		select a.cartNum, a.memberId, a.productNum, a.productAmount, p.productName, p.productPrice
 		from cart2 a
 		left outer join
 		product p on a.productNum = p.productNum
-		where memberId = #{memberId}
+		where a.memberId = p.memberId
 	</select>
 	
 	<!-- 카트 확인 -->

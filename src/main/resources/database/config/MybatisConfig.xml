@@ -11,7 +11,7 @@
   		
   		<!-- <typeAlias type="com.team.cwl.cart.CartDTO" alias="CartDTO"/> -->
   		<typeAlias type="com.team.cwl.cart2.CartDTO2" alias="CartDTO2"/>
-  		<typeAlias type="com.team.cwl.cart2.CartMapper2" alias="CartMapper2"/>
+  		
   		
   		<typeAlias type="com.team.cwl.order.OrderDTO" alias="OrderDTO"/>
   		<typeAlias type="com.team.cwl.order.OrderCancelDTO" alias="OrderCancelDTO"/>

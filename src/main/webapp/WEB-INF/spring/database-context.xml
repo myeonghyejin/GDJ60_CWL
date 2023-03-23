@@ -23,10 +23,15 @@
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean"></constructor-arg>
 	</bean>
 	
-	<bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="com.team.cwl.cart2.CartMapper2"></property>
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	<bean id="cartMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.team.cwl.cart2.CartMapper"></property>
+		<property name="sqlSessionTemplate" ref="sqlSession"></property>
 	</bean>
+	
+<!-- 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.team.cwl.cart2" />
+		<property name="annotationClass" value="com.team.cwl.cart2.CartMapper"></property>
+	</bean> -->
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />

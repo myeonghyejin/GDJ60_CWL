@@ -17,10 +17,10 @@ import com.team.cwl.member.MemberService;
 @Controller
 public class OrderController {
 	
-	@Autowired(required=false)
+	@Autowired
 	private OrderService orderService;
 	
-	@Autowired(required=false)
+	@Autowired
 	private MemberService memberService;
 	
 	

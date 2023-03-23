@@ -10,8 +10,35 @@
 </head>
 <body>
 <div class="wrapper">
-	<div class="content_area">
-		<div class="wrap">
+	<div class="wrap">
+		<div class="top_gnb_area">
+			<ul class="list">
+				<c:if test = "${member == null}">	<!-- 로그인 x -->	
+					<li >
+						<a href="/member/memberLogin">로그인</a>
+					</li>
+					<li>
+						<a href="/member/memberAdd">회원가입</a>
+					</li>
+				</c:if>
+				<c:if test="${member != null }">	<!-- 로그인 o -->		
+					<li>
+						<a href="/member/memberLogout">로그아웃</a>
+					</li>
+					<li>
+						<a href="/member/memberPage">마이룸</a>
+					</li>
+					<li>
+						<a href="/cart/${member.memberId}">장바구니</a>
+					</li>
+				</c:if>				
+				<li>
+					고객센터
+				</li>	
+			</ul>			
+		</div>
+		
+		<div class="content_area">
 		<div class="content_subject"><span>장바구니</span></div>
 		<!-- 장바구니 리스트 -->
 		<div class="content_middle_section"></div>
@@ -48,13 +75,12 @@
 								<input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked">
 								<input type="hidden" class="individual_productPrice_input" value="${ci.productPrice}">
 								<input type="hidden" class="individual_productAmount_input" value="${ci.productAmount}">
-								<input type="hidden" class="individual_totalPrice_input" value="${ci.productPrice * ci.bookCount}">
-								<input type="hidden" class="individual_totalPoint_input" value="${ci.totalPoint}">
+								<input type="hidden" class="individual_totalPrice_input" value="${ci.productPrice * ci.productAmount}">
 								<input type="hidden" class="individual_productNum_input" value="${ci.productNum}">								
 							</td>
 							<td class="td_width_3">${ci.productName}</td>
 							<td class="td_width_4 price_td">
-								<del>정가 : <fmt:formatNumber value="${ci.productPrice}" pattern="#,### 원" /></del><br>
+								정가 : <fmt:formatNumber value="${ci.productPrice}" pattern="#,### 원" /><br>
 							</td>
 							<td class="td_width_4 table_text_align_center">
 								<div class="table_text_align_center quantity_div">
@@ -62,7 +88,7 @@
 									<button class="quantity_btn plus_btn">+</button>
 									<button class="quantity_btn minus_btn">-</button>
 								</div>
-								<a class="quantity_modify_btn" data-cartId="${ci.cartNum}">변경</a>
+								<a class="quantity_modify_btn" data-cartNum="${ci.cartNum}">변경</a>
 							</td>
 							<td class="td_width_4 table_text_align_center">
 								<fmt:formatNumber value="${ci.productPrice * ci.productAmount}" pattern="#,### 원" />
@@ -139,14 +165,14 @@
 		</div>
 		
 		<!-- 수량 조정 form -->
-		<form action="/cart/update2" method="post" class="quantity_update_form">
+		<form action="./cartUpdate" method="post" class="quantity_update_form">
 			<input type="hidden" name="cartNum" class="update_cartNum">
 			<input type="hidden" name="productAmount" class="update_productAmount">
 			<input type="hidden" name="memberId" value="${member.memberId}">
 		</form>	
 		
 		<!-- 삭제 form -->
-		<form action="/cart/delete2" method="post" class="quantity_delete_form">
+		<form action="./cartDelete" method="post" class="quantity_delete_form">
 			<input type="hidden" name="cartNum" class="delete_cartNum">
 			<input type="hidden" name="memberId" value="${member.memberId}">
 		</form>		
@@ -158,6 +184,7 @@
 </div>	
 </div>
 
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script>
 $(document).ready(function(){
 	
@@ -201,8 +228,6 @@ function setTotalInfo(){
 			totalCount += parseInt($(element).find(".individual_productAmount_input").val());
 			// 총 종류
 			totalKind += 1;
-			// 총 마일리지
-			totalPoint += parseInt($(element).find(".individual_totalPoint_input").val());			
 		}
 	});
 	
@@ -246,7 +271,7 @@ $(".minus_btn").on("click", function(){
 $(".quantity_modify_btn").on("click", function(){
 	let cartNum = $(this).data("cartNum");
 	let productAmount = $(this).parent("td").find("input").val();
-	$(".update_cartNum").val(cartId);
+	$(".update_cartNum").val(cartNum);
 	$(".update_productAmount").val(productAmount);
 	$(".quantity_update_form").submit();
 	

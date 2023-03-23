@@ -183,14 +183,14 @@
                 <artifactId>maven-eclipse-plugin</artifactId>
                 <version>2.9</version>
                 <configuration>
-                	<resources>
+                	<!-- <resources>
 					   <resource>
 					      <directory>src/main/java</directory>
 					      <includes>
 					         <include>**/*.xml</include>
 					      </includes>
 					   </resource>
-					</resources>
+					</resources> -->
                     <additionalProjectnatures>
                         <projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
                     </additionalProjectnatures>
