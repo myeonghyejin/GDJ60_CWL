@@ -284,7 +284,7 @@ $(".delete_btn").on("click", function(e){
 	$(".quantity_delete_form").submit();
 });
 	
-/* 주문 페이지 이동 test*/	
+/* 주문 페이지 이동*/	
 $(".order_btn").on("click", function(){
 	
 	let form_contents ='';
