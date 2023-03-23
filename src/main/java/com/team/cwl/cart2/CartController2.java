@@ -47,7 +47,7 @@ public class CartController2 {
 		return result + "";
 	}	
 	
-	/* 장바구니 페이지 이동 */	
+	/* 장바구니 페이지 이동 */
 	@GetMapping("{memberId}")
 	public String cartList(@PathVariable("memberId") String memberId, Model model) {
 		

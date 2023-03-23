@@ -23,7 +23,7 @@
 				</c:if>
 				<c:if test="${member != null }">	<!-- 로그인 o -->		
 					<li>
-						<a href="/member/memberLogout">로그아웃</a>
+						<a href="/member/memberLogout.do">로그아웃</a>
 					</li>
 					<li>
 						<a href="/member/memberPage">마이룸</a>
@@ -31,10 +31,7 @@
 					<li>
 						<a href="/cart/${member.memberId}">장바구니</a>
 					</li>
-				</c:if>				
-				<li>
-					고객센터
-				</li>	
+				</c:if>
 			</ul>			
 		</div>
 		
@@ -48,7 +45,7 @@
 			
 			<!-- 체크박스 전체 여부 -->
 			<div class="all_check_input_div">
-				<input type="checkbox" class="all_check_input input_size_20" checked="checked"><span class="all_chcek_span">전체선택</span>
+				<input type="checkbox" class="all_check_input input_size_20" checked="checked" id="checkAll" name="checkAll" value="1"><span class="all_chcek_span">전체선택</span>				
 			</div>				
 			
 			<table class="subject_table">
@@ -72,7 +69,7 @@
 					<c:forEach items="${cartInfo}" var="ci">
 						<tr>
 							<td class="td_width_1 cart_info_td">
-								<input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked">
+								<input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked" name="check" value="1">								
 								<input type="hidden" class="individual_productPrice_input" value="${ci.productPrice}">
 								<input type="hidden" class="individual_productAmount_input" value="${ci.productAmount}">
 								<input type="hidden" class="individual_totalPrice_input" value="${ci.productPrice * ci.productAmount}">
@@ -124,7 +121,7 @@
 								</tr>									
 								<tr>
 									<td>총 주문 상품수</td>
-									<td><span class="totalKind_span"></span>종 <span class="totalCount_span"></span>권</td>
+									<td><span class="totalKind_span"></span>Type <span class="totalCount_span"></span>EA</td>
 								</tr>
 							</table>
 						</td>
@@ -197,6 +194,7 @@ $(".individual_cart_checkbox").on("change", function(){
 	/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
 	setTotalInfo($(".cart_info_td"));
 });
+
 /* 체크박스 전체 선택 */
 $(".all_check_input").on("click", function(){
 	/* 체크박스 체크/해제 */
@@ -210,6 +208,44 @@ $(".all_check_input").on("click", function(){
 	setTotalInfo($(".cart_info_td"));	
 	
 });
+
+
+
+
+
+
+
+
+
+
+
+
+/* 체크박스 전체 선택 */
+//$(".all_check_input").on("click", function(){
+	// 전체 체크박스 클릭
+	/* 체크박스 체크/해제 */
+	//$("#checkAll").click(function(){
+		//if($("#checkAll").prop("checked")){
+			//$(".individual_cart_checkbox").attr("checked", true);
+		//} else{
+			//$(".individual_cart_checkbox").attr("checked", false);
+		//}
+	//});
+	// 전체 체크박스 중 체크박스 하나를 풀었을때 전체 체크해제
+	//$(".individual_cart_checkbox").click(function(){
+		//if($("input[value=1]:checked").length) {
+			//$("#checkAll").prop("checked", true);
+		//} else {
+			//$("#checkAll").prop("checked", false);
+		//}
+	//})
+	
+	
+	/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
+	//setTotalInfo($(".cart_info_td"));	
+	
+//});
+
 /* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
 function setTotalInfo(){
 	

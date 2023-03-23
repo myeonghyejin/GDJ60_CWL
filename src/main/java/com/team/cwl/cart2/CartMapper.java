@@ -2,7 +2,7 @@ package com.team.cwl.cart2;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
+
 import org.mybatis.spring.annotation.MapperScan;
 
 

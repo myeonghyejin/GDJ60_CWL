@@ -11,15 +11,17 @@
 	            <li class="nav-item"><a class="nav-link" style="font-family: 'Impact'" href="/board/list">BOARD</a></li>
 	            <li class="nav-item"><a class="nav-link" style="font-family: 'Impact'" href="/lesson/list">LESSON</a></li>
 	            <li class="nav-item"><a class="nav-link" style="font-family: 'Impact'" href="/product/list">PRODUCT</a></li>
-	        </ul>
+	        </ul>	        	   
+	        
 		    <ul class="navbar-nav">
 	        	<c:if test="${empty member}">
 		        	<li class="nav-item"><a class="nav-link" style="font-size: 11px" href="/member/memberLogin">LOGIN</a></li>
 		            <li class="nav-item"><a class="nav-link" style="font-size: 11px" href="/member/memberAgree">JOIN</a></li>
 	        	</c:if>
 	        	<c:if test="${not empty member}">
+		        	<li class="nav-item"><a class="nav-link" style="font-size: 11px" href="/cart/cart?id=${member.memberId}">CART</a></li>
 		        	<li class="nav-item"><a class="nav-link" style="font-size: 11px" href="/member/memberPage">MYPAGE</a></li>
-		            <li class="nav-item"><a class="nav-link" style="font-size: 11px" href="/member/memberLogout">LOGOUT</a></li>
+		            <li class="nav-item"><a class="nav-link" style="font-size: 11px" href="/member/memberLogout">LOGOUT</a></li>		            
 				</c:if>
 		    </ul>
 		</div>
