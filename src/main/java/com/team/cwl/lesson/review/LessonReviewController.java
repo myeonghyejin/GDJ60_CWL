@@ -1,4 +1,4 @@
-package com.team.cwl.product.qna;
+package com.team.cwl.lesson.review;
 
 import java.util.List;
 
@@ -15,32 +15,32 @@ import com.team.cwl.member.MemberDTO;
 import com.team.cwl.util.Pagination;
 
 @Controller
-@RequestMapping("/product/qna/*")
-public class ProductQnAController {
-
+@RequestMapping("/lesson/review/*")
+public class LessonReviewController {
+	
 	@Autowired
-	private ProductQnAService productQnAService;
+	private LessonReviewService lessonReviewService;
 	
 //--------------------------------------------
 	
 	/** SELECT **/
 	@GetMapping("list")
-	public ModelAndView getProductQnAList(Pagination pagination, ModelAndView modelAndView) throws Exception {
-		List<ProductQnADTO> ar = productQnAService.getProductQnAList(pagination);
+	public ModelAndView getLessonReviewList(Pagination pagination, ModelAndView modelAndView) throws Exception {
+		List<LessonReviewDTO> ar = lessonReviewService.getLessonReviewList(pagination);
 		
 		modelAndView.addObject("list", ar);
-		modelAndView.setViewName("product/qna");
+		modelAndView.setViewName("lesson/review");
 		
 		return modelAndView;
 	}
 	
 	/** INSERT **/
 	@PostMapping("add")
-	public ModelAndView setProductQnAAdd(ProductQnADTO productQnADTO, HttpSession session, ModelAndView modelAndView) throws Exception {
+	public ModelAndView setLessonReviewAdd(LessonReviewDTO lessonReviewDTO, HttpSession session, ModelAndView modelAndView) throws Exception {		
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		productQnADTO.setMemberId(memberDTO.getMemberId());
+		lessonReviewDTO.setMemberId(memberDTO.getMemberId());
 		
-		int result = productQnAService.setProductQnAAdd(productQnADTO);
+		int result = lessonReviewService.setLessonReviewAdd(lessonReviewDTO, null);
 		
 		modelAndView.addObject("result", result);
 		modelAndView.setViewName("common/ajaxResult");
@@ -50,8 +50,8 @@ public class ProductQnAController {
 	
 	/** UPDATE **/
 	@PostMapping("update")
-	public ModelAndView setProductQnAUpdate(ProductQnADTO productQnADTO, ModelAndView modelAndView) throws Exception {
-		int result = productQnAService.setProductQnAUpdate(productQnADTO);
+	public ModelAndView setLessonReviewUpdate(LessonReviewDTO lessonReviewDTO, ModelAndView modelAndView) throws Exception {
+		int result = lessonReviewService.setLessonReviewUpdate(lessonReviewDTO);
 		
 		modelAndView.addObject("result", result);
 		modelAndView.setViewName("common/ajaxResult");
@@ -61,13 +61,13 @@ public class ProductQnAController {
 	
 	/** DELETE **/
 	@PostMapping("delete")
-	public ModelAndView setProductQnADelete(ProductQnADTO productQnADTO, ModelAndView modelAndView) throws Exception {
-		int result = productQnAService.setProductQnADelete(productQnADTO);
+	public ModelAndView setLessonDelete(LessonReviewDTO lessonReviewDTO, ModelAndView modelAndView) throws Exception {
+		int result = lessonReviewService.setLessonReviewDelete(lessonReviewDTO);
 		
 		modelAndView.addObject("result", result);
 		modelAndView.setViewName("common/ajaxResult");
 		
 		return modelAndView;
 	}
-	
+
 }
