@@ -21,18 +21,18 @@
 
       <div>
          <h3>회원목록</h3>
-<table>
-    <thead>
-    <th>id</th>
-    </thead>
-    <tbody>
-    <c:forEach var="dto" items="${list}">
-        <tr> 
-        	<td>${dto.memberId}</td>
-        </tr>
-    </c:forEach>
-    </tbody>
-</table>
+      <table>
+         <thead>
+            <th>id</th>
+         </thead>
+         <tbody>
+            <c:forEach var="dto" items="${list}">
+               <tr> 
+                  <td>${dto.memberId}</td>
+               </tr>
+            </c:forEach>
+         </tbody>
+      </table>
 
       </div>
 
