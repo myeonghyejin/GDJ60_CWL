@@ -52,11 +52,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="PRODUCTPRICE" property="productPrice"/>
 		<result column="PRODUCTDATE" property="productDate"/>
 		<result column="PRODUCTSTATE" property="productState"/>
-		<association property="productImgDTO" javaType="productImgDTO">
+		<collection property="productImgDTOs" javaType="List" ofType="productImgDTO">
   			<id column="PRODUCTIMGNUM" property="productImgNum"/>
   			<result column="IMGNAME" property="imgName"/>
-  			<result column="ORINAME" property="oriName"/>
-  		</association>
+  			<result column="ORIGINALNAME" property="originalName"/>
+  		</collection>
 	</resultMap>
 	
 	<select id="getProductImgList" resultType="ProductImgDTO" parameterType="ProductDTO">

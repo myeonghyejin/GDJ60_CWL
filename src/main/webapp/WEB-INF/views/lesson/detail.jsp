@@ -21,6 +21,13 @@
 					<div class="row my-4">
 						<p class="fs-4 fw-bold text-center">${DTO.lessonTitle}</p>
 						<p class="fs-5">${DTO.lessonContents}</p>
+						<%-- <c:if test="${not empty DTO.lessonImgDTOs}">
+							<c:forEach items="${DTO.lessonImgDTOs}">
+								<div class="row justify-content-center mx-auto">
+									<img alt="" src="../resources/upload/lesson/${DTO.lessonImgDTOs.imgName}">
+								</div>
+							</c:forEach>
+						</c:if> --%>
 					</div>
 				</c:when>
 				<c:otherwise>

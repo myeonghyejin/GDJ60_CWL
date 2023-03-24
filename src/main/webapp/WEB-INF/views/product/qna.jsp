@@ -12,6 +12,11 @@
 			<td>${DTO.memberId}</td>
 			<td>${DTO.productQnADate}</td>
 			<td>
+				<c:if test="${member.roleDTO.roleName eq '관리자'}">
+					<button class="btn btn-info reply" data-productqna-num="${DTO.productQnANum}" data-bs-toggle="modal" data-bs-target="#qnaReplyModal">답글</button>
+				</c:if>
+			</td>
+			<td>
 				<c:if test="${member.memberId eq DTO.memberId}">
 					<button class="btn btn-info update" data-productqna-num="${DTO.productQnANum}" data-bs-toggle="modal" data-bs-target="#qnaEditModal">수정</button>
 				</c:if>

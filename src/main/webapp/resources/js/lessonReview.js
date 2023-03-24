@@ -28,7 +28,7 @@ $("#lessonReviewListResult").on("click",".page-link", function(e){
 //add
 $("#lessonReviewAdd").click(function(){
     $.ajax({
-        url:'../lesson/review/add',
+        url:'../lesson/review/reviewAdd',
         type:'POST',
         data:{
         	'lessonRating': $("#lessonRating").val(),

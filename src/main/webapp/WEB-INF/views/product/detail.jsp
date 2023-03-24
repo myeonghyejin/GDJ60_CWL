@@ -66,8 +66,7 @@
 			</div>
 		</div>
 		
-		<!-- Update Form -->
-		<!-- Modal -->
+		<!-- Edit -->
 		<div class="modal fade" id="reviewEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -110,8 +109,7 @@
 			</div>
 		</div>
 		
-		<!-- Update Form -->
-		<!-- Modal -->
+		<!-- Edit -->
 		<div class="modal fade" id="qnaEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -128,6 +126,28 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeQnAModal">취소</button>
 					<button type="button" class="btn btn-primary" data-productqna-num="" id="qnaConfirm">확인</button>
+				</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Reply -->
+		<div class="modal fade" id="qnaReplyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel">수정</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="form-floating">
+						<textarea class="form-control" id="productQnAReply"></textarea>
+						<label for="productQnAReply">Comments</label>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeQnAReplyModal">취소</button>
+					<button type="button" class="btn btn-primary" data-productqna-num="" id="qnaReplyConfirm">확인</button>
 				</div>
 				</div>
 			</div>

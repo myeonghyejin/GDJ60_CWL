@@ -48,6 +48,19 @@ public class ProductQnAController {
 		return modelAndView;
 	}
 	
+	@PostMapping("reply")
+	public ModelAndView setReplyAdd(ProductQnADTO productQnADTO, HttpSession session, ModelAndView modelAndView) throws Exception {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		productQnADTO.setMemberId(memberDTO.getMemberId());
+		
+		int result = productQnAService.setProductQnAReplyAdd(productQnADTO);
+		
+		modelAndView.addObject("result", result);
+		modelAndView.setViewName("common/ajaxResult");
+		
+		return modelAndView;
+	}
+	
 	/** UPDATE **/
 	@PostMapping("update")
 	public ModelAndView setProductQnAUpdate(ProductQnADTO productQnADTO, ModelAndView modelAndView) throws Exception {
