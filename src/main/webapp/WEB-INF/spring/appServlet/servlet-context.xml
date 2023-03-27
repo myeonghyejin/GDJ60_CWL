@@ -24,6 +24,25 @@
 	
 	<context:component-scan base-package="com.team.cwl" />
 	
+	<!-- 인터셉터 적용 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/member/login.do"></mapping>
+			<beans:bean id="loginInterceptor" class="com.team.cwl.interceptor.LoginInterceptor"></beans:bean>
+		</interceptor>
+		<interceptor>
+			<mapping path="/admin/**"></mapping>
+			<beans:bean id="AdminInterceptor" class="com.team.cwl.interceptor.AdminInterceptor"></beans:bean>
+		</interceptor>
+		<interceptor>
+			<mapping path="/cart/**"/>
+			<exclude-mapping path="/cart/add"/>
+			<beans:bean id="CartInterceptor" class="com.team.cwl.interceptor.CartInterceptor"></beans:bean>
+		</interceptor>		
+	</interceptors>
+	
+	<!-- 업로드 관련 빈 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"></beans:bean>
 	
 	
 </beans:beans>
