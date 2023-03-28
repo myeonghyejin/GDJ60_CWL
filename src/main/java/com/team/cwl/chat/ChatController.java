@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.team.cwl.member.MemberDTO;
 
@@ -19,7 +21,7 @@ public class ChatController {
 	ChatService chatService;
 	
 	@RequestMapping("chatList")
-	public void getChatList(HttpServletRequest request) throws Exception{
+	public ModelAndView getChatList(ModelAndView mv) throws Exception{
 		List<MemberDTO> ar = new ArrayList<MemberDTO>();
 		
 		
@@ -28,7 +30,10 @@ public class ChatController {
 			memberDTO.setMemberId("id"+i);
 			ar.add(memberDTO);
 		}
-		request.setAttribute("list", ar);
+		mv.addObject("list", ar);
+		mv.setViewName("/chat/chatList");
+	
+		return mv;
 		
 		
 	}

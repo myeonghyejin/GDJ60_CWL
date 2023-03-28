@@ -12,81 +12,62 @@
    src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 <script
    src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="../../../resources/css/chatTemplate.css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
-   <div class="chat_wrap">
-      <div class="header">
-         <h3>채 팅 방 </h3>
+   <div class="container bootstrap snippets bootdey">
+      <div class="row">
+         <!-- 회원 목록 -->
+         <div class="col-md-4 bg-white ">
+            <div class=" row border-bottom padding-sm" style="height: 40px;">
+              Member
+            </div>
+         <ul class="friend-list">
+        	 <c:forEach var="dto" items="${list}">
+	            <li class="active bounceInDown">
+	              <a href="#" class="clearfix">
+	                <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+	                <div class="friend-name">
+	                  <strong>${dto.memberId}</strong>
+	                </div>
+	                <div class="last-message text-muted">Hello, Are you there?</div>
+	                <small class="time text-muted">Just now</small>
+	                <small class="chat-alert label label-danger">1</small>
+	              </a>
+	            </li>
+			</c:forEach>
+         </ul>    
       </div>
 
-      <div>
-         <h3>회원목록</h3>
-      <table>
-         <thead>
-            <th>id</th>
-         </thead>
-         <tbody>
-            <c:forEach var="dto" items="${list}">
-               <tr> 
-                  <td>${dto.memberId}</td>
-               </tr>
-            </c:forEach>
-         </tbody>
-      </table>
-
+      <div id="chatting">
+      <!-- 채팅창 -->
+   <div class="col-md-8 bg-white ">
+      <div class="chat-message">
+         <ul class="chat">
+ 
+         </ul>
       </div>
-
-      <div id="chat"></div>
-      <script id="temp" type="text/x-handlebars-template">
-      {{#each .}}
-      <div class="{{printLeftRight sender}}">
-      	<div class="sender" style="display:{{printImg sender}}">
-			{{sender}}
-		</div>
-      	<div class="message">
-			{{message}} 
-		</div>
-      	<div class="date">{{chatDate}}</div>
-      </div>
-      {{/each}}
-      </script>
-      <script id="temp1" type="text/x-handlebars-template">
-      	<div class="{{printLeftRight sender}}">
-      	<div class="sender" style="display:{{printImg sender}}">
-			{{sender}}
-		</div>
-      	<div class="message">
-			{{message}}
-		</div>
-      	<div class="date">{{regdate}}</div>
-      	</div>
-      </script>
-      <script>
-         var memberId = "${memberId}";
-         Handlebars.registerHelper("printLeftRight", function(sender) {
-            if (memberId != sender) {
-               return "left";
-            } else {
-               return "right";
-            }
-         });
-         Handlebars.registerHelper("printNone", function(sender) {
-             if (memberId != sender) return "none";             
-         });
-         Handlebars.registerHelper("printImg", function(sender) {
-             if (memberId== sender) return "none";             
-         });
-      </script>
-      <div class="input-div">
-         <textarea id="txtMessage" placeholder="메세지를 입력한 후 리턴키를 누르세요!"></textarea>
+       <div class="chat-box bg-white">
+         <div class="input-group">
+           <input class="form-control border no-shadow no-rounded" placeholder="Type your message here" id="txtMessage">
+           <span class="input-group-btn">
+             <button class="btn btn-success no-rounded" id="sendButton" type="button">Send</button>
+           </span>
+         </div>
+       </div>
+       </div> 
       </div>
    </div>
+   </div>
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="/resources/js/chatList.js"></script>
+
 </body>
-<script src="/resources/chat/chat2.js"></script>
-<script type="text/javascript">
-   // getList();
-   // var memberId = "${memberId}";
-</script>
+
 
 
 </html>

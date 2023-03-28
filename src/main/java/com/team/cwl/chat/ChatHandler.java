@@ -13,26 +13,29 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.team.cwl.member.MemberDTO;
+
 public class ChatHandler extends TextWebSocketHandler{
-	List<WebSocketSession> sessionList=new ArrayList<WebSocketSession>();
-	List <WebSocketSession> my = new ArrayList<WebSocketSession>();
-	Map<String, WebSocketSession> map = new HashMap<String, WebSocketSession>();
-	Map<String, List<WebSocketSession>> maps = new HashMap<String, List<WebSocketSession>>();
-	
+//	List<WebSocketSession> sessionList=new ArrayList<WebSocketSession>();
+//	List <WebSocketSession> my = new ArrayList<WebSocketSession>();
+//	Map<String, WebSocketSession> map = new HashMap<String, WebSocketSession>();
+	Map<String, WebSocketSession> maps = new HashMap<String, WebSocketSession>();
+	Map<String, List<WebSocketSession>> personal = new HashMap<String, List<WebSocketSession>>();
 	
 	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		System.out.println("연결됨 : " + session);
-		sessionList.add(session);
-		System.out.println( sessionList.size());
+		MemberDTO memberDTO=(MemberDTO)session.getAttributes().get("member");
+		System.out.println("로그인"+memberDTO.getMemberId());
+		maps.put(memberDTO.getMemberId(), session);
 		
 	}
 	
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		System.out.println( session.getId());
-		sessionList.remove(session);
+		maps.remove(session);
 		super.afterConnectionClosed(session, status);
 	}
 	
@@ -41,11 +44,10 @@ public class ChatHandler extends TextWebSocketHandler{
 		String strMessage=message.getPayload();
 		System.out.println( strMessage);
 		
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String strDate = sdf.format(new Date());
-		strMessage += "|" + strDate;
 		
-		for(WebSocketSession webSocketSession:sessionList){
+		
+		//map 반복문 돌리
+		for(WebSocketSession webSocketSession:maps){
 			webSocketSession.sendMessage(new TextMessage(strMessage));
 		}
 		super.handleTextMessage(session, message);

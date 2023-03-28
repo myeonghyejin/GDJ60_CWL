@@ -38,7 +38,7 @@
   		<typeAlias type="com.team.cwl.order.OrderPageItemDTO" alias="OrderPageItemDTO"/>
   	
   		<!--  하영  -->
-  		<typeAlias type="com.team.cwl.chat.chatDTO" alias="chatDTO"/>
+  		<typeAlias type="com.team.cwl.chat.ChatDTO" alias="ChatDTO"/>
   		
   	</typeAliases>
   	
