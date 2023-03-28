@@ -17,6 +17,7 @@
   		<typeAlias type="com.team.cwl.product.ProductImgDTO" alias="ProductImgDTO"/>
   		<typeAlias type="com.team.cwl.product.qna.ProductQnADTO" alias="ProductQnADTO"/>
   		<typeAlias type="com.team.cwl.product.review.ProductReviewDTO" alias="ProductReviewDTO"/>
+  		<typeAlias type="com.team.cwl.product.review.ProductReviewImgDTO" alias="ProductReviewImgDTO"/>
   		
   		<typeAlias type="com.team.cwl.lesson.LessonDTO" alias="LessonDTO"/>
   		<typeAlias type="com.team.cwl.lesson.LessonImgDTO" alias="LessonImgDTO"/>

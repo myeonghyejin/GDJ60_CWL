@@ -29,7 +29,7 @@ public class ProductQnAController {
 		List<ProductQnADTO> ar = productQnAService.getProductQnAList(pagination);
 		
 		modelAndView.addObject("list", ar);
-		modelAndView.setViewName("product/qna");
+		modelAndView.setViewName("product/qna/qna");
 		
 		return modelAndView;
 	}

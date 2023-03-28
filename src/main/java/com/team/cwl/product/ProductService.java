@@ -57,7 +57,7 @@ public class ProductService {
 
 	/** UPDATE **/
 	public int setProductUpdate(ProductDTO productDTO, MultipartFile [] multipartFiles, HttpSession session, Long [] imgNums) throws Exception {
-		int result = productDAO.setProductAdd(productDTO);
+		int result = productDAO.setProductUpdate(productDTO);
 		
 		if(imgNums != null) {
 			for(Long imgNum : imgNums) {
@@ -87,7 +87,7 @@ public class ProductService {
 		int result = productDAO.setProductDelete(productDTO);
 		
 		if(result > 0) {			
-			String realPath = session.getServletContext().getRealPath("resources/upload/lesson/");
+			String realPath = session.getServletContext().getRealPath("resources/upload/product/");
 			
 			for(ProductImgDTO productImgDTO : ar) {
 				boolean check = fileManager.fileDelete(realPath, productImgDTO.getImgName());

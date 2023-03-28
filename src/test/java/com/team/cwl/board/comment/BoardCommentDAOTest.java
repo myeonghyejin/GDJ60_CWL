@@ -33,8 +33,8 @@ public class BoardCommentDAOTest extends MyTestCase {
 		
 			BoardCommentDTO boardCommentDTO = new BoardCommentDTO();
 			
-			boardCommentDTO.setBoardNum(32L);
-			boardCommentDTO.setMemberId("id3");
+			boardCommentDTO.setBoardNum(31L);
+			boardCommentDTO.setMemberId("mhj");
 			boardCommentDTO.setBoardCommentContents("말랑복숭아"+i);
 			boardCommentDTO.setBoardCommentDate(date);
 		

@@ -34,7 +34,7 @@ public class ProductDAOTest extends MyTestCase {
 			ProductDTO productDTO = new ProductDTO();
 			
 			productDTO.setMemberId("mhj");
-			productDTO.setProductName("말랑복숭아");
+			productDTO.setProductName("말랑복숭아"+i);
 			productDTO.setProductDetail("딱딱복숭아");
 			productDTO.setProductStock(320L);
 			productDTO.setProductPrice(32000L);

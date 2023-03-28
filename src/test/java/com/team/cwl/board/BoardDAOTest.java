@@ -46,7 +46,7 @@ public class BoardDAOTest extends MyTestCase {
 		
 			BoardDTO boardDTO = new BoardDTO();
 			
-			boardDTO.setMemberId("id3");
+			boardDTO.setMemberId("mhj");
 			boardDTO.setBoardTitle("말랑복숭아"+i);
 			boardDTO.setBoardContents("딱딱복숭아");
 			boardDTO.setBoardDate(date);

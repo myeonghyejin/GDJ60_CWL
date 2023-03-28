@@ -95,8 +95,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE PRODUCTNUM = #{productNum}
 	</delete>
 
-	<delete id="setProductImgDelete">
-		DELETE LESSONIMG
+	<delete id="setProductImgDelete" parameterType="Long">
+		DELETE PRODUCTIMG
 		WHERE IMGNUM = #{imgNum}
 	</delete>
 

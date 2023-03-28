@@ -1,17 +1,22 @@
 package com.team.cwl.product.review;
 
 import java.sql.Date;
+import java.util.List;
 
 import com.team.cwl.board.comment.BoardCommentDTO;
+import com.team.cwl.product.ProductImgDTO;
 
 public class ProductReviewDTO extends BoardCommentDTO {
 	
 	private Long productReviewNum;
 	private Long productNum;
 	private String memberId;
+	private String productReviewTitle;
 	private String productReviewContents;
 	private Date productReviewDate;
-	private Double productRating;
+	private Integer productRating;
+	
+	private List<ProductReviewImgDTO> productReviewImgDTOs;
 
 	public Long getProductReviewNum() {
 		return productReviewNum;
@@ -36,6 +41,13 @@ public class ProductReviewDTO extends BoardCommentDTO {
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
+	public String getProductReviewTitle() {
+		return productReviewTitle;
+	}
+	
+	public void setProductReviewTitle(String productReviewTitle) {
+		this.productReviewTitle = productReviewTitle;
+	}
 	
 	public String getProductReviewContents() {
 		return productReviewContents;
@@ -52,13 +64,20 @@ public class ProductReviewDTO extends BoardCommentDTO {
 	public void setProductReviewDate(Date productReviewDate) {
 		this.productReviewDate = productReviewDate;
 	}
-	
-	public Double getProductRating() {
+
+	public Integer getProductRating() {
 		return productRating;
 	}
 
-	public void setProductRating(Double productRating) {
+	public void setProductRating(Integer productRating) {
 		this.productRating = productRating;
+	}
+	public List<ProductReviewImgDTO> getProductReviewImgDTOs() {
+		return productReviewImgDTOs;
+	}
+
+	public void setProductReviewImgDTOs(List<ProductReviewImgDTO> productReviewImgDTOs) {
+		this.productReviewImgDTOs = productReviewImgDTOs;
 	}
 
 }

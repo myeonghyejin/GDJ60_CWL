@@ -54,20 +54,23 @@
 		</div>
 	
 		<div class="row my-5">
-			<div class="mb-3">
+			<!-- <div class="mb-3">
 				<label for="productRating" class="form-label">RATING</label>
 				<input type="text" name="productRating" class="form-control" id="productRating"><br>
-			</div>
-			<div class="mb-3">
+			</div> -->
+			<!-- <div class="mb-3">
 				<textarea class="form-control" rows="3" id="productReviewContents"></textarea>
-			</div>
+			</div> -->
 			<div class="mb-3">
-				<button type="button" class="btn btn-primary" id="productReviewAdd" data-product-num-review="${DTO.productNum}">작성</button>
+				<a href="./review/add" class="btn btn-primary col-2 mx-1" data-product-num-review="${DTO.productNum}">작성</a>
 			</div>
+			<!-- <div class="mb-3">
+				<button type="button" class="btn btn-primary" id="productReviewAdd" data-product-num-review="${DTO.productNum}">작성</button>
+			</div> -->
 		</div>
 		
 		<!-- Edit -->
-		<div class="modal fade" id="reviewEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<!-- <div class="modal fade" id="reviewEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -90,7 +93,7 @@
 				</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		
  		<!-- QnA -->
  		<div class="row mt-5">
@@ -156,7 +159,7 @@
 	</div>
 	
 	<c:import url="../template/common_js.jsp"></c:import>
-	<script src="/resources/js/productQnA.js"></script>
+<!-- 	<script src="/resources/js/productQnA.js"></script> -->
 	<script src="/resources/js/productReview.js"></script>
 </body>
 </html>

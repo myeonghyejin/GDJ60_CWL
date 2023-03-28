@@ -9,11 +9,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- SQL -->
 	<sql id="productQnACondition">
 		<where>
+			<if test="condition == 'productQnATitle'">
+				PRODUCTQNATITLE LIKE '%' || #{search} || '%'
+			</if>
 			<if test="condition == 'productQnAContents'">
-				CONTENTS LIKE '%' || #{search} || '%'
+				PRODUCTQNACONTENTS LIKE '%' || #{search} || '%'
 			</if>
 			<if test="condition == 'memberId'">
-				WRITER LIKE '%' || #{search} || '%'
+				MEMBERID LIKE '%' || #{search} || '%'
 			</if>
 		</where>
 	</sql>
@@ -50,12 +53,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   			SELECT PRODUCTQNA_SEQ.NEXTVAL FROM DUAL
   		</selectKey>
   		INSERT INTO PRODUCTQNA
-		VALUES (#{productQnANum}, #{productNum}, #{memberId}, #{productQnAContents}, SYSDATE, #{productQnANum}, 0, 0)
+		VALUES (#{productQnANum}, #{productNum}, #{memberId}, #{productQnATitle}, #{productQnAContents}, SYSDATE, #{productQnANum}, 0, 0)
 	</insert>
 	
 	<insert id="setProductQnAReplyAdd" parameterType="ProductQnADTO">
 		INSERT INTO PRODUCTQNA
-		VALUES (PRODUCTQNA_SEQ.NEXTVAL, #{productNum}, #{memberId}, #{productQnAContents}, SYSDATE, #{productQnARef}, #{productQnAStep}, #{productQnADepth})
+		VALUES (PRODUCTQNA_SEQ.NEXTVAL, #{productNum}, #{memberId}, #{productQnATitle}, #{productQnAContents}, SYSDATE, #{productQnARef}, #{productQnAStep}, #{productQnADepth})
 	</insert>
 	
 	<!-- UPDATE -->
