@@ -72,8 +72,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- INSERT -->
 	<insert id="setProductReviewAdd" parameterType="ProductReviewDTO">
+		<selectKey keyProperty="productReviewNum" resultType="Long" order="BEFORE">
+  			SELECT PRODUCTREVIEW_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
   		INSERT INTO PRODUCTREVIEW
-		VALUES (PRODUCTREVIEW_SEQ.NEXTVAL, #{productNum}, #{memberId}, #{productReviewTitle}, #{productReviewContents}, SYSDATE, #{productRating})
+		VALUES (#{productReviewNum}, #{productNum}, #{memberId}, #{productReviewTitle}, #{productReviewContents}, SYSDATE, #{productRating})
 	</insert>
 	
 	<insert id="setProductReviewImgAdd" parameterType="ProductReviewImgDTO">

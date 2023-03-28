@@ -47,7 +47,7 @@ public class ProductReviewController {
 	
 	/** INSERT **/
 	@GetMapping("add")
-	public ModelAndView setProductReviewAdd(ProductReviewDTO productReviewDTO, ModelAndView modelAndView) throws Exception {
+	public ModelAndView setProductReviewAdd(ModelAndView modelAndView) throws Exception {		
 		modelAndView.setViewName("product/review/add");
 		
 		return modelAndView;

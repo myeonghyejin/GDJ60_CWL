@@ -159,7 +159,7 @@
 	</div>
 	
 	<c:import url="../template/common_js.jsp"></c:import>
-<!-- 	<script src="/resources/js/productQnA.js"></script> -->
+ 	<script src="/resources/js/productQnA.js"></script>
 	<script src="/resources/js/productReview.js"></script>
 	<script type="text/javascript" src="../resources/js/boardForm.js"></script>
 </body>
