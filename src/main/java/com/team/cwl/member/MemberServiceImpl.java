@@ -1,17 +1,17 @@
-package com.team.cwl.members;
+package com.team.cwl.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MemberServicesImpl implements MemberServices {
+public class MemberServiceImpl implements MemberService {
 	
 	@Autowired
 	MemberMapper memberMapper;
 	
 	/* 회원가입 */
 	@Override
-	public void memberAdd(MemberDTOS member) throws Exception {
+	public void memberAdd(MemberDTO member) throws Exception {
 		memberMapper.memberAdd(member);
 	}
 	
@@ -23,13 +23,17 @@ public class MemberServicesImpl implements MemberServices {
 	
 	/* 로그인 */
 	@Override
-	public MemberDTOS memberLogin(MemberDTOS member) throws Exception {
+	public MemberDTO memberLogin(MemberDTO member) throws Exception {
 		return memberMapper.memberLogin(member);
 	}
 	
 	/* 주문자 정보 */
 	@Override
-	public MemberDTOS getMemberInfo(String memberId) {
+	public MemberDTO getMemberInfo(String memberId) {
 		return memberMapper.getMemberInfo(memberId);
+	}
+	
+	public MemberDTO getMemberPage(MemberDTO memberDTO) throws Exception {
+		return memberMapper.memberLogin(memberDTO);
 	}
 }

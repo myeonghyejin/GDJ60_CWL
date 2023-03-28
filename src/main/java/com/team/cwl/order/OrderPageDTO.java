@@ -6,7 +6,7 @@ public class OrderPageDTO {
 	
 	private List<OrderPageItemDTO> orders;
 	
-	private List<OrderPageItemDTO> getOrders() {
+	public List<OrderPageItemDTO> getOrders() {
 		return orders;
 	}
 	

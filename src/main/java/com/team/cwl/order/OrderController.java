@@ -15,6 +15,7 @@ import com.team.cwl.member.MemberDTO;
 import com.team.cwl.member.MemberService;
 
 @Controller
+@RequestMapping("/order/**")
 public class OrderController {
 	
 	@Autowired
@@ -26,27 +27,28 @@ public class OrderController {
 	
 	
 	@GetMapping("/order/{memberId}")
-	public String orderPageGET(@PathVariable("memberId") String memberId, OrderPageDTO orderPageDTO, Model model) {
+	public String orderPageGET(@PathVariable("memberId") String memberId, OrderPageDTO opd, Model model) {
 		
-		model.addAttribute("orderList", orderService.getGoodsInfo(orderPageDTO.getOrders()));
-		model.addAttribute("memberPage", memberService.getMemberPage(memberId));
+		model.addAttribute("orderList", orderService.getGoodsInfo(opd.getOrders()));
+		model.addAttribute("memberInfo", memberService.getMemberInfo(memberId));
 		
 		return "/order";
 	}
 	
 	@PostMapping("/order/")
-	public String orderPagePost(OrderDTO orderDTO, HttpServletRequest request) {
-		System.out.println(orderDTO);
+	public String orderPagePost(OrderDTO od, HttpServletRequest request) {
 		
-		orderService.order(orderDTO);
+		System.out.println(od);
+		
+		orderService.order(od);
 		
 		MemberDTO member = new MemberDTO();
-		member.setMemberId(orderDTO.getMemberId());
+		member.setMemberId(od.getMemberId());
 		
 		HttpSession session = request.getSession();
 		
 		try {
-			MemberDTO memberLogin = memberService.getMemberLogin(member);
+			MemberDTO memberLogin = memberService.memberLogin(member);
 			memberLogin.setMemberPw("");
 			session.setAttribute("member", memberLogin);
 		} catch (Exception e) {

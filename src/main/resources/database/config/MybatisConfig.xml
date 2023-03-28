@@ -25,13 +25,10 @@
   		<typeAlias type="com.team.cwl.util.Pagination" alias="Pagination"/>
   		
   		<!-- 우희 -->
-  		<!-- <typeAlias type="com.team.cwl.member.MemberDTO" alias="MemberDTO"/> -->
-  		<typeAlias type="com.team.cwl.member.RoleDTO" alias="RoleDTO"/>
-  		<typeAlias type="com.team.cwl.members.MemberDTOS" alias="MemberDTOS"/>
-  		<typeAlias type="com.team.cwl.members.Admin"/>
+  		<typeAlias type="com.team.cwl.member.MemberDTO" alias="MemberDTO"/>
+  		<!-- <typeAlias type="com.team.cwl.member.Admin"/> -->
   		
-  		<!-- <typeAlias type="com.team.cwl.cart.CartDTO" alias="CartDTO"/> -->
-  		<typeAlias type="com.team.cwl.cart2.CartDTO2" alias="CartDTO2"/>
+  		<typeAlias type="com.team.cwl.cart.CartDTO" alias="CartDTO"/>  		
   		
   		<typeAlias type="com.team.cwl.order.OrderDTO" alias="OrderDTO"/>
   		<typeAlias type="com.team.cwl.order.OrderCancelDTO" alias="OrderCancelDTO"/>

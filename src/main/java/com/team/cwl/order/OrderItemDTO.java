@@ -63,11 +63,6 @@ public class OrderItemDTO {
 	public void initTotal() {
 		this.totalPrice = this.productPrice * this.orderCount;
 	}
-
-	public void setOrderNum(String orderId) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	
 }

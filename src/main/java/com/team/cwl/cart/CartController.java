@@ -1,114 +1,78 @@
-//package com.team.cwl.cart;
-//test
-//import java.util.HashMap;
-//import java.util.List;
-//import java.util.Map;
-//
-//import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpSession;
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Controller;
-//import org.springframework.web.bind.annotation.ModelAttribute;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RequestMethod;
-//import org.springframework.web.bind.annotation.RequestParam;
-//import org.springframework.web.servlet.ModelAndView;
-//
-//import com.team.cwl.member.MemberDTO;
-//import com.team.cwl.member.MemberService;
-//
-//
-//@Controller
-//@RequestMapping("/cart/*")
-//public class CartController { 
-//	
-//	@Autowired//(required=false)
-//	private CartServiceImpl cartServiceImpl;
-//	
-//	@RequestMapping(value = "add")
-//	public ModelAndView setCartAdd(@ModelAttribute CartDTO cartDTO, HttpSession session) throws Exception {
-//		ModelAndView modelAndView = new ModelAndView();
-//		
-//		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");		
-//		String memberId = memberDTO.getMemberId();
-//		
-//		String message = "로그인 해야함";
-//		
-//		if(memberId == null) {
-//			message = "로그인 후 이용이 가능합니다.";
-//			System.out.println("로그인 후 이용이 가능합니다.");
-//			
-//		}
-//		cartDTO.setMemberId(memberId);
-//		cartServiceImpl.setCartAdd(cartDTO);
-//		
-//		modelAndView.addObject("result", message);
-//		modelAndView.setViewName("redirect:/cart/list");
-//		return modelAndView;
-//	}
-//	
-//	@RequestMapping(value = "list", method = RequestMethod.GET)
-//	public ModelAndView getCartList(HttpSession session) throws Exception {
-//		ModelAndView modelAndView = new ModelAndView();
-//		
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		
-////		MemberDTO memberDTO=(MemberDTO)session.getAttribute("member");
-//		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-//		String memberId = memberDTO.getMemberId();
-//		System.out.println(memberId);
-//		System.out.println(memberDTO.getMemberId());
-////		System.out.println(memberId+"Login");
-////		System.out.println(cartDTO.getMemberId()+"Login");
-//		
-//		
-//		if(memberId != null) {
-//			List<CartDTO> list = cartServiceImpl.getCartList(memberId); // 장바구니 목록
-//			int sumMoney = cartServiceImpl.sumMoney(memberId); // 금액 합계
-//			int fee = sumMoney >= 30000 ? 0 : 2500; // 3만원 이상이면 배송료 0원, 미만이면 2500원
-//			
-//			// HashMap에 장바구니에 넣을 각종 값들을 저장
-//			map.put("sumMoney", sumMoney);
-//			map.put("fee", fee); // 배송료
-//			map.put("sum", sumMoney+fee); // 전체 금액
-//			map.put("list", list); // 장바구니 목록
-//			map.put("count", list.size()); // 레코드 갯수
-//			
-//			modelAndView.addObject("map", map); // 데이터 저장
-//			modelAndView.setViewName("/cart/list"); // 이동할 페이지의 이름
-//			
-//			return modelAndView;
-//		} else {
-//			// 로그인을 하지 않았으면 로그인 페이지로 이동
-//			System.out.println("로그인 안함");
-//			modelAndView.setViewName("member/memberLogin");
-//		}
-//		return modelAndView;
-//		
-//		
-//	}
-//	
-//	@RequestMapping(value = "delete")
-//	public String delete(@RequestParam Long cartNum) throws Exception {
-//		cartServiceImpl.setCartDelete(cartNum);
-//		return "redirect:/cart/list";
-//	}
-//	
-//	@RequestMapping(value = "deleteAll")
-//	public String deleteAll(HttpSession session) throws Exception {
-//		String memberId = (String)session.getAttribute("memberId");
-//		if(memberId != null) {
-//			cartServiceImpl.setCartDeleteAll(memberId);
-//		}
-//		return "redirect:/cart/list";
-//	}
-//	
-//	@RequestMapping(value = "update")
-//	public ModelAndView update() {
-//		ModelAndView modelAndView = new ModelAndView();
-//		modelAndView.setViewName("cart/update");
-//		return modelAndView;
-//	}
-//	
-//}
+package com.team.cwl.cart;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.team.cwl.member.MemberDTO;
+
+
+@Controller
+@RequestMapping("/cart/*")
+public class CartController {
+	
+	@Autowired
+	private CartServiceImpl cartServiceImpl2;
+	
+	/* 장바구니 추가 */
+	/**
+	 * 0: 등록 실패
+	 * 1: 등록 성공
+	 * 2: 등록된 데이터 존재
+	 * 5: 로그인 필요
+	 * 
+	 */
+	@PostMapping("cartAdd")
+	@ResponseBody
+	public String cartAdd(CartDTO cart, HttpServletRequest request) {
+		// 로그인 체크
+		HttpSession session = request.getSession();
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		if(memberDTO == null) {
+			return "5";
+		}
+		
+		// 카트 등록
+		
+		int result = cartServiceImpl2.cartAdd(cart);
+		
+		return result + "";
+	}	
+	
+	/* 장바구니 페이지 이동 */
+	@GetMapping("{memberId}")
+	public String cartList(@PathVariable("memberId") String memberId, Model model) {
+		
+		model.addAttribute("cartInfo", cartServiceImpl2.cartList(memberId));
+		
+		return "/cart/cart";
+	}	
+	
+	/* 장바구니 수량 수정 */
+	@PostMapping("cartUpdate")
+	public String cartUpdate(CartDTO cart) {
+		
+		cartServiceImpl2.modifyCount(cart);
+		
+		return "redirect:/cart/cart" + cart.getMemberId();
+		
+	}	
+	
+	/* 장바구니 수량 삭제 */
+	@PostMapping("cartDelete")
+	public String cartDelete(CartDTO cart) {
+		
+		cartServiceImpl2.cartDelete(cart.getCartNum());
+		
+		return "redirect:/cart/cart" + cart.getMemberId();
+		
+	}		
+}

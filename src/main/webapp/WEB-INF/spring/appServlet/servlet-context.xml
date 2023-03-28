@@ -25,7 +25,7 @@
 	<context:component-scan base-package="com.team.cwl" />
 	
 	<!-- 인터셉터 적용 -->
-	<interceptors>
+	<!-- <interceptors>
 		<interceptor>
 			<mapping path="/member/login.do"></mapping>
 			<beans:bean id="loginInterceptor" class="com.team.cwl.interceptor.LoginInterceptor"></beans:bean>
@@ -39,7 +39,7 @@
 			<exclude-mapping path="/cart/add"/>
 			<beans:bean id="CartInterceptor" class="com.team.cwl.interceptor.CartInterceptor"></beans:bean>
 		</interceptor>		
-	</interceptors>
+	</interceptors> -->
 	
 	<!-- 업로드 관련 빈 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"></beans:bean>

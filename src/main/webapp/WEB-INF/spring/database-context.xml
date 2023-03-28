@@ -24,7 +24,17 @@
 	</bean>
 	
 	<bean id="cartMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="com.team.cwl.cart2.CartMapper"></property>
+		<property name="mapperInterface" value="com.team.cwl.cart.CartMapper"></property>
+		<property name="sqlSessionTemplate" ref="sqlSession"></property>
+	</bean>
+	
+	<bean id="memberMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.team.cwl.member.MemberMapper"></property>
+		<property name="sqlSessionTemplate" ref="sqlSession"></property>
+	</bean>
+	
+	<bean id="orderMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.team.cwl.order.OrderMapper"></property>
 		<property name="sqlSessionTemplate" ref="sqlSession"></property>
 	</bean>
 	

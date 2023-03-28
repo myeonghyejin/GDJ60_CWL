@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="com.team.cwl.cart2.CartMapper">
+  <mapper namespace="com.team.cwl.cart.CartMapper">
 
 	<!-- 카트 추가 -->
 	<insert id="cartAdd">
@@ -12,18 +12,18 @@
 	
 	
 	<!-- 카트 삭제 -->
-	<delete id="cartdelete" parameterType="CartDTO2">
+	<delete id="cartdelete" parameterType="CartDTO">
 		delete from cart2 where cartNum = #{cartNum}
 	</delete>
 	
 	<!-- 카트 수량 수정 -->
-	<update id="modifyCount" parameterType="CartDTO2">
+	<update id="modifyCount" parameterType="CartDTO">
 		update cart2 set productAmount=#{productAmount} where cartNum = #{cartNum}
 	</update>
 	
 	
 	<!-- 카트 목록 -->
-	<select id="cartList" resultType="com.team.cwl.cart2.CartDTO2">
+	<select id="cartList" resultType="com.team.cwl.cart.CartDTO">
 		select a.cartNum, a.memberId, a.productNum, a.productAmount, p.productName, p.productPrice
 		from cart2 a
 		left outer join
@@ -32,7 +32,7 @@
 	</select>
 	
 	<!-- 카트 확인 -->
-	<select id="checkCart" resultType="com.team.cwl.cart2.CartDTO2">
+	<select id="checkCart" resultType="com.team.cwl.cart.CartDTO">
 		select * from cart2 
 		where memberId = #{memberId} and productNum = #{productNum}
 	</select>	

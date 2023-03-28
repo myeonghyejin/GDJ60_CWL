@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import com.team.cwl.members.MemberDTOS;
+import com.team.cwl.member.MemberDTO;
 
 public class AdminInterceptor implements HandlerInterceptor {
 	
@@ -16,7 +16,7 @@ public class AdminInterceptor implements HandlerInterceptor {
 		
 		HttpSession session = request.getSession();
 		
-		MemberDTOS memberDtos = (MemberDTOS)session.getAttribute("members");
+		MemberDTO memberDtos = (MemberDTO)session.getAttribute("members");
 		
 		if(memberDtos == null || memberDtos.getAdminCheck() == 0) { // 관리자 계정이 아닌 경우
 			

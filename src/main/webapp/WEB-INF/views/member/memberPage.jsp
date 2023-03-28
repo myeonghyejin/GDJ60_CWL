@@ -19,11 +19,12 @@
 			<h3>아이디 : ${dto.memberId}</h3>
 			<h3>이름 : ${dto.memberName}</h3>
 			<h3>휴대폰 : ${dto.memberPhone}</h3>
+			<h3>주소 : ${dto.memberAddress1}<br>${dto.memberAddress2}<br>${dto.memberAddress3}</h3>
 			<h3>이메일 : ${dto.memberEmail}</h3>
 			<h3>성별 : ${dto.memberGender}</h3>
 			<h3>자기소개 : ${dto.memberSI}</h3>
 			<h3>나이 : ${dto.memberAge}</h3>
-			<h3>Role : ${dto.roleDTO.roleName}</h3>
+			<h3>돈 : ${dto.money}</h3>
 			<a href="./memberUpdate" class="btn btn-info">회원수정</a>
 		</div>
 	</div>

@@ -18,7 +18,7 @@ public abstract class CartInterceptor implements HandlerInterceptor {
 
 		HttpSession session = request.getSession();
 		
-		MemberDTO memberDTO = (MemberDTO)session.getAttribute("members");
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		
 		if(memberDTO == null) {
 			response.sendRedirect("/");

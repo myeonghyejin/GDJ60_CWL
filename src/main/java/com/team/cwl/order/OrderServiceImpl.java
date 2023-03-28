@@ -10,20 +10,23 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.team.cwl.cart.CartDTO;
+import com.team.cwl.cart.CartMapper;
 import com.team.cwl.member.MemberDTO;
+import com.team.cwl.member.MemberMapper;
+import com.team.cwl.product.ProductDTO;
 
 @Service
 public class OrderServiceImpl implements OrderService {
 	
-	@Autowired(required=false)
+	@Autowired
 	private OrderMapper orderMapper;
 	
-//	@Autowired
-//	private MemberMapper memberMapper;
-//	
-//	@Autowired
-//	private CartMapper cartMapper;
-//	
+	@Autowired
+	private MemberMapper memberMapper;
+	
+	@Autowired
+	private CartMapper cartMapper;
+
 //	@Autowired
 //	private ProductMapper productMapper;
 	
@@ -50,7 +53,7 @@ public class OrderServiceImpl implements OrderService {
 		// 회원정보
 		MemberDTO member = memberMapper.getMemberInfo(ord.getMemberId());
 		// 주문정보
-//		List<OrderItemDTO> ords = new ArrayList<>();
+		List<OrderItemDTO> ords = new ArrayList<>();
 		for(OrderItemDTO oit : ord.getOrders()) {
 			OrderItemDTO orderItem = orderMapper.getOrderInfo(oit.getProductNum());
 			// 수량 세팅
@@ -64,28 +67,28 @@ public class OrderServiceImpl implements OrderService {
 		ord.setOrders(ords);
 		ord.getOrderPriceInfo();
 		
-		// DB 주문, 주문상품(배송정보) 넣기
+		/* DB 주문, 주문상품(배송정보) 넣기 */
 		// orderNum 만들기 및 OrderDTO객체 orderNum에 저장
 		Date date = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("_yyyyMMddmm");
-		String orderId = member.getMemberId() + format.format(date);
-		ord.setOrderNum(orderId);
+		String orderNum = member.getMemberId() + format.format(date);
+		ord.setOrderNum(orderNum);
 		
 		// DB넣기
 		orderMapper.enrollOrder(ord);
 		for(OrderItemDTO oit : ord.getOrders()) {
-			oit.setOrderNum(orderId);
+			oit.setOrderNum(orderNum);
 			orderMapper.enrollOrderItem(oit);
 		}
 		
-		// 비용 변동 적용
-		Long calMoney = member.getMemberMoney();
+		/* 비용 변동 적용 */
+		Long calMoney = member.getMoney();
 		calMoney -= ord.getOrderFinalSalePrice();
-		member.setMemberMoney(calMoney);
+		member.setMoney(calMoney);
 		
 		orderMapper.deductMoney(member);
 		
-		// 재고 변동 적용
+		/* 재고 변동 적용 */
 //		for(OrderItemDTO oit : ord.getOrders()) {
 //			// 변동 재고 값 구하기
 //			ProductDTO productDTO = ProductMapper.getGoodsInfo(oit.getProductNum());
@@ -96,47 +99,47 @@ public class OrderServiceImpl implements OrderService {
 		
 		// 장바구니 제거
 		for(OrderItemDTO oit : ord.getOrders()) {
-			CartDTO cartDTO = new CartDTO();
-			cartDTO.setMemberId(ord.getMemberId());
-			cartDTO.setProductNum(oit.getProductNum());
+			CartDTO dto = new CartDTO();
+			dto.setMemberId(ord.getMemberId());
+			dto.setProductNum(oit.getProductNum());
 			
-			cartMapper.deleteOrderCart(cartDTO);			
+			cartMapper.deleteOrderCart(dto);			
 		}
 		
 	}
 	
-	// 주문취소
+	/* 주문취소 */
 	@Override
 	@Transactional
-	public void orderCancel(OrderCancelDTO orderCancelDTO) {
-		// 주문, 주문상품 객체
+	public void orderCancel(OrderCancelDTO dto) {
+		/* 주문, 주문상품 객체 */
 		// 회원
-		MemberDTO member = memberMapper.getMemberInfo(orderCancelDTO.getOrderNum());
+		MemberDTO member = memberMapper.getMemberInfo(dto.getMemberId());
 		// 주문상품
-		List<OrderItemDTO> ords = orderMapper.getOrderItemInfo(orderCancelDTO.getOrderNum());
+		List<OrderItemDTO> ords = orderMapper.getOrderItemInfo(dto.getOrderNum());
 		for(OrderItemDTO ord : ords) {
 			ord.initTotal();
 		}
 		// 주문
-		OrderDTO orw = orderMapper.getOrder(orderCancelDTO.getOrderNum());
+		OrderDTO orw = orderMapper.getOrder(dto.getOrderNum());
 		orw.setOrders(ords);
 		
 		orw.getOrderPriceInfo();
 		
-		// 주문상품 취소 DB
-		orderMapper.orderCancel(orderCancelDTO.getOrderNum());
-		// 돈, 재고 변환
+		/* 주문상품 취소 DB */
+		orderMapper.orderCancel(dto.getOrderNum());
+		/* 돈, 재고 변환 */
 		// 돈
-		Long calMoney = member.getMemberMoney();
+		Long calMoney = member.getMoney();
 		calMoney += orw.getOrderFinalSalePrice();
-		member.setMemberMoney(calMoney);
+		member.setMoney(calMoney);
 		// DB 적용
 		orderMapper.deductMoney(member);
 		// 재고
 		for(OrderItemDTO ord : orw.getOrders()) {
-//			ProductDTO productDTO = productMapper.getGoodsInfo(ord.getProductNum());
-//			productDTO.setProductStock(productDTO.getProductStock() + ord.getOrderCount());
-//			orderMapper.deductStock(productDTO);
+			ProductDTO productDTO = productMapper.getGoodsInfo(ord.getProductNum());
+			productDTO.setProductStock(productDTO.getProductStock() + ord.getOrderCount());
+			orderMapper.deductStock(productDTO);
 		}
 		
 	}

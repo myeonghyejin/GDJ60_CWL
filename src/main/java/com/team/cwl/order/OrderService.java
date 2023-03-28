@@ -9,8 +9,8 @@ public interface OrderService {
 	public List<OrderPageItemDTO> getGoodsInfo(List<OrderPageItemDTO> orders); 
 	
 	// 주문
-	public void order(OrderDTO orderDTO);
+	public void order(OrderDTO orw);
 	
 	// 주문취소
-	public void orderCancel(OrderCancelDTO orderCancelDTO );
+	public void orderCancel(OrderCancelDTO dto);
 }
