@@ -3,10 +3,7 @@ package com.team.cwl.product.review;
 import java.sql.Date;
 import java.util.List;
 
-import com.team.cwl.board.comment.BoardCommentDTO;
-import com.team.cwl.product.ProductImgDTO;
-
-public class ProductReviewDTO extends BoardCommentDTO {
+public class ProductReviewDTO {
 	
 	private Long productReviewNum;
 	private Long productNum;

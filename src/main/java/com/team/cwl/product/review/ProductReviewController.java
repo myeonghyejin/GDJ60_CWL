@@ -13,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.cwl.member.MemberDTO;
-import com.team.cwl.product.ProductDTO;
 import com.team.cwl.util.Pagination;
 
 @Controller
@@ -36,9 +35,19 @@ public class ProductReviewController {
 		return modelAndView;
 	}
 	
+	@GetMapping("detail")
+	public ModelAndView getProductReviewDetail(ProductReviewDTO productReviewDTO, ModelAndView modelAndView) throws Exception {
+		productReviewDTO = productReviewService.getProductReviewDetail(productReviewDTO);
+		
+		modelAndView.addObject("DTO", productReviewDTO);
+		modelAndView.setViewName("common/ajaxResult");
+		
+		return modelAndView;	
+	}
+	
 	/** INSERT **/
 	@GetMapping("add")
-	public ModelAndView setProductReviewAdd(ModelAndView modelAndView) throws Exception {
+	public ModelAndView setProductReviewAdd(ProductReviewDTO productReviewDTO, ModelAndView modelAndView) throws Exception {
 		modelAndView.setViewName("product/review/add");
 		
 		return modelAndView;
@@ -56,7 +65,7 @@ public class ProductReviewController {
 		if(result > 0) {
 			message = "등록에 성공했습니다.";
 		}
-		
+
 		modelAndView.addObject("result", message);
 		modelAndView.addObject("URL", "./detail?productNum="+productReviewDTO.getProductNum());
 		modelAndView.setViewName("common/result");

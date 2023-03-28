@@ -62,7 +62,7 @@
 				<textarea class="form-control" rows="3" id="productReviewContents"></textarea>
 			</div> -->
 			<div class="mb-3">
-				<a href="./review/add" class="btn btn-primary col-2 mx-1" data-product-num-review="${DTO.productNum}">작성</a>
+				<a href="./review/add" class="btn btn-primary col-2 mx-1">작성</a>
 			</div>
 			<!-- <div class="mb-3">
 				<button type="button" class="btn btn-primary" id="productReviewAdd" data-product-num-review="${DTO.productNum}">작성</button>
@@ -161,5 +161,6 @@
 	<c:import url="../template/common_js.jsp"></c:import>
 <!-- 	<script src="/resources/js/productQnA.js"></script> -->
 	<script src="/resources/js/productReview.js"></script>
+	<script type="text/javascript" src="../resources/js/boardForm.js"></script>
 </body>
 </html>
