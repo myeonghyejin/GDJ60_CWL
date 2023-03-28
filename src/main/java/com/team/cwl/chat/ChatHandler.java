@@ -4,8 +4,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import javax.xml.crypto.Data;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.CloseStatus;
@@ -46,11 +49,22 @@ public class ChatHandler extends TextWebSocketHandler{
 		
 		
 		
-		//map 반복문 돌리
-		for(WebSocketSession webSocketSession:maps){
-			webSocketSession.sendMessage(new TextMessage(strMessage));
-		}
-		super.handleTextMessage(session, message);
+//		//map 반복문
+//		for(WebSocketSession webSocketSession:maps){
+//			webSocketSession.sendMessage(new TextMessage(strMessage));
+//		}
+//		super.handleTextMessage(session, message);
+//	}
+	
+	//map 반복문 
+	Iterator<String> keys = maps.keySet().iterator();
+	while(keys.hasNext()){
+		String key = keys.next();
+		System.out.println(String.format("키 : %s, 값 : %s", key, maps.get(key)));
+		WebSocketSession webSocketSession = maps.get(key);
+		webSocketSession.sendMessage(new TextMessage(strMessage));
+	}
+	super.handleTextMessage(session, message);
 	}
 	
 	public void myMethod() {
