@@ -6,26 +6,31 @@
 <table class="table table-striped">
 	<c:forEach items="${list}" var="DTO">
 		<tr>
-			<td id="productQnAContents${DTO.productQnANum}">
-				${DTO.productQnAContents}
+			<td id="productQnATitle${DTO.productQnANum}" data-productqna-num="${DTO.productQnANum}">
+				<c:forEach begin="1" end="${DTO.productQnADepth}">[re]</c:forEach>
+				<a class="detail" data-productqna-num="${DTO.productQnANum}">${DTO.productQnATitle}</a>
 			</td>
 			<td>${DTO.memberId}</td>
 			<td>${DTO.productQnADate}</td>
 			<td>
-				<c:if test="${member.roleDTO.roleName eq '관리자'}">
-					<button class="btn btn-info reply" data-productqna-num="${DTO.productQnANum}" data-bs-toggle="modal">답글</button>
-				</c:if>
+				<%-- <c:if test="${member.roleDTO.roleName eq '관리자'}"> --%>
+					<a href="./qna/reply?productQnANum=${DTO.productQnANum}&productNum=${DTO.productNum}" class="btn btn-primary" data-product-num-qna="${DTO.productNum}">답글</a>
+				<%-- </c:if> --%>
 			</td>
 			<td>
 				<c:if test="${member.memberId eq DTO.memberId}">
 					<a href="./qna/update?productQnANum=${DTO.productQnANum}&productNum=${DTO.productNum}" class="btn btn-info" data-productqna-num="${DTO.productQnANum}">수정</a>
-					<%-- <button class="btn btn-info update" data-productqna-num="${DTO.productQnANum}" data-bs-toggle="modal">수정</button> --%>
 				</c:if>
 			</td>
 			<td>
 				<c:if test="${member.memberId eq DTO.memberId}">
 					<button class="btn btn-danger delete" data-productqna-num="${DTO.productQnANum}">삭제</button>
 				</c:if>
+			</td>
+		</tr>
+		<tr>
+			<td id="productQnAContents${DTO.productQnANum}" style="display:none;">
+				${DTO.productQnAContents}
 			</td>
 		</tr>
 	</c:forEach>

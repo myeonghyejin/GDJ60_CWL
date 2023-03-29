@@ -38,7 +38,7 @@ public class ProductReivewDAOTest extends MyTestCase {
 			ProductReviewDTO productReviewDTO = new ProductReviewDTO();
 			
 			productReviewDTO.setProductNum(30L);
-			productReviewDTO.setMemberId("mhj");
+			productReviewDTO.setMemberId("hyj");
 			productReviewDTO.setProductReviewTitle("딱딱복숭아"+i);
 			productReviewDTO.setProductReviewContents("말랑복숭아");
 			productReviewDTO.setProductReviewDate(date);

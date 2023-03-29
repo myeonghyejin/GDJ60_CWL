@@ -69,34 +69,10 @@
 			<a href="./qna/add?productNum=${DTO.productNum}" class="btn btn-primary col-2 mx-1" id="productQnAAdd" data-product-num-qna="${DTO.productNum}">작성</a>
 		</div>
 		
-		<!-- Reply -->
-		<!-- <div class="modal fade" id="qnaReplyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="exampleModalLabel">수정</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<div class="form-floating">
-						<textarea class="form-control" id="productQnAReply"></textarea>
-						<label for="productQnAReply">Comments</label>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeQnAReplyModal">취소</button>
-					<button type="button" class="btn btn-primary" data-productqna-num="" id="qnaReplyConfirm">확인</button>
-				</div>
-				</div>
-			</div>
-		</div> -->
-		
 	</div>
 	
 	<c:import url="../template/common_js.jsp"></c:import>
 	<script src="/resources/js/product.js"></script>
- 	<!-- <script src="/resources/js/productQnA.js"></script>
-	<script src="/resources/js/productReview.js"></script> -->
-	<script type="text/javascript" src="../resources/js/boardForm.js"></script>
+	<script type="text/javascript" src="../resources/js/confirm.js"></script>
 </body>
 </html>

@@ -10,11 +10,27 @@
 				${DTO.productReviewContents}
 			</td>
 			<td>${DTO.memberId}</td>
-			<td id="productRating${DTO.productReviewNum}">${DTO.productRating}</td>
+			<td id="productRating${DTO.productReviewNum}">
+				<c:if test="${DTO.productRating eq 1}">
+					★
+				</c:if>
+				<c:if test="${DTO.productRating eq 2}">
+					★★
+				</c:if>
+				<c:if test="${DTO.productRating eq 3}">
+					★★★
+				</c:if>
+				<c:if test="${DTO.productRating eq 4}">
+					★★★★
+				</c:if>
+				<c:if test="${DTO.productRating eq 5}">
+					★★★★★
+				</c:if>
+			</td>
 			<td>${DTO.productReviewDate}</td>
 			<td>
 				<c:if test="${member.memberId eq DTO.memberId}">
-					<button class="btn btn-info update" data-productreview-num="${DTO.productReviewNum}" data-bs-toggle="modal" data-bs-target="#reviewEditModal">수정</button>
+					<a href="./review/update?productReviewNum=${DTO.productReviewNum}&productNum=${DTO.productNum}" class="btn btn-info" data-productreview-num="${DTO.productReviewNum}">수정</a>
 				</c:if>
 			</td>
 			<td>

@@ -87,6 +87,6 @@
 	</div>
 	<c:import url="../template/common_js.jsp"></c:import>
 	<script src="/resources/js/boardComment.js"></script>
-	<script type="text/javascript" src="../resources/js/boardForm.js"></script>
+	<script type="text/javascript" src="../resources/js/confirm.js"></script>
 </body>
 </html>

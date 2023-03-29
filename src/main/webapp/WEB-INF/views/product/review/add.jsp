@@ -15,7 +15,6 @@
 		<% request.setCharacterEncoding("UTF-8");
 	    String productNum = request.getParameter("productNum");
 	    %>
-		
 		<form action="./add" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="productNum" value="<%=productNum%>">
 			<div class="row col-md-4 mx-auto my-5">

@@ -6,33 +6,31 @@
 <head>
 	<meta charset="UTF-8">
 	<title>ADD</title>
-	<c:import url="../template/common_css.jsp"></c:import>
-	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+	<c:import url="../../template/common_css.jsp"></c:import>
 </head>
 <body>
-	<c:import url="../template/header.jsp"></c:import>
+	<c:import url="../../template/header.jsp"></c:import>
 	<div class="container-fluid my-5">
 		<!-- Contents -->
-		<form action="./add" method="post" enctype="multipart/form-data">
+		<% request.setCharacterEncoding("UTF-8");
+	    String productNum = request.getParameter("productNum");
+	    String productQnANum = request.getParameter("productQnANum");
+	    %>
+		<form action="./reply" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="productNum" value="<%=productNum%>">
+			<input type="hidden" name="productQnANum" value="<%=productQnANum%>">
 			<div class="row col-md-4 mx-auto my-5">
 				<div class="fw-bold fs-5 col-12">
 					<label for="memberId" class="form-label">작성자</label>
 					<input type="text" name="memberId" class="form-control" id="memberId" value="${member.memberId}" readonly><br>
 				</div>
 				<div class="fw-bold fs-5 col-12">
-					<label for="lessonTitle" class="form-label">제목</label>
-					<input type="text" name="lessonTitle" class="form-control" id="lessonTitle"><br>
-				</div>			
+					<label for="productQnATitle" class="form-label">제목</label>
+					<input type="text" name="productQnATitle" class="form-control" id="productQnATitle"><br>
+				</div>	
 				<div class="fw-bold fs-5 col-12">
-					<label for="lessonContents" class="form-label">내용</label>
-					<textarea name="lessonContents" class="form-control" id="lessonContents" rows="3"></textarea><br>
-				</div>
-				<div id="imgList">
-					<div class="fw-bold fs-5 col-12 input-group">
-						<input type="file" class="form-control" name="imgs">
-						<button type="button" class="btn btn-outline-primary" id="imgAdd">ADD</button>
-					</div>	
+					<label for="productQnAContents" class="form-label">내용</label>
+					<textarea name="productQnAContents" class="form-control" id="productQnAContents" rows="3"></textarea><br>
 				</div>
 				<div class="row justify-content-center my-5">
 					<button type="submit" class="btn btn-primary col-2">글쓰기</button>
@@ -40,11 +38,6 @@
 			</div>
 	   </form>
 	</div>
-	<script src="../resources/js/fileManager.js"></script>
-	<script>
-		setMax(4);
-		$('#lessonContents').summernote();
-	</script>
-	<c:import url="../template/common_js.jsp"></c:import>
+	<c:import url="../../template/common_js.jsp"></c:import>
 </body>
 </html>
