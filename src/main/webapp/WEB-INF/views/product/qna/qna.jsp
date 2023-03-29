@@ -13,12 +13,13 @@
 			<td>${DTO.productQnADate}</td>
 			<td>
 				<c:if test="${member.roleDTO.roleName eq '관리자'}">
-					<button class="btn btn-info reply" data-productqna-num="${DTO.productQnANum}" data-bs-toggle="modal" data-bs-target="#qnaReplyModal">답글</button>
+					<button class="btn btn-info reply" data-productqna-num="${DTO.productQnANum}" data-bs-toggle="modal">답글</button>
 				</c:if>
 			</td>
 			<td>
 				<c:if test="${member.memberId eq DTO.memberId}">
-					<button class="btn btn-info update" data-productqna-num="${DTO.productQnANum}" data-bs-toggle="modal" data-bs-target="#qnaEditModal">수정</button>
+					<a href="./qna/update?productQnANum=${DTO.productQnANum}&productNum=${DTO.productNum}" class="btn btn-info" data-productqna-num="${DTO.productQnANum}">수정</a>
+					<%-- <button class="btn btn-info update" data-productqna-num="${DTO.productQnANum}" data-bs-toggle="modal">수정</button> --%>
 				</c:if>
 			</td>
 			<td>

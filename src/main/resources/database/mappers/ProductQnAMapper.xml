@@ -63,7 +63,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- UPDATE -->
 	<update id="setProductQnAUpdate" parameterType="ProductQnADTO">
-		UPDATE PRODUCTQNA SET PRODUCTQNACONTENTS = #{productQnAContents}
+		UPDATE PRODUCTQNA SET PRODUCTQNATITLE = #{productQnATitle}, PRODUCTQNACONTENTS = #{productQnAContents}
 		WHERE PRODUCTQNANUM = #{productQnANum}
 	</update>
 	
