@@ -6,21 +6,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.team.cwl.product.review.ProductReviewDAO">
 
-	<!-- SQL -->
-	<sql id="productReviewCondition">
-		<where>
-			<if test="condition == 'productReviewTitle'">
-				PRODUCTREVIEWTITLE LIKE '%' || #{search} || '%'
-			</if>
-			<if test="condition == 'productReviewContents'">
-				PRODUCTREVIEWCONTENTS LIKE '%' || #{search} || '%'
-			</if>
-			<if test="condition == 'memberId'">
-				MEMBERID LIKE '%' || #{search} || '%'
-			</if>
-		</where>
-	</sql>
-
 	<!-- SELECT -->
 	<select id="getProductReviewList" resultType="ProductReviewDTO" parameterType="Pagination">
 		SELECT * FROM
@@ -28,7 +13,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				SELECT ROWNUM R, C.* FROM
 					(
 						SELECT * FROM PRODUCTREVIEW
-						<include refid="productReviewCondition"></include>
 						WHERE PRODUCTNUM = #{productNum}
 						ORDER BY PRODUCTREVIEWDATE DESC
 					) C
@@ -66,7 +50,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getTotalCount" resultType="Long" parameterType="Pagination">
 		SELECT COUNT(PRODUCTREVIEWNUM) FROM PRODUCTREVIEW
-		<include refid="productReviewCondition"></include>
 		WHERE PRODUCTNUM = #{productNum}
 	</select>
 	

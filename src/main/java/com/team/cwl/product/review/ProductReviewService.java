@@ -43,6 +43,11 @@ public class ProductReviewService {
 		System.out.println(realPath);
 		
 		for(MultipartFile multipartFile : multipartFiles) {
+			
+			if(multipartFile.isEmpty()) {
+				continue;
+			}
+			
 			String imgName = fileManager.fileSave(multipartFile, realPath);
 
 			ProductReviewImgDTO productReviewImgDTO = new ProductReviewImgDTO();

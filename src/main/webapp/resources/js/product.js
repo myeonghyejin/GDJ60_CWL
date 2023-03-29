@@ -20,6 +20,12 @@ $("#productReviewListResult").on("click",".page-link-review", function(e){
     e.preventDefault();
 });
 
+//detail
+$("#productReviewListResult").on("click", ".detail", function(e){
+    let num = $(this).attr("data-productreview-num");
+    $("#productReviewContents"+num).toggle()
+})
+
 //delete
 $("#productReviewListResult").on("click",".delete",function(e){
     fetch("../product/review/delete", {

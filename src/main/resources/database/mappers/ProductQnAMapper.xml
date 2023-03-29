@@ -6,21 +6,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.team.cwl.product.qna.ProductQnADAO">
 
-	<!-- SQL -->
-	<sql id="productQnACondition">
-		<where>
-			<if test="condition == 'productQnATitle'">
-				PRODUCTQNATITLE LIKE '%' || #{search} || '%'
-			</if>
-			<if test="condition == 'productQnAContents'">
-				PRODUCTQNACONTENTS LIKE '%' || #{search} || '%'
-			</if>
-			<if test="condition == 'memberId'">
-				MEMBERID LIKE '%' || #{search} || '%'
-			</if>
-		</where>
-	</sql>
-
 	<!-- SELECT -->
 	<select id="getProductQnAList" resultType="ProductQnADTO" parameterType="Pagination">
 		SELECT * FROM
@@ -28,7 +13,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				SELECT ROWNUM R, C.* FROM
 					(
 						SELECT * FROM PRODUCTQNA
-						<include refid="productQnACondition"></include>
 						WHERE PRODUCTNUM = #{productNum}
 						ORDER BY PRODUCTQNAREF DESC, PRODUCTQNASTEP ASC
 					) C
@@ -43,7 +27,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getTotalCount" resultType="Long" parameterType="Pagination">
 		SELECT COUNT(PRODUCTQNANUM) FROM PRODUCTQNA
-		<include refid="productQnACondition"></include>
 		WHERE PRODUCTNUM = #{productNum}
 	</select>
 	

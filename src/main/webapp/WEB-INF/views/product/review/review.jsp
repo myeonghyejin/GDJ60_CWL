@@ -6,8 +6,8 @@
 <table class="table table-striped">
 	<c:forEach items="${list}" var="DTO">
 		<tr>
-			<td id="productReviewContents${DTO.productReviewNum}">
-				${DTO.productReviewContents}
+			<td id="productReviewTitle${DTO.productReviewNum}" data-productreview-num="${DTO.productReviewNum}">
+				<a class="detail" data-productreview-num="${DTO.productReviewNum}">${DTO.productReviewTitle}</a>
 			</td>
 			<td>${DTO.memberId}</td>
 			<td id="productRating${DTO.productReviewNum}">
@@ -37,6 +37,11 @@
 				<c:if test="${member.memberId eq DTO.memberId}">
 					<button class="btn btn-danger delete" data-productreview-num="${DTO.productReviewNum}">삭제</button>
 				</c:if>
+			</td>
+		</tr>
+		<tr>
+			<td id="productReviewContents${DTO.productReviewNum}" style="display:none;">
+				${DTO.productReviewContents}
 			</td>
 		</tr>
 	</c:forEach>
