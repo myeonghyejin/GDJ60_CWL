@@ -2,9 +2,7 @@ package com.team.cwl.cart;
 
 import java.util.List;
 
-import org.springframework.stereotype.Component;
 
-@Component
 public interface CartService {
 	/* 장바구니 추가 */
 	public int cartAdd(CartDTO cart);	
@@ -16,5 +14,5 @@ public interface CartService {
 	public int modifyCount(CartDTO cart);		
 	
 	/* 카트 삭제 */
-	public int cartDelete(Long cartId);
+	public int cartDelete(Long cartNum);
 }

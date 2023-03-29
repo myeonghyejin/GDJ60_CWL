@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/resources/css/cart.css">
 </head>
 <body>
 <div class="wrapper">
@@ -22,6 +23,9 @@
 					</li>
 				</c:if>
 				<c:if test="${member != null }">	<!-- 로그인 o -->		
+					<c:if test="${member.adminCheck == 1 }"> <!-- 관리자 계정 -->
+						<li><a href="/admin/main">관리자 페이지</a></li>
+					</c:if>	
 					<li>
 						<a href="/member/memberLogout.do">로그아웃</a>
 					</li>
@@ -33,6 +37,21 @@
 					</li>
 				</c:if>
 			</ul>			
+		</div>
+		
+		<div class="top_area">
+			<div class="login_area">
+				<!-- 로그인한 상태 -->
+				<c:if test="${ member != null }">
+					<div class="login_success_area">
+						<span>회원 : ${member.memberName}</span>
+						<span>충전금액 : <fmt:formatNumber value="${member.money}" pattern="\#,###.##"/></span>
+						
+					</div>
+				</c:if>
+				
+			</div>
+			<div class="clearfix"></div>			
 		</div>
 		
 		<div class="content_area">
@@ -91,7 +110,7 @@
 								<fmt:formatNumber value="${ci.productPrice * ci.productAmount}" pattern="#,### 원" />
 							</td>
 							<td class="td_width_4 table_text_align_center">
-								<button class="delete_btn" data-cartid="${ci.cartNum}">삭제</button>
+								<button class="delete_btn" data-cartNum="${ci.cartNum}">삭제</button>
 							</td>
 						</tr>
 					</c:forEach>

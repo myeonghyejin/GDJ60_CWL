@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 회원가입 -->  
   	<insert id="memberAdd">
-  		INSERT INTO MEMBERS
+  		INSERT INTO MEMBER
   		VALUES (#{memberId}, #{memberPw}, #{memberName}, #{memberPhone}, #{memberAddress1}, #{memberAddress2}, #{memberAddress3}, #{memberEmail}, 0, #{memberGender}, #{memberSI}, #{memberAge}, 100000)
   	</insert>
   	
@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	<!-- 로그인 -->
   	<select id="memberLogin" resultType="com.team.cwl.member.MemberDTO">
 		SELECT MEMBERID, MEMBERPW, MEMBERNAME, ADMINCHECK, MONEY 
-		FROM MEMBERS
+		FROM MEMBER
 		WHERE MEMBERID = #{memberId}
 		  		
   		<!-- 기존코드 -->

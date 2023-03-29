@@ -9,8 +9,8 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import com.team.cwl.member.MemberDTO;
 
-@Component
-public abstract class CartInterceptor implements HandlerInterceptor {
+
+public class CartInterceptor implements HandlerInterceptor {
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)

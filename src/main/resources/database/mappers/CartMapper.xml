@@ -6,39 +6,38 @@
 
 	<!-- 카트 추가 -->
 	<insert id="cartAdd">
-		insert into cart2(memberId, productNum, productAmount)
-		values(#{memberId}, #{productNum}, #{productAmount}) 
+		INSERT INTO CART(MEMBERID, PRODUCTNUM, PRODUCTAMOUNT)
+		VALUES (#{memberId}, #{productNum}, #{productAmount}) 
 	</insert>
 	
-	
 	<!-- 카트 삭제 -->
-	<delete id="cartdelete" parameterType="CartDTO">
-		delete from cart2 where cartNum = #{cartNum}
+	<delete id="cartDelete" parameterType="CartDTO">
+		DELETE FROM CART WHERE CARTNUM = #{cartNum}
 	</delete>
 	
 	<!-- 카트 수량 수정 -->
 	<update id="modifyCount" parameterType="CartDTO">
-		update cart2 set productAmount=#{productAmount} where cartNum = #{cartNum}
+		UPDATE CART SET PRODUCTAMOUNT = #{productAmount} WHERE CARTNUM = #{cartNum}
 	</update>
 	
 	
 	<!-- 카트 목록 -->
 	<select id="cartList" resultType="com.team.cwl.cart.CartDTO">
-		select a.cartNum, a.memberId, a.productNum, a.productAmount, p.productName, p.productPrice
-		from cart2 a
-		left outer join
-		product p on a.productNum = p.productNum
-		where a.memberId = p.memberId
+		SELECT A.CARTNUM, A.MEMBERID, A.PRODUCTNUM, A.PRODUCTAMOUNT, P.PRODUCTNAME, P.PRODUCTPRICE
+		FROM CART A
+		LEFT OUTER JOIN
+		PRODUCT P ON A.PRODUCTNUM = P.PRODUCTNUM
+		WHERE A.MEMBERID = P.MEMBERID
 	</select>
 	
 	<!-- 카트 확인 -->
 	<select id="checkCart" resultType="com.team.cwl.cart.CartDTO">
-		select * from cart2 
-		where memberId = #{memberId} and productNum = #{productNum}
+		SELECT * FROM CART
+		WHERE MEMBERID = #{memberId} AND PRODUCTNUM = #{productNum}
 	</select>	
 	
 	<delete id="deleteOrderCart">
-		delete from cart2 where memberId = #{memberId} and productNum = #{productNum}
+		DELETE FROM CART WHERE MEMBERID = #{memberId} AND PRODUCTNUM = #{productNum}
 	</delete>	
 	
 	

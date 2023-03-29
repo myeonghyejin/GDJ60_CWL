@@ -32,7 +32,7 @@ public interface OrderMapper {
 	public int orderCancel(String orderNum);
 	
 	// 주문 상품 정보(주문취소)
-	public List<OrderItemDTO> getOrderItemInfo(String orderId);
+	public List<OrderItemDTO> getOrderItemInfo(String orderNum);
 	
 	// 주문 정보(주문취소)
 	public OrderDTO getOrder(String orderNum);

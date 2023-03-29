@@ -20,7 +20,7 @@ import com.team.cwl.member.MemberDTO;
 public class CartController {
 	
 	@Autowired
-	private CartServiceImpl cartServiceImpl2;
+	private CartService cartService;
 	
 	/* 장바구니 추가 */
 	/**
@@ -42,7 +42,7 @@ public class CartController {
 		
 		// 카트 등록
 		
-		int result = cartServiceImpl2.cartAdd(cart);
+		int result = cartService.cartAdd(cart);
 		
 		return result + "";
 	}	
@@ -51,7 +51,7 @@ public class CartController {
 	@GetMapping("{memberId}")
 	public String cartList(@PathVariable("memberId") String memberId, Model model) {
 		
-		model.addAttribute("cartInfo", cartServiceImpl2.cartList(memberId));
+		model.addAttribute("cartInfo", cartService.cartList(memberId));
 		
 		return "/cart/cart";
 	}	
@@ -60,7 +60,7 @@ public class CartController {
 	@PostMapping("cartUpdate")
 	public String cartUpdate(CartDTO cart) {
 		
-		cartServiceImpl2.modifyCount(cart);
+		cartService.modifyCount(cart);
 		
 		return "redirect:/cart/cart" + cart.getMemberId();
 		
@@ -70,7 +70,7 @@ public class CartController {
 	@PostMapping("cartDelete")
 	public String cartDelete(CartDTO cart) {
 		
-		cartServiceImpl2.cartDelete(cart.getCartNum());
+		cartService.cartDelete(cart.getCartNum());
 		
 		return "redirect:/cart/cart" + cart.getMemberId();
 		

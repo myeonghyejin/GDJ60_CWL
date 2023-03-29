@@ -33,6 +33,7 @@ public class MemberController {
 		return new BCryptPasswordEncoder();
 	};
 	
+	// 약관동의
 	@RequestMapping(value = "memberAgree", method = RequestMethod.GET)
 	public void setMemberAgree() throws Exception {
 		

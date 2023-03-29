@@ -54,8 +54,8 @@ public class CartServiceImpl implements CartService {
 	}	
 	
 	@Override
-	public int cartDelete(Long cartId) {
-		return cartMapper.cartDelete(cartId);
+	public int cartDelete(Long cartNum) {
+		return cartMapper.cartDelete(cartNum);
 	}	
 	
 }

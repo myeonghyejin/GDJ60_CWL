@@ -26,7 +26,7 @@
 					</li>
 				</c:if>
 				<c:if test="${member != null }">	<!-- 로그인 o -->		
-					<c:if test="${member.adminCk == 1 }">	<!-- 관리자 계정 -->
+					<c:if test="${member.adminCheck == 1 }">	<!-- 관리자 계정 -->
 						<li><a href="/admin/main">관리자 페이지</a></li>
 					</c:if>							
 					<li>
