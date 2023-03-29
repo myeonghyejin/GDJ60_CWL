@@ -53,20 +53,8 @@
 		<div class="row" id="productReviewListResult">
 		</div>
 	
-		<div class="row my-5">
-			<!-- <div class="mb-3">
-				<label for="productRating" class="form-label">RATING</label>
-				<input type="text" name="productRating" class="form-control" id="productRating"><br>
-			</div> -->
-			<!-- <div class="mb-3">
-				<textarea class="form-control" rows="3" id="productReviewContents"></textarea>
-			</div> -->
-			<div class="mb-3">
-				<a href="./review/add" class="btn btn-primary col-2 mx-1">작성</a>
-			</div>
-			<!-- <div class="mb-3">
-				<button type="button" class="btn btn-primary" id="productReviewAdd" data-product-num-review="${DTO.productNum}">작성</button>
-			</div> -->
+		<div class="row col-md-4 justify-content-center mx-auto">
+			<a href="./review/add?productNum=${DTO.productNum}" class="btn btn-primary col-2 mx-1" id="productReviewAdd" data-product-num-review="${DTO.productNum}">작성</a>
 		</div>
 		
 		<!-- Edit -->
@@ -103,17 +91,12 @@
 		<div class="row" id="productQnAListResult">
 		</div>
 	
-		<div class="row my-5">
-			<div class="mb-3">
-				<textarea class="form-control" rows="3" id="productQnAContents"></textarea>
-			</div>
-			<div class="mb-3">
-				<button type="button" class="btn btn-primary" id="productQnAAdd" data-product-num-qna="${DTO.productNum}">작성</button>
-			</div>
+		<div class="row col-md-4 justify-content-center mx-auto">
+			<a href="./qna/add?productNum=${DTO.productNum}" class="btn btn-primary col-2 mx-1" id="productQnAAdd" data-product-num-qna="${DTO.productNum}">작성</a>
 		</div>
 		
 		<!-- Edit -->
-		<div class="modal fade" id="qnaEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<!-- <div class="modal fade" id="qnaEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -132,10 +115,10 @@
 				</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		
 		<!-- Reply -->
-		<div class="modal fade" id="qnaReplyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<!-- <div class="modal fade" id="qnaReplyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -154,13 +137,14 @@
 				</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		
 	</div>
 	
 	<c:import url="../template/common_js.jsp"></c:import>
- 	<script src="/resources/js/productQnA.js"></script>
-	<script src="/resources/js/productReview.js"></script>
+	<script src="/resources/js/product.js"></script>
+ 	<!-- <script src="/resources/js/productQnA.js"></script>
+	<script src="/resources/js/productReview.js"></script> -->
 	<script type="text/javascript" src="../resources/js/boardForm.js"></script>
 </body>
 </html>

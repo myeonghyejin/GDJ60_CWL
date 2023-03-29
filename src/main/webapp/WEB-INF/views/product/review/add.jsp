@@ -12,8 +12,12 @@
 	<c:import url="../../template/header.jsp"></c:import>
 	<div class="container-fluid my-5">
 		<!-- Contents -->
+		<% request.setCharacterEncoding("UTF-8");
+	    String productNum = request.getParameter("productNum");
+	    %>
+		
 		<form action="./add" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="productNum" value="${productNum}">
+			<input type="hidden" name="productNum" value="<%=productNum%>">
 			<div class="row col-md-4 mx-auto my-5">
 				<div class="fw-bold fs-5 col-12">
 					<label for="memberId" class="form-label">작성자</label>

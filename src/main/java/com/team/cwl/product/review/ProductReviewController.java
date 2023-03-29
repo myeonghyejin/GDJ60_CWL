@@ -16,7 +16,7 @@ import com.team.cwl.member.MemberDTO;
 import com.team.cwl.util.Pagination;
 
 @Controller
-@RequestMapping("/product/review/*")
+@RequestMapping("/product/*")
 public class ProductReviewController {
 
 	@Autowired
@@ -25,7 +25,7 @@ public class ProductReviewController {
 //--------------------------------------------
 	
 	/** SELECT **/
-	@GetMapping("list")
+	@GetMapping("review/list")
 	public ModelAndView getProductReviewList(Pagination pagination, ModelAndView modelAndView) throws Exception {
 		List<ProductReviewDTO> ar = productReviewService.getProductReviewList(pagination);
 		
@@ -35,7 +35,7 @@ public class ProductReviewController {
 		return modelAndView;
 	}
 	
-	@GetMapping("detail")
+	@GetMapping("review/review")
 	public ModelAndView getProductReviewDetail(ProductReviewDTO productReviewDTO, ModelAndView modelAndView) throws Exception {
 		productReviewDTO = productReviewService.getProductReviewDetail(productReviewDTO);
 		
@@ -46,14 +46,14 @@ public class ProductReviewController {
 	}
 	
 	/** INSERT **/
-	@GetMapping("add")
+	@GetMapping("review/add")
 	public ModelAndView setProductReviewAdd(ModelAndView modelAndView) throws Exception {		
 		modelAndView.setViewName("product/review/add");
 		
 		return modelAndView;
 	}
 	
-	@PostMapping("add")
+	@PostMapping("review/add")
 	public ModelAndView setProductReviewAdd(ProductReviewDTO productReviewDTO, MultipartFile [] imgs, HttpSession session, ModelAndView modelAndView) throws Exception {		
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		productReviewDTO.setMemberId(memberDTO.getMemberId());
@@ -67,14 +67,14 @@ public class ProductReviewController {
 		}
 
 		modelAndView.addObject("result", message);
-		modelAndView.addObject("URL", "./detail?productNum="+productReviewDTO.getProductNum());
+		modelAndView.addObject("URL", "../detail?productNum="+productReviewDTO.getProductNum());
 		modelAndView.setViewName("common/result");
 		
 		return modelAndView;
 	}
 	
 	/** UPDATE **/
-	@GetMapping("update")
+	@GetMapping("review/update")
 	public ModelAndView setProductReviewUpdate(ProductReviewDTO productReviewDTO) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		
@@ -86,7 +86,7 @@ public class ProductReviewController {
 		return modelAndView;
 	}
 	
-	@PostMapping("update")
+	@PostMapping("review/update")
 	public ModelAndView setProductReviewUpdate(ProductReviewDTO productReviewDTO, MultipartFile [] imgs, HttpSession session, Long [] imgNums, ModelAndView modelAndView) throws Exception {
 		int result = productReviewService.setProductReviewUpdate(productReviewDTO, imgs, session, imgNums);
 		
@@ -97,14 +97,14 @@ public class ProductReviewController {
 		}
 		
 		modelAndView.addObject("result", message);
-		modelAndView.addObject("URL", "./detail?productNum="+productReviewDTO.getProductNum());
+		modelAndView.addObject("URL", "../detail?productNum="+productReviewDTO.getProductNum());
 		modelAndView.setViewName("common/result");
 		
 		return modelAndView;
 	}
 	
 	/** DELETE **/
-	@PostMapping("delete")
+	@PostMapping("review/delete")
 	public ModelAndView setProductReviewDelete(ProductReviewDTO productReviewDTO, HttpSession session, ModelAndView modelAndView) throws Exception {
 		modelAndView.setViewName("common/result");
 		
@@ -122,7 +122,7 @@ public class ProductReviewController {
 		return modelAndView;
 	}
 	
-	@PostMapping("imgDelete")
+	@PostMapping("review/imgDelete")
 	public ModelAndView setProductReviewImgDelete(Long imgNum, ModelAndView modelAndView) throws Exception {
 		int result = productReviewService.setProductReviewImgDelete(imgNum);
 		modelAndView.addObject("result", result);

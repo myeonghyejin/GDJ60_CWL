@@ -12,7 +12,7 @@ function getList(page){
 }
 
 //page
-$("#productQnAListResult").on("click",".page-link", function(e){
+$("#productQnAListResult").on("click",".page-link-qna", function(e){
     let page = $(this).attr("data-qna-page");
     getList(page);
     e.preventDefault();
