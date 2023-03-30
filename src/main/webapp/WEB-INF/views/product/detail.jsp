@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>DETAIL</title>
+	<link rel="stylesheet" href="/resources/css/detail.css">
 	<c:import url="../template/common_css.jsp"></c:import>
 </head>
 <body>
@@ -21,7 +23,43 @@
 					</div>
 					<div class="row my-4">
 						<p class="fs-5">${DTO.productDetail}</p>
+					</div>	
+<!-------------------------------------- 우희가 한거 --------------------------------->
+		<div class="wrapper">
+			<div class="wrap">						
+				<div class="content_area">		
+					<div class="content_top">
+						<div class="price">
+						<div class="product_price">정가 : <fmt:formatNumber value="${DTO.productPrice}" pattern="#,### 원" /></div>													
+					</div>													
+						<div class="line">
+					</div>	
+					<div class="button">						
+						<div class="button_quantity">
+							주문수량
+							<input type="text" class="quantity_input" value="1">
+							<span>
+								<button class="plus_btn">+</button>
+								<button class="minus_btn">-</button>
+							</span>
+						</div>
+						<div class="button_set">
+							<a class="btn_cart">장바구니 담기</a>
+							<a class="btn_buy">바로구매</a>
+						</div>
+						</div>
 					</div>
+				</div>
+			</div>
+					<!-- 주문 form -->
+			<form action="/order/${member.memberId}" method="get" class="order_form">
+				<input type="hidden" name="orders[0].productNum" value="${DTO.productNum}">
+				<input type="hidden" name="orders[0].productStock" value="">
+			</form>
+		</div>
+					
+<!----------------------------------------------------------------------->
+					
 				</c:when>
 				<c:otherwise>
 					<div class="row col-md-4 mx-auto text-center">
@@ -74,5 +112,55 @@
 	<c:import url="../template/common_js.jsp"></c:import>
 	<script src="/resources/js/product.js"></script>
 	<script type="text/javascript" src="../resources/js/confirm.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script>
+	// 수량 버튼 조작
+	let quantity = $(".quantity_input").val();
+	$(".plus_btn").on("click", function(){
+		$(".quantity_input").val(++quantity);
+	});
+	$(".minus_btn").on("click", function(){
+		if(quantity > 1){
+			$(".quantity_input").val(--quantity);	
+		}
+	});	
+	// 서버로 전송할 데이터
+	const form = {
+			memberId : '${member.memberId}',
+			productNum : '${DTO.productNum}',
+			productStock : ''
+	}
+	// 장바구니 추가 버튼
+		$(".btn_cart").on("click", function(e){
+			form.productStock = $(".quantity_input").val();
+			$.ajax({
+				url: '/cart/cartAdd',
+				type: 'POST',
+				data: form,
+				success: function(result){
+					cartAlert(result);
+				}
+			})
+		});
+		
+		function cartAlert(result){
+			if(result == '0'){
+				alert("장바구니에 추가를 하지 못하였습니다.");
+			} else if(result == '1'){
+				alert("장바구니에 추가되었습니다.");
+			} else if(result == '2'){
+				alert("장바구니에 이미 추가되어져 있습니다.");
+			} else if(result == '5'){
+				alert("로그인이 필요합니다.");	
+			}
+		}
+		/* 바로구매 버튼 */
+		$(".btn_buy").on("click", function(){
+			let productStock = $(".quantity_input").val();
+			$(".order_form").find("input[name='orders[0].productStock']").val(productStock);
+			$(".order_form").submit();
+		});
+
+	</script>
 </body>
 </html>

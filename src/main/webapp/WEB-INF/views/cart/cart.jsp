@@ -211,59 +211,22 @@ $(document).ready(function(){
 /* 체크여부에따른 종합 정보 변화 */
 $(".individual_cart_checkbox").on("change", function(){
 	/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
-	setTotalInfo($(".cart_info_td"));
+	setTotalInfo();
 });
 
 /* 체크박스 전체 선택 */
 $(".all_check_input").on("click", function(){
 	/* 체크박스 체크/해제 */
 	if($(".all_check_input").prop("checked")){
-		$(".individual_cart_checkbox").attr("checked", true);
+		$(".individual_cart_checkbox").prop("checked", true);
 	} else{
-		$(".individual_cart_checkbox").attr("checked", false);
+		$(".individual_cart_checkbox").prop("checked", false);
 	}
 	
 	/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
-	setTotalInfo($(".cart_info_td"));	
+	setTotalInfo();	
 	
 });
-
-
-
-
-
-
-
-
-
-
-
-
-/* 체크박스 전체 선택 */
-//$(".all_check_input").on("click", function(){
-	// 전체 체크박스 클릭
-	/* 체크박스 체크/해제 */
-	//$("#checkAll").click(function(){
-		//if($("#checkAll").prop("checked")){
-			//$(".individual_cart_checkbox").attr("checked", true);
-		//} else{
-			//$(".individual_cart_checkbox").attr("checked", false);
-		//}
-	//});
-	// 전체 체크박스 중 체크박스 하나를 풀었을때 전체 체크해제
-	//$(".individual_cart_checkbox").click(function(){
-		//if($("input[value=1]:checked").length) {
-			//$("#checkAll").prop("checked", true);
-		//} else {
-			//$("#checkAll").prop("checked", false);
-		//}
-	//})
-	
-	
-	/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
-	//setTotalInfo($(".cart_info_td"));	
-	
-//});
 
 /* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
 function setTotalInfo(){

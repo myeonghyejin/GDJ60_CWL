@@ -16,6 +16,7 @@ import com.team.cwl.member.MemberDTO;
 
 
 @Controller
+@RequestMapping("/cart/*")
 public class CartController {
 	
 	@Autowired
@@ -29,25 +30,26 @@ public class CartController {
 	 * 5: 로그인 필요
 	 * 
 	 */
-	@PostMapping("/cart/cartAdd")
+	@PostMapping("cartAdd")
 	@ResponseBody
 	public String cartAdd(CartDTO cart, HttpServletRequest request) {
 		// 로그인 체크
 		HttpSession session = request.getSession();
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		if(memberDTO == null) {
-			return "5";
+			return "5";			
 		}
 		
 		// 카트 등록
 		
 		int result = cartService.cartAdd(cart);
 		
+		System.out.println("result : " + result);
 		return result + "";
 	}	
 	
 	/* 장바구니 페이지 이동 */
-	@GetMapping("/cart/{memberId}")
+	@GetMapping("{memberId}")
 	public String cartList(@PathVariable("memberId") String memberId, Model model) {
 		
 		model.addAttribute("cartInfo", cartService.cartList(memberId));
