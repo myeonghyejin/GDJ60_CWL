@@ -32,7 +32,7 @@
 		</div>
 		
 		<!-- Buttons -->
-	  	<c:if test="${sessionScope.memberId eq DTO.memberId}">
+	  	<c:if test="${member.memberId eq DTO.memberId}">
 			<form action="./update" id="frm">
 				<div class="row col-md-4 justify-content-center mx-auto">
 					<input type="hidden" name="productNum" value="${DTO.productNum}">

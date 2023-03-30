@@ -37,23 +37,23 @@
 					</div>	
 				</div>
 				<div class="fw-bold fs-5 col-12 mu-4">
-					<div class="form-check form-check-inline">
+					<div class="form-check form-check-block">
 						<label for="bs1" class="form-check-label" id="oneStar">★</label>
 						<input id="bs1" type="radio" name="productRating" value="1" checked class="form-check-input" for="oneStar">
 					</div>
-					<div class="form-check form-check-inline">
+					<div class="form-check form-check-block">
 						<label for="bs2" class="form-check-label" id="twoStars">★★</label>
 						<input id="bs2" type="radio" name="productRating" value="2" class="form-check-input" for="twoStars">
 					</div>
-					<div class="form-check form-check-inline">
+					<div class="form-check form-check-block">
 						<label for="bs3" class="form-check-label" id="threeStars">★★★</label>
 						<input id="bs3" type="radio" name="productRating" value="3" class="form-check-input" for="threeStars">
 					</div>
-					<div class="form-check form-check-inline">
+					<div class="form-check form-check-block">
 						<label for="bs4" class="form-check-label" id="fourStars">★★★★</label>
 						<input id="bs4" type="radio" name="productRating" value="4" class="form-check-input" for="fourStars">
 					</div>
-					<div class="form-check form-check-inline">
+					<div class="form-check form-check-block">
 						<label for="bs5" class="form-check-label" id="fiveStars">★★★★★</label>
 						<input id="bs5" type="radio" name="productRating" value="5" class="form-check-input" for="fiveStars">
 					</div>
@@ -64,7 +64,7 @@
 			</div>
 	   </form>
 	</div>
-	<script src="../resources/js/fileManager.js"></script>
+	<script src="/resources/js/fileManager.js"></script>
 	<script>
 		setMax(4);
 	</script>
