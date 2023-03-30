@@ -3,74 +3,355 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <html>
-<head>
-<title>Chat List</title>
-<link rel="stylesheet" href="/resources/chat.css" />
-<script
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatting</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+    <link rel="stylesheet" href="/resources/css/styles-dark.min.css">
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7cfe0a988351b935c1deefc425b4cc46"></script>
+    <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
+    <script
    src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script
-   src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
-<script
-   src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
-<link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+   
 
-<link rel="stylesheet" href="../../../resources/css/chatTemplate.css">
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-</head>
-<body>
-   <div class="container bootstrap snippets bootdey">
-      <div class="row">
-         <!-- 회원 목록 -->
-         <div class="col-md-4 bg-white ">
-            <div class=" row border-bottom padding-sm" style="height: 40px;">
-              Member
-            </div>
-         <ul class="friend-list">
-        	 <c:forEach var="dto" items="${list}">
-	            <li class="active bounceInDown">
-	              <a href="#" class="clearfix">
-	                <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
-	                <div class="friend-name">
-	                  <strong>${dto.memberId}</strong>
-	                </div>
-	                <div class="last-message text-muted">Hello, Are you there?</div>
-	                <small class="time text-muted">Just now</small>
-	                <small class="chat-alert label label-danger">1</small>
-	              </a>
-	            </li>
-			</c:forEach>
-         </ul>    
-      </div>
-
-      <div id="chatting">
-      <!-- 채팅창 -->
-   <div class="col-md-8 bg-white ">
-      <div class="chat-message">
-         <ul class="chat">
  
-         </ul>
-      </div>
-       <div class="chat-box bg-white">
-         <div class="input-group">
-           <input class="form-control border no-shadow no-rounded" placeholder="Type your message here" id="txtMessage">
-           <span class="input-group-btn">
-             <button class="btn btn-success no-rounded" id="sendButton" type="button">Send</button>
-           </span>
-         </div>
-       </div>
-       </div> 
-      </div>
-   </div>
-   </div>
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script src="/resources/js/chatList.js"></script>
+</head>
 
+<body>
+	<!-- <c:import url="../template/header.jsp"></c:import> -->
+
+    <!-- Layout -->
+    <div class="layout">
+        <!-- Navigation -->
+        <div class="navigation navbar border-end h-100 py-6">
+            <!-- Nav -->
+            <ul class="nav nav-pills" role="tablist">
+                <!-- Friends -->
+                <li class="nav-item mb-5" role="presentation">
+                    <a class="nav-link" data-bs-toggle="pill" href="#friends-tab" role="tab" aria-selected="false" title="Friends">
+                        <i class="ri-group-line"></i>
+                    </a>
+                </li>
+                <!-- Friends -->
+                <!-- Chats -->
+                <li class="nav-item mb-5" role="presentation">
+                    <a class="nav-link active" data-bs-toggle="pill" href="#chats-tab" role="tab" aria-selected="true" title="Chats">
+                        <i class="ri-chat-3-line"></i>
+                    </a>
+                </li>
+                <!-- Chats -->
+            </ul>
+            <!-- Nav -->
+        </div>
+        <!-- Navigation -->
+        <!-- Sidebar -->
+        <div class="sidebar border-end overflow-hidden h-100">
+            <div class="tab-content h-100">
+                <!-- Friends Tab -->
+                <div class="tab-pane fade h-100" id="friends-tab" role="tabpanel">
+                    <div class="d-flex flex-column h-100">
+                        <!-- Tab Header -->
+                        <div class="tab-header d-flex align-items-center border-bottom">
+                            <ul class="d-flex justify-content-between align-items-center list-unstyled w-100 mx-4 mb-0">
+                                <!-- Title -->
+                                <li>
+                                    <h3 class="mb-0">Friends</h3>
+                                </li>
+                                <!-- Title -->
+
+                                <!-- Buttons -->
+                                <li>
+                                    <ul class="list-inline">
+                                        <!-- Menu Button -->
+                                        <li class="list-inline-item">
+                                            <button type="button" class="navigation-toggle btn btn-secondary btn-icon d-xl-none">
+                                                <i class="ri-menu-line"></i>
+                                            </button>
+                                        </li>
+                                        <!-- Menu Button -->
+                                    </ul>
+                                </li>
+                                <!-- Buttons -->
+                            </ul>
+                        </div>
+                        <!-- Tab Header -->
+                        <!-- Tab Content -->
+                        <div class="hide-scrollbar h-100">
+                            <div class="m-4">
+                                <!-- Contact List A -->
+                                <div>
+                                    <!--  Friends List -->
+                                    <ul class="list-unstyled">
+                                        <!-- Chat Link -->
+                                                    <c:forEach var="dto" items="${list}">
+                                        <li class="card contact-item">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center">
+
+                                                    <!-- Content -->
+                                                    <div class="flex-grow-1 overflow-hidden">
+                                                        <div class="d-flex align-items-center mb-1">
+                                                            <h5 class="text-truncate mb-0 me-auto">${dto.memberId}
+                                                            </h5>
+                                                        </div>
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="text-truncate me-auto">10Km</div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Content -->
+
+                                                    <!-- Dropdown -->
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-icon btn-base btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <i class="ri-more-fill"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu dropdown-menu-right">
+                                                            <li>
+                                                                <a class="dropdown-item d-flex align-items-center justify-content-between" href="#">Start chat<i class="ri-message-2-line"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <!-- Dropdown -->
+                                                </div>
+                                            </div>
+                                        </li>
+                                                    </c:forEach>
+                                        <!-- Chat Link -->
+                                    </ul>
+                                    <!--  Friends List -->
+                                </div>
+                                <!-- Contact List A -->
+
+                            </div>
+                        </div>
+                        <!-- Tab Content -->
+                    </div>
+                </div>
+                <!-- Friends Tab -->
+                <!-- Chats Tab -->
+                <div class="tab-pane fade show active h-100" id="chats-tab" role="tabpanel">
+                    <div class="d-flex flex-column h-100">
+                        <!-- Tab Header -->
+                        <div class="tab-header d-flex align-items-center border-bottom">
+                            <ul class="d-flex justify-content-between align-items-center list-unstyled w-100 mx-4 mb-0">
+                                <!-- Title -->
+                                <li>
+                                    <h3 class="mb-0">Chats</h3>
+                                </li>
+                                <!-- Title -->
+
+                                <!-- Buttons -->
+                                <li>
+                                    <ul class="list-inline">
+                                        <!-- Menu Button -->
+                                        <li class="list-inline-item">
+                                            <button type="button" class="navigation-toggle btn btn-secondary btn-icon d-xl-none">
+                                                <i class="ri-menu-line"></i>
+                                            </button>
+                                        </li>
+                                        <!-- Menu Button -->                                        
+                                    </ul>
+                                </li>
+                                <!-- Buttons -->
+                            </ul>
+                        </div>
+                        <!-- Tab Header -->
+
+
+                        <!-- Segmented Control -->
+                        <div class="text-center mb-3">
+                            <ul class="nav nav-pills nav-segmented" id="pills-tab" role="tablist">
+
+                            </ul>
+                        </div>
+                        <!-- Segmented Control -->
+
+                        <!-- Tab Content -->
+                        <div class="hide-scrollbar h-100">
+                            <div class="tab-content m-4 mt-1">
+                                <!-- Direct Chats Tab -->
+                                <div class="tab-pane fade show active" id="direct-tab" role="tabpanel">
+                                    <ul class="list-unstyled js-contact-list mb-0">
+                                        <!-- Chat Link 1 -->
+                                        <li class="card contact-item active mb-3">
+                                            <div class="contact-link"></div>
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center">
+
+                                                    <!-- Content -->
+                                                    <div class="flex-grow-1 overflow-hidden">
+                                                        <div class="d-flex align-items-center mb-1">
+                                                            <h5 class="text-truncate mb-0 me-auto">Ariel Martinez</h5>
+                                                            <p class="small text-muted text-nowrap ms-4 mb-0">8:12 AM</p>
+                                                        </div>
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="line-clamp me-auto">Yes, I want to participate in the
+                                                                project.
+                                                            </div>
+                                                            <span class="badge rounded-pill bg-primary ms-2">2</span>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Content -->
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- Chat Link 1 -->
+
+                                    </ul>
+                                </div>
+                                <!-- Direct Chats Tab -->
+
+                            </div>
+                        </div>
+                        <!-- Tab Content -->
+                    </div>
+                </div>
+                <!-- Chats Tab -->
+
+            </div>
+        </div>
+        <!-- Sidebar -->
+
+        <div id="map" class="h-100 w-100"></div>
+        <!-- Main Content -->
+        <div class="main main-visible overflow-hidden h-100">
+            
+            <div class="chat d-flex flex-row h-100">
+                <!-- Chat -->
+                <div class="chat-body h-100 w-100 d-flex flex-column">
+                    <!-- Chat Header -->
+                    <div class="chat-header d-flex align-items-center border-bottom px-2">
+                        <div class="container-fluid">
+                            <div class="row align-items-center g-0">
+                                <div class="col-8 col-sm-5">
+                                    <div class="d-flex align-items-center">
+                                        <!-- Close Chat Button -->
+                                        <div class="d-block d-xl-none me-3">
+                                            <button class="chat-hide btn btn-icon btn-base btn-sm" type="button">
+                                                <i class="ri-arrow-left-s-line"></i>
+                                            </button>
+                                        </div>
+                                        <!-- Close Chat Button -->
+
+                                        <!-- Text -->
+                                        <div class="flex-grow-1 overflow-hidden">
+                                            <h6 class="d-block text-truncate mb-1">Ariel Martinez</h6>
+                                        </div>
+                                        <!-- Text -->
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Chat Header -->
+
+                    <!-- Chat Content -->
+                    <div class="chat-content hide-scrollbar h-100">
+                        <!-- Messages -->
+                        <div class="container-fluid g-0 p-4">
+                            <!-- Message 1 -->
+                            <div class="chatMsg">
+                             <div class="message">
+                                <div class="message-wrap">
+                                    <div class="message-item">
+                                        <div class="message-content">
+                                            <span>Hi John, please take a look at the result of my work, this is a project that I am currently working on.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="message-info">
+                                    <div>
+                                        <h6 class="mb-0">Ariel Martinez</h6>
+                                        <small class="text-muted">9:15 PM
+                                        </small>
+                                    </div>
+                                </div>
+                            </div> 
+                            <!-- Message 1 -->
+                            </div>
+
+                            <!-- Message 2 -->
+                            <div class="message self">
+                                <div class="message-wrap">
+                                    <div class="message-item">
+                                        <div class="message-content">
+                                            <span>Hi Ariel, it looks great except for a few things.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="message-item">
+                                    <div class="message-content">
+                                        <span>Now I will try to explain, the primari color is strongly out of the general composition, try to use flatter colors.</span>
+                                    </div>
+                                </div>
+                                <div class="message-info">
+                                    <div>
+                                        <h6 class="mb-0">John Davis</h6>
+                                        <small class="text-muted">9:26 PM
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Message 2 -->
+                        </div>
+                        <!-- Messages -->
+
+                        <!-- Scroll Chat to Bottom -->
+                        <div class="js-scroll-to-bottom"></div>
+                        <!-- Scroll Chat to Bottom -->
+                    </div>
+                    <!-- Chat Content -->
+
+                    <!-- Chat Footer -->
+                    <div class="chat-footer d-flex align-items-center border-top px-2">
+                        <div class="container-fluid">
+                            <div class="row align-items-center g-4">
+                                <!-- Input -->
+                                <div class="col">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control form-control-lg" placeholder="Type message" aria-label="type message" id="txtMessage">
+                                    </div>
+                                </div>
+                                <!-- Input -->
+
+                                <!-- Button -->
+                                <div class="col-auto">
+                                    <ul class="list-inline d-flex align-items-center mb-0">
+                                        <li class="list-inline-item">
+                                            <button type="submit" class="btn btn-icon btn-primary btn-lg rounded-circle" id="sendButton">
+                                                <i class="ri-send-plane-fill"></i>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- Button -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Chat Footer -->
+                </div>
+                <!-- Chat -->
+            </div>
+        </div>
+        <!-- Main Content -->
+    </div>
+    <!-- Layout -->
+    
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/resources/js/app.min.js"></script>
+    <script src="/resources/js/chatList.js"></script>
+    <!-- Scripts -->
+    <c:import url="../template/common_js.jsp"></c:import>
+    
 </body>
 
-
-
 </html>
-
-
-

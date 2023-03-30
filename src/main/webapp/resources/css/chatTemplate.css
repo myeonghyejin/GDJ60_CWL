@@ -201,3 +201,7 @@ right: 0;
   #chatting {
     display: none;
   }
+
+  #map{
+    display: block;
+  }
