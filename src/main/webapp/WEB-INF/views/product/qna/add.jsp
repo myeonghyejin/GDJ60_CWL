@@ -30,6 +30,14 @@
 					<label for="productQnAContents" class="form-label">내용</label>
 					<textarea name="productQnAContents" class="form-control" id="productQnAContents" rows="3"></textarea><br>
 				</div>
+				<div class="form-check form-check-inline">
+					<label for="bs1" class="form-check-label" id="open">전체 공개</label>
+					<input id="bs1" type="radio" name="productQnASecret" value="0" checked class="form-check-input" for="open">
+				</div>
+				<div class="form-check form-check-inline">
+					<label for="bs2" class="form-check-label" id="secret">비밀글</label>
+					<input id="bs2" type="radio" name="productQnASecret" value="1" class="form-check-input" for="secret">
+				</div>
 				<div class="row justify-content-center my-5">
 					<button type="submit" class="btn btn-primary col-2">글쓰기</button>
 				</div>

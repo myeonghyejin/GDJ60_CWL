@@ -48,6 +48,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE PRODUCTREVIEWNUM = #{productReviewNum}
 	</select>
 	
+	<select id="getProductReviewImgDetail" resultType="ProductReviewImgDTO" parameterType="ProductReviewImgDTO">
+		SELECT * FROM PRODUCTREVIEWIMG
+		WHERE PRODUCTREVIEWIMGNUM = #{productReviewImgNum}
+	</select>
+	
 	<select id="getTotalCount" resultType="Long" parameterType="Pagination">
 		SELECT COUNT(PRODUCTREVIEWNUM) FROM PRODUCTREVIEW
 		WHERE PRODUCTNUM = #{productNum}
@@ -69,7 +74,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- UPDATE -->
 	<update id="setProductReviewUpdate" parameterType="ProductReviewDTO">
-		UPDATE PRODUCTREVIEW SET PRODUCTREVIEWTITLE = #{productReviewTitle}, PRODUCTREVIEWCONTENTS = #{productReviewContents}, PRODUCTRATING = #{productRating}
+		UPDATE PRODUCTREVIEW SET PRODUCTREVIEWTITLE = #{productReviewTitle}, PRODUCTREVIEWCONTENTS = #{productReviewContents}
 		WHERE PRODUCTREVIEWNUM = #{productReviewNum}
 	</update>
 	

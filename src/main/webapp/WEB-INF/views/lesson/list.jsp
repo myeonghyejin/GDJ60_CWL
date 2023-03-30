@@ -102,11 +102,11 @@
 		</form>
 		
 		<!-- 상품 등록 버튼 -->
-	<%-- 	<c:if test="${not empty member}"> --%>
+	 	<c:if test="${not empty member}">
 			<div class="row justify-content-center mx-auto">
 				<a href=./add class="btn btn-primary col-3">게시글 등록</a>
 			</div>
-	<%-- 	</c:if> --%>
+	 	</c:if>
 	</div>
 </div>
 	<c:import url="../template/common_js.jsp"></c:import>

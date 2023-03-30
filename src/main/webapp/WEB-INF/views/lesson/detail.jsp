@@ -21,13 +21,6 @@
 					<div class="row my-4">
 						<p class="fs-4 fw-bold text-center">${DTO.lessonTitle}</p>
 						<p class="fs-5">${DTO.lessonContents}</p>
-						<%-- <c:if test="${not empty DTO.lessonImgDTOs}">
-							<c:forEach items="${DTO.lessonImgDTOs}">
-								<div class="row justify-content-center mx-auto">
-									<img alt="" src="../resources/upload/lesson/${DTO.lessonImgDTOs.imgName}">
-								</div>
-							</c:forEach>
-						</c:if> --%>
 					</div>
 				</c:when>
 				<c:otherwise>
@@ -39,7 +32,7 @@
 		</div>
 		
 		<!-- Buttons -->
-	<%--  	<c:if test="${member.memderId eq DTO.memderId}"> --%>
+	  	<c:if test="${member.memberId eq DTO.memberId}">
 			<form action="./update" id="frm">
 				<div class="row col-md-4 justify-content-center mx-auto">
 					<input type="hidden" name="lessonNum" value="${DTO.lessonNum}">
@@ -47,7 +40,7 @@
 					<button id="delete" type="button" class="btn btn-outline-primary col-2 mx-1">삭제</button>
 				</div>
 			</form>
-	<%--  	</c:if> --%>
+	  	</c:if>
 		<div class="row col-md-4 justify-content-center mx-auto my-2">
 			<a href="./list" class="btn btn-primary col-2 mx-1">목록</a>
 		</div>
@@ -61,10 +54,28 @@
 		</div>
 	
 		<div class="row my-5">
-			<div class="mb-3">
-				<label for="lessonRating" class="form-label">RATING</label>
-				<input type="text" name="lessonRating" class="form-control" id="lessonRating"><br>
-			</div>
+			<div class="fw-bold fs-5 col-12 mb-3">
+					<div class="form-check form-check-inline">
+						<label for="bs1" class="form-check-label" id="oneStar">★</label>
+						<input id="bs1" type="radio" id="oneStar" name="lessonRating" value="1" checked class="form-check-input lessonRating" for="oneStar">
+					</div>
+					<div class="form-check form-check-inline">
+						<label for="bs2" class="form-check-label" id="twoStars">★★</label>
+						<input id="bs2" type="radio" id="twoStars" name="lessonRating" value="2" class="form-check-input lessonRating" for="twoStars">
+					</div>
+					<div class="form-check form-check-inline">
+						<label for="bs3" class="form-check-label" id="threeStars">★★★</label>
+						<input id="bs3" type="radio" id="threeStars" name="lessonRating" value="3" class="form-check-input lessonRating" for="threeStars">
+					</div>
+					<div class="form-check form-check-inline">
+						<label for="bs4" class="form-check-label" id="fourStars">★★★★</label>
+						<input id="bs4" type="radio" id="fourStars" name="lessonRating" value="4" class="form-check-input lessonRating" for="fourStars">
+					</div>
+					<div class="form-check form-check-inline">
+						<label for="bs5" class="form-check-label" id="fiveStars">★★★★★</label>
+						<input id="bs5" type="radio" id="fiveStars" name="lessonRating" value="5" class="form-check-input lessonRating" for="fiveStars">
+					</div>
+				</div>
 			<div class="mb-3">
 				<textarea class="form-control" rows="3" id="lessonReviewContents"></textarea>
 			</div>

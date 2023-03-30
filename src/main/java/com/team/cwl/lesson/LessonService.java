@@ -43,6 +43,11 @@ public class LessonService {
 		System.out.println(realPath);
 		
 		for(MultipartFile multipartFile : multipartFiles) {
+			
+			if(multipartFile.isEmpty()) {
+				continue;
+			}
+			
 			String imgName = fileManager.fileSave(multipartFile, realPath);
 
 			LessonImgDTO lessonImgDTO = new LessonImgDTO();
