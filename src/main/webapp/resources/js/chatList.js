@@ -8,8 +8,10 @@ function getLocation() {
           let options = {
             center: new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude),
             level: 3
+            
           };
         
+
           let map = new kakao.maps.Map(container, options);
 
           let imageSrc = 'https://cdn-icons-png.flaticon.com/512/8830/8830938.png', // 마커이미지의 주소입니다    
@@ -43,6 +45,47 @@ function getLocation() {
 	}
 	getLocation();
 
+
+const COORDS = "coords"; 
+
+function saveCoords(coordsObj) {
+    localStorage.setItem(COORDS, JSON.stringify(coordsObj)); 
+    //localstorage의 key, value 값은 모두 string 타입으로 저장되기때문에 변환시켜준다. 
+    }
+
+function handleSuccess(position) {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+    const coordsObj = { // 객체의 key,  value 값이 동일할 때에는 한번만 써줘도 된다.
+        latitude,       // localStorage에 객체로 value에 저장하기위해서 객체에 넣어준다.    
+        longitude
+    };
+    saveCoords(coordsObj); // localStorage에 위치 저장 
+}
+
+function handleError() {
+    console.log('cant not access to location');
+}
+
+function askForCoords() {
+    navigator.geolocation.getCurrentPosition(handleSuccess, handleError);
+}
+
+
+function loadCoords() {
+    const loadedCoords = localStorage.getItem(COORDS);
+    if(loadedCoords === null) { 
+        // localStorage에 좌표값이 저장되어있지않다면
+        askForCoords(); // 좌표값을 물어본다
+    } 
+}
+
+function init() {
+    loadCoords();
+}
+
+init();
+
 	
 
 
@@ -61,13 +104,29 @@ $(".dropdown-item").click(function(){
 })
 
 
+
+//-------------------------------------
+
+let id = '';
+
+function setId(memberId){
+  id=memberId;
+}
+
+
 //웹소켓 생성
 let ipAddress = "localhost";
 let sock = new SockJS("http://" + ipAddress + "/echo");
 
 sock.onopen = function(){
   console.log("연결 성공");
+  send();
+
 };
+
+function send(){
+  sock.send('list');
+}
 
 sock.onerror = function(error){
   console.log("연결 실패"+error);
@@ -89,6 +148,7 @@ sock.onerror = function(error){
 
 
 
+
 function makeRecv(msg, recvId, direct){
     let recv='<div class="message'+direct+'">'
     recv= recv+'<div class="message-wrap">'
@@ -104,30 +164,49 @@ function makeRecv(msg, recvId, direct){
     return recv;
 }
 
-//받는 사람 html
 
 sock.onmessage = function (m){
+
     console.log(m)
 
     console.log("받는 메세지 : "+m.data)
+    let splitData = m.data.split(":")
+    console.log(splitData[0])
+    console.log(splitData[1])
+
+    if(splitData[0]=='list'){
+      splitData[1]=splitData[1].replace('[', '');
+      splitData[1]=splitData[1].replace(']', '');
+      splitData[1]=splitData[1].replace(' ', '');
+      splitData[1]=splitData[1].split(",");
+      console.log("users : ", splitData[1])
+      return;
+    }
+
+    if(splitData[0]!=id){
+      $(".chatMsg").append(makeRecv(splitData[1],splitData[0],''));
+    }
+
   
 
-    $(".chatMsg").append(makeRecv(m.data,'id1',''));
 }
 
 
 
-
-
-//메세지 전송
-$("#sendButton").click(function(){
-
-    console.log("버튼 클릭함")
-    console.log("보내는 메세지 : "+$("#txtMessage").val());
-
-    sock.send($("#txtMessage").val());
-    $(".chatMsg").append(makeRecv($("#txtMessage").val(),'id2',' self'));
-
+$("#txtMessage").on('keypress', function(e) {
+  if (e.which === 13) { // 엔터키 누를 때 전송
+      e.preventDefault(); // 폼 전송 방지
+      console.log("엔터키 입력함");
+      sock.send($("#txtMessage").val());
+      $(".chatMsg").append(makeRecv($("#txtMessage").val(),id,' self'));
+      $("#txtMessage").val(''); // 메시지 전송 후 텍스트 필드 초기화
+  }
 });
 
+$("#sendButton").on('click', function() {
+  console.log("버튼 클릭함");
+  sock.send($("#txtMessage").val());
+  $(".chatMsg").append(makeRecv($("#txtMessage").val(),id,' self'));
+  $("#txtMessage").val(''); // 메시지 전송 후 텍스트 필드 초기화
+});
 

@@ -103,7 +103,6 @@
                                                         </div>
                                                     </div>
                                                     <!-- Content -->
-
                                                     <!-- Dropdown -->
                                                     <div class="dropdown">
                                                         <button class="btn btn-icon btn-base btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -254,29 +253,29 @@
                     <div class="chat-content hide-scrollbar h-100">
                         <!-- Messages -->
                         <div class="container-fluid g-0 p-4">
-                            <!-- Message 1 -->
                             <div class="chatMsg">
-                             <div class="message">
-                                <div class="message-wrap">
-                                    <div class="message-item">
-                                        <div class="message-content">
-                                            <span>Hi John, please take a look at the result of my work, this is a project that I am currently working on.</span>
+                            <!-- Message 1 -->
+                                <!-- <div class="message">
+                                    <div class="message-wrap">
+                                        <div class="message-item">
+                                            <div class="message-content">
+                                                <span>Hi John, please take a look at the result of my work, this is a project that I am currently working on.</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="message-info">
-                                    <div>
-                                        <h6 class="mb-0">Ariel Martinez</h6>
-                                        <small class="text-muted">9:15 PM
-                                        </small>
+                                    <div class="message-info">
+                                        <div>
+                                            <h6 class="mb-0">Ariel Martinez</h6>
+                                            <small class="text-muted">9:15 PM
+                                            </small>
+                                        </div>
                                     </div>
-                                </div>
-                            </div> 
+                                </div>  -->
                             <!-- Message 1 -->
                             </div>
 
                             <!-- Message 2 -->
-                            <div class="message self">
+                            <!-- <div class="message self">
                                 <div class="message-wrap">
                                     <div class="message-item">
                                         <div class="message-content">
@@ -296,7 +295,7 @@
                                         </small>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Message 2 -->
                         </div>
                         <!-- Messages -->
@@ -351,7 +350,9 @@
     <script src="/resources/js/chatList.js"></script>
     <!-- Scripts -->
     <c:import url="../template/common_js.jsp"></c:import>
-    
+    <script >
+        id='${member.memberId}'
+    </script>
 </body>
 
 </html>
