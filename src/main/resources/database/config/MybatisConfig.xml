@@ -36,6 +36,10 @@
   		<typeAlias type="com.team.cwl.order.OrderItemDTO" alias="OrderItemDTO"/>
   		<typeAlias type="com.team.cwl.order.OrderPageDTO" alias="OrderPageDTO"/>
   		<typeAlias type="com.team.cwl.order.OrderPageItemDTO" alias="OrderPageItemDTO"/>
+  	
+  		<!--  하영  -->
+  		<typeAlias type="com.team.cwl.chat.ChatDTO" alias="ChatDTO"/>
+  		
   	</typeAliases>
   	
   </configuration>

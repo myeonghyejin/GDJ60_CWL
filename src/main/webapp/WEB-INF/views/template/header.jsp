@@ -11,8 +11,11 @@
 	            <li class="nav-item"><a class="nav-link" style="font-family: 'Impact'" href="/board/list">BOARD</a></li>
 	            <li class="nav-item"><a class="nav-link" style="font-family: 'Impact'" href="/lesson/list">LESSON</a></li>
 	            <li class="nav-item"><a class="nav-link" style="font-family: 'Impact'" href="/product/list">PRODUCT</a></li>
-	        </ul>	        	   
+
+	        	<li class="nav-item"><a class="nav-link" style="font-family: 'Impact'" href="/chat/chatList">Chat</a></li>
 	        
+	        </ul>
+
 		    <ul class="navbar-nav">
 	        	<c:if test="${empty member}">
 		        	<li class="nav-item"><a class="nav-link" style="font-size: 11px" href="/member/memberLogin">LOGIN</a></li>
