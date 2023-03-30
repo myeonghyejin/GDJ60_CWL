@@ -6,6 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>ADD</title>
+	
 	<c:import url="../../template/common_css.jsp"></c:import>
 </head>
 <body>
@@ -39,23 +40,23 @@
 				<div class="fw-bold fs-5 col-12 my-5">
 					<div class="form-check form-check-block">
 						<label for="bs1" class="form-check-label" id="inlineRadio1">★</label>
-						<input id="bs1" type="radio" name="productRating" value="1" checked class="form-check-input" for="inlineRadio1" ${DTO.productRating eq 1 ? 'checked' :''}>
+						<input id="bs1" type="radio" name="productRating" value="1" checked class="form-check-input" for="inlineRadio1" ${DTO.productRating eq 1 ? 'checked' :''} readonly>
 					</div>
 					<div class="form-check form-check-block">
 						<label for="bs2" class="form-check-label" id="inlineRadio2">★★</label>
-						<input id="bs2" type="radio" name="productRating" value="2" class="form-check-input" for="inlineRadio2" ${DTO.productRating eq 2 ? 'checked' :''}>
+						<input id="bs2" type="radio" name="productRating" value="2" class="form-check-input" for="inlineRadio2" ${DTO.productRating eq 2 ? 'checked' :''} readonly>
 					</div>
 					<div class="form-check form-check-block">
-						<label for="bs2" class="form-check-label" id="inlineRadio3">★★★</label>
-						<input id="bs2" type="radio" name="productRating" value="3" class="form-check-input" for="inlineRadio3" ${DTO.productRating eq 3 ? 'checked' :''}>
+						<label for="bs3" class="form-check-label" id="inlineRadio3">★★★</label>
+						<input id="bs3" type="radio" name="productRating" value="3" class="form-check-input" for="inlineRadio3" ${DTO.productRating eq 3 ? 'checked' :''} readonly>
 					</div>
 					<div class="form-check form-check-block">
-						<label for="bs2" class="form-check-label" id="inlineRadio4">★★★★</label>
-						<input id="bs2" type="radio" name="productRating" value="4" class="form-check-input" for="inlineRadio4" ${DTO.productRating eq 4 ? 'checked' :''}>
+						<label for="bs4" class="form-check-label" id="inlineRadio4">★★★★</label>
+						<input id="bs4" type="radio" name="productRating" value="4" class="form-check-input" for="inlineRadio4" ${DTO.productRating eq 4 ? 'checked' :''} readonly>
 					</div>
 					<div class="form-check form-check-block">
-						<label for="bs2" class="form-check-label" id="inlineRadio5">★★★★★</label>
-						<input id="bs2" type="radio" name="productRating" value="5" class="form-check-input" for="inlineRadio5" ${DTO.productRating eq 5 ? 'checked' :''}>
+						<label for="bs5" class="form-check-label" id="inlineRadio5">★★★★★</label>
+						<input id="bs5" type="radio" name="productRating" value="5" class="form-check-input" for="inlineRadio5" ${DTO.productRating eq 5 ? 'checked' :''} readonly>
 					</div>
 				</div>
 				<div class="row justify-content-center my-2">

@@ -32,7 +32,7 @@
 		</div>
 		
 		<!-- Buttons -->
-<%-- 	<c:if test="${member.memderId eq DTO.memderId}"> --%>
+		<c:if test="${member.memberId eq DTO.memberId}">
 			<form action="./update" id="frm">
 				<div class="row col-md-4 justify-content-center mx-auto">
 					<input type="hidden" name="boardNum" value="${DTO.boardNum}">
@@ -40,7 +40,7 @@
 					<button id="delete" type="button" class="btn btn-outline-primary col-2 mx-1">삭제</button>
 				</div>
 			</form>
-<%-- 	</c:if> --%>
+		</c:if>
 		<div class="row col-md-4 justify-content-center mx-auto my-2">
 			<a href="./list" class="btn btn-primary col-2 mx-1">목록</a>
 		</div>

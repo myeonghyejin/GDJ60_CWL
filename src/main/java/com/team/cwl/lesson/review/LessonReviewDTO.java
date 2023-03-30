@@ -9,7 +9,7 @@ public class LessonReviewDTO {
 	private String memberId;
 	private String lessonReviewContents;
 	private Date lessonReviewDate;
-	private Double lessonRating;
+	private Integer lessonRating;
 	
 	public Long getLessonReviewNum() {
 		return lessonReviewNum;
@@ -41,10 +41,10 @@ public class LessonReviewDTO {
 	public void setLessonReviewDate(Date lessonReviewDate) {
 		this.lessonReviewDate = lessonReviewDate;
 	}
-	public Double getLessonRating() {
+	public Integer getLessonRating() {
 		return lessonRating;
 	}
-	public void setLessonRating(Double lessonRating) {
+	public void setLessonRating(Integer lessonRating) {
 		this.lessonRating = lessonRating;
 	}
 	

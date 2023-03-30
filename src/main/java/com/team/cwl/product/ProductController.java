@@ -44,7 +44,7 @@ public class ProductController {
 		modelAndView.addObject("DTO", productDTO);
 		modelAndView.setViewName("product/detail");
 		
-		return modelAndView;	
+		return modelAndView;
 	}
 	
 	/** INSERT **/

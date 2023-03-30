@@ -13,9 +13,9 @@
 			<td>${DTO.memberId}</td>
 			<td>${DTO.productQnADate}</td>
 			<td>
-				<%-- <c:if test="${member.roleDTO.roleName eq '관리자'}"> --%>
+				<c:if test="${member.adminCheck eq 1}">
 					<a href="./qna/reply?productQnANum=${DTO.productQnANum}&productNum=${DTO.productNum}" class="btn btn-primary" data-product-num-qna="${DTO.productNum}">답글</a>
-				<%-- </c:if> --%>
+				</c:if>
 			</td>
 			<td>
 				<c:if test="${member.memberId eq DTO.memberId}">
@@ -30,7 +30,20 @@
 		</tr>
 		<tr>
 			<td id="productQnAContents${DTO.productQnANum}" style="display:none;">
-				${DTO.productQnAContents}
+				<c:choose>
+					<c:when test="${DTO.productQnASecret eq 1}">
+						<c:if test="${member.memberId eq DTO.memberId}">
+							${DTO.productQnAContents}
+						</c:if>
+						<c:if test="${member.adminCheck eq 1}">
+							${DTO.productQnAContents}
+						</c:if>
+							비밀글입니다.
+					</c:when>
+					<c:otherwise>
+						${DTO.productQnAContents}
+					</c:otherwise>
+				</c:choose>
 			</td>
 		</tr>
 	</c:forEach>

@@ -13,6 +13,7 @@ public class ProductQnADTO {
 	private Long productQnARef;
 	private Long productQnAStep;
 	private Long productQnADepth;
+	private Integer productQnASecret;
 	
 	public Long getProductQnANum() {
 		return productQnANum;
@@ -67,6 +68,12 @@ public class ProductQnADTO {
 	}
 	public void setProductQnADepth(Long productQnADepth) {
 		this.productQnADepth = productQnADepth;
+	}
+	public Integer getProductQnASecret() {
+		return productQnASecret;
+	}
+	public void setProductQnASecret(Integer productQnASecret) {
+		this.productQnASecret = productQnASecret;
 	}
 
 }

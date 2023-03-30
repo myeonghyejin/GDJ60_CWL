@@ -10,7 +10,23 @@
 				${DTO.lessonReviewContents}
 			</td>
 			<td>${DTO.memberId}</td>
-			<td>${DTO.lessonRating}</td>
+			<td id="lessonRating${DTO.lessonReviewNum}">
+				<c:if test="${DTO.lessonRating eq 1}">
+					★
+				</c:if>
+				<c:if test="${DTO.lessonRating eq 2}">
+					★★
+				</c:if>
+				<c:if test="${DTO.lessonRating eq 3}">
+					★★★
+				</c:if>
+				<c:if test="${DTO.lessonRating eq 4}">
+					★★★★
+				</c:if>
+				<c:if test="${DTO.lessonRating eq 5}">
+					★★★★★
+				</c:if>
+			</td>
 			<td>${DTO.lessonReviewDate}</td>
 			<td>
 				<c:if test="${member.memberId eq DTO.memberId}">
