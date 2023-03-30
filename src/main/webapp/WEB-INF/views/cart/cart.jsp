@@ -90,8 +90,8 @@
 							<td class="td_width_1 cart_info_td">
 								<input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked" name="check" value="1">								
 								<input type="hidden" class="individual_productPrice_input" value="${ci.productPrice}">
-								<input type="hidden" class="individual_productAmount_input" value="${ci.productAmount}">
-								<input type="hidden" class="individual_totalPrice_input" value="${ci.productPrice * ci.productAmount}">
+								<input type="hidden" class="individual_productStock_input" value="${ci.productStock}">
+								<input type="hidden" class="individual_totalPrice_input" value="${ci.productPrice * ci.productStock}">
 								<input type="hidden" class="individual_productNum_input" value="${ci.productNum}">								
 							</td>
 							<td class="td_width_3">${ci.productName}</td>
@@ -100,14 +100,14 @@
 							</td>
 							<td class="td_width_4 table_text_align_center">
 								<div class="table_text_align_center quantity_div">
-									<input type="text" value="${ci.productAmount}" class="quantity_input">	
+									<input type="text" value="${ci.productStock}" class="quantity_input">	
 									<button class="quantity_btn plus_btn">+</button>
 									<button class="quantity_btn minus_btn">-</button>
 								</div>
 								<a class="quantity_modify_btn" data-cartNum="${ci.cartNum}">변경</a>
 							</td>
 							<td class="td_width_4 table_text_align_center">
-								<fmt:formatNumber value="${ci.productPrice * ci.productAmount}" pattern="#,### 원" />
+								<fmt:formatNumber value="${ci.productPrice * ci.productStock}" pattern="#,### 원" />
 							</td>
 							<td class="td_width_4 table_text_align_center">
 								<button class="delete_btn" data-cartNum="${ci.cartNum}">삭제</button>
@@ -183,7 +183,7 @@
 		<!-- 수량 조정 form -->
 		<form action="./cartUpdate" method="post" class="quantity_update_form">
 			<input type="hidden" name="cartNum" class="update_cartNum">
-			<input type="hidden" name="productAmount" class="update_productAmount">
+			<input type="hidden" name="productStock" class="update_productStock">
 			<input type="hidden" name="memberId" value="${member.memberId}">
 		</form>	
 		
@@ -280,7 +280,7 @@ function setTotalInfo(){
 			// 총 가격
 			totalPrice += parseInt($(element).find(".individual_totalPrice_input").val());
 			// 총 갯수
-			totalCount += parseInt($(element).find(".individual_productAmount_input").val());
+			totalCount += parseInt($(element).find(".individual_productStock_input").val());
 			// 총 종류
 			totalKind += 1;
 		}
@@ -325,9 +325,9 @@ $(".minus_btn").on("click", function(){
 /* 수량 수정 버튼 */
 $(".quantity_modify_btn").on("click", function(){
 	let cartNum = $(this).data("cartNum");
-	let productAmount = $(this).parent("td").find("input").val();
+	let productStock = $(this).parent("td").find("input").val();
 	$(".update_cartNum").val(cartNum);
-	$(".update_productAmount").val(productAmount);
+	$(".update_productStock").val(productStock);
 	$(".quantity_update_form").submit();
 	
 });
@@ -350,13 +350,13 @@ $(".order_btn").on("click", function(){
 		if($(element).find(".individual_cart_checkbox").is(":checked") === true){	//체크여부
 			
 			let productNum = $(element).find(".individual_productNum_input").val();
-			let productAmount = $(element).find(".individual_productAmount_input").val();
+			let productStock = $(element).find(".individual_productStock_input").val();
 			
 			let productNum_input = "<input name='orders[" + orderNumber + "].productNum' type='hidden' value='" + productNum + "'>";
 			form_contents += productNum_input;
 			
-			let productAmount_input = "<input name='orders[" + orderNumber + "].productAmount' type='hidden' value='" + productAmount + "'>";
-			form_contents += productAmount_input;
+			let productStock_input = "<input name='orders[" + orderNumber + "].productStock' type='hidden' value='" + productStock + "'>";
+			form_contents += productStock_input;
 			
 			orderNumber += 1;
 			

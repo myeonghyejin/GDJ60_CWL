@@ -8,14 +8,14 @@ public class CartDTO {
 	
 	private Long productNum;
 	
-	private Long ProductAmount;
+	private Long productStock;
 	
 	// product	
 	private String productName;
 	
 	private Long productPrice;
 	
-	// Ãß°¡
+	// ì¶”ê°€
 	private Long totalPrice;
 
 	
@@ -43,12 +43,12 @@ public class CartDTO {
 		this.productNum = productNum;
 	}
 
-	public Long getProductAmount() {
-		return ProductAmount;
+	public Long getProductStock() {
+		return productStock;
 	}
 
-	public void setProductAmount(Long productAmount) {
-		ProductAmount = productAmount;
+	public void setProductStock(Long productStock) {
+		this.productStock = productStock;
 	}
 
 	public String getProductName() {
@@ -76,13 +76,13 @@ public class CartDTO {
 	}
 	
 	public void initTotal() {
-		this.totalPrice = this.productPrice * this.ProductAmount;
+		this.totalPrice = this.productPrice * this.productStock;
 	}
 	
 	@Override
 	public String toString() {
-		return "CartDTO2 [cartNum=" + cartNum + ", memberId=" + memberId + ", productNum=" + productNum + ", productAmount="
-				+ ProductAmount + ", productName=" + productName + ", productPrice=" + productPrice+ ", totalPrice=" + totalPrice
+		return "CartDTO [cartNum=" + cartNum + ", memberId=" + memberId + ", productNum=" + productNum + ", productStock="
+				+ productStock + ", productName=" + productName + ", productPrice=" + productPrice+ ", totalPrice=" + totalPrice
 				+ "]";
 	}
 	

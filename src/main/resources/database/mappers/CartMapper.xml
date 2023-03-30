@@ -5,25 +5,25 @@
   <mapper namespace="com.team.cwl.cart.CartMapper">
 
 	<!-- 카트 추가 -->
-	<insert id="cartAdd">
-		INSERT INTO CART(MEMBERID, PRODUCTNUM, PRODUCTAMOUNT)
-		VALUES (#{memberId}, #{productNum}, #{productAmount}) 
+	<insert id="cartAdd" parameterType="CartDTO">
+		INSERT INTO CART(MEMBERID, PRODUCTNUM, PRODUCTSTOCK)
+		VALUES (#{memberId}, #{productNum}, #{productStock}) 
 	</insert>
 	
 	<!-- 카트 삭제 -->
 	<delete id="cartDelete" parameterType="CartDTO">
-		DELETE FROM CART WHERE CARTNUM = #{cartNum}
+		DELETE CART WHERE CARTNUM = #{cartNum}
 	</delete>
 	
 	<!-- 카트 수량 수정 -->
 	<update id="modifyCount" parameterType="CartDTO">
-		UPDATE CART SET PRODUCTAMOUNT = #{productAmount} WHERE CARTNUM = #{cartNum}
+		UPDATE CART SET PRODUCTSTOCK = #{productStock} WHERE CARTNUM = #{cartNum}
 	</update>
 	
 	
 	<!-- 카트 목록 -->
 	<select id="cartList" resultType="com.team.cwl.cart.CartDTO">
-		SELECT A.CARTNUM, A.MEMBERID, A.PRODUCTNUM, A.PRODUCTAMOUNT, P.PRODUCTNAME, P.PRODUCTPRICE
+		SELECT A.CARTNUM, A.MEMBERID, A.PRODUCTNUM, A.PRODUCTSTOCK, P.PRODUCTNAME, P.PRODUCTPRICE
 		FROM CART A
 		LEFT OUTER JOIN
 		PRODUCT P ON A.PRODUCTNUM = P.PRODUCTNUM
@@ -37,7 +37,7 @@
 	</select>	
 	
 	<delete id="deleteOrderCart">
-		DELETE FROM CART WHERE MEMBERID = #{memberId} AND PRODUCTNUM = #{productNum}
+		DELETE CART WHERE MEMBERID = #{memberId} AND PRODUCTNUM = #{productNum}
 	</delete>	
 	
 	

@@ -2,17 +2,17 @@ package com.team.cwl.order;
 
 public class OrderPageItemDTO {
 	
-	// ºä·ÎºÎÅÍ Àü´Ş¹ŞÀ» °ª
+	// ë·°ë¡œë¶€í„° ì „ë‹¬ë°›ì„ ê°’
 	private Long productNum;
 	
 	private Long orderCount;
 	
-	// DB·ÎºÎÅÍ ²¨³»¿Ã °ª
+	// DBë¡œë¶€í„° êº¼ë‚´ì˜¬ ê°’
 	private String productName;
 	
 	private Long productPrice;
 	
-	// ¸¸µé¾î ³¾ °ª
+	// ë§Œë“¤ì–´ ë‚¼ ê°’
 	private Long totalPrice;
 
 	

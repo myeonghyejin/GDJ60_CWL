@@ -2,15 +2,15 @@ package com.team.cwl.order;
 
 public class OrderItemDTO {
 	
-	// ÁÖ¹® ¹øÈ£
+	// ì£¼ë¬¸ ë²ˆí˜¸
 	private String orderNum;
-	// Á¦Ç° ¹øÈ£
+	// ì œí’ˆ ë²ˆí˜¸
 	private Long productNum;
-	// ÁÖ¹® ¼ö·®
+	// ì£¼ë¬¸ ìˆ˜ëŸ‰
 	private Long orderCount;
-	// »óÇ° ÇÑ °³ °¡°İ
+	// ìƒí’ˆ í•œ ê°œ ê°€ê²©
 	private Long productPrice;
-	// ÃÑ °¡°İ(°¡°İ * ÁÖ¹® ¼ö·®)
+	// ì´ ê°€ê²©(ê°€ê²© * ì£¼ë¬¸ ìˆ˜ëŸ‰)
 	private Long totalPrice;
 	
 	

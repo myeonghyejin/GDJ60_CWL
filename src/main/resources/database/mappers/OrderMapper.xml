@@ -5,7 +5,7 @@
   
   <mapper namespace="com.team.cwl.order.OrderMapper">
 	<!-- 주문 상품 정보 -->
-	<select id="getGoodsInfo" resultType="com.team.cwl.order.OrderPageItemDTO">
+	<select id="getProductDetail" resultType="com.team.cwl.order.OrderPageItemDTO">
 		SELECT PRODUCTNUM, PRODUCTNAME, PRODUCTPRICE
 		FROM PRODUCT
 		WHERE PRODUCTNUM=#{productNum}	

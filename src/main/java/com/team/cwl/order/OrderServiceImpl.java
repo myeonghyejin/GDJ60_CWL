@@ -32,17 +32,17 @@ public class OrderServiceImpl implements OrderService {
 	private ProductDAO productDAO;
 	
 	@Override
-	public List<OrderPageItemDTO> getGoodsInfo(List<OrderPageItemDTO> orders) {
+	public List<OrderPageItemDTO> getProductDetail(List<OrderPageItemDTO> orders) {
 		
 		List<OrderPageItemDTO> result = new ArrayList<OrderPageItemDTO>();
 		
 		for(OrderPageItemDTO ord : orders) {
-			OrderPageItemDTO goodsInfo = orderMapper.getGoodsInfo(ord.getProductNum());
-			goodsInfo.setOrderCount(ord.getOrderCount());
+			OrderPageItemDTO productDetail = orderMapper.getProductDetail(ord.getProductNum());
+			productDetail.setOrderCount(ord.getOrderCount());
 			
-			goodsInfo.initTotal();
+			productDetail.initTotal();
 			
-			result.add(goodsInfo);
+			result.add(productDetail);
 		}
 		return result;
 	}
@@ -50,55 +50,55 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	@Transactional
 	public void order(OrderDTO ord) {
-		// »ç¿ëÇÒ µ¥ÀÌÅÍ °¡Á®¿À±â
-		// È¸¿øÁ¤º¸
+		// ì‚¬ìš©í•  ë°ì´í„° ê°€ì ¸ì˜¤ê¸°
+		// íšŒì›ì •ë³´
 		MemberDTO member = memberMapper.getMemberInfo(ord.getMemberId());
-		// ÁÖ¹®Á¤º¸
+		// ì£¼ë¬¸ì •ë³´
 		List<OrderItemDTO> ords = new ArrayList<OrderItemDTO>();
 		for(OrderItemDTO oit : ord.getOrders()) {
 			OrderItemDTO orderItem = orderMapper.getOrderInfo(oit.getProductNum());
-			// ¼ö·® ¼¼ÆÃ
+			// ìˆ˜ëŸ‰ ì„¸íŒ…
 			orderItem.setOrderCount(oit.getOrderCount());
-			// ±âº»Á¤º¸ ¼¼ÆÃ
+			// ê¸°ë³¸ì •ë³´ ì„¸íŒ…
 			orderItem.initTotal();
-			// List °´Ã¼ Ãß°¡
+			// List ê°ì²´ ì¶”ê°€
 			ords.add(orderItem);
 		}
-		// OrderDTO ¼¼ÆÃ
+		// OrderDTO ì„¸íŒ…
 		ord.setOrders(ords);
 		ord.getOrderPriceInfo();
 		
-		/* DB ÁÖ¹®, ÁÖ¹®»óÇ°(¹è¼ÛÁ¤º¸) ³Ö±â */
-		// orderNum ¸¸µé±â ¹× OrderDTO°´Ã¼ orderNum¿¡ ÀúÀå
+		/* DB ì£¼ë¬¸, ì£¼ë¬¸ìƒí’ˆ(ë°°ì†¡ì •ë³´) ë„£ê¸° */
+		// orderNum ë§Œë“¤ê¸° ë° OrderDTOê°ì²´ orderNumì— ì €ì¥
 		Date date = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("_yyyyMMddmm");
 		String orderNum = member.getMemberId() + format.format(date);
 		ord.setOrderNum(orderNum);
 		
-		// DB³Ö±â
+		// DBë„£ê¸°
 		orderMapper.enrollOrder(ord);
 		for(OrderItemDTO oit : ord.getOrders()) {
 			oit.setOrderNum(orderNum);
 			orderMapper.enrollOrderItem(oit);
 		}
 		
-		/* ºñ¿ë º¯µ¿ Àû¿ë */
+		/* ë¹„ìš© ë³€ë™ ì ìš© */
 		Long calMoney = member.getMoney();
 		calMoney -= ord.getOrderFinalSalePrice();
 		member.setMoney(calMoney);
 		
 		orderMapper.deductMoney(member);
 		
-		/* Àç°í º¯µ¿ Àû¿ë */
+		/* ì¬ê³  ë³€ë™ ì ìš© */
 		for(OrderItemDTO oit : ord.getOrders()) {
-			// º¯µ¿ Àç°í °ª ±¸ÇÏ±â
+			// ë³€ë™ ì¬ê³  ê°’ êµ¬í•˜ê¸°
 			ProductDTO productDTO = productDAO.getGoodsInfo(oit.getProductNum());
 			productDTO.setProductStock(productDTO.getProductStock() - oit.getOrderCount());
-			// º¯µ¿ °ª DB Àû¿ë
+			// ë³€ë™ ê°’ DB ì ìš©
 			orderMapper.deductStock(productDTO);
 		}
 		
-		// Àå¹Ù±¸´Ï Á¦°Å
+		// ì¥ë°”êµ¬ë‹ˆ ì œê±°
 		for(OrderItemDTO oit : ord.getOrders()) {
 			CartDTO dto = new CartDTO();
 			dto.setMemberId(ord.getMemberId());
@@ -109,36 +109,36 @@ public class OrderServiceImpl implements OrderService {
 		
 	}
 	
-	/* ÁÖ¹®Ãë¼Ò */
+	/* ì£¼ë¬¸ì·¨ì†Œ */
 	@Override
 	@Transactional
 	public void orderCancel(OrderCancelDTO dto) {
-		/* ÁÖ¹®, ÁÖ¹®»óÇ° °´Ã¼ */
-		// È¸¿ø
+		/* ì£¼ë¬¸, ì£¼ë¬¸ìƒí’ˆ ê°ì²´ */
+		// íšŒì›
 		MemberDTO member = memberMapper.getMemberInfo(dto.getMemberId());
-		// ÁÖ¹®»óÇ°
+		// ì£¼ë¬¸ìƒí’ˆ
 		List<OrderItemDTO> ords = orderMapper.getOrderItemInfo(dto.getOrderNum());
 		for(OrderItemDTO ord : ords) {
 			ord.initTotal();
 		}
-		// ÁÖ¹®
+		// ì£¼ë¬¸
 		OrderDTO orw = orderMapper.getOrder(dto.getOrderNum());
 		orw.setOrders(ords);
 		
 		orw.getOrderPriceInfo();
 		
-		/* ÁÖ¹®»óÇ° Ãë¼Ò DB */
+		/* ì£¼ë¬¸ìƒí’ˆ ì·¨ì†Œ DB */
 		orderMapper.orderCancel(dto.getOrderNum());
-		/* µ·, Àç°í º¯È¯ */
-		// µ·
+		/* ëˆ, ì¬ê³  ë³€í™˜ */
+		// ëˆ
 		Long calMoney = member.getMoney();
 		calMoney += orw.getOrderFinalSalePrice();
 		member.setMoney(calMoney);
-		// DB Àû¿ë
+		// DB ì ìš©
 		orderMapper.deductMoney(member);
-		// Àç°í
+		// ì¬ê³ 
 		for(OrderItemDTO ord : orw.getOrders()) {
-			ProductDTO productDTO = productDAO.getGoodsInfo(ord.getProductNum());
+			ProductDTO productDTO = productDAO.getProductDetail(ord.getProductNum());
 			productDTO.setProductStock(productDTO.getProductStock() + ord.getOrderCount());
 			orderMapper.deductStock(productDTO);
 		}

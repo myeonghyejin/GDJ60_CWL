@@ -5,12 +5,12 @@ import java.util.List;
 
 public interface OrderService {
 	
-	// ¡÷πÆ ¡§∫∏
-	public List<OrderPageItemDTO> getGoodsInfo(List<OrderPageItemDTO> orders); 
+	// Ï£ºÎ¨∏ Ï†ïÎ≥¥
+	public List<OrderPageItemDTO> getProductDetail(List<OrderPageItemDTO> orders); 
 	
-	// ¡÷πÆ
+	// Ï£ºÎ¨∏
 	public void order(OrderDTO orw);
 	
-	// ¡÷πÆ√Îº“
+	// Ï£ºÎ¨∏Ï∑®ÏÜå
 	public void orderCancel(OrderCancelDTO dto);
 }

@@ -24,18 +24,18 @@
 				<span class="id_input_re_1">사용 가능한 아이디입니다.</span>
 				<span class="id_input_re_2">아이디가 이미 존재합니다.</span>	
 				<span class="final_id_ck">아이디를 입력해주세요.</span>			
-			</div>
+			</div>				
 			<div class="pw_wrap">
 				<div class="pw_name">비밀번호</div>
 				<div class="pw_input_box">
-					<input class="pw_input" name="memberPw">
+					<input type="password" class="pw_input" name="memberPw">
 				</div>
 				<span class="final_pw_ck">비밀번호를 입력해주세요.</span>
 			</div>
 			<div class="pwck_wrap">
 				<div class="pwck_name">비밀번호 확인</div>
 				<div class="pwck_input_box">
-					<input class="pwck_input">
+					<input type="password" class="pwck_input">
 				</div>
 				<span class="final_pwck_ck">비밀번호를 한번더 입력해주세요.</span>
 				<span class="pwck_input_re_1">비밀번호가 일치합니다.</span>

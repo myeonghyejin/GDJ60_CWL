@@ -29,7 +29,7 @@ public class OrderController {
 	@GetMapping("/order/{memberId}")
 	public String orderPageGET(@PathVariable("memberId") String memberId, OrderPageDTO opd, Model model) {
 		
-		model.addAttribute("orderList", orderService.getGoodsInfo(opd.getOrders()));
+		model.addAttribute("orderList", orderService.getProductDetail(opd.getOrders()));
 		model.addAttribute("memberInfo", memberService.getMemberInfo(memberId));
 		
 		return "/order";

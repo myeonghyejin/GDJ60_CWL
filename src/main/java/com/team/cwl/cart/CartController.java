@@ -16,39 +16,38 @@ import com.team.cwl.member.MemberDTO;
 
 
 @Controller
-@RequestMapping("/cart/*")
 public class CartController {
 	
 	@Autowired
 	private CartService cartService;
 	
-	/* Àå¹Ù±¸´Ï Ãß°¡ */
+	/* ì¥ë°”êµ¬ë‹ˆ ì¶”ê°€ */
 	/**
-	 * 0: µî·Ï ½ÇÆĞ
-	 * 1: µî·Ï ¼º°ø
-	 * 2: µî·ÏµÈ µ¥ÀÌÅÍ Á¸Àç
-	 * 5: ·Î±×ÀÎ ÇÊ¿ä
+	 * 0: ë“±ë¡ ì‹¤íŒ¨
+	 * 1: ë“±ë¡ ì„±ê³µ
+	 * 2: ë“±ë¡ëœ ë°ì´í„° ì¡´ì¬
+	 * 5: ë¡œê·¸ì¸ í•„ìš”
 	 * 
 	 */
-	@PostMapping("cartAdd")
+	@PostMapping("/cart/cartAdd")
 	@ResponseBody
 	public String cartAdd(CartDTO cart, HttpServletRequest request) {
-		// ·Î±×ÀÎ Ã¼Å©
+		// ë¡œê·¸ì¸ ì²´í¬
 		HttpSession session = request.getSession();
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		if(memberDTO == null) {
 			return "5";
 		}
 		
-		// Ä«Æ® µî·Ï
+		// ì¹´íŠ¸ ë“±ë¡
 		
 		int result = cartService.cartAdd(cart);
 		
 		return result + "";
 	}	
 	
-	/* Àå¹Ù±¸´Ï ÆäÀÌÁö ÀÌµ¿ */
-	@GetMapping("{memberId}")
+	/* ì¥ë°”êµ¬ë‹ˆ í˜ì´ì§€ ì´ë™ */
+	@GetMapping("/cart/{memberId}")
 	public String cartList(@PathVariable("memberId") String memberId, Model model) {
 		
 		model.addAttribute("cartInfo", cartService.cartList(memberId));
@@ -56,7 +55,7 @@ public class CartController {
 		return "/cart/cart";
 	}	
 	
-	/* Àå¹Ù±¸´Ï ¼ö·® ¼öÁ¤ */
+	/* ì¥ë°”êµ¬ë‹ˆ ìˆ˜ëŸ‰ ìˆ˜ì • */
 	@PostMapping("cartUpdate")
 	public String cartUpdate(CartDTO cart) {
 		
@@ -66,7 +65,7 @@ public class CartController {
 		
 	}	
 	
-	/* Àå¹Ù±¸´Ï ¼ö·® »èÁ¦ */
+	/* ì¥ë°”êµ¬ë‹ˆ ìˆ˜ëŸ‰ ì‚­ì œ */
 	@PostMapping("cartDelete")
 	public String cartDelete(CartDTO cart) {
 		

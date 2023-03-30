@@ -8,21 +8,21 @@ import org.mybatis.spring.annotation.MapperScan;
 
 @MapperScan(basePackages = "CartMapper")
 public interface CartMapper {
-	/* Ä«Æ® Ãß°¡ */
+	/* ì¹´íŠ¸ ì¶”ê°€ */
 	public int cartAdd(CartDTO cart) throws Exception;
 	
-	/* Ä«Æ® »èÁ¦ */
+	/* ì¹´íŠ¸ ì‚­ì œ */
 	public int cartDelete(Long cartNum);
 	
-	/* Ä«Æ® ¼ö·® ¼öÁ¤ */
+	/* ì¹´íŠ¸ ìˆ˜ëŸ‰ ìˆ˜ì • */
 	public int modifyCount(CartDTO cart);
 	
-	/* Ä«Æ® ¸ñ·Ï */
+	/* ì¹´íŠ¸ ëª©ë¡ */
 	public List<CartDTO> cartList(String memberId);	
 	
-	/* Ä«Æ® È®ÀÎ */
+	/* ì¹´íŠ¸ í™•ì¸ */
 	public CartDTO checkCart(CartDTO cart);		
 	
-	/* Ä«Æ® Á¦°Å(ÁÖ¹®) */
+	/* ì¹´íŠ¸ ì œê±°(ì£¼ë¬¸) */
 	public int deleteOrderCart(CartDTO dto);	
 }

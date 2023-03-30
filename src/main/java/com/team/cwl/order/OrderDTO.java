@@ -4,33 +4,33 @@ import java.sql.Date;
 import java.util.List;
 
 public class OrderDTO {
-	// ÁÖ¹® ¹øÈ£
+	// ì£¼ë¬¸ ë²ˆí˜¸
 	private String orderNum;
-	// ¹è¼Û ¹Ş´Â »ç¶÷
+	// ë°°ì†¡ ë°›ëŠ” ì‚¬ëŒ
 	private String addressee;
-	// È¸¿ø ¾ÆÀÌµğ
+	// íšŒì› ì•„ì´ë””
 	private String memberId;
-	// ¿ìÆí¹øÈ£
+	// ìš°í¸ë²ˆí˜¸
 	private String memberAddress1;
-	// È¸¿ø ÁÖ¼Ò
+	// íšŒì› ì£¼ì†Œ
 	private String memberAddress2;
-	// È¸¿ø »ó¼¼ÁÖ¼Ò
+	// íšŒì› ìƒì„¸ì£¼ì†Œ
 	private String memberAddress3;
-	// Ã³¸®»óÅÂ
+	// ì²˜ë¦¬ìƒíƒœ
 	private String orderState;
-	// ÁÖ¹®¿äÃ»»çÇ×
+	// ì£¼ë¬¸ìš”ì²­ì‚¬í•­
 	private String orderComment;
-	// ÁÖ¹® »óÇ°
+	// ì£¼ë¬¸ ìƒí’ˆ
 	private List<OrderItemDTO> orders;
-	// ¹è¼Ûºñ
+	// ë°°ì†¡ë¹„
 	private Long orderFee;
-	// ÁÖ¹® ³¯Â¥
+	// ì£¼ë¬¸ ë‚ ì§œ
 	private Date orderDate;
 	
-	/* DB Å×ÀÌºí¿¡ Á¸ÀçÇÏÁö ¾Ê´Â µ¥ÀÌÅÍ */
-	// ÆÇ¸Å°¡(¸ğµç »óÇ° ºñ¿ë)
+	/* DB í…Œì´ë¸”ì— ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ë°ì´í„° */
+	// íŒë§¤ê°€(ëª¨ë“  ìƒí’ˆ ë¹„ìš©)
 	private Long orderSalePrice;
-	// ÃÖÁ¾ ÆÇ¸Å ºñ¿ë(¹è¼Ûºñ Æ÷ÇÔ)
+	// ìµœì¢… íŒë§¤ ë¹„ìš©(ë°°ì†¡ë¹„ í¬í•¨)
 	private Long orderFinalSalePrice;
 	
 	
@@ -146,17 +146,17 @@ public class OrderDTO {
 	}
 	
 	public void getOrderPriceInfo() {
-		// »óÇ° ºñ¿ë
+		// ìƒí’ˆ ë¹„ìš©
 		for(OrderItemDTO order : orders) {
 			orderSalePrice += order.getTotalPrice();
 		}
-		// ¹è¼Û ºñ¿ë
+		// ë°°ì†¡ ë¹„ìš©
 		if(orderSalePrice >= 30000) {
 			orderFee = 0L;
 		} else {
 			orderFee = 3000L;
 		}
-		// ÃÖÁ¾ ÆÇ¸Å ºñ¿ë(»óÇ° ºñ¿ë + ¹è¼Ûºñ)
+		// ìµœì¢… íŒë§¤ ë¹„ìš©(ìƒí’ˆ ë¹„ìš© + ë°°ì†¡ë¹„)
 		orderFinalSalePrice = orderSalePrice + orderFee;
 	}
 	

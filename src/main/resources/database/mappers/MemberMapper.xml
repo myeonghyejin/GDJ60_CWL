@@ -21,9 +21,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT MEMBERID, MEMBERPW, MEMBERNAME, ADMINCHECK, MONEY 
 		FROM MEMBER
 		WHERE MEMBERID = #{memberId}
-		  		
-  		<!-- 기존코드 -->
-  		<!-- select memberId, memberName, adminck, money, point from book_member where memberId = #{memberId} and memberPw = #{memberPw} -->
   	</select>
   	
    	<!-- 주문자 정보 -->
@@ -32,7 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		FROM MEMBER 
   		WHERE MEMBERID = #{memberId}  	
   	</select>
-  	
+</mapper>
 	
 	
 	
@@ -110,5 +107,3 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE MEMBER SET MEMBERPW=#{memberPw}, MEMBERNAME=#{memberName}, MEMBERPHONE=#{memberPhone}, MEMBEREMAIL=#{memberEmail}, MEMBERGENDER=#{memberGender}, MEMBERSI=#{memberSI}, MEMBERAGE=#{memberAge}
 		WHERE MEMBERID=#{memberId}
 	</update> -->
-
-</mapper>
