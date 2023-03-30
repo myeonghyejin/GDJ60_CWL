@@ -22,6 +22,14 @@ public class ProductReviewDAO {
 		return sqlSession.selectList(NAMESPACE+"getProductReviewList", pagination);
 	}
 	
+	public ProductReviewDTO getProductReviewDetail(ProductReviewDTO productReviewDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getProductReviewDetail", productReviewDTO);
+	}
+	
+	public List<ProductReviewImgDTO> getProductReviewImgList(ProductReviewDTO productReviewDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getProductReviewImgList", productReviewDTO);
+	}
+	
 	public Long getTotalCount(Pagination pagination) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"getTotalCount", pagination);
 	}
@@ -29,6 +37,10 @@ public class ProductReviewDAO {
 	/** INSERT **/
 	public int setProductReviewAdd(ProductReviewDTO productReviewDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"setProductReviewAdd", productReviewDTO);
+	}
+	
+	public int setProductReviewImgAdd(ProductReviewImgDTO productReviewImgDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setProductReviewImgAdd", productReviewImgDTO);
 	}
 	
 	/** UPDATE **/
@@ -39,6 +51,10 @@ public class ProductReviewDAO {
 	/** DELETE **/
 	public int setProductReviewDelete(ProductReviewDTO productReviewDTO) throws Exception {
 		return sqlSession.delete(NAMESPACE+"setProductReviewDelete", productReviewDTO);
+	}
+	
+	public int setProductReviewImgDelete(Long imgNum) throws Exception {
+		return sqlSession.delete(NAMESPACE+"setProductReviewImgDelete", imgNum);
 	}
 
 }

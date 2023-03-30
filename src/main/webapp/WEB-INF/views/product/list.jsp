@@ -82,7 +82,7 @@
 			<input type="hidden" name="page" value="1" id="page">
 			<div class="row justify-content-center mx-auto">
 				<div class="col-auto">
-					<label for="condition" class="visually-hidden">Email</label>
+					<label for="condition" class="visually-hidden">Search</label>
 					<select class="form-select" name="condition" id="condition" aria-label="Default select example">
 						<option value="title" ${pagination.condition eq 'title' ? 'selected' : ''}>제목</option>
 						<option value="contents" ${pagination.condition eq 'contents' ? 'selected' : ''}>내용</option>

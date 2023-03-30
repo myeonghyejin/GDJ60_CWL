@@ -53,44 +53,8 @@
 		<div class="row" id="productReviewListResult">
 		</div>
 	
-		<div class="row my-5">
-			<div class="mb-3">
-				<label for="productRating" class="form-label">RATING</label>
-				<input type="text" name="productRating" class="form-control" id="productRating"><br>
-			</div>
-			<div class="mb-3">
-				<textarea class="form-control" rows="3" id="productReviewContents"></textarea>
-			</div>
-			<div class="mb-3">
-				<button type="button" class="btn btn-primary" id="productReviewAdd" data-product-num-review="${DTO.productNum}">작성</button>
-			</div>
-		</div>
-		
-		<!-- Update Form -->
-		<!-- Modal -->
-		<div class="modal fade" id="reviewEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="exampleModalLabel">수정</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<div class="mb-3">
-						<label for="productRatingEdit" class="col-form-label">RATING</label>
-						<input type="text" class="form-control" id="productRatingEdit">
-					</div>
-					<div class="mb-3">
-						<label for="productReviewEdit" class="col-form-label">CONTENTS</label>
-						<textarea class="form-control" id="productReviewEdit"></textarea>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeReviewModal">취소</button>
-					<button type="button" class="btn btn-primary" data-productreview-num="" id="reviewConfirm">확인</button>
-				</div>
-				</div>
-			</div>
+		<div class="row col-md-4 justify-content-center mx-auto">
+			<a href="./review/add?productNum=${DTO.productNum}" class="btn btn-primary col-2 mx-1" id="productReviewAdd" data-product-num-review="${DTO.productNum}">작성</a>
 		</div>
 		
  		<!-- QnA -->
@@ -101,42 +65,14 @@
 		<div class="row" id="productQnAListResult">
 		</div>
 	
-		<div class="row my-5">
-			<div class="mb-3">
-				<textarea class="form-control" rows="3" id="productQnAContents"></textarea>
-			</div>
-			<div class="mb-3">
-				<button type="button" class="btn btn-primary" id="productQnAAdd" data-product-num-qna="${DTO.productNum}">작성</button>
-			</div>
-		</div>
-		
-		<!-- Update Form -->
-		<!-- Modal -->
-		<div class="modal fade" id="qnaEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="exampleModalLabel">수정</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<div class="form-floating">
-						<textarea class="form-control" id="productQnAEdit"></textarea>
-						<label for="productQnAEdit">Comments</label>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeQnAModal">취소</button>
-					<button type="button" class="btn btn-primary" data-productqna-num="" id="qnaConfirm">확인</button>
-				</div>
-				</div>
-			</div>
+		<div class="row col-md-4 justify-content-center mx-auto">
+			<a href="./qna/add?productNum=${DTO.productNum}" class="btn btn-primary col-2 mx-1" id="productQnAAdd" data-product-num-qna="${DTO.productNum}">작성</a>
 		</div>
 		
 	</div>
 	
 	<c:import url="../template/common_js.jsp"></c:import>
-	<script src="/resources/js/productQnA.js"></script>
-	<script src="/resources/js/productReview.js"></script>
+	<script src="/resources/js/product.js"></script>
+	<script type="text/javascript" src="../resources/js/confirm.js"></script>
 </body>
 </html>

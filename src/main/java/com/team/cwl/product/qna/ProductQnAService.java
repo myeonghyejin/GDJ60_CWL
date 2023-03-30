@@ -21,6 +21,10 @@ public class ProductQnAService {
 		pagination.makeNum(productQnADAO.getTotalCount(pagination));
 		return productQnADAO.getProductQnAList(pagination);
 	}
+	
+	public ProductQnADTO getProductQnADetail(ProductQnADTO productQnADTO) throws Exception {
+		return productQnADAO.getProductQnADetail(productQnADTO);
+	}
 
 	/** INSERT **/
 	public int setProductQnAAdd(ProductQnADTO productQnADTO) throws Exception {

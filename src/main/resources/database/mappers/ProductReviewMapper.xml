@@ -6,18 +6,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.team.cwl.product.review.ProductReviewDAO">
 
-	<!-- SQL -->
-	<sql id="productReviewCondition">
-		<where>
-			<if test="condition == 'productReviewContents'">
-				CONTENTS LIKE '%' || #{search} || '%'
-			</if>
-			<if test="condition == 'memberId'">
-				WRITER LIKE '%' || #{search} || '%'
-			</if>
-		</where>
-	</sql>
-
 	<!-- SELECT -->
 	<select id="getProductReviewList" resultType="ProductReviewDTO" parameterType="Pagination">
 		SELECT * FROM
@@ -25,7 +13,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				SELECT ROWNUM R, C.* FROM
 					(
 						SELECT * FROM PRODUCTREVIEW
-						<include refid="productReviewCondition"></include>
 						WHERE PRODUCTNUM = #{productNum}
 						ORDER BY PRODUCTREVIEWDATE DESC
 					) C
@@ -33,21 +20,56 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
 	</select>
 	
+	<select id="getProductReviewDetail" resultMap="getProductReviewDetailResult" parameterType="ProductReviewDTO">
+  		SELECT * FROM PRODUCTREVIEW
+  			LEFT OUTER JOIN
+  			PRODUCTREVIEWIMG
+  			USING (PRODUCTREVIEWNUM)
+  		WHERE PRODUCTREVIEWNUM = #{productReviewNum}
+  	</select>
+  	
+  	<resultMap type="ProductReviewDTO" id="getProductReviewDetailResult">
+		<id column="PRODUCTREVIEWNUM" property="productReviewNum"/>
+		<result column="PRODUCTNUM" property="productNum"/>
+		<result column="MEMBERID" property="memberId"/>
+		<result column="PRODUCTREVIEWTITLE" property="productReviewTitle"/>
+		<result column="PRODUCTREVIEWCONTENTS" property="productReviewContents"/>
+		<result column="PRODUCTREVIEWDATE" property="productReviewDate"/>
+		<result column="PRODUCTRATING" property="productRating"/>
+		<collection property="productReviewImgDTOs" javaType="List" ofType="productReviewImgDTO">
+  			<id column="PRODUCTREVIEWIMGNUM" property="productReviewImgNum"/>
+  			<result column="IMGNAME" property="imgName"/>
+  			<result column="ORIGINALNAME" property="originalName"/>
+  		</collection>
+	</resultMap>
+	
+	<select id="getProductReviewImgList" resultType="ProductReviewImgDTO" parameterType="ProductReviewDTO">
+		SELECT * FROM PRODUCTREVIEWIMG
+		WHERE PRODUCTREVIEWNUM = #{productReviewNum}
+	</select>
+	
 	<select id="getTotalCount" resultType="Long" parameterType="Pagination">
 		SELECT COUNT(PRODUCTREVIEWNUM) FROM PRODUCTREVIEW
-		<include refid="productReviewCondition"></include>
 		WHERE PRODUCTNUM = #{productNum}
 	</select>
 	
 	<!-- INSERT -->
 	<insert id="setProductReviewAdd" parameterType="ProductReviewDTO">
+		<selectKey keyProperty="productReviewNum" resultType="Long" order="BEFORE">
+  			SELECT PRODUCTREVIEW_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
   		INSERT INTO PRODUCTREVIEW
-		VALUES (PRODUCTREVIEW_SEQ.NEXTVAL, #{productNum}, #{memberId}, #{productReviewContents}, SYSDATE, #{productRating})
+		VALUES (#{productReviewNum}, #{productNum}, #{memberId}, #{productReviewTitle}, #{productReviewContents}, SYSDATE, #{productRating})
+	</insert>
+	
+	<insert id="setProductReviewImgAdd" parameterType="ProductReviewImgDTO">
+		INSERT INTO PRODUCTREVIEWIMG
+		VALUES (PRODUCTREVIEWIMG_SEQ.NEXTVAL, #{productReviewNum}, #{imgName}, #{originalName})
 	</insert>
 	
 	<!-- UPDATE -->
 	<update id="setProductReviewUpdate" parameterType="ProductReviewDTO">
-		UPDATE PRODUCTREVIEW SET PRODUCTREVIEWCONTENTS = #{productReviewContents}, PRODUCTRATING = #{productRating}
+		UPDATE PRODUCTREVIEW SET PRODUCTREVIEWTITLE = #{productReviewTitle}, PRODUCTREVIEWCONTENTS = #{productReviewContents}, PRODUCTRATING = #{productRating}
 		WHERE PRODUCTREVIEWNUM = #{productReviewNum}
 	</update>
 	
@@ -55,6 +77,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="setProductReviewDelete" parameterType="ProductReviewDTO">
 		DELETE PRODUCTREVIEW
 		WHERE PRODUCTREVIEWNUM = #{productReviewNum}
+	</delete>
+	
+	<delete id="setProductReviewImgDelete" parameterType="Long">
+		DELETE PRODUCTREVIEWIMG
+		WHERE IMGNUM = #{imgNum}
 	</delete>
 
 </mapper>

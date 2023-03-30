@@ -33,8 +33,8 @@ public class LessonDAOTest extends MyTestCase {
 		
 			LessonDTO lessonDTO = new LessonDTO();
 			
-			lessonDTO.setMemberId("id3");
-			lessonDTO.setLessonTitle("딱복");
+			lessonDTO.setMemberId("mhj");
+			lessonDTO.setLessonTitle("딱복"+i);
 			lessonDTO.setLessonContents("물복");
 			lessonDTO.setLessonDate(date);
 		

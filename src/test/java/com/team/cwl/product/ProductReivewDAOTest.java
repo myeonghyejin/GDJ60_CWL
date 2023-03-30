@@ -37,11 +37,12 @@ public class ProductReivewDAOTest extends MyTestCase {
 		
 			ProductReviewDTO productReviewDTO = new ProductReviewDTO();
 			
-			productReviewDTO.setProductNum(1L);
-			productReviewDTO.setMemberId("id3");
-			productReviewDTO.setProductReviewContents("딱딱복숭아");
+			productReviewDTO.setProductNum(30L);
+			productReviewDTO.setMemberId("hyj");
+			productReviewDTO.setProductReviewTitle("딱딱복숭아"+i);
+			productReviewDTO.setProductReviewContents("말랑복숭아");
 			productReviewDTO.setProductReviewDate(date);
-			productReviewDTO.setProductRating(3.8);
+			productReviewDTO.setProductRating(1);
 		
 			int result = productReviewDAO.setProductReviewAdd(productReviewDTO);
 		}
