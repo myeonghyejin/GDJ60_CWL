@@ -29,7 +29,7 @@ public class LessonReviewController {
 		List<LessonReviewDTO> ar = lessonReviewService.getLessonReviewList(pagination);
 		
 		modelAndView.addObject("list", ar);
-		modelAndView.setViewName("lesson/review");
+		modelAndView.setViewName("lesson/review/review");
 		
 		return modelAndView;
 	}

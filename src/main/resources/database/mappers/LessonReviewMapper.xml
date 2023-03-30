@@ -6,18 +6,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.team.cwl.lesson.review.LessonReviewDAO">
 
-	<!-- SQL -->
-	<sql id="lessonReviewCondition">
-		<where>
-			<if test="condition == 'lessonReviewContents'">
-				CONTENTS LIKE '%' || #{search} || '%'
-			</if>
-			<if test="condition == 'memberId'">
-				WRITER LIKE '%' || #{search} || '%'
-			</if>
-		</where>
-	</sql>
-
 	<!-- SELECT -->
 	<select id="getLessonReviewList" resultType="LessonReviewDTO" parameterType="Pagination">
 		SELECT * FROM
@@ -25,7 +13,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				SELECT ROWNUM R, C.* FROM
 					(
 						SELECT * FROM LESSONREVIEW
-						<include refid="lessonReviewCondition"></include>
 						WHERE LESSONNUM = #{lessonNum}
 						ORDER BY LESSONREVIEWDATE DESC
 					) C
@@ -35,7 +22,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getTotalCount" resultType="Long" parameterType="Pagination">
 		SELECT COUNT(LESSONREVIEWNUM) FROM LESSONREVIEW
-		<include refid="lessonReviewCondition"></include>
 		WHERE LESSONNUM = #{lessonNum}
 	</select>
 	
