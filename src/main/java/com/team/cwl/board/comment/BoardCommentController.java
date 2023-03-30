@@ -28,7 +28,7 @@ public class BoardCommentController {
 	public ModelAndView getBoardCommentList(Pagination pagination, ModelAndView modelAndView) throws Exception {
 		List<BoardCommentDTO> ar = boardCommentService.getBoardCommentList(pagination);
 		
-		modelAndView.setViewName("board/comment");
+		modelAndView.setViewName("board/comment/comment");
 		modelAndView.addObject("list", ar);
 		
 		return modelAndView;

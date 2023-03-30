@@ -60,7 +60,6 @@ public class LessonController {
 	@PostMapping("add")
 	public ModelAndView setLessonAdd(LessonDTO lessonDTO, MultipartFile [] imgs, HttpSession session, ModelAndView modelAndView) throws Exception {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		
 		lessonDTO.setMemberId(memberDTO.getMemberId());
 		
 		int result = lessonService.setLessonAdd(lessonDTO, imgs, session);
