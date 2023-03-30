@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.team.cwl.lesson.LessonImgDTO;
 import com.team.cwl.util.Pagination;
 
 @Repository
@@ -29,7 +30,7 @@ public class ProductDAO {
 	public List<ProductImgDTO> getProductImgList(ProductDTO productDTO) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"getProductImgList", productDTO);
 	}
-
+	
 	public Long getTotalCount(Pagination pagination) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"getTotalCount", pagination);
 	}

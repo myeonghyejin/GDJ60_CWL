@@ -36,10 +36,12 @@
 					<label for="productPrice" class="form-label">가격</label>
 					<input type="text" name="productPrice" class="form-control" id="productPrice""><br>
 				</div>
-				<div class="fw-bold fs-5 col-12 input-group">
-					<input type="file" class="form-control" id="productImg" aria-describedby="productImg" name="multipartfile" aria-label="Upload">
-  					<button class="btn btn-outline-secondary" type="button" id="productImg" name="multipartfile">X</button>
-				</div>	
+				<div id="imgList">
+					<div class="fw-bold fs-5 col-12 input-group">
+						<input type="file" class="form-control" name="imgs">
+						<button type="button" class="btn btn-outline-primary" id="imgAdd">ADD</button>
+					</div>	
+				</div>
 				<div class="fw-bold fs-5 col-12 mu-4">
 					<div class="form-check form-check-inline">
 						<label for="bs1" class="form-check-label" id="inlineRadio1">판매</label>
@@ -56,9 +58,11 @@
 			</div>
 	   </form>
 	</div>
-	<c:import url="../template/common_js.jsp"></c:import>
+	<script src="../resources/js/fileManager.js"></script>
 	<script>
+		setMax(4);
 		$('#productDetail').summernote();
 	</script>
+	<c:import url="../template/common_js.jsp"></c:import>
 </body>
 </html>

@@ -80,11 +80,8 @@ public class ProductController {
 	
 	/** UPDATE **/
 	//입력 폼으로 이동
-	//Overloading 하기 위해 매개 변수에 ModelAndView 빠짐
 	@GetMapping("update")
-	public ModelAndView setProductUpdate(ProductDTO productDTO) throws Exception {
-		ModelAndView modelAndView = new ModelAndView();
-		
+	public ModelAndView setProductUpdate(ProductDTO productDTO, ModelAndView modelAndView) throws Exception {
 		productDTO = productService.getProductDetail(productDTO);
 		
 		modelAndView.addObject("DTO", productDTO);
@@ -121,7 +118,7 @@ public class ProductController {
 		String message = "삭제에 실패했습니다.";
 		
 		if(result > 0) {
-			message = "삭제에 성공했습니다.";
+			message = "삭제되었습니다.";
 		}
 		
 		modelAndView.addObject("result", message);

@@ -1,5 +1,4 @@
 const frm = document.getElementById("frm");
-const u = document.getElementById("update");
 const d = document.getElementById("delete");
 
 d.addEventListener("click", function(){

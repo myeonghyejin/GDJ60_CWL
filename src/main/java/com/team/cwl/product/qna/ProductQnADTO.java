@@ -7,6 +7,7 @@ public class ProductQnADTO {
 	private Long productQnANum;
 	private Long productNum;
 	private String memberId;
+	private String productQnATitle;
 	private String productQnAContents;
 	private Date productQnADate;
 	private Long productQnARef;
@@ -30,6 +31,12 @@ public class ProductQnADTO {
 	}
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
+	}
+	public String getProductQnATitle() {
+		return productQnATitle;
+	}
+	public void setProductQnATitle(String productQnATitle) {
+		this.productQnATitle = productQnATitle;
 	}
 	public String getProductQnAContents() {
 		return productQnAContents;

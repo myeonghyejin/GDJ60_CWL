@@ -35,10 +35,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
   	</select>
   	
-  	<select id="getLessonDetail" resultType="LessonDTO" parameterType="LessonDTO">
+  	<select id="getLessonDetail" resultMap="getLessonDetailResult" parameterType="LessonDTO">
   		SELECT * FROM LESSON
+  			LEFT OUTER JOIN
+  			LESSONIMG
+  			USING (LESSONNUM)
   		WHERE LESSONNUM = #{lessonNum}
   	</select>
+  	
+  	<resultMap type="LessonDTO" id="getLessonDetailResult">
+		<id column="LESSONNUM" property="lessonNum"/>
+		<result column="MEMBERID" property="memberId"/>
+		<result column="LESSONTITLE" property="lessonTitle"/>
+		<result column="LESSONCONTENTS" property="lessonContents"/>
+		<result column="LESSONHIT" property="lessonHit"/>
+		<result column="LESSONDATE" property="lessonDate"/>
+		<collection property="lessonImgDTOs" javaType="List" ofType="LessonImgDTO">
+			<id column="LESSONIMGNUM" property="lessonImgNum"/>
+			<result column="IMGNAME" property="imgName"/>
+			<result column="ORIGINALNAME" property="originalName"/>
+		</collection>
+	</resultMap>
   	
   	<select id="getLessonImgList" resultType="LessonImgDTO" parameterType="LessonDTO">
   		SELECT * FROM LESSONIMG

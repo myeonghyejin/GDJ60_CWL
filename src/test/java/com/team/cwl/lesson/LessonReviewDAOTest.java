@@ -35,9 +35,9 @@ public class LessonReviewDAOTest extends MyTestCase {
 		
 			LessonReviewDTO lessonReviewDTO = new LessonReviewDTO();
 			
-			lessonReviewDTO.setLessonNum(31L);
-			lessonReviewDTO.setMemberId("id3");
-			lessonReviewDTO.setLessonReviewContents("물복");
+			lessonReviewDTO.setLessonNum(30L);
+			lessonReviewDTO.setMemberId("mhj");
+			lessonReviewDTO.setLessonReviewContents("물복"+i);
 			lessonReviewDTO.setLessonReviewDate(date);
 			lessonReviewDTO.setLessonRating(4.1);
 		
