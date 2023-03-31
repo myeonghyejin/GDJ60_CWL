@@ -190,6 +190,116 @@
         <!-- Main Content -->
         <div class="main main-visible overflow-hidden h-100">
             
+            <div class="chat d-flex flex-row h-100">
+                <!-- Chat -->
+                <div class="chat-body h-100 w-100 d-flex flex-column">
+                    <!-- Chat Header -->
+                    <div class="chat-header d-flex align-items-center border-bottom px-2">
+                        <div class="container-fluid">
+                            <div class="row align-items-center g-0">
+                                <div class="col-8 col-sm-5">
+                                    <div class="d-flex align-items-center">
+
+                                        <!-- Text -->
+                                        <div class="flex-grow-1 overflow-hidden">
+                                            <h6 class="d-block text-truncate mb-1">Ariel Martinez</h6>
+                                        </div>
+                                        <!-- Text -->
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Chat Header -->
+
+                    <!-- Chat Content -->
+                    <div class="chat-content hide-scrollbar h-100">
+                        <!-- Messages -->
+                        <div class="container-fluid g-0 p-4">
+                            <div class="chatMsg">
+                            <!-- Message 1 -->
+                                <!-- <div class="message">
+                                    <div class="message-wrap">
+                                        <div class="message-item">
+                                            <div class="message-content">
+                                                <span>Hi John, please take a look at the result of my work, this is a project that I am currently working on.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="message-info">
+                                        <div>
+                                            <h6 class="mb-0">Ariel Martinez</h6>
+                                            <small class="text-muted">9:15 PM
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>  -->
+                            <!-- Message 1 -->
+                            </div>
+
+                            <!-- Message 2 -->
+                            <!-- <div class="message self">
+                                <div class="message-wrap">
+                                    <div class="message-item">
+                                        <div class="message-content">
+                                            <span>Hi Ariel, it looks great except for a few things.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="message-item">
+                                    <div class="message-content">
+                                        <span>Now I will try to explain, the primari color is strongly out of the general composition, try to use flatter colors.</span>
+                                    </div>
+                                </div>
+                                <div class="message-info">
+                                    <div>
+                                        <h6 class="mb-0">John Davis</h6>
+                                        <small class="text-muted">9:26 PM
+                                        </small>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <!-- Message 2 -->
+                        </div>
+                        <!-- Messages -->
+
+                        <!-- Scroll Chat to Bottom -->
+                        <div class="js-scroll-to-bottom"></div>
+                        <!-- Scroll Chat to Bottom -->
+                    </div>
+                    <!-- Chat Content -->
+
+                    <!-- Chat Footer -->
+                    <div class="chat-footer d-flex align-items-center border-top px-2">
+                        <div class="container-fluid">
+                            <div class="row align-items-center g-4">
+                                <!-- Input -->
+                                <div class="col">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control form-control-lg" placeholder="Type message" aria-label="type message" id="txtMessage">
+                                    </div>
+                                </div>
+                                <!-- Input -->
+
+                                <!-- Button -->
+                                <div class="col-auto">
+                                    <ul class="list-inline d-flex align-items-center mb-0">
+                                        <li class="list-inline-item">
+                                            <button type="submit" class="btn btn-icon btn-primary btn-lg rounded-circle" id="sendButton">
+                                                <i class="ri-send-plane-fill"></i>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- Button -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Chat Footer -->
+                </div>
+                <!-- Chat -->
+            </div>
         </div>
         <!-- Main Content -->
     </div>

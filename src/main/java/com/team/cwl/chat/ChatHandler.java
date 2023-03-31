@@ -52,6 +52,7 @@ public class ChatHandler extends TextWebSocketHandler{
 		System.out.println();
 		if(strMessage.equals("list")) {
 			session.sendMessage(new TextMessage("list:"+maps.keySet().toString()));
+			return;
 		}
 		
 		
