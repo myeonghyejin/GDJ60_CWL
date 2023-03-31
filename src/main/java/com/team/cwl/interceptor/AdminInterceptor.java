@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.team.cwl.member.MemberDTO;
 
@@ -27,6 +28,20 @@ public class AdminInterceptor implements HandlerInterceptor {
 		
 		
 		return true;   //  관리자 계정 로그인 경우 (memberDTOs != null && memberDTOs.getAdmincheck() == 1)
+	}
+
+	@Override
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+			ModelAndView modelAndView) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+			throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

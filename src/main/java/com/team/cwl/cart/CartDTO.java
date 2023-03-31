@@ -1,5 +1,9 @@
 package com.team.cwl.cart;
 
+import java.util.List;
+
+import com.team.cwl.product.ProductImgDTO;
+
 public class CartDTO {
 	
 	private Long cartNum;
@@ -17,7 +21,10 @@ public class CartDTO {
 	
 	// 추가
 	private Long totalPrice;
-
+	
+	/* 상품 이미지 */
+	private List<ProductImgDTO> imageList;
+	
 	
 	public Long getCartNum() {
 		return cartNum;
@@ -75,15 +82,23 @@ public class CartDTO {
 		this.totalPrice = totalPrice;
 	}
 	
+	public List<ProductImgDTO> getImageList() {
+		return imageList;
+	}
+
+	public void setImageList(List<ProductImgDTO> imageList) {
+		this.imageList = imageList;
+	}
+
 	public void initTotal() {
 		this.totalPrice = this.productPrice * this.productStock;
 	}
 	
 	@Override
 	public String toString() {
-		return "CartDTO [cartNum=" + cartNum + ", memberId=" + memberId + ", productNum=" + productNum + ", productStock="
-				+ productStock + ", productName=" + productName + ", productPrice=" + productPrice+ ", totalPrice=" + totalPrice
-				+ "]";
+		return "CartDTO [cartNum=" + cartNum + ", memberId=" + memberId + ", productNum=" + productNum
+				+ ", productStock=" + productStock + ", productName=" + productName + ", productPrice=" + productPrice
+				+ ", totalPrice=" + totalPrice + ", imageList=" + imageList + "]";
 	}
 	
 	

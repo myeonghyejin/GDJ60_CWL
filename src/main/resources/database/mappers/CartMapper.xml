@@ -11,23 +11,22 @@
 	</insert>
 	
 	<!-- 카트 삭제 -->
-	<delete id="cartDelete" parameterType="CartDTO">
+	<delete id="cartDelete" parameterType="com.team.cwl.cart.CartDTO">
 		DELETE CART WHERE CARTNUM = #{cartNum}
 	</delete>
 	
 	<!-- 카트 수량 수정 -->
-	<update id="modifyCount" parameterType="CartDTO">
+	<update id="modifyCount" parameterType="com.team.cwl.cart.CartDTO">
 		UPDATE CART SET PRODUCTSTOCK = #{productStock} WHERE CARTNUM = #{cartNum}
 	</update>
 	
-	
-	<!-- 카트 목록 -->
+	<!-- 카트 목록 --> 
 	<select id="cartList" resultType="com.team.cwl.cart.CartDTO">
 		SELECT A.CARTNUM, A.MEMBERID, A.PRODUCTNUM, A.PRODUCTSTOCK, P.PRODUCTNAME, P.PRODUCTPRICE
 		FROM CART A
 		LEFT OUTER JOIN
 		PRODUCT P ON A.PRODUCTNUM = P.PRODUCTNUM
-		WHERE A.MEMBERID = P.MEMBERID
+		WHERE A.MEMBERID = #{memberId}
 	</select>
 	
 	<!-- 카트 확인 -->

@@ -150,9 +150,10 @@ public class MemberDTO {
 	@Override
 	public String toString() {
 		return "MemberDTO [memberId=" + memberId + ", memberPw=" + memberPw + ", memberName=" + memberName
-				+ ", memberPhone=" + memberPhone + ", memberAddress1=" + memberAddress1 + ", memberAddress2=" + memberAddress2
-				+ ", memberAddress3=" + memberAddress3 + ", memberEmail=" + memberEmail + ", adminCheck=" + adminCheck + ", memberGender=" + memberGender + ", memberSI=" + memberSI
-				 + ", memberAge=" + memberAge + ", money=" + money + "]";
+				+ ", memberPhone=" + memberPhone + ", memberAddress1=" + memberAddress1 + ", memberAddress2="
+				+ memberAddress2 + ", memberAddress3=" + memberAddress3 + ", memberEmail=" + memberEmail
+				+ ", adminCheck=" + adminCheck + ", memberGender=" + memberGender + ", memberSI=" + memberSI
+				+ ", memberAge=" + memberAge + ", money=" + money + "]";
 	}
 	
 	

@@ -54,14 +54,14 @@
 	
 	<!-- 인터셉터 적용 -->
 	<interceptors>
-		<!-- <interceptor>
+		<interceptor>
 			<mapping path="/member/login.do"></mapping>
 			<beans:bean id="loginInterceptor" class="com.team.cwl.interceptor.LoginInterceptor"></beans:bean>
-		</interceptor> -->
-		<!-- <interceptor>
+		</interceptor>
+		<interceptor>
 			<mapping path="/admin/**"></mapping>
 			<beans:bean id="AdminInterceptor" class="com.team.cwl.interceptor.AdminInterceptor"></beans:bean>
-		</interceptor> -->
+		</interceptor>
 		<interceptor>
 			<mapping path="/cart/**"/>
 			<exclude-mapping path="/cart/add"/>

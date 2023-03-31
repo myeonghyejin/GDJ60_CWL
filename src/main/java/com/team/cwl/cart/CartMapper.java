@@ -6,7 +6,7 @@ import java.util.List;
 import org.mybatis.spring.annotation.MapperScan;
 
 
-@MapperScan(basePackages = "CartMapper")
+
 public interface CartMapper {
 	/* 카트 추가 */
 	public int cartAdd(CartDTO cart) throws Exception;
