@@ -26,16 +26,17 @@ public class ChatHandler extends TextWebSocketHandler{
 	Map<String, List<WebSocketSession>> personal = new HashMap<String, List<WebSocketSession>>();
 	
 	
-	
+	//소켓 연결 
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		System.out.println("연결됨 : " + session);
+		System.out.println("소켓 연결됨 : " + session);
 		MemberDTO memberDTO=(MemberDTO)session.getAttributes().get("member");
-		System.out.println("로그인"+memberDTO.getMemberId());
+		System.out.println("채팅 로그인 : "+memberDTO.getMemberId());
 		maps.put(memberDTO.getMemberId(), session);
 		
 	}
 	
+	//소켓 종료 
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		System.out.println(session.getId());
@@ -44,10 +45,11 @@ public class ChatHandler extends TextWebSocketHandler{
 		super.afterConnectionClosed(session, status);
 	}
 	
+	//메세지 발송 
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		String strMessage=message.getPayload();
-		System.out.println(strMessage);
+		System.out.println("핸들러 메세지 : "+ strMessage);
 		MemberDTO memberDTO=(MemberDTO)session.getAttributes().get("member");
 		System.out.println();
 		if(strMessage.equals("list")) {
