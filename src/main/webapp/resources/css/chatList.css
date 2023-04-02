@@ -196,6 +196,13 @@ a {
 message-area
 ******************************** */
 
+
+/* 
+#map {
+    display: block;
+} */
+
+
 .message-area {
     height: 100vh;
     overflow: hidden;
@@ -238,6 +245,7 @@ message-area
     overflow: hidden;
     height: 100%;
     border-left: 1px solid #ccc;
+    display: none;
 }
 
 .chatbox .modal-dialog,

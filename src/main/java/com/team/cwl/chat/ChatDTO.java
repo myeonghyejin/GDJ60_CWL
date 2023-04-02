@@ -10,6 +10,7 @@ public class ChatDTO extends MemberDTO{
 	private String message;
 	private Date chatDate;
 
+
 	
 	
 
