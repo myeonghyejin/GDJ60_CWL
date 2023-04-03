@@ -24,8 +24,7 @@ public class CartDTO {
 	
 	/* 상품 이미지 */
 	private List<ProductImgDTO> imageList;
-	
-	
+
 	public Long getCartNum() {
 		return cartNum;
 	}
@@ -81,7 +80,7 @@ public class CartDTO {
 	public void setTotalPrice(Long totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-	
+
 	public List<ProductImgDTO> getImageList() {
 		return imageList;
 	}
@@ -90,9 +89,11 @@ public class CartDTO {
 		this.imageList = imageList;
 	}
 
+	
 	public void initTotal() {
-		this.totalPrice = this.productPrice * this.productStock;
+		this.totalPrice = this.productPrice*this.productStock;
 	}
+	
 	
 	@Override
 	public String toString() {
@@ -100,6 +101,9 @@ public class CartDTO {
 				+ ", productStock=" + productStock + ", productName=" + productName + ", productPrice=" + productPrice
 				+ ", totalPrice=" + totalPrice + ", imageList=" + imageList + "]";
 	}
+	
+	
+	
 	
 	
 }

@@ -63,7 +63,7 @@ public class CartController {
 		
 		cartService.modifyCount(cart);
 		
-		return "redirect:/cart/cart" + cart.getMemberId();
+		return "redirect:/cart/" + cart.getMemberId();
 		
 	}	
 	
@@ -73,7 +73,7 @@ public class CartController {
 		
 		cartService.cartDelete(cart.getCartNum());
 		
-		return "redirect:/cart/cart" + cart.getMemberId();
+		return "redirect:/cart/" + cart.getMemberId();
 		
 	}		
 }

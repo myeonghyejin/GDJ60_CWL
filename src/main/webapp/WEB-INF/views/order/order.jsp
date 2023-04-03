@@ -12,7 +12,6 @@
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 
 </head>
 <body>
-
 <div class="wrapper">
 	<div class="wrap">
 		<div class="top_gnb_area">
@@ -38,33 +37,10 @@
 					<li>
 						<a href="/cart/${member.memberId}">장바구니</a>
 					</li>
-				</c:if>				
-				<li>
-					고객센터
-				</li>			
+				</c:if>								
 			</ul>			
 		</div>
 		<div class="top_area">
-			<!-- 로고영역 -->
-			<div class="logo_area">
-				<a href="/main"><img src="/resources/img/mLogo.png"></a>
-			</div>
-			<div class="search_area">
-                	<div class="search_wrap">
-                		<form id="searchForm" action="/search" method="get">
-                			<div class="search_input">
-                				<select name="type">
-                					<option value="T">책 제목</option>
-                					<option value="A">작가</option>
-                				</select>
-                				<input type="text" name="keyword" value="<c:out value="${pageMaker.cri.keyword}"/>">
-                    			<button class='btn search_btn'>검 색</button>                				
-                			</div>
-                		</form>
-                	</div>
-			</div>
-			<div class="login_area">
-			
 				<!-- 로그인 하지 않은 상태 -->
 				<c:if test = "${member == null }">
 					<div class="login_button"><a href="/member/login">로그인</a></div>
@@ -75,8 +51,7 @@
 				<c:if test="${ member != null }">
 					<div class="login_success_area">
 						<span>회원 : ${member.memberName}</span>
-						<span>충전금액 : <fmt:formatNumber value="${member.money}" pattern="\#,###.##"/></span>
-						<a href="/member/memberLogout">로그아웃</a>
+						<span>충전금액 : <fmt:formatNumber value="${member.money}" pattern="\#,###.##"/></span>						
 					</div>
 				</c:if>
 				
@@ -94,7 +69,7 @@
 						<tbody>
 							<tr>
 								<th style="width: 25%;">주문자</th>
-								<td style="width: *">${memberInfo.memberName} | ${memberInfo.memberMail}</td>
+								<td style="width: *">${memberInfo.memberName} | ${memberInfo.memberEmail}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -123,12 +98,12 @@
 									<tr>
 										<th>주소</th>
 										<td>
-											${memberInfo.memberAddr1} ${memberInfo.memberAddr2}<br>${memberInfo.memberAddr3}
+											${memberInfo.memberAddress1} ${memberInfo.memberAddress2}<br>${memberInfo.memberAddress3}
 											<input class="selectAddress" value="T" type="hidden">
 											<input class="addressee_input" value="${memberInfo.memberName}" type="hidden">
-											<input class="address1_input" type="hidden" value="${memberInfo.memberAddr1}">
-											<input class="address2_input" type="hidden" value="${memberInfo.memberAddr2}">
-											<input class="address3_input" type="hidden" value="${memberInfo.memberAddr3}">																					
+											<input class="address1_input" type="hidden" value="${memberInfo.memberAddress1}">
+											<input class="address2_input" type="hidden" value="${memberInfo.memberAddress2}">
+											<input class="address3_input" type="hidden" value="${memberInfo.memberAddress3}">																					
 										</td>
 									</tr>
 								</tbody>
@@ -160,7 +135,7 @@
 							</table>
 						</div>
 					</div>
-				</div>				
+				</div>	
 				<!-- 상품 정보 -->
 				<div class="orderGoods_div">
 					<!-- 상품 종류 -->
@@ -198,12 +173,12 @@
 									</td>
 									<td>${ol.productName}</td>
 									<td class="goods_table_price_td">
-										<fmt:formatNumber value="${ol.productPrice}" pattern="#,### 원" /> | 수량 ${ol.orderCount}개
+										<fmt:formatNumber value="${ol.productPrice}" pattern="#,### 원" /> | 수량 ${ol.productStock}개
 										<br><fmt:formatNumber value="${ol.totalPrice}" pattern="#,### 원" />
 										
 										<input type="hidden" class="individual_productPrice_input" value="${ol.productPrice}">
-										<input type="hidden" class="individual_orderCount_input" value="${ol.orderCount}">
-										<input type="hidden" class="individual_totalPrice_input" value="${ol.productPrice * ol.orderCount}">
+										<input type="hidden" class="individual_orderCount_input" value="${ol.productStock}">
+										<input type="hidden" class="individual_totalPrice_input" value="${ol.productPrice * ol.productStock}">
 										
 										<input type="hidden" class="individual_productNum_input" value="${ol.productNum}">
 									</td>
@@ -212,7 +187,7 @@
 
 						</tbody>
 					</table>
-				</div>		
+				</div>
 											
 				<!-- 주문 종합 정보 -->
 				<div class="total_info_div">
@@ -225,7 +200,7 @@
 							</li>
 							<li>
 								<span class="price_span_label">배송비</span>
-								<span class="delivery_price_span">100000</span>원
+								<span class="orderFee_price_span">100000</span>원
 							</li>																																
 							<li class="price_total_li">
 								<strong class="price_span_label total_price_label">최종 결제 금액</strong>
@@ -243,17 +218,17 @@
 					</div>
 				</div>				
 				
-			</div>			
+			</div>
 
 			<!-- 주문 요청 form -->
 			<form class="order_form" action="/order" method="post">
 				<!-- 주문자 회원번호 -->
 				<input name="memberId" value="${memberInfo.memberId}" type="hidden">
-				<!-- 주소록 & 받는이-->
+				<!-- <!-- 주소록 & 받는이-->
 				<input name="addressee" type="hidden">
 				<input name="memberAddress1" type="hidden">
 				<input name="memberAddress2" type="hidden">
-				<input name="memberAddress3" type="hidden">
+				<input name="memberAddress3" type="hidden"> -->
 				<!-- 상품 정보 -->
 			</form>
 			
@@ -372,7 +347,7 @@ function setTotalInfo(){
 	let totalPrice = 0;				// 총 가격
 	let totalCount = 0;				// 총 갯수
 	let totalKind = 0;				// 총 종류
-	let deliveryPrice = 0;			// 배송비
+	let orderFeePrice = 0;			// 배송비
 	let finalTotalPrice = 0; 		// 최종 가격(총 가격 + 배송비)	
 	
 	$(".goods_table_price_td").each(function(index, element){
@@ -385,18 +360,14 @@ function setTotalInfo(){
 	});	
 	/* 배송비 결정 */
 	if(totalPrice >= 30000){
-		deliveryPrice = 0;
+		orderFee = 0;
 	} else if(totalPrice == 0){
-		deliveryPrice = 0;
+		orderFee = 0;
 	} else {
-		deliveryPrice = 3000;	
+		orderFee = 3000;	
 	}
 	
-	finalTotalPrice = totalPrice + deliveryPrice;	
-	
-	
-	
-	finalTotalPrice = totalPrice - usePoint;	
+	finalTotalPrice = totalPrice + orderFee;		
 	
 	/* 값 삽입 */
 	// 총 가격
@@ -406,7 +377,7 @@ function setTotalInfo(){
 	// 총 종류
 	$(".goods_kind_div_kind").text(totalKind);
 	// 배송비
-	$(".delivery_price_span").text(deliveryPrice.toLocaleString());	
+	$(".orderFee_price_span").text(orderFeePrice.toLocaleString());	
 	// 최종 가격(총 가격 + 배송비)
 	$(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());			
 	

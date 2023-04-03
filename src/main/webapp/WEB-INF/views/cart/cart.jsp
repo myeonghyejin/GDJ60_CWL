@@ -185,7 +185,7 @@
 		</div>
 		
 		<!-- 수량 조정 form -->
-		<form action="./cartUpdate" method="post" class="quantity_update_form">
+		<form action="./cartUpdate" method="post" class	="quantity_update_form">
 			<input type="hidden" name="cartNum" class="update_cartNum">
 			<input type="hidden" name="productStock" class="update_productStock">
 			<input type="hidden" name="memberId" value="${member.memberId}">
@@ -198,7 +198,6 @@
 		</form>		
 		<!-- 주문 form -->
 		<form action="/order/${member.memberId}" method="get" class="order_form">
-
 		</form>				
 	</div>
 </div>	
@@ -308,7 +307,7 @@ $(".minus_btn").on("click", function(){
 });
 /* 수량 수정 버튼 */
 $(".quantity_modify_btn").on("click", function(){
-	let cartNum = $(this).data("cartNum");
+	let cartNum = $(this).attr("data-cartNum");
 	let productStock = $(this).parent("td").find("input").val();
 	$(".update_cartNum").val(cartNum);
 	$(".update_productStock").val(productStock);
@@ -318,7 +317,7 @@ $(".quantity_modify_btn").on("click", function(){
 /* 장바구니 삭제 버튼 */
 $(".delete_btn").on("click", function(e){
 	e.preventDefault();
-	const cartNum = $(this).data("cartNum");
+	const cartNum = $(this).attr("data-cartNum");
 	$(".delete_cartNum").val(cartNum);
 	$(".quantity_delete_form").submit();
 });

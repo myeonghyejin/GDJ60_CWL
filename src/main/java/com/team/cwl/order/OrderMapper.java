@@ -29,12 +29,12 @@ public interface OrderMapper {
 	public int deductStock(ProductDTO product);
 	
 	// 주문 취소
-	public int orderCancel(String orderNum);
+	public int orderCancel(Long orderNum);
 	
 	// 주문 상품 정보(주문취소)
-	public List<OrderItemDTO> getOrderItemInfo(String orderNum);
+	public List<OrderItemDTO> getOrderItemInfo(Long orderNum);
 	
 	// 주문 정보(주문취소)
-	public OrderDTO getOrder(String orderNum);
+	public OrderDTO getOrder(Long orderNum);
 	
 }

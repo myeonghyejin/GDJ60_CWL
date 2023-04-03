@@ -1,11 +1,15 @@
 package com.team.cwl.order;
 
+import java.util.List;
+
+import com.team.cwl.product.ProductImgDTO;
+
 public class OrderPageItemDTO {
 	
 	// 뷰로부터 전달받을 값
 	private Long productNum;
 	
-	private Long orderCount;
+	private Long productStock;
 	
 	// DB로부터 꺼내올 값
 	private String productName;
@@ -14,6 +18,8 @@ public class OrderPageItemDTO {
 	
 	// 만들어 낼 값
 	private Long totalPrice;
+	
+	private List<ProductImgDTO> imageList;
 
 	
 	public Long getProductNum() {
@@ -24,12 +30,12 @@ public class OrderPageItemDTO {
 		this.productNum = productNum;
 	}
 
-	public Long getOrderCount() {
-		return orderCount;
+	public Long getProductStock() {
+		return productStock;
 	}
 
-	public void setOrderCount(Long orderCount) {
-		this.orderCount = orderCount;
+	public void setProductStock(Long productStock) {
+		this.productStock = productStock;
 	}
 
 	public String getProductName() {
@@ -56,15 +62,23 @@ public class OrderPageItemDTO {
 		this.totalPrice = totalPrice;
 	}
 	
-	
+	public List<ProductImgDTO> getImageList() {
+		return imageList;
+	}
+
+	public void setImageList(List<ProductImgDTO> imageList) {
+		this.imageList = imageList;
+	}
+
 	public void initTotal() {
-		this.totalPrice = this.productPrice*this.orderCount;
+		this.totalPrice = this.productPrice*this.productStock;
 	}
 	
 	@Override
 	public String toString() {
-		return "OrderPageItemDTO [productNum=" + productNum + ", orderCount=" + orderCount + ", productName=" + productName
-				+ ", productPrice=" + productPrice + ", totalPrice=" + totalPrice + "]";
+		return "OrderPageItemDTO [productNum=" + productNum + ", productStock=" + productStock + ", productName="
+				+ productName + ", productPrice=" + productPrice + ", totalPrice=" + totalPrice + ", imageList="
+				+ imageList + "]";
 	}
 	
 	

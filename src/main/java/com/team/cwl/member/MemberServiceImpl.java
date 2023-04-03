@@ -33,6 +33,7 @@ public class MemberServiceImpl implements MemberService {
 		return memberMapper.getMemberInfo(memberId);
 	}
 	
+	/* 마이페이지 */
 	public MemberDTO getMemberPage(MemberDTO memberDTO) throws Exception {
 		return memberMapper.memberLogin(memberDTO);
 	}

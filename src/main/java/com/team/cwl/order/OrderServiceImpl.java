@@ -15,6 +15,7 @@ import com.team.cwl.member.MemberDTO;
 import com.team.cwl.member.MemberMapper;
 import com.team.cwl.product.ProductDAO;
 import com.team.cwl.product.ProductDTO;
+import com.team.cwl.product.ProductImgDTO;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -28,7 +29,7 @@ public class OrderServiceImpl implements OrderService {
 	@Autowired
 	private CartMapper cartMapper;
 
-//	@Autowired
+	@Autowired
 	private ProductDAO productDAO;
 	
 	@Override
@@ -38,9 +39,11 @@ public class OrderServiceImpl implements OrderService {
 		
 		for(OrderPageItemDTO ord : orders) {
 			OrderPageItemDTO productDetail = orderMapper.getProductDetail(ord.getProductNum());
-			productDetail.setOrderCount(ord.getOrderCount());
+			productDetail.setProductStock(ord.getProductStock());
 			
 			productDetail.initTotal();
+			
+			List<ProductImgDTO> imageList = productDAO.getProductImgList(productDetail.getProductNum());
 			
 			result.add(productDetail);
 		}
@@ -58,7 +61,7 @@ public class OrderServiceImpl implements OrderService {
 		for(OrderItemDTO oit : ord.getOrders()) {
 			OrderItemDTO orderItem = orderMapper.getOrderInfo(oit.getProductNum());
 			// 수량 세팅
-			orderItem.setOrderCount(oit.getOrderCount());
+			orderItem.setProductStock(oit.getProductStock());
 			// 기본정보 세팅
 			orderItem.initTotal();
 			// List 객체 추가
@@ -92,8 +95,8 @@ public class OrderServiceImpl implements OrderService {
 		/* 재고 변동 적용 */
 		for(OrderItemDTO oit : ord.getOrders()) {
 			// 변동 재고 값 구하기
-			ProductDTO productDTO = productDAO.getGoodsInfo(oit.getProductNum());
-			productDTO.setProductStock(productDTO.getProductStock() - oit.getOrderCount());
+			ProductDTO productDTO = productDAO.getProductDetail(oit.getProductNum());
+			productDTO.setProductStock(productDTO.getProductStock() - oit.getProductStock());
 			// 변동 값 DB 적용
 			orderMapper.deductStock(productDTO);
 		}
@@ -139,7 +142,7 @@ public class OrderServiceImpl implements OrderService {
 		// 재고
 		for(OrderItemDTO ord : orw.getOrders()) {
 			ProductDTO productDTO = productDAO.getProductDetail(ord.getProductNum());
-			productDTO.setProductStock(productDTO.getProductStock() + ord.getOrderCount());
+			productDTO.setProductStock(productDTO.getProductStock() + ord.getProductStock());
 			orderMapper.deductStock(productDTO);
 		}
 		

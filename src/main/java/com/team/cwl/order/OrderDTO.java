@@ -5,7 +5,7 @@ import java.util.List;
 
 public class OrderDTO {
 	// 주문 번호
-	private String orderNum;
+	private Long orderNum;
 	// 배송 받는 사람
 	private String addressee;
 	// 회원 아이디
@@ -34,11 +34,11 @@ public class OrderDTO {
 	private Long orderFinalSalePrice;
 	
 	
-	public String getOrderNum() {
+	public Long getOrderNum() {
 		return orderNum;
 	}
 
-	public void setOrderNum(String orderNum) {
+	public void setOrderNum(Long orderNum) {
 		this.orderNum = orderNum;
 	}
 
