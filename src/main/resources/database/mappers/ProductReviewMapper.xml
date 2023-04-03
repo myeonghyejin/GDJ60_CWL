@@ -48,11 +48,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE PRODUCTREVIEWNUM = #{productReviewNum}
 	</select>
 	
-	<select id="getProductReviewImgDetail" resultType="ProductReviewImgDTO" parameterType="ProductReviewImgDTO">
-		SELECT * FROM PRODUCTREVIEWIMG
-		WHERE PRODUCTREVIEWIMGNUM = #{productReviewImgNum}
-	</select>
-	
 	<select id="getTotalCount" resultType="Long" parameterType="Pagination">
 		SELECT COUNT(PRODUCTREVIEWNUM) FROM PRODUCTREVIEW
 		WHERE PRODUCTNUM = #{productNum}

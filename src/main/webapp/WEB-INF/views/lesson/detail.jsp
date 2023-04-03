@@ -50,39 +50,41 @@
 			<p class="fs-2" style="font-family: 'Impact'">REVIEW</p>
 		</div>
  		
-		<div class="row" id="lessonReviewListResult">
+		<div class="row" id="lessonReviewListResult" data-lesson-review="${DTO.lessonNum}">
 		</div>
-	
-		<div class="row my-5">
-			<div class="fw-bold fs-5 col-12 mb-3">
-					<div class="form-check form-check-inline">
-						<label for="bs1" class="form-check-label" id="oneStar">★</label>
-						<input id="bs1" type="radio" id="oneStar" name="lessonRating" value="1" checked class="form-check-input lessonRating" for="oneStar">
+		
+		<c:if test="${not empty member}">
+			<div class="row my-5">
+				<div class="fw-bold fs-5 col-12 mb-3">
+						<div class="form-check form-check-inline">
+							<label for="bs1" class="form-check-label" id="oneStar">★</label>
+							<input id="bs1" type="radio" id="oneStar" name="lessonRating" value="1" checked class="form-check-input lessonRating" for="oneStar">
+						</div>
+						<div class="form-check form-check-inline">
+							<label for="bs2" class="form-check-label" id="twoStars">★★</label>
+							<input id="bs2" type="radio" id="twoStars" name="lessonRating" value="2" class="form-check-input lessonRating" for="twoStars">
+						</div>
+						<div class="form-check form-check-inline">
+							<label for="bs3" class="form-check-label" id="threeStars">★★★</label>
+							<input id="bs3" type="radio" id="threeStars" name="lessonRating" value="3" class="form-check-input lessonRating" for="threeStars">
+						</div>
+						<div class="form-check form-check-inline">
+							<label for="bs4" class="form-check-label" id="fourStars">★★★★</label>
+							<input id="bs4" type="radio" id="fourStars" name="lessonRating" value="4" class="form-check-input lessonRating" for="fourStars">
+						</div>
+						<div class="form-check form-check-inline">
+							<label for="bs5" class="form-check-label" id="fiveStars">★★★★★</label>
+							<input id="bs5" type="radio" id="fiveStars" name="lessonRating" value="5" class="form-check-input lessonRating" for="fiveStars">
+						</div>
 					</div>
-					<div class="form-check form-check-inline">
-						<label for="bs2" class="form-check-label" id="twoStars">★★</label>
-						<input id="bs2" type="radio" id="twoStars" name="lessonRating" value="2" class="form-check-input lessonRating" for="twoStars">
-					</div>
-					<div class="form-check form-check-inline">
-						<label for="bs3" class="form-check-label" id="threeStars">★★★</label>
-						<input id="bs3" type="radio" id="threeStars" name="lessonRating" value="3" class="form-check-input lessonRating" for="threeStars">
-					</div>
-					<div class="form-check form-check-inline">
-						<label for="bs4" class="form-check-label" id="fourStars">★★★★</label>
-						<input id="bs4" type="radio" id="fourStars" name="lessonRating" value="4" class="form-check-input lessonRating" for="fourStars">
-					</div>
-					<div class="form-check form-check-inline">
-						<label for="bs5" class="form-check-label" id="fiveStars">★★★★★</label>
-						<input id="bs5" type="radio" id="fiveStars" name="lessonRating" value="5" class="form-check-input lessonRating" for="fiveStars">
-					</div>
+				<div class="mb-3">
+					<textarea class="form-control" rows="3" id="lessonReviewContents"></textarea>
 				</div>
-			<div class="mb-3">
-				<textarea class="form-control" rows="3" id="lessonReviewContents"></textarea>
+				<div class="mb-3">
+					<button type="button" class="btn btn-primary" id="lessonReviewAdd" data-lesson-review="${DTO.lessonNum}">작성</button>
+				</div>
 			</div>
-			<div class="mb-3">
-				<button type="button" class="btn btn-primary" id="lessonReviewAdd" data-lesson-review="${DTO.lessonNum}">작성</button>
-			</div>
-		</div>
+		</c:if>
 		
 		<!-- Update Form -->
 		<!-- Modal -->
@@ -110,7 +112,6 @@
 	</div>
 	
 	<c:import url="../template/common_js.jsp"></c:import>
-	<script src="/resources/js/lessonReview.js"></script>
-	<script type="text/javascript" src="../resources/js/confirm.js"></script>
+	<script src="/resources/js/lesson/review.js"></script>
 </body>
 </html>

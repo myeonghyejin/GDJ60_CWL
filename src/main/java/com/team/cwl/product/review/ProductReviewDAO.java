@@ -30,10 +30,6 @@ public class ProductReviewDAO {
 		return sqlSession.selectList(NAMESPACE+"getProductReviewImgList", productReviewDTO);
 	}
 	
-	public ProductReviewImgDTO getProductReviewImgDetail(ProductReviewImgDTO productReviewImgDTO) throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"getProductReviewImgDetail", productReviewImgDTO);
-	}
-	
 	public Long getTotalCount(Pagination pagination) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"getTotalCount", pagination);
 	}

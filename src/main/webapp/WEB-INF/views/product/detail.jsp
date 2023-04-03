@@ -50,29 +50,32 @@
 			<p class="fs-2" style="font-family: 'Impact'">REVIEW</p>
 		</div>
 		
-		<div class="row" id="productReviewListResult">
+		<div class="row" id="productReviewListResult" data-product-num-review="${DTO.productNum}">
 		</div>
 	
-		<div class="row col-md-4 justify-content-center mx-auto">
-			<a href="./review/add?productNum=${DTO.productNum}" class="btn btn-primary col-2 mx-1" id="productReviewAdd" data-product-num-review="${DTO.productNum}">작성</a>
-		</div>
+		<c:if test="${not empty member}">
+			<div class="row col-md-4 justify-content-center mx-auto">
+				<a href="./review/add?productNum=${DTO.productNum}" class="btn btn-primary col-2 mx-1" id="productReviewAdd" data-product-num-review="${DTO.productNum}">작성</a>
+			</div>
+		</c:if>
 		
  		<!-- QnA -->
  		<div class="row mt-5">
 			<p class="fs-2" style="font-family: 'Impact'">QNA</p>
 		</div>
  		
-		<div class="row" id="productQnAListResult">
+		<div class="row" id="productQnAListResult" data-product-num-qna="${DTO.productNum}">
 		</div>
 	
-		<div class="row col-md-4 justify-content-center mx-auto">
-			<a href="./qna/add?productNum=${DTO.productNum}" class="btn btn-primary col-2 mx-1" id="productQnAAdd" data-product-num-qna="${DTO.productNum}">작성</a>
-		</div>
-		
+		<c:if test="${not empty member}">
+			<div class="row col-md-4 justify-content-center mx-auto">
+				<a href="./qna/add?productNum=${DTO.productNum}" class="btn btn-primary col-2 mx-1" id="productQnAAdd">작성</a>
+			</div>
+		</c:if>	
 	</div>
 	
 	<c:import url="../template/common_js.jsp"></c:import>
-	<script src="/resources/js/product.js"></script>
-	<script type="text/javascript" src="../resources/js/confirm.js"></script>
+	<script src="/resources/js/product/qna.js"></script>
+	<script src="/resources/js/product/review.js"></script>
 </body>
 </html>

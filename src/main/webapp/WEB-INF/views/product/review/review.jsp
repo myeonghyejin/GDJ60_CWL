@@ -41,13 +41,17 @@
 		</tr>
 		<tr>
 			<td id="productReviewContents${DTO.productReviewNum}" style="display:none;">
-				<c:if test="${not empty DTO.productReviewImgDTOs}">
-					<c:forEach items="${DTO.productReviewImgDTOs}">
-						<div class="row">
-							<img alt="" src="../resources/upload/product/review/${DTO.productReviewImgDTOs.imgName}">
-						</div>
-					</c:forEach>
-				</c:if>
+				<div class="row">
+ 					<c:if test="${not empty DTO.productReviewImgDTOs}">
+						<c:forEach items="${DTO.productReviewImgDTOs}" var="imgDTO">
+							<img alt="" src="/resources/upload/product/review/${imgDTO.imgName}">
+						</c:forEach>
+ 					</c:if>
+				</div>
+				<div class="row">
+					<!-- <img alt="" src="/resources/upload/product/review/95da24e6-8c73-4a22-9fc5-a7d277f02249_2.jpg">
+					<img alt="" src="/resources/images/1.jpg"> -->
+				</div>
 				${DTO.productReviewContents}
 			</td>
 		</tr>

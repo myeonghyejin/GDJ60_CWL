@@ -110,6 +110,6 @@
 		</div>
 	</div>
 	<c:import url="../template/common_js.jsp"></c:import>
-	<script src="../resources/js/paging.js"></script>
+	<script src="../resources/js/common/paging.js"></script>
 </body>
 </html>

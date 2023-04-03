@@ -2,7 +2,7 @@
 getList(1);
 
 function getList(page){
-    fetch("/lesson/review/list?lessonNum="+lessonReviewAdd.getAttribute('data-lesson-review')+"&page="+page, {
+    fetch("/lesson/review/list?lessonNum="+lessonReviewListResult.getAttribute('data-lesson-review')+"&page="+page, {
         method:'GET'
     })
     .then((response)=>response.text())
@@ -30,7 +30,7 @@ $("#lessonReviewAdd").click(function(){
         },
         success:(res)=>{
             if(res.trim()==1){
-                alert('후기가 등록되었습니다')
+                alert('후기가 등록되었습니다.')
                 $("#lessonReviewContents").val("");
                 getList(1);            
             }else {
@@ -42,22 +42,25 @@ $("#lessonReviewAdd").click(function(){
 
 //delete
 $("#lessonReviewListResult").on("click",".delete",function(e){
-    fetch("../lesson/review/delete", {
-        method:'POST',
-        headers:{
-           "Content-type":"application/x-www-form-urlencoded"
-       },
-       body:"lessonReviewNum="+$(this).attr("data-lessonReview-num")
-       }).then((response)=>{return response.text()})
-         .then((res)=>{
-           if(res.trim()>0){
-               alert('후기가 삭제되었습니다');
-               getList(1);
-           }else {
-               alert('삭제 실패');
-           }
-         })
-         e.preventDefault();
+	let check = window.confirm("삭제하시겠습니까?");
+    if(check) {
+	    fetch("../lesson/review/delete", {
+	        method:'POST',
+	        headers:{
+	           "Content-type":"application/x-www-form-urlencoded"
+	       },
+	       body:"lessonReviewNum="+$(this).attr("data-lessonReview-num")
+	       }).then((response)=>{return response.text()})
+	         .then((res)=>{
+	           if(res.trim()!=0){
+					alert('후기가 삭제되었습니다.');
+					getList(1);
+	           }else {
+	               alert('삭제 실패!');
+	           }
+	         })
+	         e.preventDefault();
+	}
 })
   
 //update
@@ -81,12 +84,12 @@ $("#contentsConfirm").click(function(){
             'lessonRating': $(".lessonRating").val()
         },
         success:(res)=>{
-            if(res.trim()>0){
-                alert('후기가 수정되었습니다');
+            if(res.trim()!=0){
+                alert('후기가 수정되었습니다.');
                 $("#closeModal").click();
                 getList(1);            
             }else {
-                alert('수정 실패');
+                alert('수정 실패!');
             }
         }
     })

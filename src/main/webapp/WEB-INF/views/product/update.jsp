@@ -56,6 +56,9 @@
 	   </form>
 	</div>
 	<script>
+		setMax(4);
+		setCount('${DTO.productImgDTOs.size()}');
+		setParam("imgs")
 		$('#productContents').summernote();
 	</script>
 	<c:import url="../template/common_js.jsp"></c:import>
