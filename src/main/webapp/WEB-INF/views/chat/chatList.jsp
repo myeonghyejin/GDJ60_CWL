@@ -64,19 +64,19 @@
                                                 <div class="tab-pane fade show active" id="Open" role="tabpanel"
                                                     aria-labelledby="Open-tab">
                                                     <!-- Friends-list -->
-                                                    <div class="chat-list" id="userList">
+                                                    <div class="chat-list" id="chat-list">
                                                         <!-- <div class="d-flex align-items-center friend">
-                                                            <div class="flex-shrink-0">
-                                                                <img class="img-fluid"
+                                                                <div class="flex-shrink-0">
+                                                                    <img class="img-fluid"
                                                                     src="https://mehedihtml.com/chatbox/assets/img/user.png"
                                                                     alt="user img">
-                                                            </div>
-                                                            <div class="flex-grow-1 ms-3">
-                                                                <h7 class="pull-right">5km</h7>
-                                                                <h3>Mehedi Hasan</h3>
-                                                                <p>안녕하세요 같이만나서 놀아요 자기소개입니다</p>
-                                                            </div>
-                                                        </div> -->
+                                                                </div>
+                                                                <div class="flex-grow-1 ms-3 name">
+                                                                    <h7 class="pull-right">5km</h7>
+                                                                    <h3>Mehedi Hasan</h3>
+                                                                    <p>안녕하세요 같이만나서 놀아요 자기소개입니다</p>
+                                                                </div>
+                                                            </div> -->
 
                                                     </div>
                                                     <!-- Friends-list -->
@@ -196,6 +196,7 @@
 
     <script >
         id='${member.memberId}'
+        console.log("로그인 아이디 :"+id);
     </script>
 
 </body>
