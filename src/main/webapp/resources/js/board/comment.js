@@ -29,7 +29,7 @@ $("#boardCommentAdd").click(function(){
         },
         success:(res)=>{
             if(res.trim()==1){
-                alert('댓글이 등록되었습니다')
+                alert('댓글이 등록되었습니다.')
                 $("#boardCommentContents").val("");
                 getList(1);            
             }else {
@@ -41,22 +41,25 @@ $("#boardCommentAdd").click(function(){
 
 //delete
 $("#boardCommentListResult").on("click",".delete",function(e){
-    fetch("../board/comment/delete", {
-        method:'POST',
-        headers:{
-           "Content-type":"application/x-www-form-urlencoded"
-       },
-       body:"boardCommentNum="+$(this).attr("data-boardcomment-num")
-       }).then((response)=>{return response.text()})
-         .then((res)=>{
-           if(res.trim()>0){
-               alert('댓글이 삭제되었습니다');
-               getList(1);
-           }else {
-               alert('삭제 실패!');
-           }
-         })
-         e.preventDefault();
+	let check = window.confirm("삭제하시겠습니까?");
+    if(check) {
+	    fetch("../board/comment/delete", {
+	        method:'POST',
+	        headers:{
+	           "Content-type":"application/x-www-form-urlencoded"
+	       },
+	       body:"boardCommentNum="+$(this).attr("data-boardcomment-num")
+	       }).then((response)=>{return response.text()})
+	         .then((res)=>{
+	           if(res.trim()>0){
+					alert('댓글이 삭제되었습니다.');
+					getList(1);
+	           }else {
+	               alert('삭제 실패!');
+	           }
+	         })
+	         e.preventDefault();
+	}
 })
 
 //update

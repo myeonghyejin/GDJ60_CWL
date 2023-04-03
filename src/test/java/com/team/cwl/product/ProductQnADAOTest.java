@@ -36,11 +36,12 @@ public class ProductQnADAOTest extends MyTestCase {
 		
 			ProductQnADTO productQnADTO = new ProductQnADTO();
 			
-			productQnADTO.setProductNum(30L);
+			productQnADTO.setProductNum(50L);
 			productQnADTO.setMemberId("mhj");
 			productQnADTO.setProductQnATitle("말랑복숭아"+i);
 			productQnADTO.setProductQnAContents("딱딱복숭아");
 			productQnADTO.setProductQnADate(date);
+			productQnADTO.setProductQnASecret(0);
 		
 			int result = productQnADAO.setProductQnAAdd(productQnADTO);
 		}

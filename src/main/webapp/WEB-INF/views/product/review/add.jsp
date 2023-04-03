@@ -64,7 +64,7 @@
 			</div>
 	   </form>
 	</div>
-	<script src="/resources/js/fileManager.js"></script>
+	<script src="/resources/js/common/fileManager.js"></script>
 	<script>
 		setMax(4);
 	</script>

@@ -1,5 +1,6 @@
 package com.team.cwl.product.review;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -27,7 +28,19 @@ public class ProductReviewService {
 	public List<ProductReviewDTO> getProductReviewList(Pagination pagination) throws Exception {
 		pagination.makeRow();
 		pagination.makeNum(productReviewDAO.getTotalCount(pagination));
-		return productReviewDAO.getProductReviewList(pagination);
+		
+		List<ProductReviewDTO> ar = productReviewDAO.getProductReviewList(pagination);
+		
+		ArrayList<ProductReviewDTO> ar2 = new ArrayList<ProductReviewDTO>();
+		
+		for(ProductReviewDTO productReviewDTO: ar) {
+//			System.out.println(productReviewDTO.getProductReviewNum());
+			productReviewDTO = productReviewDAO.getProductReviewDetail(productReviewDTO);
+//			System.out.println(productReviewDTO.getProductReviewImgDTOs().size());
+			ar2.add(productReviewDTO);
+		}
+		
+		return ar2;
 	}
 	
 	public ProductReviewDTO getProductReviewDetail(ProductReviewDTO productReviewDTO) throws Exception {

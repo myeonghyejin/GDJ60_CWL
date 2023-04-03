@@ -72,7 +72,7 @@
 	</div>
 	
 	<c:import url="../template/common_js.jsp"></c:import>
-	<script src="/resources/js/product.js"></script>
-	<script type="text/javascript" src="../resources/js/confirm.js"></script>
+	<script src="/resources/js/product/qna.js"></script>
+	<script src="/resources/js/product/review.js"></script>
 </body>
 </html>
