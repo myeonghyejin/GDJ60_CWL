@@ -36,7 +36,7 @@ $("#productQnAListResult").on("click", ".delete", function(e){
 	       body:"productQnANum="+$(this).attr("data-productqna-num")
 	       }).then((response)=>{return response.text()})
 	         .then((res)=>{
-	           if(res.trim()>0){
+	           if(res.trim()!=0){
 					alert('문의가 삭제되었습니다.');
 					getQnAList(1);
 				}else {

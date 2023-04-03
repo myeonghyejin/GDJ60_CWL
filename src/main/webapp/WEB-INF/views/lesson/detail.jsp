@@ -81,7 +81,7 @@
 					<textarea class="form-control" rows="3" id="lessonReviewContents"></textarea>
 				</div>
 				<div class="mb-3">
-					<button type="button" class="btn btn-primary" id="lessonReviewAdd">작성</button>
+					<button type="button" class="btn btn-primary" id="lessonReviewAdd" data-lesson-review="${DTO.lessonNum}">작성</button>
 				</div>
 			</div>
 		</c:if>

@@ -52,7 +52,7 @@ $("#lessonReviewListResult").on("click",".delete",function(e){
 	       body:"lessonReviewNum="+$(this).attr("data-lessonReview-num")
 	       }).then((response)=>{return response.text()})
 	         .then((res)=>{
-	           if(res.trim()>0){
+	           if(res.trim()!=0){
 					alert('후기가 삭제되었습니다.');
 					getList(1);
 	           }else {
@@ -84,7 +84,7 @@ $("#contentsConfirm").click(function(){
             'lessonRating': $(".lessonRating").val()
         },
         success:(res)=>{
-            if(res.trim()>0){
+            if(res.trim()!=0){
                 alert('후기가 수정되었습니다.');
                 $("#closeModal").click();
                 getList(1);            

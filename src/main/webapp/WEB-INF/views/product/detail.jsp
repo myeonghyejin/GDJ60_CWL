@@ -55,7 +55,7 @@
 	
 		<c:if test="${not empty member}">
 			<div class="row col-md-4 justify-content-center mx-auto">
-				<a href="./review/add?productNum=${DTO.productNum}" class="btn btn-primary col-2 mx-1" id="productReviewAdd">작성</a>
+				<a href="./review/add?productNum=${DTO.productNum}" class="btn btn-primary col-2 mx-1" id="productReviewAdd" data-product-num-review="${DTO.productNum}">작성</a>
 			</div>
 		</c:if>
 		

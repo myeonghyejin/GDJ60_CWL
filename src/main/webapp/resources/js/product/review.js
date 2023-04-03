@@ -37,7 +37,7 @@ $("#productReviewListResult").on("click",".delete",function(e){
 	       }).then((response)=>{return response.text();})
 	         .then((res)=>{
 				console.log(res.trim().length);
-	         	if(res.trim()>0){
+	         	if(res.trim()!=0){
 					alert('후기가 삭제되었습니다.');
 					getReviewList(1);
 				}else {

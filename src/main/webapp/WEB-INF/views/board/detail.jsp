@@ -59,7 +59,7 @@
 					<textarea class="form-control" rows="3" id="boardCommentContents"></textarea>
 				</div>
 				<div class="mb-3">
-					<button type="button" class="btn btn-primary" id="boardCommentAdd">작성</button>
+					<button type="button" class="btn btn-primary" id="boardCommentAdd" data-board-num="${DTO.boardNum}">작성</button>
 				</div>
 			</div>
 		</c:if>

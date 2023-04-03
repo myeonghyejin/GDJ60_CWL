@@ -51,7 +51,7 @@ $("#boardCommentListResult").on("click",".delete",function(e){
 	       body:"boardCommentNum="+$(this).attr("data-boardcomment-num")
 	       }).then((response)=>{return response.text()})
 	         .then((res)=>{
-	           if(res.trim()>0){
+	           if(res.trim()!=0){
 					alert('댓글이 삭제되었습니다.');
 					getList(1);
 	           }else {
@@ -81,7 +81,7 @@ $("#contentsConfirm").click(function(){
             'boardCommentContents': $("#boardCommentEdit").val()
         },
         success:(res)=>{
-            if(res.trim()>0){
+            if(res.trim()!=0){
                 alert('댓글이 수정되었습니다.');
                 $("#closeModal").click();
                 getList(1);            
