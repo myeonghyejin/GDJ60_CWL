@@ -2,7 +2,7 @@
 getList(1);
 
 function getList(page){
-    fetch("/board/comment/list?boardNum="+boardCommentAdd.getAttribute('data-board-num')+"&page="+page, {
+    fetch("/board/comment/list?boardNum="+boardCommentListResult.getAttribute('data-board-num')+"&page="+page, {
         method:'GET'
     })
     .then((response)=>response.text())
@@ -82,7 +82,7 @@ $("#contentsConfirm").click(function(){
         },
         success:(res)=>{
             if(res.trim()>0){
-                alert('댓글이 수정되었습니다');
+                alert('댓글이 수정되었습니다.');
                 $("#closeModal").click();
                 getList(1);            
             }else {

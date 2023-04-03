@@ -50,17 +50,19 @@
 			<p class="fs-2" style="font-family: 'Impact'">COMMENT</p>
 		</div>
 		
-		<div class="row" id="boardCommentListResult">
+		<div class="row" id="boardCommentListResult" data-board-num="${DTO.boardNum}">
 		</div>
-	
-		<div class="row my-5">
-			<div class="mb-3">
-				<textarea class="form-control" rows="3" id="boardCommentContents"></textarea>
+		
+		<c:if test="${not empty member}">
+			<div class="row my-5">
+				<div class="mb-3">
+					<textarea class="form-control" rows="3" id="boardCommentContents"></textarea>
+				</div>
+				<div class="mb-3">
+					<button type="button" class="btn btn-primary" id="boardCommentAdd">작성</button>
+				</div>
 			</div>
-			<div class="mb-3">
-				<button type="button" class="btn btn-primary" id="boardCommentAdd" data-board-num="${DTO.boardNum}">작성</button>
-			</div>
-		</div>
+		</c:if>
 	
 		<!--  Update Form Modal -->
 		<!-- Modal -->

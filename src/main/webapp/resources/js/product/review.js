@@ -3,7 +3,7 @@ getReviewList(1);
 
 function getReviewList(page){
     $.ajax({
-        url:'../product/review/list?productNum='+productReviewAdd.getAttribute('data-product-num-review')+"&page="+page,
+        url:'../product/review/list?productNum='+productReviewListResult.getAttribute('data-product-num-review')+"&page="+page,
         type:'GET',
         success:(res)=>{
             $("#productReviewListResult").html(res.trim());
@@ -34,9 +34,9 @@ $("#productReviewListResult").on("click",".delete",function(e){
 	           "Content-type":"application/x-www-form-urlencoded"
 	       },
 	       body:"productReviewNum="+$(this).attr("data-productreview-num")
-	       }).then((response)=>{return response.text()})
+	       }).then((response)=>{return response.text();})
 	         .then((res)=>{
-				console.log(res.trim()>0);
+				console.log(res.trim().length);
 	         	if(res.trim()>0){
 					alert('후기가 삭제되었습니다.');
 					getReviewList(1);

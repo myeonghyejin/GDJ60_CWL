@@ -2,7 +2,7 @@
 getList(1);
 
 function getList(page){
-    fetch("/lesson/review/list?lessonNum="+lessonReviewAdd.getAttribute('data-lesson-review')+"&page="+page, {
+    fetch("/lesson/review/list?lessonNum="+lessonReviewListResult.getAttribute('data-lesson-review')+"&page="+page, {
         method:'GET'
     })
     .then((response)=>response.text())
@@ -53,10 +53,10 @@ $("#lessonReviewListResult").on("click",".delete",function(e){
 	       }).then((response)=>{return response.text()})
 	         .then((res)=>{
 	           if(res.trim()>0){
-					alert('후기가 삭제되었습니다');
+					alert('후기가 삭제되었습니다.');
 					getList(1);
 	           }else {
-	               alert('삭제 실패');
+	               alert('삭제 실패!');
 	           }
 	         })
 	         e.preventDefault();
@@ -85,11 +85,11 @@ $("#contentsConfirm").click(function(){
         },
         success:(res)=>{
             if(res.trim()>0){
-                alert('후기가 수정되었습니다');
+                alert('후기가 수정되었습니다.');
                 $("#closeModal").click();
                 getList(1);            
             }else {
-                alert('수정 실패');
+                alert('수정 실패!');
             }
         }
     })

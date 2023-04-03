@@ -46,10 +46,6 @@ public class ProductReviewService {
 	public ProductReviewDTO getProductReviewDetail(ProductReviewDTO productReviewDTO) throws Exception {
 		return productReviewDAO.getProductReviewDetail(productReviewDTO);
 	}
-	
-	public ProductReviewImgDTO getProductReviewImgDetail(ProductReviewImgDTO productReviewImgDTO) throws Exception {
-		return productReviewDAO.getProductReviewImgDetail(productReviewImgDTO);
-	}
 
 	/** INSERT **/
 	public int setProductReviewAdd(ProductReviewDTO productReviewDTO, MultipartFile [] multipartFiles, HttpSession session) throws Exception {

@@ -3,7 +3,7 @@ getQnAList(1);
 
 function getQnAList(page){
 	$.ajax({
-        url:'../product/qna/list?productNum='+productQnAAdd.getAttribute('data-product-num-qna')+"&page="+page,
+        url:'../product/qna/list?productNum='+productQnAListResult.getAttribute('data-product-num-qna')+"&page="+page,
         type:'GET',
         success:(res)=>{
             $("#productQnAListResult").html(res.trim());
