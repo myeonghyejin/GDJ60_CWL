@@ -25,41 +25,40 @@
 						<p class="fs-5">${DTO.productDetail}</p>
 					</div>	
 <!-------------------------------------- 우희가 한거 --------------------------------->
-		<div class="wrapper">
-			<div class="wrap">						
-				<div class="content_area">		
-					<div class="content_top">
-						<div class="price">
-						<div class="product_price">정가 : <fmt:formatNumber value="${DTO.productPrice}" pattern="#,### 원" /></div>													
-					</div>													
-						<div class="line">
-					</div>	
-					<div class="button">						
-						<div class="button_quantity">
-							주문수량
-							<input type="text" class="quantity_input" value="1">
-							<span>
-								<button class="plus_btn">+</button>
-								<button class="minus_btn">-</button>
-							</span>
+					<div class="wrapper">
+						<div class="wrap">						
+							<div class="content_area">		
+								<div class="content_top">
+									<div class="price">
+									<div class="product_price">정가 : <fmt:formatNumber value="${DTO.productPrice}" pattern="#,### 원" /></div>													
+								</div>													
+									<div class="line">
+								</div>	
+								<div class="button">						
+									<div class="button_quantity">
+										주문수량
+										<input type="text" class="quantity_input" value="1">
+										<span>
+											<button class="plus_btn">+</button>
+											<button class="minus_btn">-</button>
+										</span>
+									</div>
+									<div class="button_set">
+										<a class="btn_cart">장바구니 담기</a>
+										<a class="btn_buy">바로구매</a>
+									</div>
+									</div>
+								</div>
+							</div>
 						</div>
-						<div class="button_set">
-							<a class="btn_cart">장바구니 담기</a>
-							<a class="btn_buy">바로구매</a>
-						</div>
-						</div>
+								<!-- 주문 form -->
+						<form action="/order/${member.memberId}" method="get" class="order_form" id="">
+							<input type="hidden" name="orders[0].productNum" value="${DTO.productNum}">
+							<input type="hidden" name="orders[0].productStock" value="">
+						</form>
 					</div>
-				</div>
-			</div>
-					<!-- 주문 form -->
-			<form action="/order/${member.memberId}" method="get" class="order_form">
-				<input type="hidden" name="orders[0].productNum" value="${DTO.productNum}">
-				<input type="hidden" name="orders[0].productStock" value="">
-			</form>
-		</div>
 					
-<!----------------------------------------------------------------------->
-					
+<!----------------------------------------------------------------------->	
 				</c:when>
 				<c:otherwise>
 					<div class="row col-md-4 mx-auto text-center">
@@ -88,32 +87,31 @@
 			<p class="fs-2" style="font-family: 'Impact'">REVIEW</p>
 		</div>
 		
-		<div class="row" id="productReviewListResult">
+		<div class="row" id="productReviewListResult" data-product-num-review="${DTO.productNum}">
 		</div>
 	
-		<div class="row col-md-4 justify-content-center mx-auto">
-			<a href="./review/add?productNum=${DTO.productNum}" class="btn btn-primary col-2 mx-1" id="productReviewAdd" data-product-num-review="${DTO.productNum}">작성</a>
-		</div>
+		<c:if test="${not empty member}">
+			<div class="row col-md-4 justify-content-center mx-auto">
+				<a href="./review/add?productNum=${DTO.productNum}" class="btn btn-primary col-2 mx-1" id="productReviewAdd" data-product-num-review="${DTO.productNum}">작성</a>
+			</div>
+		</c:if>
 		
  		<!-- QnA -->
  		<div class="row mt-5">
 			<p class="fs-2" style="font-family: 'Impact'">QNA</p>
 		</div>
  		
-		<div class="row" id="productQnAListResult">
+		<div class="row" id="productQnAListResult" data-product-num-qna="${DTO.productNum}">
 		</div>
 	
-		<div class="row col-md-4 justify-content-center mx-auto">
-			<a href="./qna/add?productNum=${DTO.productNum}" class="btn btn-primary col-2 mx-1" id="productQnAAdd" data-product-num-qna="${DTO.productNum}">작성</a>
-		</div>
-		
+		<c:if test="${not empty member}">
+			<div class="row col-md-4 justify-content-center mx-auto">
+				<a href="./qna/add?productNum=${DTO.productNum}" class="btn btn-primary col-2 mx-1" id="productQnAAdd">작성</a>
+			</div>
+		</c:if>	
 	</div>
-	
-	<c:import url="../template/common_js.jsp"></c:import>
-	<script src="/resources/js/product.js"></script>
-	<script type="text/javascript" src="../resources/js/confirm.js"></script>
-	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-	<script>
+
+<script>
 	// 수량 버튼 조작
 	let quantity = $(".quantity_input").val();
 	$(".plus_btn").on("click", function(){
@@ -160,7 +158,11 @@
 			$(".order_form").find("input[name='orders[0].productStock']").val(productStock);
 			$(".order_form").submit();
 		});
-
-	</script>
+</script>
+	
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<c:import url="../template/common_js.jsp"></c:import>
+	<script src="/resources/js/product/qna.js"></script>
+	<script src="/resources/js/product/review.js"></script>
 </body>
 </html>

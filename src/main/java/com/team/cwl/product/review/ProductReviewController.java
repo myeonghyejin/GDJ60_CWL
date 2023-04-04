@@ -29,20 +29,14 @@ public class ProductReviewController {
 	public ModelAndView getProductReviewList(Pagination pagination, ModelAndView modelAndView) throws Exception {
 		List<ProductReviewDTO> ar = productReviewService.getProductReviewList(pagination);
 		
+//		for(ProductReviewDTO productReviewDTO: ar) {
+//			System.out.println(productReviewDTO.getProductReviewImgDTOs().size());
+//		}
+		
 		modelAndView.addObject("list", ar);
 		modelAndView.setViewName("product/review/review");
 		
 		return modelAndView;
-	}
-	
-	@GetMapping("review/review")
-	public ModelAndView getProductReviewDetail(ProductReviewDTO productReviewDTO, ModelAndView modelAndView) throws Exception {
-		productReviewDTO = productReviewService.getProductReviewDetail(productReviewDTO);
-		
-		modelAndView.addObject("DTO", productReviewDTO);
-		modelAndView.setViewName("common/ajaxResult");
-		
-		return modelAndView;	
 	}
 	
 	/** INSERT **/
