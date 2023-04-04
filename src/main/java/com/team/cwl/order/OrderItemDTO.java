@@ -1,9 +1,10 @@
 package com.team.cwl.order;
 
 public class OrderItemDTO {
-	
+	// 기본키
+	private Long orderItemNum;
 	// 주문 번호
-	private Long orderNum;
+	private String orderNum;
 	// 제품 번호
 	private Long productNum;
 	// 주문 수량
@@ -14,11 +15,20 @@ public class OrderItemDTO {
 	private Long totalPrice;
 	
 	
-	public Long getOrderNum() {
+	
+	public Long getOrderItemNum() {
+		return orderItemNum;
+	}
+
+	public void setOrderItemNum(Long orderItemNum) {
+		this.orderItemNum = orderItemNum;
+	}
+
+	public String getOrderNum() {
 		return orderNum;
 	}
 
-	public void setOrderNum(Long orderNum) {
+	public void setOrderNum(String orderNum) {
 		this.orderNum = orderNum;
 	}
 
@@ -54,12 +64,14 @@ public class OrderItemDTO {
 		this.totalPrice = totalPrice;
 	}
 
+	
 	@Override
 	public String toString() {
-		return "OrderItemDTO [orderNum=" + orderNum + ", productNum=" + productNum + ", productStock=" + productStock + ", productPrice="
-				+ productPrice + ", totalPrice=" + totalPrice + "]";
+		return "OrderItemDTO [orderItemNum=" + orderItemNum + ", orderNum=" + orderNum + ", productNum=" + productNum
+				+ ", productStock=" + productStock + ", productPrice=" + productPrice + ", totalPrice=" + totalPrice
+				+ "]";
 	}
-	
+
 	public void initTotal() {
 		this.totalPrice = this.productPrice * this.productStock;
 	}

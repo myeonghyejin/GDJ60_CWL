@@ -5,7 +5,7 @@ import java.util.List;
 
 public class OrderDTO {
 	// 주문 번호
-	private Long orderNum;
+	private String orderNum;
 	// 배송 받는 사람
 	private String addressee;
 	// 회원 아이디
@@ -23,22 +23,22 @@ public class OrderDTO {
 	// 주문 상품
 	private List<OrderItemDTO> orders;
 	// 배송비
-	private Long orderFee;
+	private int orderFee;
 	// 주문 날짜
 	private Date orderDate;
 	
 	/* DB 테이블에 존재하지 않는 데이터 */
 	// 판매가(모든 상품 비용)
-	private Long orderSalePrice;
+	private Long orderPrice;
 	// 최종 판매 비용(배송비 포함)
-	private Long orderFinalSalePrice;
+	private Long orderFinalPrice;
 	
 	
-	public Long getOrderNum() {
+	public String getOrderNum() {
 		return orderNum;
 	}
 
-	public void setOrderNum(Long orderNum) {
+	public void setOrderNum(String orderNum) {
 		this.orderNum = orderNum;
 	}
 
@@ -106,11 +106,11 @@ public class OrderDTO {
 		this.orders = orders;
 	}
 
-	public Long getOrderFee() {
+	public int getOrderFee() {
 		return orderFee;
 	}
 
-	public void setOrderFee(Long orderFee) {
+	public void setOrderFee(int orderFee) {
 		this.orderFee = orderFee;
 	}
 
@@ -122,43 +122,47 @@ public class OrderDTO {
 		this.orderDate = orderDate;
 	}
 
-	public Long getOrderSalePrice() {
-		return orderSalePrice;
+	public Long getOrderPrice() {
+		return orderPrice;
 	}
 
-	public void setOrderSalePrice(Long orderSalePrice) {
-		this.orderSalePrice = orderSalePrice;
+	public void setOrderPrice(Long orderPrice) {
+		this.orderPrice = orderPrice;
 	}
 
-	public Long getOrderFinalSalePrice() {
-		return orderFinalSalePrice;
+	public Long getOrderFinalPrice() {
+		return orderFinalPrice;
 	}
 
-	public void setOrderFinalSalePrice(Long orderFinalSalePrice) {
-		this.orderFinalSalePrice = orderFinalSalePrice;
+	public void setOrderFinalPrice(Long orderFinalPrice) {
+		this.orderFinalPrice = orderFinalPrice;
 	}
 
+	
+	
 	@Override
 	public String toString() {
-		return "OrderDTO [orderNum=" + orderNum + ", memberId=" + memberId + ",addressee=" + addressee + ", memberAddress1=" + memberAddress1 + ", memberAddress2=" 
-				+ memberAddress2 + ", memberAddress3=" + memberAddress3 + ", orderState="+ orderState + ", orderComment=" + orderComment + ", orders=" + orders 
-				+ ", orderFee=" + orderFee + ", orderDate=" + orderDate + ", orderSalePrice=" + orderSalePrice + ", orderFinalSalePrice=" + orderFinalSalePrice + "]";			
+		return "OrderDTO [orderNum=" + orderNum + ", addressee=" + addressee + ", memberId=" + memberId
+				+ ", memberAddress1=" + memberAddress1 + ", memberAddress2=" + memberAddress2 + ", memberAddress3="
+				+ memberAddress3 + ", orderState=" + orderState + ", orderComment=" + orderComment + ", orders="
+				+ orders + ", orderFee=" + orderFee + ", orderDate=" + orderDate + ", orderPrice=" + orderPrice
+				+ ", orderFinalPrice=" + orderFinalPrice + "]";
 	}
-	
+
 	public void getOrderPriceInfo() {
-		// 상품 비용
-		for(OrderItemDTO order : orders) {
-			orderSalePrice += order.getTotalPrice();
-		}
-		// 배송 비용
-		if(orderSalePrice >= 30000) {
-			orderFee = 0L;
-		} else {
-			orderFee = 3000L;
-		}
-		// 최종 판매 비용(상품 비용 + 배송비)
-		orderFinalSalePrice = orderSalePrice + orderFee;
-	}
+		/* 상품 비용 & 적립포인트 */
+			for(OrderItemDTO order : orders) {
+				orderPrice += order.getTotalPrice();
+			}
+		/* 배송비용 */
+			if(orderPrice >= 30000) {
+				orderFee = 0;
+			} else {
+				orderFee = 3000;
+			}
+		/* 최종 비용(상품 비용 + 배송비) */
+			orderFinalPrice = orderPrice + orderFee;
+	}	
 	
 	
 	

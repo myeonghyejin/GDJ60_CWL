@@ -70,4 +70,16 @@ public class ProductDTO {
 	public void setProductImgDTOs(List<ProductImgDTO> productImgDTOs) {
 		this.productImgDTOs = productImgDTOs;
 	}
+	@Override
+	public String toString() {
+		return "ProductDTO [productNum=" + productNum + ", memberId=" + memberId + ", productName=" + productName
+				+ ", productDetail=" + productDetail + ", productStock=" + productStock + ", productPrice="
+				+ productPrice + ", productDate=" + productDate + ", productState=" + productState + ", productImgDTOs="
+				+ productImgDTOs + "]";
+	}
+	
+	
+	
+	
+	
 }

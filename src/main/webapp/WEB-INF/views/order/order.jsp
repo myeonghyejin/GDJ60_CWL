@@ -41,10 +41,11 @@
 			</ul>			
 		</div>
 		<div class="top_area">
+			<div class="login_area">
 				<!-- 로그인 하지 않은 상태 -->
 				<c:if test = "${member == null }">
-					<div class="login_button"><a href="/member/login">로그인</a></div>
-					<span><a href="/member/join">회원가입</a></span>				
+					<div class="login_button"><a href="/member/memberLogin">로그인</a></div>
+					<span><a href="/member/memberAdd">회원가입</a></span>				
 				</c:if>				
 				
 				<!-- 로그인한 상태 -->
@@ -78,7 +79,7 @@
 				<!-- 배송지 정보 -->
 				<div class="addressInfo_div">
 					<div class="addressInfo_button_div">
-						<button class="address_btn address_btn_1" onclick="showAdress('1')" style="background-color: #3c3838;">상용자 정보 주소록</button>
+						<button class="address_btn address_btn_1" onclick="showAdress('1')" style="background-color: #3c3838;">사용자 정보 주소록</button>
 						<button class="address_btn address_btn_2" onclick="showAdress('2')">직접 입력</button>
 					</div>
 					<div class="addressInfo_input_div_wrap">
@@ -177,7 +178,7 @@
 										<br><fmt:formatNumber value="${ol.totalPrice}" pattern="#,### 원" />
 										
 										<input type="hidden" class="individual_productPrice_input" value="${ol.productPrice}">
-										<input type="hidden" class="individual_orderCount_input" value="${ol.productStock}">
+										<input type="hidden" class="individual_productStock_input" value="${ol.productStock}">
 										<input type="hidden" class="individual_totalPrice_input" value="${ol.productPrice * ol.productStock}">
 										
 										<input type="hidden" class="individual_productNum_input" value="${ol.productNum}">
@@ -228,7 +229,7 @@
 				<input name="addressee" type="hidden">
 				<input name="memberAddress1" type="hidden">
 				<input name="memberAddress2" type="hidden">
-				<input name="memberAddress3" type="hidden"> -->
+				<input name="memberAddress3" type="hidden">
 				<!-- 상품 정보 -->
 			</form>
 			
@@ -295,14 +296,14 @@ function execution_daum_address(){
 	            
 	        	// 각 주소의 노출 규칙에 따라 주소를 조합한다.
                 // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var addr = ''; // 주소 변수
-                var extraAddr = ''; // 참고항목 변수
+                var address = ''; // 주소 변수
+                var extraAddress = ''; // 참고항목 변수
  
                 //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
                 if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                    addr = data.roadAddress;
+                    address = data.roadAddress;
                 } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                    addr = data.jibunAddress;
+                    address = data.jibunAddress;
                 }
  
                 // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
@@ -310,28 +311,28 @@ function execution_daum_address(){
                     // 법정동명이 있을 경우 추가한다. (법정리는 제외)
                     // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
                     if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                        extraAddr += data.bname;
+                        extraAddress += data.bname;
                     }
                     // 건물명이 있고, 공동주택일 경우 추가한다.
                     if(data.buildingName !== '' && data.apartment === 'Y'){
-                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                        extraAddress += (extraAddress !== '' ? ', ' + data.buildingName : data.buildingName);
                     }
                     // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                    if(extraAddr !== ''){
-                        extraAddr = ' (' + extraAddr + ')';
+                    if(extraAddress !== ''){
+                        extraAddress = ' (' + extraAddress + ')';
                     }
                  	// 추가해야할 코드
                     // 주소변수 문자열과 참고항목 문자열 합치기
-                      addr += extraAddr;
+                      address += extraAddress;
                 
                 } else {
-                	addr += ' ';
+                	address += ' ';
                 }
  
              	// 제거해야할 코드
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 $(".address1_input").val(data.zonecode);
-                $(".address2_input").val(addr);				
+                $(".address2_input").val(address);				
                 // 커서를 상세주소 필드로 이동한다.
                 $(".address3_input").attr("readonly", false);
                 $(".address3_input").focus();	 
@@ -354,20 +355,20 @@ function setTotalInfo(){
 		// 총 가격
 		totalPrice += parseInt($(element).find(".individual_totalPrice_input").val());
 		// 총 갯수
-		totalCount += parseInt($(element).find(".individual_orderCount_input").val());
+		totalCount += parseInt($(element).find(".individual_productStock_input").val());
 		// 총 종류
 		totalKind += 1;
 	});	
 	/* 배송비 결정 */
 	if(totalPrice >= 30000){
-		orderFee = 0;
+		orderFeePrice = 0;
 	} else if(totalPrice == 0){
-		orderFee = 0;
+		orderFeePrice = 0;
 	} else {
-		orderFee = 3000;	
+		orderFeePrice = 3000;	
 	}
 	
-	finalTotalPrice = totalPrice + orderFee;		
+	finalTotalPrice = totalPrice + orderFeePrice;		
 	
 	/* 값 삽입 */
 	// 총 가격
@@ -398,11 +399,11 @@ $(".order_btn").on("click", function(){
 	let form_contents = ''; 
 	$(".goods_table_price_td").each(function(index, element){
 		let productNum = $(element).find(".individual_productNum_input").val();
-		let orderCount = $(element).find(".individual_orderCount_input").val();
+		let productStock = $(element).find(".individual_productStock_input").val();
 		let productNum_input = "<input name='orders[" + index + "].productNum' type='hidden' value='" + productNum + "'>";
 		form_contents += productNum_input;
-		let orderCount_input = "<input name='orders[" + index + "].orderCount' type='hidden' value='" + orderCount + "'>";
-		form_contents += orderCount_input;
+		let productStock_input = "<input name='orders[" + index + "].productStock' type='hidden' value='" + productStock + "'>";
+		form_contents += productStock_input;
 	});	
 	$(".order_form").append(form_contents);	
 	

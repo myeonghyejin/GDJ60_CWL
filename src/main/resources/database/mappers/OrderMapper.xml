@@ -14,34 +14,34 @@
 	<select id="getOrderInfo" resultType="com.team.cwl.order.OrderItemDTO">
 		SELECT PRODUCTNUM, PRODUCTPRICE
 		FROM PRODUCT
-		WHERE PRODUCTNUM = #{PRODUCTNUM}
+		WHERE PRODUCTNUM = #{productNum}
 	</select>	
 	
 	<!-- 주문 테이블 등록 -->
-	<insert id="enrollOrder">
-		INSERT INTO ORDER (ORDERNUM, MEMBERID, ORDERADDRESS, ORDERSTATE, ORDERFEE)
-		VALUES (#{orderNum}, #{memberId}, #{orderAddress}, '배송준비', #{orderFee})	
+	<insert id="enrollOrder" parameterType="OrderDTO">
+		INSERT INTO "ORDER" (ORDERNUM, ADDRESSEE, MEMBERID, MEMBERADDRESS1, MEMBERADDRESS2, MEMBERADDRESS3, ORDERSTATE, ORDERFEE)
+		VALUES (#{orderNum}, #{addressee}, #{memberId}, #{memberAddress1}, #{memberAddress2}, #{memberAddress3}, '배송준비', #{orderFee})	
 	</insert>	
 	
 	<!-- 주문 아이템 테이블 등록 -->
-	<insert id="enrollOrderItem">
-		INSERT INTO ORDERITEM(ORDERNUM, PRODUCTNUM, ORDERCOUNT, PRODUCTPRICE)
-		VALUES (#{orderNum}, #{productNum}, #{orderCount}, #{productPrice})
+	<insert id="enrollOrderItem" parameterType="OrderItemDTO">
+		INSERT INTO ORDERITEM(ORDERNUM, PRODUCTNUM, PRODUCTSTOCK, PRODUCTPRICE)
+		VALUES (#{orderNum}, #{productNum}, #{productStock}, #{productPrice})
 	</insert>	
 	
 	<!-- 주문 금액 차감 -->
-	<update id="deductMoney">
+	<update id="deductMoney" parameterType="MemberDTO">
 		UPDATE MEMBER SET MONEY = #{money} WHERE MEMBERID = #{memberId}
 	</update>	
 	
 	<!-- 주문 재고 차감 -->
-	<update id="deductStock">
-		UPDATE PRODCUT SET PRODUCTSTOCK = #{productStock} WHERE PRODUCTNUM = #{productNum}
+	<update id="deductStock" parameterType="ProductDTO">
+		UPDATE PRODUCT SET PRODUCTSTOCK = #{productStock} WHERE PRODUCTNUM = #{productNum}
 	</update>	
 	
 	<!-- 주문취소 -->
-	<update id="orderCancle">
-		UPDATE ORDER SET ORDERSTATE = '주문취소' WHERE ORDERNUM = #{orderNum}		
+	<update id="orderCancle" parameterType="OrderDTO">
+		UPDATE "ORDER" SET ORDERSTATE = '주문취소' WHERE ORDERNUM = #{orderNum}		
 	</update>	
 
 	<!-- 주문 상품 정보(주문취소) -->
@@ -52,7 +52,7 @@
 	
 	<!-- 주문 정보(주문 취소) -->
 	<select id="getOrder" resultType="com.team.cwl.order.OrderDTO">
-		SELECT * FROM ORDER
+		SELECT * FROM "ORDER"
 		WHERE ORDERNUM = #{orderNum}
 	</select>
 

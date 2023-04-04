@@ -24,9 +24,7 @@ public class OrderController {
 	@Autowired
 	private MemberService memberService;
 	
-	
-	
-	@GetMapping("/order/{memberId}")
+	@GetMapping("{memberId}")
 	public String orderPageGET(@PathVariable("memberId") String memberId, OrderPageDTO opd, Model model) {
 				
 		model.addAttribute("orderList", orderService.getProductDetail(opd.getOrders()));
@@ -35,7 +33,7 @@ public class OrderController {
 		return "/order/order";
 	}
 	
-	@PostMapping("/order/")
+	@PostMapping("order")
 	public String orderPagePost(OrderDTO od, HttpServletRequest request) {
 		
 		System.out.println(od);
@@ -55,7 +53,7 @@ public class OrderController {
 			e.printStackTrace();
 		}
 		
-		return "redirect:/";
+		return "redirect:/home";
 		
 	}
 	

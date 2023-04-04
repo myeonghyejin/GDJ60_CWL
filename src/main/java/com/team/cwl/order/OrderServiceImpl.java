@@ -38,12 +38,16 @@ public class OrderServiceImpl implements OrderService {
 		List<OrderPageItemDTO> result = new ArrayList<OrderPageItemDTO>();
 		
 		for(OrderPageItemDTO ord : orders) {
+			
 			OrderPageItemDTO productDetail = orderMapper.getProductDetail(ord.getProductNum());
+			
 			productDetail.setProductStock(ord.getProductStock());
 			
 			productDetail.initTotal();
 			
 			List<ProductImgDTO> imageList = productDAO.getProductImgList(productDetail.getProductNum());
+			
+			productDetail.setImageList(imageList);
 			
 			result.add(productDetail);
 		}
@@ -53,11 +57,11 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	@Transactional
 	public void order(OrderDTO ord) {
-		// 사용할 데이터 가져오기
+		/* 사용할 데이터 가져오기 */
 		// 회원정보
 		MemberDTO member = memberMapper.getMemberInfo(ord.getMemberId());
 		// 주문정보
-		List<OrderItemDTO> ords = new ArrayList<OrderItemDTO>();
+		List<OrderItemDTO> ords = new ArrayList<>();
 		for(OrderItemDTO oit : ord.getOrders()) {
 			OrderItemDTO orderItem = orderMapper.getOrderInfo(oit.getProductNum());
 			// 수량 세팅
@@ -79,17 +83,18 @@ public class OrderServiceImpl implements OrderService {
 		ord.setOrderNum(orderNum);
 		
 		// DB넣기
-		orderMapper.enrollOrder(ord);
-		for(OrderItemDTO oit : ord.getOrders()) {
+		orderMapper.enrollOrder(ord); // order 등록
+		for(OrderItemDTO oit : ord.getOrders()) { // orderItem 등록
 			oit.setOrderNum(orderNum);
 			orderMapper.enrollOrderItem(oit);
 		}
 		
 		/* 비용 변동 적용 */
 		Long calMoney = member.getMoney();
-		calMoney -= ord.getOrderFinalSalePrice();
+		calMoney -= ord.getOrderFinalPrice();
 		member.setMoney(calMoney);
 		
+		// 변동된 money DB 적용
 		orderMapper.deductMoney(member);
 		
 		/* 재고 변동 적용 */
@@ -135,7 +140,7 @@ public class OrderServiceImpl implements OrderService {
 		/* 돈, 재고 변환 */
 		// 돈
 		Long calMoney = member.getMoney();
-		calMoney += orw.getOrderFinalSalePrice();
+		calMoney += orw.getOrderFinalPrice();
 		member.setMoney(calMoney);
 		// DB 적용
 		orderMapper.deductMoney(member);
