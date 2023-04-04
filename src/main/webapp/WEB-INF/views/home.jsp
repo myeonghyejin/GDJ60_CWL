@@ -6,7 +6,7 @@
 <head>
 	<title>홈</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<c:import url="./template/common_css.jsp"></c:import>
+	<c:import url="./template/common_css.jsp"></c:import>ss">
 </head>
 <body>
 	<!-- 서버 내부 주소, 상대경로 -->

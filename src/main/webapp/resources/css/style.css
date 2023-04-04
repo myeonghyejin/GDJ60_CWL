@@ -1,4 +1,4 @@
-/* font */
+/** import */
 @font-face {
     font-family: 'Pretendard-Regular';
     src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
@@ -6,43 +6,6 @@
     font-style: normal;
 }
 
-/* css */
-a {
-    text-decoration: none;
-}
-
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-}
-
-#title {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    color: #343DDB;
-    font-size: 80px;
-    line-height: 95%;
-}
-
-#menu-box {
-    height: 230px;
-}
-
-.menu {
+* {
     font-family: 'Pretendard-Regular';
-    color: #333333;
-    line-height: 20px;
-}
-
-.main-menu {
-    font-size: 20px;
-}
-
-#sub {
-    float: right;
-}
-
-.sub-menu {
-    font-size: 18px;
 }

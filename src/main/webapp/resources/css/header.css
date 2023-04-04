@@ -1,64 +1,117 @@
+/** import */
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/** common */
+a {
+    text-decoration: none;
+}
+
+/** header */
 header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     width: 100%;
-    height: 67px;
-    background-image: url("/resources/images/header_bg.png");
-    background-repeat: repeat-x;
+    height: 254px;
 }
 
-.header_wrap {
-    width: 70%;
-    height: 100%;
-    margin: 0 auto;
+#title {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    list-style: none;
 }
 
-.header_logo {
-    height: 100%;
-    padding: 13px 0;
-    box-sizing: border-box;
+#title a {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #343DDB;
+    font-size: 80px;
+    line-height: 95%;
 }
 
-.header_nav {
-    width: 40%;
-    height: 100%;
+.menu {
+    font-family: 'Pretendard-Regular';
+    color: #333333;
+    height: 230px;
+    line-height: 20px;
 }
 
-.header_nav > ul {
+#main {
     display: flex;
-    justify-content: space-evenly;
+    list-style: none;
 }
 
-.header_nav > ul > li {
-    line-height: 67px;
+.main-menu {
+    font-size: 20px;
 }
 
-.header_nav > ul > li > a {
-    color: white;
-    font-weight: bold;
-    font-size: 1.1rem;
-}
-
-.header_nav > ul > li > a:hover {
-    color: red;
-}
-
-.header_sub {
-    width: 25%;
-    height: 100%;
-}
-
-.header_sub > ul {
+#sub {
     display: flex;
-    justify-content: space-between;
+    list-style: none;
+    float: right;
 }
 
-.header_sub > ul > li {
-    line-height: 67px;
+.sub-menu {
+    font-size: 18px;
 }
 
-.header_sub > ul > li > a {
-    color: white;
-    font-size: 0.8rem;
+#body {
+    padding-top: 254px;
+}
+
+/* 마우스 오버 */
+.navbar-nav .nav-item.active .nav-link,
+.navbar-nav .nav-item:hover .nav-link {
+    color: #343DDB;
+}
+
+/* 반응형 */
+.navigation {
+    padding: 20px 40px;
+    transition: 0.3s ease;
+}
+
+@media (max-width: 991px) {
+    .navigation {
+        flex-direction: column;
+        background: #343DDB;
+    }
+    .navbar-nav .nav-item.active .nav-link,
+    .navbar-nav .nav-item:hover .nav-link {
+        color: yellow;
+    }
+    #title {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    #title a {
+        color: #fff;
+    }
+    #title br {
+        display: inline-block;
+        content: " ";
+    }
+    #main {
+        margin-top: 5px;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    #sub {
+        margin-top: 10px;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    .menu {
+        height: 100%;
+        color: #fff;
+        text-align: center;
+        align-items: center;
+    }
 }
