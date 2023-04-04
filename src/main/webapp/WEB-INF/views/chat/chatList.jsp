@@ -85,8 +85,8 @@
                                                     aria-labelledby="Closed-tab">
 
                                                     <!-- chat-list -->
-                                                    <div class="chat-list">
-                                                        <!-- <a href="#" class="d-flex align-items-center">
+                                                    <div class="chat-list" id="2nd-list">
+                                                        <!-- <div class="d-flex align-items-center 2ndList">
                                                             <div class="flex-shrink-0">
                                                                 <img class="img-fluid"
                                                                     src="https://mehedihtml.com/chatbox/assets/img/user.png"
@@ -96,7 +96,7 @@
                                                                 <h3>Mehedi Hasan</h3>
                                                                 <p>대화내용이에요</p>
                                                             </div>
-                                                        </a> -->
+                                                        </div> -->
 
                                                     </div>
                                                     <!-- chat-list -->
