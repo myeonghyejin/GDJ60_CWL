@@ -39,7 +39,7 @@ public class LessonReviewDAOTest extends MyTestCase {
 			lessonReviewDTO.setMemberId("mhj");
 			lessonReviewDTO.setLessonReviewContents("물복"+i);
 			lessonReviewDTO.setLessonReviewDate(date);
-			lessonReviewDTO.setLessonRating(4.1);
+			lessonReviewDTO.setLessonRating(1);
 		
 			int result = lessonReviewDAO.setLessonReviewAdd(lessonReviewDTO);
 		}
