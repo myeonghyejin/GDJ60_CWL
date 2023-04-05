@@ -7,6 +7,7 @@
 	<meta charset="UTF-8">
 	<title>BOARD</title>
 	<c:import url="../template/common_css.jsp"></c:import>
+	<link rel="stylesheet" href="/resources/css/style.css">
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
@@ -16,7 +17,7 @@
 			<p class="fs-2" style="font-family: 'Impact'">FREE BOARD</p>
 		</div>
 	
-		<div class="row mx-auto my-5">
+		<div class="row col-8 justify-content-center mx-auto my-5">
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -104,7 +105,7 @@
 		<!-- 상품 등록 버튼 -->
 	 	<c:if test="${not empty member}">
 			<div class="row justify-content-center mx-auto">
-				<a href=./add class="btn btn-primary col-3">게시글 등록</a>
+				<a href=./add class="btn btn-primary col-1">등록</a>
 			</div>
 	 	</c:if>
 		</div>

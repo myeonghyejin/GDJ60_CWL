@@ -1,4 +1,4 @@
-/** import */
+/* ------- import -------- */
 @font-face {
     font-family: 'Pretendard-Regular';
     src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
@@ -6,6 +6,49 @@
     font-style: normal;
 }
 
+/* ------- fonts -------- */
 * {
     font-family: 'Pretendard-Regular';
+}
+
+/* ------- customize button color -------- */
+.btn-primary {
+    color: #fff;
+    background-color: #343DDB;
+    border-color: #343DDB;
+}
+
+.btn-primary:hover{
+    color: #fff;
+    background-color: #252dce;
+    border-color: #252dce;
+}
+
+.btn-outline-primary {
+    color: #343DDB;
+    border-color: #343DDB;
+}
+
+.btn-outline-primary:hover{
+    color: #fff;
+    background-color: #343DDB;
+    border-color: #343DDB;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #343DDB;
+    border-color: #343DDB;
+}
+
+.btn-info:hover{
+    color: #fff;
+    background-color: #252dce;
+    border-color: #252dce;
+}
+
+/* ------- customize table-striped color -------- */
+.table-striped>tbody>tr:nth-child(odd)>td, 
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: #dadada00
 }

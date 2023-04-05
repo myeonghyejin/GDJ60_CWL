@@ -12,11 +12,11 @@
 	<c:import url="../template/header.jsp"></c:import>
 	<div class="container-fluid my-5">
 		<!-- Title -->
-		<div class="row col-md-4 mx-auto text-center border-bottom border-dark pb-2">
+		<div class="row mx-auto text-center border-bottom border-dark pb-2">
 			<p class="fs-2" style="font-family: 'Impact'">PRODUCT</p>
 		</div>
 	
-		<div class="row col-md-4 mx-auto my-5">
+		<div class="row mx-auto my-5">
 			<table class="table table-hover">
 				<thead>
 					<tr>

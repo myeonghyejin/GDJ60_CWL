@@ -5,17 +5,17 @@
 <table class="table table-striped">
 	<c:forEach items="${list}" var="DTO">
 		<tr>
-			<td id="boardCommentContents${DTO.boardCommentNum}">
+			<td id="boardCommentContents${DTO.boardCommentNum}" width="100%" colspan="3">
 				${DTO.boardCommentContents}
 			</td>
-			<td>${DTO.memberId}</td>
-			<td>${DTO.boardCommentDate}</td>
-			<td>
+		</tr>
+		<tr>
+			<td align="center" width="50%" style="vertical-align: middle;"><b>${DTO.memberId}</b></td>
+			<td align="right" style="vertical-align: middle;">${DTO.boardCommentDate}</td>
+			<td align="right" style="vertical-align: middle;">
 				<c:if test="${member.memberId eq DTO.memberId}">
 					<button class="btn btn-info update" data-boardcomment-num="${DTO.boardCommentNum}" data-bs-toggle="modal" data-bs-target="#contentsModal">수정</button>
 				</c:if>
-			</td>
-			<td>
 				<c:if test="${member.memberId eq DTO.memberId}">
 					<button class="btn btn-danger delete" id="del" data-boardcomment-num="${DTO.boardCommentNum}">삭제</button>
 				</c:if>

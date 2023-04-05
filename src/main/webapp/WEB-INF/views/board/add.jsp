@@ -8,19 +8,22 @@
 	<title>BOARD ADD</title>
 	<%@ include file="../common/sessionCheck.jsp" %>
 	<c:import url="../template/common_css.jsp"></c:import>
+	<link rel="stylesheet" href="/resources/css/style.css">
 	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
 	<div class="container-fluid my-5">
+		<!-- Title -->
+		<div class="row mx-auto text-center border-bottom border-dark pb-2">
+			<p class="fs-2" style="font-family: 'Impact'">FREE BOARD</p>
+		</div>
+
 		<!-- Contents -->
 		<form action="./add" method="post">
-			<div class="row col-md-4 mx-auto my-5">
-				<div class="fw-bold fs-5 col-12">
-					<label for="memberId" class="form-label">작성자</label>
-					<input type="text" name="memberId" class="form-control" id="memberId" value="${member.memberId}" readonly><br>
-				</div>
+			<input type="hidden" name="memberId" value="${member.memberId}">
+			<div class="row col-8 mx-auto my-5">
 				<div class="fw-bold fs-5 col-12">
 					<label for="boardTitle" class="form-label">제목</label>
 					<input type="text" name="boardTitle" class="form-control" id="boardTitle"><br>
