@@ -84,9 +84,9 @@
 				<div class="col-auto">
 					<label for="condition" class="visually-hidden">Search</label>
 					<select class="form-select" name="condition" id="condition" aria-label="Default select example">
-						<option value="title" ${pagination.condition eq 'title' ? 'selected' : ''}>제목</option>
-						<option value="contents" ${pagination.condition eq 'contents' ? 'selected' : ''}>내용</option>
-						<option value="writer" ${pagination.condition eq 'writer' ? 'selected' : ''}>작성자</option>
+						<option value="productTitle" ${pagination.condition eq 'productTitle' ? 'selected' : ''}>제목</option>
+						<option value="productContents" ${pagination.condition eq 'productContents' ? 'selected' : ''}>내용</option>
+						<option value="memberId" ${pagination.condition eq 'memberId' ? 'selected' : ''}>작성자</option>
 					</select>
 				</div>
 				<div class="col-auto">
