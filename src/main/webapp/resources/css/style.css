@@ -11,6 +11,15 @@
     font-family: 'Pretendard-Regular';
 }
 
+/* ------- common -------- */
+a {
+    transition: all 0.3s ease-in-out;
+}
+
+a:link, a:visited {
+    text-decoration: none;
+}
+
 /* ------- customize button color -------- */
 .btn-primary {
     color: #fff;
@@ -51,4 +60,27 @@
 .table-striped>tbody>tr:nth-child(odd)>td, 
 .table-striped>tbody>tr:nth-child(odd)>th {
    background-color: #dadada00
+}
+
+/* ------- customize pagination -------- */
+.pagination ul li a {
+    color: #343DDB;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    text-align: center;
+    font-weight: 600;
+    padding-top: 8px;
+    font-size: 14px;
+}
+
+  .pagination ul li a:hover {
+    background: #343DDB;
+    color: #fff;
+}
+
+  .pagination ul li a.active {
+    background: #343DDB;
+    color: #fff;
+    border-color: #343DDB;
 }

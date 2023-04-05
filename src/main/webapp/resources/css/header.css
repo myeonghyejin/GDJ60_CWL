@@ -6,11 +6,6 @@
     font-style: normal;
 }
 
-/** common */
-a {
-    text-decoration: none;
-}
-
 /** header */
 header {
     position: fixed;
