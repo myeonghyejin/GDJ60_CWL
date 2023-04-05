@@ -4,7 +4,7 @@ public class OrderCancelDTO {
 	
 	private String memberId;
 	
-	private Long orderNum;
+	private String orderNum;
 	
 	private String keyword;
 	
@@ -21,11 +21,11 @@ public class OrderCancelDTO {
 		this.memberId = memberId;
 	}
 
-	public Long getOrderNum() {
+	public String getOrderNum() {
 		return orderNum;
 	}
 	
-	public void setOrderNum(Long orderNum) {
+	public void setOrderNum(String orderNum) {
 		this.orderNum = orderNum;
 	}
 

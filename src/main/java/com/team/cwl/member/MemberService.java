@@ -2,17 +2,21 @@ package com.team.cwl.member;
 
 public interface MemberService {
 	
-	/* È¸¿ø°¡ÀÔ */
+	/* íšŒì›ê°€ì… */
 	public void memberAdd(MemberDTO member) throws Exception;
 	
-	/*¾ÆÀÌµğ Áßº¹ °Ë»ç*/
+	/*ì•„ì´ë”” ì¤‘ë³µ ê²€ì‚¬*/
 	public int idCheck(String memberId) throws Exception;
 	
-	/* ·Î±×ÀÎ */
+	/* ë‹‰ë„¤ì„ ì¤‘ë³µ ê²€ì‚¬ */
+	public int nickNameCheck(String memberNickName) throws Exception;
+	
+	/* ë¡œê·¸ì¸ */
 	public MemberDTO memberLogin(MemberDTO member) throws Exception;
 	
-	/* ÁÖ¹®ÀÚ Á¤º¸ */
+	/* ì£¼ë¬¸ì ì •ë³´ */
 	public MemberDTO getMemberInfo(String memberId);
 	
+	/* ë§ˆì´ í˜ì´ì§€ */
 	public MemberDTO getMemberPage(MemberDTO memberDTO) throws Exception;
 }

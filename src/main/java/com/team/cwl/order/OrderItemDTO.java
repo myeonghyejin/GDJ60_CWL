@@ -1,19 +1,29 @@
 package com.team.cwl.order;
 
 public class OrderItemDTO {
-	
-	// ¡÷πÆ π¯»£
+	// Í∏∞Î≥∏ÌÇ§
+	private Long orderItemNum;
+	// Ï£ºÎ¨∏ Î≤àÌò∏
 	private String orderNum;
-	// ¡¶«∞ π¯»£
+	// Ï†úÌíà Î≤àÌò∏
 	private Long productNum;
-	// ¡÷πÆ ºˆ∑Æ
-	private Long orderCount;
-	// ªÛ«∞ «— ∞≥ ∞°∞›
-	private Long productPrice;
-	// √— ∞°∞›(∞°∞› * ¡÷πÆ ºˆ∑Æ)
-	private Long totalPrice;
+	// Ï£ºÎ¨∏ ÏàòÎüâ
+	private int productStock;
+	// ÏÉÅÌíà Ìïú Í∞ú Í∞ÄÍ≤©
+	private int productPrice;
+	// Ï¥ù Í∞ÄÍ≤©(Í∞ÄÍ≤© * Ï£ºÎ¨∏ ÏàòÎüâ)
+	private int totalPrice;
 	
 	
+	
+	public Long getOrderItemNum() {
+		return orderItemNum;
+	}
+
+	public void setOrderItemNum(Long orderItemNum) {
+		this.orderItemNum = orderItemNum;
+	}
+
 	public String getOrderNum() {
 		return orderNum;
 	}
@@ -30,38 +40,40 @@ public class OrderItemDTO {
 		this.productNum = productNum;
 	}
 
-	public Long getOrderCount() {
-		return orderCount;
+	public int getProductStock() {
+		return productStock;
 	}
 
-	public void setOrderCount(Long orderCount) {
-		this.orderCount = orderCount;
+	public void setProductStock(int productStock) {
+		this.productStock = productStock;
 	}
 
-	public Long getProductPrice() {
+	public int getProductPrice() {
 		return productPrice;
 	}
 
-	public void setProductPrice(Long productPrice) {
+	public void setProductPrice(int productPrice) {
 		this.productPrice = productPrice;
 	}
 
-	public Long getTotalPrice() {
+	public int getTotalPrice() {
 		return totalPrice;
 	}
 
-	public void setTotalPrice(Long totalPrice) {
+	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 
+	
 	@Override
 	public String toString() {
-		return "OrderItemDTO [orderNum=" + orderNum + ", productNum=" + productNum + ", orderCount=" + orderCount + ", productPrice="
-				+ productPrice + ", totalPrice=" + totalPrice + "]";
+		return "OrderItemDTO [orderItemNum=" + orderItemNum + ", orderNum=" + orderNum + ", productNum=" + productNum
+				+ ", productStock=" + productStock + ", productPrice=" + productPrice + ", totalPrice=" + totalPrice
+				+ "]";
 	}
-	
+
 	public void initTotal() {
-		this.totalPrice = this.productPrice * this.orderCount;
+		this.totalPrice = this.productPrice * this.productStock;
 	}
 	
 	

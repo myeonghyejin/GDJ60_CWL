@@ -25,17 +25,26 @@
 				<span class="id_input_re_2">아이디가 이미 존재합니다.</span>	
 				<span class="final_id_ck">아이디를 입력해주세요.</span>			
 			</div>
+			<div class="nickName_wrap">
+				<div class="nickName_name">닉네임</div>
+				<div class="nickName_input_box">
+					<input class="nickName_input" name="memberNickName">
+				</div>
+				<span class="nickName_input_re_1">사용 가능한 닉네임입니다.</span>
+				<span class="nickName_input_re_2">닉네임이 이미 존재합니다.</span>	
+							
+			</div>				
 			<div class="pw_wrap">
 				<div class="pw_name">비밀번호</div>
 				<div class="pw_input_box">
-					<input class="pw_input" name="memberPw">
+					<input type="password" class="pw_input" name="memberPw">
 				</div>
 				<span class="final_pw_ck">비밀번호를 입력해주세요.</span>
 			</div>
 			<div class="pwck_wrap">
 				<div class="pwck_name">비밀번호 확인</div>
 				<div class="pwck_input_box">
-					<input class="pwck_input">
+					<input type="password" class="pwck_input">
 				</div>
 				<span class="final_pwck_ck">비밀번호를 한번더 입력해주세요.</span>
 				<span class="pwck_input_re_1">비밀번호가 일치합니다.</span>
@@ -114,10 +123,11 @@
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script>
-var code = "";				//이메일전송 인증번호 저장위한 코드
  /* 유효성 검사 통과유무 변수 */
  var idCheck = false;			// 아이디
  var idckCheck = false;			// 아이디 중복 검사
+ var nickName = false;			// 닉네임
+ var nickNameCheck = false;		// 닉네임 중복 검사
  var pwCheck = false;			// 비번
  var pwckCheck = false;			// 비번 확인
  var pwckcorCheck = false;		// 비번 확인 일치 확인
@@ -129,6 +139,7 @@ $(document).ready(function(){
 		
 		/* 입력값 변수 */
 		var id = $('.id_input').val(); 				// id 입력란
+		var nickName = $('.nickName_input').val(); 	// 닉네임 입력란
 		var pw = $('.pw_input').val();				// 비밀번호 입력란
 		var pwck = $('.pwck_input').val();			// 비밀번호 확인 입력란
 		var name = $('.user_input').val();			// 이름 입력란
@@ -142,6 +153,15 @@ $(document).ready(function(){
 		}else{
 			$('.final_id_ck').css('display', 'none');
 			idCheck = true;
+		}
+		
+		/* 닉네임 유효성검사 */
+		if(nickName == ""){
+			$('.final_nickName_ck').css('display','block');
+			nickNameCheck = false;
+		}else{
+			$('.final_nickName_ck').css('display', 'none');
+			nickNameCheck = true;
 		}
 		
 		/* 비밀번호 유효성 검사 */
@@ -183,7 +203,7 @@ $(document).ready(function(){
 		}		
 		
 		/* 최종 유효성 검사 */
-		if(idCheck&&idckCheck&&pwCheck&&pwckCheck&&pwckcorCheck&&nameCheck&&addressCheck ){
+		if(idCheck&&idckCheck&&nickNameCheck&&pwCheck&&pwckCheck&&pwckcorCheck&&nameCheck&&addressCheck ){
 			$("#join_form").attr("action", "/member/memberAdd");
 			$("#join_form").submit();			
 			
@@ -213,6 +233,32 @@ $('.id_input').on("propertychange change keyup paste input", function(){
 				$('.id_input_re_2').css("display","inline-block");
 				$('.id_input_re_1').css("display", "none");
 				idckCheck = false;
+			}	
+		}// success 종료
+	}); // ajax 종료	
+});// function 종료
+
+//닉네임 중복검사
+$('.nickName_input').on("propertychange change keyup paste input", function(){
+	/* console.log("keyup 테스트"); */
+	
+	var memberNickName = $('.nickName_input').val();	// .nickName_input에 입력되는 값
+	var data = {memberNickName : memberNickName}				// '컨트롤에 넘길 데이터 이름' : '데이터(.nickName_input에 입력되는 값)'
+	
+	$.ajax({
+		type : "post",
+		url : "/member/memberNickNameCheck",
+		data : data,
+		success : function(result){
+			// console.log("성공 여부" + result);
+			if(result != 'fail'){
+				$('.nickName_input_re_1').css("display","inline-block");
+				$('.nickName_input_re_2').css("display", "none");	
+				nickNameCheck = true;
+			} else {
+				$('.nickName_input_re_2').css("display","inline-block");
+				$('.nickName_input_re_1').css("display", "none");
+				nickNameCheck = false;
 			}	
 		}// success 종료
 	}); // ajax 종료	
