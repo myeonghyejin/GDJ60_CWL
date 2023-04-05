@@ -7,25 +7,70 @@
 <head>
 	<meta charset="UTF-8">
 	<title>DETAIL</title>
-	<link rel="stylesheet" href="/resources/css/detail.css">
 	<c:import url="../template/common_css.jsp"></c:import>
+	<link rel="stylesheet" href="/resources/css/style.css">
+	<link rel="stylesheet" href="/resources/css/product.css">
+	<link rel="stylesheet" href="/resources/css/detail.css">
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
 	<div class="container-fluid my-5">
+		<!-- Title -->
+		<div class="row mx-auto text-center border-bottom border-dark pb-2">
+			<p class="fs-2" style="font-family: 'Impact'">PRODUCT</p>
+		</div>
+		
 		<!-- Contents -->
-		<div class="row col-md-4 mx-auto my-5">
+		<div class="row mx-auto my-5">
 			<c:choose>
 				<c:when test="${not empty DTO.productNum}">
-					<div class="row mx-auto text-center border-bottom border-dark pb-4">
-						<p class="fs-4 fw-bold text-center">${DTO.productName}</p>
-						<p class="fs-6">번호 ${DTO.productNum} | 작성자 ${DTO.memberId} | 날짜 ${DTO.productDate}</p>
-					</div>
-					<div class="row my-4">
+					<div class="row col-6 my-4 shuffle-wrapper portfolio-gallery">
+						<c:forEach items="${list}" var="DTO">
+							<div class="col-lg-4 col-6 mb-4 shuffle-item">
+								<div class="position-relative inner-box">
+									<div class="image position-relative">
+										<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+											<div class="carousel-inner">
+												<c:set var="loop_flag" value="false"/>
+												<c:forEach items="${DTO.productImgDTOs}" var="imgDTO" varStatus="index">
+													<c:if test="${index.end eq 0}">
+														<div class="carousel-item">
+															<img src="/resources/upload/product/${imgDTO.imgName}" alt="product-image" class="img-fluid w-100 d-block">
+														</div>
+														<c:set var="loop_flag" value="true"/>
+													</c:if>
+													
+													<c:choose>
+														<c:when test="${index.index eq 0}">
+															<div class="carousel-item active">
+																<img src="/resources/upload/product/${imgDTO.imgName}" alt="product-image" class="img-fluid w-100 d-block">
+															</div>
+														</c:when>
+														<c:otherwise>
+															<div class="carousel-item">
+																<img src="/resources/upload/product/${imgDTO.imgName}" alt="product-image" class="img-fluid w-100 d-block">
+															</div>
+														</c:otherwise>
+													</c:choose>
+												</c:forEach>
+											</div>
+										</div>
+										<div class="overlay-box">
+											<div class="overlay-inner">
+												<a class="overlay-content" href="./detail?productNum=${DTO.productNum}"">
+													<h5 class="mb-0">${DTO.productName}</h5>
+													<p>${DTO.productPrice}</p>
+												</a>
+											</div>
+										</div>
+									</div> 
+								</div>
+							</div>
+						</c:forEach>
+					</div>		
+					<div class="wrapper row col-6 my-4 justify-content-center mx-auto">
+						<p class="fs-4 fw-bold">${DTO.productName}</p>
 						<p class="fs-5">${DTO.productDetail}</p>
-					</div>	
-<!-------------------------------------- 우희가 한거 --------------------------------->
-					<div class="wrapper">
 						<div class="wrap">						
 							<div class="content_area">		
 								<div class="content_top">
@@ -61,7 +106,7 @@
 <!----------------------------------------------------------------------->	
 				</c:when>
 				<c:otherwise>
-					<div class="row col-md-4 mx-auto text-center">
+					<div class="row mx-auto text-center">
 						<p class="fs-2">존재하지 않는 페이지입니다.</p>
 					</div>
 				</c:otherwise>

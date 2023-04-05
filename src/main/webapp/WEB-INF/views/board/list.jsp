@@ -44,40 +44,34 @@
 			</table>
 			
 		<!-- Paging -->
-		<div class="rowmx-auto">
-			<nav aria-label="Page navigation example">
-				<ul class="pagination justify-content-center">
-				
-					<li class="page-item ${pagination.page eq 1?'disabled':''}">
-						<a class="page-link" href="./list?page=1&condition=${pagination.condition}&search=${pagination.search}" aria-label="Previous" data-board-page="1">
+		<div class="m-auto">
+			<div class="pagination justify-content-center mt-5 pt-4">
+				<ul class="list-inline">
+					<li class="list-inline-item ${pagination.page eq 1?'disabled':''}">
+						<a href="./list?page=1&condition=${pagination.condition}&search=${pagination.search}" aria-label="Previous" data-board-page="1">
 							<span aria-hidden="true">&laquo;</span>
 						</a>
 					</li>
-					
-					<li class="page-item ${pagination.prev?'disabled':''}">
-						<a class="page-link" href="./list?page=${pagination.startNum-1}&condition=${pagination.condition}&search=${pagination.search}" aria-label="Previous" data-board-page="${pagination.startNum-1}">
+					<li class="list-inline-item ${pagination.prev?'disabled':''}">
+						<a href="./list?page=${pagination.startNum-1}&condition=${pagination.condition}&search=${pagination.search}" aria-label="Previous" data-board-page="${pagination.startNum-1}">
 							<span aria-hidden="true">&lsaquo;</span>
 						</a>
-					</li>
-										
+					</li>				
 					<c:forEach begin="${pagination.startNum}" end="${pagination.lastNum}" var="i">
-						<li class="page-item"><a class="page-link" href="./list?page=${i}&condition=${pagination.condition}&search=${pagination.search}" data-board-page="${i}">${i}</a></li>
+						<li class="list-inline-item"><a href="./list?page=${i}&condition=${pagination.condition}&search=${pagination.search}" data-board-page="${i}">${i}</a></li>
 					</c:forEach>
-					
-					<li class="page-item ${pagination.next eq false ? 'disabled' : ''}">
-						<a class="page-link" href="./list?page=${pagination.lastNum+1}&condition=${pagination.condition}&search=${pagination.search}"  aria-label="Next" data-board-page="${pagination.lastNum+1}">
+					<li class="list-inline-item ${pagination.next eq false ? 'disabled' : ''}">
+						<a href="./list?page=${pagination.lastNum+1}&condition=${pagination.condition}&search=${pagination.search}"  aria-label="Next" data-board-page="${pagination.lastNum+1}">
 							<span aria-hidden="true">&rsaquo;</span>
 						</a>
-	 				</li>
-		 				
-		 			<li class="page-item ${pagination.page eq pagination.totalPage?'disabled' : ''}">
-						<a class="page-link" href="./list?page=${pagination.totalPage}&condition=${pagination.condition}&search=${pagination.search}"  aria-label="Next" data-board-page="${pagination.totalPage}">
+					 </li>
+					 <li class="list-inline-item ${pagination.page eq pagination.totalPage?'disabled' : ''}">
+						<a href="./list?page=${pagination.totalPage}&condition=${pagination.condition}&search=${pagination.search}"  aria-label="Next" data-board-page="${pagination.totalPage}">
 							<span aria-hidden="true">&raquo;</span>
 						</a>
-						</li>
-						
-				</ul>
-			</nav>
+					</li>
+				</ul>	
+			</div>
 		</div>
 		
 		<!-- 검색창 -->

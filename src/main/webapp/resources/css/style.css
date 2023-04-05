@@ -20,7 +20,7 @@ a:link, a:visited {
     text-decoration: none;
 }
 
-/* ------- customize button color -------- */
+/* ------- button -------- */
 .btn-primary {
     color: #fff;
     background-color: #343DDB;
@@ -56,13 +56,13 @@ a:link, a:visited {
     border-color: #252dce;
 }
 
-/* ------- customize table-striped color -------- */
+/* ------- table-striped -------- */
 .table-striped>tbody>tr:nth-child(odd)>td, 
 .table-striped>tbody>tr:nth-child(odd)>th {
    background-color: #dadada00
 }
 
-/* ------- customize pagination -------- */
+/* ------- pagination -------- */
 .pagination ul li a {
     color: #343DDB;
     width: 40px;
