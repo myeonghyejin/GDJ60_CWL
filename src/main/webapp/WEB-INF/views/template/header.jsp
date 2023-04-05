@@ -20,9 +20,10 @@
 	        	<c:if test="${empty member}">
 		        	<li class="nav-item"><a class="nav-link" style="font-size: 11px" href="/member/memberLogin">LOGIN</a></li>
 		            <li class="nav-item"><a class="nav-link" style="font-size: 11px" href="/member/memberAgree">JOIN</a></li>
+		            <li class="nav-item"><a class="nav-link" style="font-size: 11px" href="/cart/cart">CART</a></li>
 	        	</c:if>
-		        	<li class="nav-item"><a class="nav-link" style="font-size: 11px" href="/cart/${member.memberId}">CART</a></li>
-	        	<c:if test="${not empty member}">	     	        		
+	        	<c:if test="${not empty member}">
+	        		<li class="nav-item"><a class="nav-link" style="font-size: 11px" href="/cart/${member.memberId}">CART</a></li>
 		        	<li class="nav-item"><a class="nav-link" style="font-size: 11px" href="/member/memberPage">MYPAGE</a></li>
 		            <li class="nav-item"><a class="nav-link" style="font-size: 11px" href="/member/memberLogout">LOGOUT</a></li>		            
 				</c:if>

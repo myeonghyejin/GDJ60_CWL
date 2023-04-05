@@ -50,7 +50,7 @@ public class OrderMapperTests {
 		
 		ord.setOrders(orders);
 		
-		ord.setOrderNum("2");
+		ord.setOrderNum("1");
 		ord.setAddressee("유저");
 		ord.setMemberId("user");
 		ord.setMemberAddress1("44704");
@@ -86,8 +86,8 @@ public class OrderMapperTests {
 		
 		MemberDTO member = new MemberDTO();
 		
-		member.setMemberId("user");
-		member.setMoney(500000);
+		member.setMemberId("USER");
+		member.setMoney(1000000);
 		
 		mapper.deductMoney(member);
 	}

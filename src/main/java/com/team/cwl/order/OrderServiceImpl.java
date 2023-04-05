@@ -33,7 +33,7 @@ public class OrderServiceImpl implements OrderService {
 	private ProductDAO productDAO;
 	
 	@Override
-	public List<OrderPageItemDTO> getProductDetail(List<OrderPageItemDTO> orders) {
+	public List<OrderPageItemDTO> getProductDetail(List<OrderPageItemDTO> orders) throws Exception {
 		
 		List<OrderPageItemDTO> result = new ArrayList<OrderPageItemDTO>();
 		
@@ -56,7 +56,7 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Override
 	@Transactional
-	public void order(OrderDTO ord) {
+	public void order(OrderDTO ord) throws Exception {
 		/* 사용할 데이터 가져오기 */
 		// 회원정보
 		MemberDTO member = memberMapper.getMemberInfo(ord.getMemberId());
@@ -120,7 +120,7 @@ public class OrderServiceImpl implements OrderService {
 	/* 주문취소 */
 	@Override
 	@Transactional
-	public void orderCancel(OrderCancelDTO dto) {
+	public void orderCancel(OrderCancelDTO dto) throws Exception {
 		/* 주문, 주문상품 객체 */
 		// 회원
 		MemberDTO member = memberMapper.getMemberInfo(dto.getMemberId());

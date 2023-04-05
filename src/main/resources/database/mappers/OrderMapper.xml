@@ -40,7 +40,7 @@
 	</update>	
 	
 	<!-- 주문취소 -->
-	<update id="orderCancle" parameterType="OrderDTO">
+	<update id="orderCancel" parameterType="OrderDTO">
 		UPDATE "ORDER" SET ORDERSTATE = '주문취소' WHERE ORDERNUM = #{orderNum}		
 	</update>	
 

@@ -15,7 +15,6 @@ import com.team.cwl.member.MemberDTO;
 import com.team.cwl.member.MemberService;
 
 @Controller
-@RequestMapping("/order/**")
 public class OrderController {
 	
 	@Autowired
@@ -24,8 +23,8 @@ public class OrderController {
 	@Autowired
 	private MemberService memberService;
 	
-	@GetMapping("{memberId}")
-	public String orderPageGET(@PathVariable("memberId") String memberId, OrderPageDTO opd, Model model) {
+	@GetMapping("/order/{memberId}")
+	public String orderPageGET(@PathVariable("memberId") String memberId, OrderPageDTO opd, Model model) throws Exception {
 		
 		
 		System.out.println("memberId : " + memberId);
@@ -36,8 +35,8 @@ public class OrderController {
 		return "/order/order";
 	}
 	
-	@PostMapping("order")
-	public String orderPagePost(OrderDTO od, HttpServletRequest request) {
+	@PostMapping("/order")
+	public String orderPagePost(OrderDTO od, HttpServletRequest request) throws Exception {
 		
 		System.out.println(od);
 		

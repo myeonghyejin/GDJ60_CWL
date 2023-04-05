@@ -147,16 +147,16 @@
 				</div>
 				
 				<!-- 주문 요청 form -->
-				<form class="order_form" action="/order" method="post">
-					<!-- 주문자 회원번호 -->
-					<input name="memberId" value="${memberInfo.memberId}" type="hidden">
-					<!-- 주소록 & 받는이 -->
-					<input name="addressee" type="hidden">
-					<input name="memberAddress1" type="hidden">
-					<input name="memberAddress2" type="hidden">
-					<input name="memberAddress3" type="hidden">
-					<!-- 상품 정보 -->
-				</form>
+			<form class="order_form" action="/order" method="post">
+				<!-- 주문자 회원번호 -->
+				<input name="memberId" value="${memberInfo.memberId}" type="hidden">
+				<!-- 주소록 & 받는이-->
+				<input name="addressee" type="hidden">
+				<input name="memberAddress1" type="hidden">
+				<input name="memberAddress2" type="hidden">
+				<input name="memberAddress3" type="hidden">			
+				<!-- 상품 정보 -->
+			</form>
 				
 				<!-- 배송지 정보 -->
 				<div class="addressInfo_div">
@@ -394,6 +394,18 @@ $(".order_btn").on("click", function() {
 	
 	/* 서버 전송 */
 	$(".order_form").submit();
+	
+	/* <form class="order_form" action="/order" method="post">
+	<!-- 주문자 회원번호 -->
+	<input name="memberId" value="${memberInfo.memberId}" type="hidden">
+	<!-- 주소록 & 받는이-->
+	<input name="addressee" type="hidden">
+	<input name="memberAddress1" type="hidden">
+	<input name="memberAddress2" type="hidden">
+	<input name="memberAddress3" type="hidden">			
+	<!-- 상품 정보 -->
+	</form> */
+	
 });
 
 </script>
