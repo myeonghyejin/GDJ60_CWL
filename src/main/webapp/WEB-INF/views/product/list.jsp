@@ -7,6 +7,20 @@
 	<meta charset="UTF-8">
 	<title>PRODUCT</title>
 	<c:import url="../template/common_css.jsp"></c:import>
+	<link rel="stylesheet" href="/resources/css/style.css">
+	<link rel="stylesheet" href="/resources/css/product.css">
+
+	  <!-- ** Plugins Needed for the Project ** -->
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="plugins/themify/css/themify-icons.css">
+  <link rel="stylesheet" href="plugins/counto/animate.css">
+  <link rel="stylesheet" href="plugins/aos/aos.css">
+  <link rel="stylesheet" href="plugins/owl-carousel/owl.carousel.min.css">
+  <link rel="stylesheet" href="plugins/owl-carousel/owl.theme.default.min.css">
+  <link rel="stylesheet" href="plugins/magnific-popup/magnific-popup.css">
+  <link rel="stylesheet" href="plugins/animated-text/animated-text.css">
+
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
@@ -15,30 +29,35 @@
 		<div class="row mx-auto text-center border-bottom border-dark pb-2">
 			<p class="fs-2" style="font-family: 'Impact'">PRODUCT</p>
 		</div>
-	
-		<div class="row mx-auto my-5">
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>NUM</th>
-						<th>TITLE</th>
-						<th>WRITER</th>
-						<th>DATE</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${list}" var="DTO">
-						<tr>
-							<td>${DTO.productNum}</td>
-							<td>
-								<a href="./detail?productNum=${DTO.productNum}">${DTO.productName}</a>
-							</td>
-							<td>${DTO.memberId}</td>
-							<td>${DTO.productDate}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+		
+		<div class="container">
+			<div class="row shuffle-wrapper portfolio-gallery">
+				<c:forEach items="${list}" var="DTO">
+					<div class="col-lg-4 col-6 mb-4 shuffle-item">
+						<div class="position-relative inner-box">
+							<div class="image position-relative">
+								<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+									<div class="carousel-inner">
+										<c:forEach items="${DTO.productImgDTOs}" var="imgDTO">
+											<div class="carousel-item active">
+												<img src="/resources/upload/product/${imgDTO.imgName}" alt="product-image" class="img-fluid w-100 d-block">
+											</div>
+										</c:forEach>
+									</div>
+								</div>
+								<div class="overlay-box">
+									<div class="overlay-inner">
+										<a class="overlay-content" href="./detail?productNum=${DTO.productNum}"">
+											<h5 class="mb-0">${DTO.productName}</h5>
+										</a>
+									</div>
+								</div>
+							</div> 
+						</div>
+					</div>
+				</c:forEach>
+			</div>
+		</div>
 			
 		<!-- Paging -->
 		<div class="rowmx-auto">
@@ -82,14 +101,6 @@
 			<input type="hidden" name="page" value="1" id="page">
 			<div class="row justify-content-center mx-auto">
 				<div class="col-auto">
-					<label for="condition" class="visually-hidden">Search</label>
-					<select class="form-select" name="condition" id="condition" aria-label="Default select example">
-						<option value="productTitle" ${pagination.condition eq 'productTitle' ? 'selected' : ''}>제목</option>
-						<option value="productContents" ${pagination.condition eq 'productContents' ? 'selected' : ''}>내용</option>
-						<option value="memberId" ${pagination.condition eq 'memberId' ? 'selected' : ''}>작성자</option>
-					</select>
-				</div>
-				<div class="col-auto">
 					<label for="search" class="visually-hidden">Search</label>
 					<input type="text" class="form-control" value="${pagination.search}" name="search" id="search" placeholder="검색어를 입력하세요.">
 				</div>
@@ -105,7 +116,7 @@
 				<a href=./add class="btn btn-primary col-3">게시글 등록</a>
 			</div>
 	 	</c:if>
-	</div>
+
 </div>
 	<c:import url="../template/common_js.jsp"></c:import>
 	<script src="../resources/js/common/paging.js"></script>
