@@ -10,31 +10,31 @@ import com.team.cwl.product.ProductDTO;
 @MapperScan(basePackages = "OrderMapper")
 public interface OrderMapper {
 	
-	// ÁÖ¹® »óÇ° Á¤º¸(ÁÖ¹® ÆäÀÌÁö)
-	public OrderPageItemDTO getGoodsInfo(Long productNum);
+	// ì£¼ë¬¸ ìƒí’ˆ ì •ë³´(ì£¼ë¬¸ í˜ì´ì§€)
+	public OrderPageItemDTO getProductDetail(Long productNum);
 	
-	// ÁÖ¹® »óÇ° Á¤º¸(ÁÖ¹® Ã³¸®)
+	// ì£¼ë¬¸ ìƒí’ˆ ì •ë³´(ì£¼ë¬¸ ì²˜ë¦¬)
 	public OrderItemDTO getOrderInfo(Long productNum);
 	
-	// ÁÖ¹® Å×ÀÌºí µî·Ï
+	// ì£¼ë¬¸ í…Œì´ë¸” ë“±ë¡
 	public int enrollOrder(OrderDTO ord);
 	
-	// ÁÖ¹® ¾ÆÀÌÅÛ Å×ÀÌºí µî·Ï
+	// ì£¼ë¬¸ ì•„ì´í…œ í…Œì´ë¸” ë“±ë¡
 	public int enrollOrderItem(OrderItemDTO orid);
 	
-	// ÁÖ¹® ±İ¾× Â÷°¨
+	// ì£¼ë¬¸ ê¸ˆì•¡ ì°¨ê°
 	public int deductMoney(MemberDTO member);
 	
-	// ÁÖ¹® Àç°í Â÷°¨
+	// ì£¼ë¬¸ ì¬ê³  ì°¨ê°
 	public int deductStock(ProductDTO product);
 	
-	// ÁÖ¹® Ãë¼Ò
+	// ì£¼ë¬¸ ì·¨ì†Œ
 	public int orderCancel(String orderNum);
 	
-	// ÁÖ¹® »óÇ° Á¤º¸(ÁÖ¹®Ãë¼Ò)
+	// ì£¼ë¬¸ ìƒí’ˆ ì •ë³´(ì£¼ë¬¸ì·¨ì†Œ)
 	public List<OrderItemDTO> getOrderItemInfo(String orderNum);
 	
-	// ÁÖ¹® Á¤º¸(ÁÖ¹®Ãë¼Ò)
+	// ì£¼ë¬¸ ì •ë³´(ì£¼ë¬¸ì·¨ì†Œ)
 	public OrderDTO getOrder(String orderNum);
 	
 }

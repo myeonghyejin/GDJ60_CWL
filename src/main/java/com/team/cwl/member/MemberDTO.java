@@ -2,44 +2,47 @@ package com.team.cwl.member;
 
 public class MemberDTO {
 	
-	//È¸¿ø ID
+	//íšŒì› ID
 	private String memberId;
 	
-	//È¸¿ø PW
+	// íšŒì› ë‹‰ë„¤ì„
+	private String memberNickName;
+	
+	//íšŒì› PW
 	private String memberPw;
 	
-	// È¸¿ø ÀÌ¸§
+	// íšŒì› ì´ë¦„
 	private String memberName;
 	
-	// È¸¿ø ÈŞ´ëÆù ¹øÈ£
+	// íšŒì› íœ´ëŒ€í° ë²ˆí˜¸
 	private String memberPhone;
 	
-	// È¸¿ø ¿ìÆí¹øÈ£
+	// íšŒì› ìš°í¸ë²ˆí˜¸
 	private String memberAddress1;
 	
-	// È¸¿ø ÁÖ¼Ò
+	// íšŒì› ì£¼ì†Œ
 	private String memberAddress2;
 	
-	// È¸¿ø »ó¼¼ÁÖ¼Ò
+	// íšŒì› ìƒì„¸ì£¼ì†Œ
 	private String memberAddress3;
 	
-	//È¸¿ø ÀÌ¸ŞÀÏ
+	//íšŒì› ì´ë©”ì¼
 	private String memberEmail;
 	
-	// °ü¸®ÀÚ ±¸ºĞ(0:ÀÏ¹İ»ç¿ëÀÚ, 1:°ü¸®ÀÚ)
+	// ê´€ë¦¬ì êµ¬ë¶„(0:ì¼ë°˜ì‚¬ìš©ì, 1:ê´€ë¦¬ì)
 	private Long adminCheck;
 	
-	// È¸¿ø ¼ºº°
+	// íšŒì› ì„±ë³„
 	private String memberGender;
 	
-	// ÀÚ±â¼Ò°³
+	// ìê¸°ì†Œê°œ
 	private String memberSI;
 	
-	// È¸¿ø ³ªÀÌ
+	// íšŒì› ë‚˜ì´
 	private Long memberAge;
 	
-	// È¸¿øÀÌ °¡Áö°í ÀÖ´Â µ·
-	private Long money;
+	// íšŒì›ì´ ê°€ì§€ê³  ìˆëŠ” ëˆ
+	private int money;
 	
 
 	public String getMemberId() {
@@ -48,6 +51,14 @@ public class MemberDTO {
 
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
+	}
+	
+	public String getMemberNickName() {
+		return memberNickName;
+	}
+
+	public void setMemberNickName(String memberNickName) {
+		this.memberNickName = memberNickName;
 	}
 
 	public String getMemberPw() {
@@ -138,22 +149,25 @@ public class MemberDTO {
 		this.memberAge = memberAge;
 	}
 
-	public Long getMoney() {
+	public int getMoney() {
 		return money;
 	}
 
-	public void setMoney(Long money) {
+	public void setMoney(int money) {
 		this.money = money;
 	}
 
-	
 	@Override
 	public String toString() {
-		return "MemberDTO [memberId=" + memberId + ", memberPw=" + memberPw + ", memberName=" + memberName
-				+ ", memberPhone=" + memberPhone + ", memberAddress1=" + memberAddress1 + ", memberAddress2=" + memberAddress2
-				+ ", memberAddress3=" + memberAddress3 + ", memberEmail=" + memberEmail + ", adminCheck=" + adminCheck + ", memberGender=" + memberGender + ", memberSI=" + memberSI
-				 + ", memberAge=" + memberAge + ", money=" + money + "]";
+		return "MemberDTO [memberId=" + memberId + ", memberNickName=" + memberNickName + ", memberPw=" + memberPw
+				+ ", memberName=" + memberName + ", memberPhone=" + memberPhone + ", memberAddress1=" + memberAddress1
+				+ ", memberAddress2=" + memberAddress2 + ", memberAddress3=" + memberAddress3 + ", memberEmail="
+				+ memberEmail + ", adminCheck=" + adminCheck + ", memberGender=" + memberGender + ", memberSI="
+				+ memberSI + ", memberAge=" + memberAge + ", money=" + money + "]";
 	}
+
+	
+	
 	
 	
 }

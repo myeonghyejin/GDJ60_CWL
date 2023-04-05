@@ -9,8 +9,8 @@ public class ProductDTO {
 	private String memberId;
 	private String productName;
 	private String productDetail;
-	private Long productStock;
-	private Long productPrice;
+	private int productStock;
+	private int productPrice;
 	private Date productDate;
 	private Integer productState;
 	
@@ -40,16 +40,16 @@ public class ProductDTO {
 	public void setProductDetail(String productDetail) {
 		this.productDetail = productDetail;
 	}
-	public Long getProductStock() {
+	public int getProductStock() {
 		return productStock;
 	}
-	public void setProductStock(Long productStock) {
+	public void setProductStock(int productStock) {
 		this.productStock = productStock;
 	}
-	public Long getProductPrice() {
+	public int getProductPrice() {
 		return productPrice;
 	}
-	public void setProductPrice(Long productPrice) {
+	public void setProductPrice(int productPrice) {
 		this.productPrice = productPrice;
 	}
 	public Date getProductDate() {
@@ -70,4 +70,16 @@ public class ProductDTO {
 	public void setProductImgDTOs(List<ProductImgDTO> productImgDTOs) {
 		this.productImgDTOs = productImgDTOs;
 	}
+	@Override
+	public String toString() {
+		return "ProductDTO [productNum=" + productNum + ", memberId=" + memberId + ", productName=" + productName
+				+ ", productDetail=" + productDetail + ", productStock=" + productStock + ", productPrice="
+				+ productPrice + ", productDate=" + productDate + ", productState=" + productState + ", productImgDTOs="
+				+ productImgDTOs + "]";
+	}
+	
+	
+	
+	
+	
 }

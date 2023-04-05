@@ -24,18 +24,19 @@ public class OrderController {
 	@Autowired
 	private MemberService memberService;
 	
-	
-	
-	@GetMapping("/order/{memberId}")
+	@GetMapping("{memberId}")
 	public String orderPageGET(@PathVariable("memberId") String memberId, OrderPageDTO opd, Model model) {
 		
-		model.addAttribute("orderList", orderService.getGoodsInfo(opd.getOrders()));
+		
+		System.out.println("memberId : " + memberId);
+		System.out.println("orders : " + opd.getOrders());
+		model.addAttribute("orderList", orderService.getProductDetail(opd.getOrders()));
 		model.addAttribute("memberInfo", memberService.getMemberInfo(memberId));
 		
-		return "/order";
+		return "/order/order";
 	}
 	
-	@PostMapping("/order/")
+	@PostMapping("order")
 	public String orderPagePost(OrderDTO od, HttpServletRequest request) {
 		
 		System.out.println(od);

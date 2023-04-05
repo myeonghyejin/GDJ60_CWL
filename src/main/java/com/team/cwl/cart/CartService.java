@@ -4,15 +4,15 @@ import java.util.List;
 
 
 public interface CartService {
-	/* Àå¹Ù±¸´Ï Ãß°¡ */
+	/* ìž¥ë°”êµ¬ë‹ˆ ì¶”ê°€ */
 	public int cartAdd(CartDTO cart);	
 	
-	/* Àå¹Ù±¸´Ï Á¤º¸ ¸®½ºÆ® */
+	/* ìž¥ë°”êµ¬ë‹ˆ ì •ë³´ ë¦¬ìŠ¤íŠ¸ */
 	public List<CartDTO> cartList(String memberId);	
 	
-	/* Ä«Æ® ¼ö·® ¼öÁ¤ */
+	/* ì¹´íŠ¸ ìˆ˜ëŸ‰ ìˆ˜ì • */
 	public int modifyCount(CartDTO cart);		
 	
-	/* Ä«Æ® »èÁ¦ */
+	/* ì¹´íŠ¸ ì‚­ì œ */
 	public int cartDelete(Long cartNum);
 }

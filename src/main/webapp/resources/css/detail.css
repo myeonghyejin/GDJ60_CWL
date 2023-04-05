@@ -1,0 +1,45 @@
+.button{
+  			padding: 2% 0 2% 3%;
+  		}
+  			.button_quantity{
+  				margin-bottom: 2%;
+  				
+  			}
+	  			.button_quantity input{
+				    height: 26px;
+				    width: 40px;
+				    text-align: center;
+				    font-weight: bold;  			
+	  			}
+		  	  	.button_quantity button{
+					border: 1px solid #aaa;
+				    color: #3a60df;
+				    width: 20px;
+				    height: 20px;
+				    padding: 3px;
+				    background-color: #fff;
+				    font-weight: bold;
+				    font-size: 15px;
+				    line-height: 15px;	  	  	
+		  	  	}
+		  	  		.btn_cart{
+						display: inline-block;
+    					width: 140px;
+					    text-align: center;
+					    height: 50px;
+    					line-height: 50px;
+    					background-color: #5e6b9f;
+    					border: 1px solid #5e6b9f;
+    					color: #fff;
+    					margin-right: 2px;  	  		
+		  	  		}
+		  	  		.btn_buy{
+						display: inline-block;
+    					width: 140px;
+					    text-align: center;
+					    height: 50px;
+    					line-height: 50px;
+    					background-color: #7b8ed1;
+    					border: 1px solid #7b8ed1;
+    					color: #fff;			  	  		
+		  	  		}

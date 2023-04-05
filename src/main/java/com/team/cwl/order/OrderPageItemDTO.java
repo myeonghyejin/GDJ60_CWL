@@ -1,19 +1,25 @@
 package com.team.cwl.order;
 
+import java.util.List;
+
+import com.team.cwl.product.ProductImgDTO;
+
 public class OrderPageItemDTO {
 	
-	// ∫‰∑Œ∫Œ≈Õ ¿¸¥ﬁπﬁ¿ª ∞™
+	// Î∑∞Î°úÎ∂ÄÌÑ∞ Ï†ÑÎã¨Î∞õÏùÑ Í∞í
 	private Long productNum;
 	
-	private Long orderCount;
+	private int productStock;
 	
-	// DB∑Œ∫Œ≈Õ ≤®≥ªø√ ∞™
+	// DBÎ°úÎ∂ÄÌÑ∞ Í∫ºÎÇ¥Ïò¨ Í∞í
 	private String productName;
 	
-	private Long productPrice;
+	private int productPrice;
 	
-	// ∏∏µÈæÓ ≥æ ∞™
-	private Long totalPrice;
+	// ÎßåÎì§Ïñ¥ ÎÇº Í∞í
+	private int totalPrice;
+	
+	private List<ProductImgDTO> imageList;
 
 	
 	public Long getProductNum() {
@@ -24,12 +30,12 @@ public class OrderPageItemDTO {
 		this.productNum = productNum;
 	}
 
-	public Long getOrderCount() {
-		return orderCount;
+	public int getProductStock() {
+		return productStock;
 	}
 
-	public void setOrderCount(Long orderCount) {
-		this.orderCount = orderCount;
+	public void setProductStock(int productStock) {
+		this.productStock = productStock;
 	}
 
 	public String getProductName() {
@@ -40,31 +46,39 @@ public class OrderPageItemDTO {
 		this.productName = productName;
 	}
 
-	public Long getProductPrice() {
+	public int getProductPrice() {
 		return productPrice;
 	}
 
-	public void setProductPrice(Long productPrice) {
+	public void setProductPrice(int productPrice) {
 		this.productPrice = productPrice;
 	}
 
-	public Long getTotalPrice() {
+	public int getTotalPrice() {
 		return totalPrice;
 	}
 
-	public void setTotalPrice(Long totalPrice) {
+	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 	
-	
+	public List<ProductImgDTO> getImageList() {
+		return imageList;
+	}
+
+	public void setImageList(List<ProductImgDTO> imageList) {
+		this.imageList = imageList;
+	}
+
 	public void initTotal() {
-		this.totalPrice = this.productPrice*this.orderCount;
+		this.totalPrice = this.productPrice*this.productStock;
 	}
 	
 	@Override
 	public String toString() {
-		return "OrderPageItemDTO [productNum=" + productNum + ", orderCount=" + orderCount + ", productName=" + productName
-				+ ", productPrice=" + productPrice + ", totalPrice=" + totalPrice + "]";
+		return "OrderPageItemDTO [productNum=" + productNum + ", productStock=" + productStock + ", productName="
+				+ productName + ", productPrice=" + productPrice + ", totalPrice=" + totalPrice + ", imageList="
+				+ imageList + "]";
 	}
 	
 	
