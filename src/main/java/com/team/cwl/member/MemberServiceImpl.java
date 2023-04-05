@@ -9,27 +9,28 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	MemberMapper memberMapper;
 	
-	/* È¸¿ø°¡ÀÔ */
+	/* È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	@Override
 	public void memberAdd(MemberDTO member) throws Exception {
 		memberMapper.memberAdd(member);
 	}
 	
-	/* ¾ÆÀÌµð Áßº¹ Ã¼Å© */
+	/* ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ßºï¿½ Ã¼Å© */
 	@Override
 	public int idCheck(String memberId) throws Exception {
 		return memberMapper.idCheck(memberId);
 	}
 	
-	/* ·Î±×ÀÎ */
+	/* ï¿½Î±ï¿½ï¿½ï¿½ */
 	@Override
 	public MemberDTO memberLogin(MemberDTO member) throws Exception {
 		return memberMapper.memberLogin(member);
 	}
 	
-	/* ÁÖ¹®ÀÚ Á¤º¸ */
+	/* ï¿½Ö¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	@Override
 	public MemberDTO getMemberInfo(String memberId) {
+		System.out.println(memberId);
 		return memberMapper.getMemberInfo(memberId);
 	}
 	

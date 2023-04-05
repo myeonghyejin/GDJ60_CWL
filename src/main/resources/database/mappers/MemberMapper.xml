@@ -28,7 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	
    	<!-- 주문자 정보 -->
   	<select id="getMemberInfo" resultType="com.team.cwl.member.MemberDTO">  	
-  		SELECT MEMBERID, MEMBERNAME, MEMBEREMAIL, MEMBERADDRESS1, MEMBERADDRESS2, MEMBERADDRESS3, MONEY 
+  		SELECT MEMBERID, MEMBERNAME, MEMBEREMAIL, MEMBERADDRESS1, MEMBERADDRESS2, MEMBERADDRESS3, MONEY, MEMBERSI 
   		FROM MEMBER 
   		WHERE MEMBERID = #{memberId}  	
   	</select>
