@@ -1,6 +1,6 @@
 package com.team.cwl.chat;
 
-public class MessageDTO {
+public class MessageDTO extends ChatDTO {
 	
 	private String type;
 	

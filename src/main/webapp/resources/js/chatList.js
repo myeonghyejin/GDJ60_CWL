@@ -25,7 +25,7 @@ let sock = new SockJS("http://" + ipAddress + "/echo");
 sock.onopen = function () {
   console.log("연결 성공");
   //sock.send('list');
-  let v = makeJson("list", null, null, null)
+  let v = makeJson("list", null, null, null, "${memberSI}")
   let c = makeJson("list-2nd", null, null, null)
   sendMessage(v);
   sendMessage(c);
@@ -59,7 +59,9 @@ sock.onmessage = function (m) {
     for(let user of json.value){
       if(user != id){
         console.log('user : ', user)
-        makeUser(user)
+        console.log('json.intro : ', json.intro)
+        makeUser(user, json.intro)
+
       }
     }
     
@@ -106,9 +108,9 @@ function makelist2nd(users) {
 
 
 //친구목록 나타내기
-function makeUser(users) {
+function makeUser(users, memberSI) {
   let u = ''
-  u = u + '<div class="d-flex align-items-center friend" data-user="'+users+'">'
+  u = u + '<div class="d-flex align-items-center friend" data-user="'+users+'" data-memberSI="'+memberSI+'">'
   u = u + '<div class="flex-shrink-0">'
   u = u + '<img class="img-fluid"'
   u = u + 'src="https://mehedihtml.com/chatbox/assets/img/user.png"'
@@ -117,7 +119,7 @@ function makeUser(users) {
   u = u + '<div class="flex-grow-1 ms-3" >'
   u = u + '<h7 class="pull-right">5km</h7>'
   u = u + '<h3>' + users + '</h3>'
-  u = u + '<p>안녕하세요 같이만나서 놀아요 자기소개입니다</p>'
+  u = u + '<p>'+memberSI+'</p>'
   u = u + '</div>'
   u = u + '</div>'
   $("#chat-list").append(u);
@@ -129,6 +131,7 @@ $("#chat-list").on('click','.friend' ,function (e) {
   $(".chatbox").empty();
   console.log("초대 : ", $(this));
   let userId = $(this).attr("data-user");
+  let memberSI = $(this).attr("data-memberSI");
   console.log("start chat with " + userId);
   let r = makeJson('invite',null, userId);
   sock.send(r)
@@ -146,7 +149,7 @@ $("#chat-list").on('click','.friend' ,function (e) {
                               alt="image title"></span>
                       <div class="flex-grow-1 ms-3">
                           <h3>${userId}</h3>
-                          <p>자기소개</p>
+                          <p>${memberSI}</p>
                       </div>
                   </div>
               </div>
@@ -254,12 +257,13 @@ function getTimeString() {
   
 
 //보낼 메세지를 JSON 형태로 변경
-function makeJson(type, message, receiveId, sendTime){
+function makeJson(type, message, receiveId, sendTime, memberSI){
   let json = {
     "type": type,
     "value": message,
     "receiveId": receiveId,
-    "sendTime": sendTime
+    "sendTime": sendTime,
+    "intro":memberSI
   };
   return JSON.stringify(json);
 }

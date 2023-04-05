@@ -26,6 +26,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.team.cwl.member.MemberDTO;
+import com.team.cwl.member.MemberMapper;
+import com.team.cwl.member.MemberServiceImpl;
 
 public class ChatHandler extends TextWebSocketHandler{
 //	List<WebSocketSession> sessionList=new ArrayList<WebSocketSession>();
@@ -72,6 +74,7 @@ public class ChatHandler extends TextWebSocketHandler{
 		System.out.println(messageDTO.getType());
 		MemberDTO memberDTO=(MemberDTO)session.getAttributes().get("member");
         String memberId = memberDTO.getMemberId();
+        System.out.println(memberDTO);
         
         // 친구 목록 뜨게 list 전송
 		if(messageDTO.getType().equals("list")) {
@@ -79,6 +82,20 @@ public class ChatHandler extends TextWebSocketHandler{
 			JsonObject jsonObject = new JsonObject();
 			jsonObject.addProperty("type", "list");
 			jsonObject.add("value",gson.toJsonTree(maps.keySet().toArray()));
+			System.out.println(memberDTO.getMemberSI());
+			if(memberDTO.getMemberSI() == null ) {
+				// 회원 정보가 세션에 없는 경우, DB에서 가져와서 세션에 설정
+				MemberServiceImpl impl = new MemberServiceImpl();
+			    MemberDTO member = impl.getMemberInfo(memberId); // DAO를 사용하여 회원 정보를 가져옴
+			    System.out.println(impl.getMemberInfo(memberId));
+			    if(member != null) {
+			    memberDTO.setMemberSI(member.getMemberSI()); // 가져온 회원 정보에서 memberSI 값을 가져와 세션에 설정
+			    System.out.println(member.getMemberSI());
+			    jsonObject.addProperty("intro", memberDTO.getMemberSI()); // 세션에 회원 정보를 설정
+			    }
+			}else {
+				jsonObject.addProperty("intro",memberDTO.getMemberSI());
+			}
 			String jsonStr = jsonObject.toString();
 			session.sendMessage(new TextMessage(jsonStr));
 			return;
