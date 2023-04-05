@@ -5,30 +5,16 @@ import java.util.Date;
 import com.team.cwl.member.MemberDTO;
 
 public class ChatDTO extends MemberDTO{
+	
 	private Long chatNum;
-	private String sender;
-	private String message;
-	private Date chatDate;
+
+	private Long roomNum;
+	
+
 
 	
 	
 
-
-	public String getSender() {
-		return sender;
-	}
-
-	public void setSender(String sender) {
-		this.sender = sender;
-	}
-
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
 
 	public Long getChatNum() {
 		return chatNum;
@@ -38,13 +24,12 @@ public class ChatDTO extends MemberDTO{
 		this.chatNum = chatNum;
 	}
 
-	public Date getChatDate() {
-		return chatDate;
+	public Long getRoomNum() {
+		return roomNum;
 	}
 
-	public void setChatDate(Date chatDate) {
-		this.chatDate = chatDate;
+	public void setRoomNum(Long roomNum) {
+		this.roomNum = roomNum;
 	}
-
 
 }
