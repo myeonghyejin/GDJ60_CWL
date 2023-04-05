@@ -78,6 +78,7 @@ header {
 
 @media (max-width: 991px) {
     .navigation {
+        height: 500px;
         flex-direction: column;
         background: #343DDB;
     }
@@ -114,5 +115,8 @@ header {
         color: #fff;
         text-align: center;
         align-items: center;
+    }
+    #body {
+        padding-top: 500px;
     }
 }
