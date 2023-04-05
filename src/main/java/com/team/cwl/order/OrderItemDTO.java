@@ -8,11 +8,11 @@ public class OrderItemDTO {
 	// 제품 번호
 	private Long productNum;
 	// 주문 수량
-	private Long productStock;
+	private int productStock;
 	// 상품 한 개 가격
-	private Long productPrice;
+	private int productPrice;
 	// 총 가격(가격 * 주문 수량)
-	private Long totalPrice;
+	private int totalPrice;
 	
 	
 	
@@ -40,27 +40,27 @@ public class OrderItemDTO {
 		this.productNum = productNum;
 	}
 
-	public Long getProductStock() {
+	public int getProductStock() {
 		return productStock;
 	}
 
-	public void setProductStock(Long productStock) {
+	public void setProductStock(int productStock) {
 		this.productStock = productStock;
 	}
 
-	public Long getProductPrice() {
+	public int getProductPrice() {
 		return productPrice;
 	}
 
-	public void setProductPrice(Long productPrice) {
+	public void setProductPrice(int productPrice) {
 		this.productPrice = productPrice;
 	}
 
-	public Long getTotalPrice() {
+	public int getTotalPrice() {
 		return totalPrice;
 	}
 
-	public void setTotalPrice(Long totalPrice) {
+	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 

@@ -9,15 +9,15 @@ public class OrderPageItemDTO {
 	// 뷰로부터 전달받을 값
 	private Long productNum;
 	
-	private Long productStock;
+	private int productStock;
 	
 	// DB로부터 꺼내올 값
 	private String productName;
 	
-	private Long productPrice;
+	private int productPrice;
 	
 	// 만들어 낼 값
-	private Long totalPrice;
+	private int totalPrice;
 	
 	private List<ProductImgDTO> imageList;
 
@@ -30,11 +30,11 @@ public class OrderPageItemDTO {
 		this.productNum = productNum;
 	}
 
-	public Long getProductStock() {
+	public int getProductStock() {
 		return productStock;
 	}
 
-	public void setProductStock(Long productStock) {
+	public void setProductStock(int productStock) {
 		this.productStock = productStock;
 	}
 
@@ -46,19 +46,19 @@ public class OrderPageItemDTO {
 		this.productName = productName;
 	}
 
-	public Long getProductPrice() {
+	public int getProductPrice() {
 		return productPrice;
 	}
 
-	public void setProductPrice(Long productPrice) {
+	public void setProductPrice(int productPrice) {
 		this.productPrice = productPrice;
 	}
 
-	public Long getTotalPrice() {
+	public int getTotalPrice() {
 		return totalPrice;
 	}
 
-	public void setTotalPrice(Long totalPrice) {
+	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 	

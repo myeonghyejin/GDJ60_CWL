@@ -42,8 +42,8 @@ public class OrderMapperTests {
 		OrderItemDTO order1 = new OrderItemDTO();
 		
 		order1.setProductNum(1L);
-		order1.setProductStock(1L);
-		order1.setProductPrice(39000L);
+		order1.setProductStock(1);
+		order1.setProductPrice(39000);
 		order1.initTotal();
 		
 		
@@ -71,8 +71,8 @@ public class OrderMapperTests {
 		
 		oid.setOrderNum("1");
 		oid.setProductNum(1L);
-		oid.setProductStock(1L);
-		oid.setProductPrice(70000L);
+		oid.setProductStock(1);
+		oid.setProductPrice(70000);
 				
 		oid.initTotal();
 		
@@ -87,7 +87,7 @@ public class OrderMapperTests {
 		MemberDTO member = new MemberDTO();
 		
 		member.setMemberId("user");
-		member.setMoney(500000L);
+		member.setMoney(500000);
 		
 		mapper.deductMoney(member);
 	}
@@ -98,7 +98,7 @@ public class OrderMapperTests {
 		ProductDTO productDTO = new ProductDTO();
 		
 		productDTO.setProductNum(1L);
-		productDTO.setProductStock(8L);
+		productDTO.setProductStock(8);
 		
 		mapper.deductStock(productDTO);
 	}

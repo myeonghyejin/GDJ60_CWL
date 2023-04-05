@@ -8,6 +8,9 @@ public interface MemberService {
 	/*아이디 중복 검사*/
 	public int idCheck(String memberId) throws Exception;
 	
+	/* 닉네임 중복 검사 */
+	public int nickNameCheck(String memberNickName) throws Exception;
+	
 	/* 로그인 */
 	public MemberDTO memberLogin(MemberDTO member) throws Exception;
 	

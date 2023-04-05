@@ -86,6 +86,24 @@ public class MemberController {
 		}
 	} // memberIdCheckPOST() 종료
 	
+	// 닉네임 중복 체크
+		@RequestMapping(value = "memberNickNameCheck", method = RequestMethod.POST)
+		@ResponseBody
+		public String memberNickNameCheckPOST(String memberNickName) throws Exception {
+			
+			logger.info("memberNickNameCheck() 진입");
+			
+			int result = memberService.nickNameCheck(memberNickName);
+			
+			logger.info("결과값 = " + result);
+			
+			if(result != 0) {
+				return "fail"; // 중복 아이디 존재
+			} else {
+				return "success"; // 중복 아이디 없음
+			}
+		} // memberNickNameCheckPOST() 종료
+	
 	/* 로그인 */
 	@RequestMapping(value = "login.do", method = RequestMethod.POST)
 	public String loginPOST(HttpServletRequest request, MemberDTO member, RedirectAttributes rttr) throws Exception {

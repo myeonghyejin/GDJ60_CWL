@@ -11,6 +11,9 @@ public interface MemberMapper {
 	/* 아이디 중복 검사 */
 	public int idCheck(String memberId);
 	
+	/* 닉네임 중복 검사 */
+	public int nickNameCheck(String memberNickName);
+	
 	/* 로그인 */
 	public MemberDTO memberLogin(MemberDTO member);
 	

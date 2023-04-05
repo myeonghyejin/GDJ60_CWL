@@ -17,6 +17,7 @@
 		
 		<div class="row">
 			<h3>아이디 : ${dto.memberId}</h3>
+			<h3>닉네임 : ${dto.memberNickName}</h3>
 			<h3>이름 : ${dto.memberName}</h3>
 			<h3>휴대폰 : ${dto.memberPhone}</h3>
 			<h3>주소 : ${dto.memberAddress1}<br>${dto.memberAddress2}<br>${dto.memberAddress3}</h3>

@@ -5,6 +5,9 @@ public class MemberDTO {
 	//회원 ID
 	private String memberId;
 	
+	// 회원 닉네임
+	private String memberNickName;
+	
 	//회원 PW
 	private String memberPw;
 	
@@ -39,7 +42,7 @@ public class MemberDTO {
 	private Long memberAge;
 	
 	// 회원이 가지고 있는 돈
-	private Long money;
+	private int money;
 	
 
 	public String getMemberId() {
@@ -48,6 +51,14 @@ public class MemberDTO {
 
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
+	}
+	
+	public String getMemberNickName() {
+		return memberNickName;
+	}
+
+	public void setMemberNickName(String memberNickName) {
+		this.memberNickName = memberNickName;
 	}
 
 	public String getMemberPw() {
@@ -138,23 +149,25 @@ public class MemberDTO {
 		this.memberAge = memberAge;
 	}
 
-	public Long getMoney() {
+	public int getMoney() {
 		return money;
 	}
 
-	public void setMoney(Long money) {
+	public void setMoney(int money) {
 		this.money = money;
 	}
 
-	
 	@Override
 	public String toString() {
-		return "MemberDTO [memberId=" + memberId + ", memberPw=" + memberPw + ", memberName=" + memberName
-				+ ", memberPhone=" + memberPhone + ", memberAddress1=" + memberAddress1 + ", memberAddress2="
-				+ memberAddress2 + ", memberAddress3=" + memberAddress3 + ", memberEmail=" + memberEmail
-				+ ", adminCheck=" + adminCheck + ", memberGender=" + memberGender + ", memberSI=" + memberSI
-				+ ", memberAge=" + memberAge + ", money=" + money + "]";
+		return "MemberDTO [memberId=" + memberId + ", memberNickName=" + memberNickName + ", memberPw=" + memberPw
+				+ ", memberName=" + memberName + ", memberPhone=" + memberPhone + ", memberAddress1=" + memberAddress1
+				+ ", memberAddress2=" + memberAddress2 + ", memberAddress3=" + memberAddress3 + ", memberEmail="
+				+ memberEmail + ", adminCheck=" + adminCheck + ", memberGender=" + memberGender + ", memberSI="
+				+ memberSI + ", memberAge=" + memberAge + ", money=" + money + "]";
 	}
+
+	
+	
 	
 	
 }

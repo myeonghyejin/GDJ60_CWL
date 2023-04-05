@@ -75,10 +75,10 @@ public class OrderServiceImpl implements OrderService {
 		ord.setOrders(ords);
 		ord.getOrderPriceInfo();
 		
-		/* DB 주문, 주문상품(배송정보) 넣기 */
+	/* DB 주문, 주문상품(배송정보) 넣기 */
 		// orderNum 만들기 및 OrderDTO객체 orderNum에 저장
 		Date date = new Date();
-		SimpleDateFormat format = new SimpleDateFormat("_yyyyMMddmm");
+		SimpleDateFormat format = new SimpleDateFormat("_yyyyMMddHHmmss");
 		String orderNum = member.getMemberId() + format.format(date);
 		ord.setOrderNum(orderNum);
 		
@@ -90,7 +90,7 @@ public class OrderServiceImpl implements OrderService {
 		}
 		
 		/* 비용 변동 적용 */
-		Long calMoney = member.getMoney();
+		int calMoney = member.getMoney();
 		calMoney -= ord.getOrderFinalPrice();
 		member.setMoney(calMoney);
 		
@@ -139,7 +139,7 @@ public class OrderServiceImpl implements OrderService {
 		orderMapper.orderCancel(dto.getOrderNum());
 		/* 돈, 재고 변환 */
 		// 돈
-		Long calMoney = member.getMoney();
+		int calMoney = member.getMoney();
 		calMoney += orw.getOrderFinalPrice();
 		member.setMoney(calMoney);
 		// DB 적용

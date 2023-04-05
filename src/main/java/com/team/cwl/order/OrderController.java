@@ -26,7 +26,10 @@ public class OrderController {
 	
 	@GetMapping("{memberId}")
 	public String orderPageGET(@PathVariable("memberId") String memberId, OrderPageDTO opd, Model model) {
-				
+		
+		
+		System.out.println("memberId : " + memberId);
+		System.out.println("orders : " + opd.getOrders());
 		model.addAttribute("orderList", orderService.getProductDetail(opd.getOrders()));
 		model.addAttribute("memberInfo", memberService.getMemberInfo(memberId));
 		
@@ -53,7 +56,7 @@ public class OrderController {
 			e.printStackTrace();
 		}
 		
-		return "redirect:/home";
+		return "redirect:/";
 		
 	}
 	

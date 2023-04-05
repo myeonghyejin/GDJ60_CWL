@@ -59,6 +59,38 @@
 		display : none;
 	}
 
+/* 닉네임 영역 */
+.nickName_wrap{
+	width: 100%;
+    margin-top: 20px;
+}
+.nickName_name{
+	font-size: 25px;
+    font-weight: bold;
+}
+.nickName_input_box{
+	border: 1px solid black;
+	height:31px;
+	padding: 10px 14px;	
+	
+}
+.nickName_input{
+	width:100%;
+	height:100%;
+	border:none;
+	font-size:28px;
+}
+	/* 중복아이디 존재하지 않는경우 */
+	.nickName_input_re_1{
+		color : green;
+		display : none;
+	}
+	/* 중복아이디 존재하는 경우 */
+	.nickName_input_re_2{
+		color : red;
+		display : none;
+	}
+
 /* 비밀번호 영역 */
 .pw_wrap{
 	width: 100%;

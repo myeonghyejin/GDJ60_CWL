@@ -21,6 +21,12 @@ public class MemberServiceImpl implements MemberService {
 		return memberMapper.idCheck(memberId);
 	}
 	
+	/* 닉네임 중복 체크 */
+	@Override
+	public int nickNameCheck(String memberNickName) throws Exception {
+		return memberMapper.nickNameCheck(memberNickName);
+	}
+	
 	/* 로그인 */
 	@Override
 	public MemberDTO memberLogin(MemberDTO member) throws Exception {

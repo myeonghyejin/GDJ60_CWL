@@ -29,9 +29,9 @@ public class OrderDTO {
 	
 	/* DB 테이블에 존재하지 않는 데이터 */
 	// 판매가(모든 상품 비용)
-	private Long orderPrice;
+	private int orderPrice;
 	// 최종 판매 비용(배송비 포함)
-	private Long orderFinalPrice;
+	private int orderFinalPrice;
 	
 	
 	public String getOrderNum() {
@@ -122,19 +122,19 @@ public class OrderDTO {
 		this.orderDate = orderDate;
 	}
 
-	public Long getOrderPrice() {
+	public int getOrderPrice() {
 		return orderPrice;
 	}
 
-	public void setOrderPrice(Long orderPrice) {
+	public void setOrderPrice(int orderPrice) {
 		this.orderPrice = orderPrice;
 	}
 
-	public Long getOrderFinalPrice() {
+	public int getOrderFinalPrice() {
 		return orderFinalPrice;
 	}
 
-	public void setOrderFinalPrice(Long orderFinalPrice) {
+	public void setOrderFinalPrice(int orderFinalPrice) {
 		this.orderFinalPrice = orderFinalPrice;
 	}
 
