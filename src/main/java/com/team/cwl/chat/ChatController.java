@@ -24,12 +24,12 @@ public class ChatController {
 	public ModelAndView getChatList(ModelAndView mv) throws Exception{
 		List<MemberDTO> ar = new ArrayList<MemberDTO>();
 		
-		
-		for(int i=1; i<=5; i++) {
-		MemberDTO memberDTO = new MemberDTO();
-			memberDTO.setMemberId("id"+i);
-			ar.add(memberDTO);
-		}
+//		
+//		for(int i=1; i<=5; i++) {
+//		MemberDTO memberDTO = new MemberDTO();
+//			memberDTO.setMemberId("id"+i);
+//			ar.add(memberDTO);
+//		}
 		mv.addObject("list", ar);
 		mv.setViewName("/chat/chatList");
 	
