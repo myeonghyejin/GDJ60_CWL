@@ -7,7 +7,7 @@
 	<meta charset="UTF-8">
 	<title>DETAIL</title>
 	<c:import url="../template/common_css.jsp"></c:import>
-	<link rel="stylesheet" href="/resources/css/style.css">
+	<link rel="stylesheet" href="/resources/css/common/style.css">
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>

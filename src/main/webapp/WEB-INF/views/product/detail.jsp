@@ -8,9 +8,8 @@
 	<meta charset="UTF-8">
 	<title>DETAIL</title>
 	<c:import url="../template/common_css.jsp"></c:import>
-	<link rel="stylesheet" href="/resources/css/style.css">
-	<link rel="stylesheet" href="/resources/css/product.css">
-	<link rel="stylesheet" href="/resources/css/detail.css">
+	<link rel="stylesheet" href="/resources/css/common/style.css">
+	<link rel="stylesheet" href="/resources/css/product/detail.css">
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
@@ -25,48 +24,38 @@
 			<c:choose>
 				<c:when test="${not empty DTO.productNum}">
 					<div class="row col-6 my-4 shuffle-wrapper portfolio-gallery">
-						<c:forEach items="${list}" var="DTO">
-							<div class="col-lg-4 col-6 mb-4 shuffle-item">
-								<div class="position-relative inner-box">
-									<div class="image position-relative">
-										<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-											<div class="carousel-inner">
-												<c:set var="loop_flag" value="false"/>
-												<c:forEach items="${DTO.productImgDTOs}" var="imgDTO" varStatus="index">
-													<c:if test="${index.end eq 0}">
+						<div class="shuffle-item">
+							<div class="position-relative inner-box">
+								<div class="image position-relative">
+									<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+										<div class="carousel-inner">
+											<c:set var="loop_flag" value="false"/>
+											<c:forEach items="${DTO.productImgDTOs}" var="imgDTO" varStatus="index">
+												<c:if test="${index.end eq 0}">
+													<div class="carousel-item">
+														<img src="/resources/upload/product/${imgDTO.imgName}" alt="product-image" class="img-fluid w-100 d-block">
+													</div>
+													<c:set var="loop_flag" value="true"/>
+												</c:if>
+												
+												<c:choose>
+													<c:when test="${index.index eq 0}">
+														<div class="carousel-item active">
+															<img src="/resources/upload/product/${imgDTO.imgName}" alt="product-image" class="img-fluid w-100 d-block">
+														</div>
+													</c:when>
+													<c:otherwise>
 														<div class="carousel-item">
 															<img src="/resources/upload/product/${imgDTO.imgName}" alt="product-image" class="img-fluid w-100 d-block">
 														</div>
-														<c:set var="loop_flag" value="true"/>
-													</c:if>
-													
-													<c:choose>
-														<c:when test="${index.index eq 0}">
-															<div class="carousel-item active">
-																<img src="/resources/upload/product/${imgDTO.imgName}" alt="product-image" class="img-fluid w-100 d-block">
-															</div>
-														</c:when>
-														<c:otherwise>
-															<div class="carousel-item">
-																<img src="/resources/upload/product/${imgDTO.imgName}" alt="product-image" class="img-fluid w-100 d-block">
-															</div>
-														</c:otherwise>
-													</c:choose>
-												</c:forEach>
-											</div>
+													</c:otherwise>
+												</c:choose>
+											</c:forEach>
 										</div>
-										<div class="overlay-box">
-											<div class="overlay-inner">
-												<a class="overlay-content" href="./detail?productNum=${DTO.productNum}"">
-													<h5 class="mb-0">${DTO.productName}</h5>
-													<p>${DTO.productPrice}</p>
-												</a>
-											</div>
-										</div>
-									</div> 
-								</div>
+									</div>
+								</div> 
 							</div>
-						</c:forEach>
+						</div>	
 					</div>		
 					<div class="wrapper row col-6 my-4 justify-content-center mx-auto">
 						<p class="fs-4 fw-bold">${DTO.productName}</p>
@@ -81,7 +70,7 @@
 								</div>	
 								<div class="button">						
 									<div class="button_quantity">
-										주문수량
+										주문 수량
 										<input type="text" class="quantity_input" value="1">
 										<span>
 											<button class="plus_btn">+</button>
@@ -89,8 +78,8 @@
 										</span>
 									</div>
 									<div class="button_set">
-										<a class="btn_cart">장바구니 담기</a>
-										<a class="btn_buy">바로구매</a>
+										<a class="btn_cart">ADD TO CART</a>
+										<a class="btn_buy">BUY NOW</a>
 									</div>
 									</div>
 								</div>
@@ -102,8 +91,6 @@
 							<input type="hidden" name="orders[0].productStock" value="">
 						</form>
 					</div>
-					
-<!----------------------------------------------------------------------->	
 				</c:when>
 				<c:otherwise>
 					<div class="row mx-auto text-center">

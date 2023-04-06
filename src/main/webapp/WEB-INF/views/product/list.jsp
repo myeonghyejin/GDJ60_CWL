@@ -7,8 +7,8 @@
 	<meta charset="UTF-8">
 	<title>PRODUCT</title>
 	<c:import url="../template/common_css.jsp"></c:import>
-	<link rel="stylesheet" href="/resources/css/style.css">
-	<link rel="stylesheet" href="/resources/css/product.css">
+	<link rel="stylesheet" href="/resources/css/common/style.css">
+	<link rel="stylesheet" href="/resources/css/product/list.css">
 
 </head>
 <body>

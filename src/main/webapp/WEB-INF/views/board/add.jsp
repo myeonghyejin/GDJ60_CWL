@@ -8,7 +8,7 @@
 	<title>BOARD ADD</title>
 	<%@ include file="../common/sessionCheck.jsp" %>
 	<c:import url="../template/common_css.jsp"></c:import>
-	<link rel="stylesheet" href="/resources/css/style.css">
+	<link rel="stylesheet" href="/resources/css/common/style.css">
 	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>

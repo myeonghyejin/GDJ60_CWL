@@ -1,3 +1,11 @@
+.inner-box .image img {
+    position: relative;
+    height: 500px;
+    object-fit: cover;
+    display: block;
+    transition: all 0.3s;
+}
+
 .button{
   			padding: 2% 0 2% 3%;
   		}
