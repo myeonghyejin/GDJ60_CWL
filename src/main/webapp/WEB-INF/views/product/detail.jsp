@@ -130,44 +130,42 @@
 		</form>
 
 		<!-- Buttons -->
-	  	<c:if test="${member.memberId eq DTO.memberId}">
-			<form action="./update" id="frm">
-				<div class="row col-md-4 justify-content-center mx-auto">
-					<input type="hidden" name="productNum" value="${DTO.productNum}">
-					<button id="update" type="submit" class="btn btn-outline-primary col-2 mx-1">수정</button>
-					<button id="delete" type="button" class="btn btn-outline-primary col-2 mx-1">삭제</button>
+		<form action="./update" id="frm">
+			<div class="row col-md-4 justify-content-center mx-auto">
+				<input type="hidden" name="productNum" value="${DTO.productNum}">
+				<c:if test="${member.memberId eq DTO.memberId}">
+					<button id="update" type="submit" class="btn btn-outline-primary btn-sm btn-default mx-1">수정</button>
+					<button id="delete" type="button" class="btn btn-outline-primary btn-sm btn-default mx-1">삭제</button>
+				</c:if>
+					<a href="./list" class="btn btn-primary btn-sm btn-default mx-1">목록</a>
 				</div>
 			</form>
-	  	</c:if>
-		<div class="row col-md-4 justify-content-center mx-auto my-2">
-			<a href="./list" class="btn btn-primary col-2 mx-1">목록</a>
-		</div>
 		
 		<!-- Review -->
-		<div class="row mt-5">
+		<div class="row col-8 justify-content-center mx-auto mt-5">
 			<p class="fs-2" style="font-family: 'Impact'">REVIEW</p>
 		</div>
 		
-		<div class="row" id="productReviewListResult" data-product-num-review="${DTO.productNum}">
+		<div class="row col-8 justify-content-center mx-auto" id="productReviewListResult" data-product-num-review="${DTO.productNum}">
 		</div>
 	
 		<c:if test="${not empty member}">
 			<div class="row col-md-4 justify-content-center mx-auto">
-				<a href="./review/add?productNum=${DTO.productNum}" class="btn btn-primary col-2 mx-1" id="productReviewAdd" data-product-num-review="${DTO.productNum}">작성</a>
+				<a href="./review/add?productNum=${DTO.productNum}" class="btn btn-primary btn-sm btn-default mx-1" id="productReviewAdd" data-product-num-review="${DTO.productNum}">작성</a>
 			</div>
 		</c:if>
 		
  		<!-- QnA -->
- 		<div class="row mt-5">
+ 		<div class="row col-8 justify-content-center mx-auto mt-5">
 			<p class="fs-2" style="font-family: 'Impact'">QNA</p>
 		</div>
  		
-		<div class="row" id="productQnAListResult" data-product-num-qna="${DTO.productNum}">
+		<div class="row col-8 justify-content-center mx-auto" id="productQnAListResult" data-product-num-qna="${DTO.productNum}">
 		</div>
 	
 		<c:if test="${not empty member}">
-			<div class="row col-md-4 justify-content-center mx-auto">
-				<a href="./qna/add?productNum=${DTO.productNum}" class="btn btn-primary col-2 mx-1" id="productQnAAdd">작성</a>
+			<div class="row justify-content-center mx-auto">
+				<a href="./qna/add?productNum=${DTO.productNum}" class="btn btn-primary btn-sm btn-default mx-1" id="productQnAAdd">작성</a>
 			</div>
 		</c:if>	
 	</div>

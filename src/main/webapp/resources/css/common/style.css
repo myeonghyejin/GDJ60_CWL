@@ -13,11 +13,14 @@
 
 /* ------- common -------- */
 a {
+    color: #333333;
     transition: all 0.3s ease-in-out;
+    text-decoration: none;
 }
 
-a:link, a:visited {
-    text-decoration: none;
+/* ------- table -------- */
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: yellow;
 }
 
 /* ------- button -------- */
@@ -50,11 +53,27 @@ a:link, a:visited {
     border-color: #343DDB;
 }
 
-.btn-info:hover{
+.btn-info:hover {
     color: #fff;
     background-color: #252dce;
     border-color: #252dce;
 }
+
+.btn-category {
+    width: 100px;
+    border-radius: 20px;
+}
+
+.btn-default {
+    width: 42.22px;
+}
+
+/* ------- search -------- */
+#search {
+    height: 31px;
+}
+
+/* ------- reply -------- */
 
 /* ------- table-striped -------- */
 .table-striped>tbody>tr:nth-child(odd)>td, 

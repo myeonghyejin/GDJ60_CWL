@@ -59,7 +59,7 @@
 				</c:if>
 				<c:if test="${member.adminCheck == 1}">
 					<li class="nav-item">
-						<a class="nav-link menu sub-menu" style="font-size: 11px" href="/admin/main">AdminPage</a>
+						<a class="nav-link menu sub-menu" style="font-size: 11px" href="/admin/main">ADMIN</a>
 					</li>
 				</c:if>
 			</ul>

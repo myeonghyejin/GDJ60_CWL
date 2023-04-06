@@ -33,7 +33,7 @@
 					<textarea name="boardContents" class="form-control" id="boardContents" rows="3"></textarea><br>
 				</div>	
 				<div class="row justify-content-center my-5">
-					<button type="submit" class="btn btn-primary col-2">글쓰기</button>
+					<button type="submit" class="btn btn-primary btn-sm btn-default">작성</button>
 				</div>
 			</div>
 	   </form>

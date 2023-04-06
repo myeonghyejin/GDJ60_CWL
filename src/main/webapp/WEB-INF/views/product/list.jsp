@@ -20,7 +20,13 @@
 		</div>
 		
 		<!-- 검색창 -->
-		<div class="row">
+		<div class="row mx-5 mt-5 justify-content-center">
+			<button class="btn btn-primary btn-sm btn-category mx-1">별점순</button>
+			<button class="btn btn-primary btn-sm btn-category mx-1">후기 많은순</button>
+			<button class="btn btn-primary btn-sm btn-category mx-1">높은 가격순</button>
+			<button class="btn btn-primary btn-sm btn-category mx-1">낮은 가격순</button>
+		</div>
+		<div class="col-11">
 			<form action="./list" method="get" class="row justify-content-end mx-auto g-3" id="searchForm">
 			<input type="hidden" name="page" value="1" id="page">
 				<div class="col-auto">
@@ -28,7 +34,7 @@
 					<input type="text" class="form-control" value="${pagination.search}" name="search" id="search" placeholder="">
 				</div>
 				<div class="col-auto">
-					<button type="submit" class="btn btn-outline-primary mb-3">검색</button>
+					<button type="submit" class="btn btn-outline-primary btn-sm btn-default mb-3">검색</button>
 				</div>
 			</form>
 		</div>
@@ -115,7 +121,7 @@
 	 	<c:if test="${not empty member}">
 			<c:if test="${member.adminCheck eq 1}">
 				<div class="row justify-content-center mx-auto">
-					<a href=./add class="btn btn-primary col-3">게시글 등록</a>
+					<a href=./add class="btn btn-primary btn-sm btn-default">등록</a>
 				</div>
 			</c:if>
 	 	</c:if>

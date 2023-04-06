@@ -3,45 +3,50 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- Contents -->
-<table class="table table-striped">
+<table class="table table-hover">
 	<c:forEach items="${list}" var="DTO">
 		<tr>
-			<td id="productQnATitle${DTO.productQnANum}" data-productqna-num="${DTO.productQnANum}">
+			<td class="detail" id="productQnATitle${DTO.productQnANum}" data-productqna-num="${DTO.productQnANum}" width="50%">
 				<c:forEach begin="1" end="${DTO.productQnADepth}">[re]</c:forEach>
-				<a class="detail" data-productqna-num="${DTO.productQnANum}">${DTO.productQnATitle}</a>
+				<a data-productqna-num="${DTO.productQnANum}">${DTO.productQnATitle}</a>
 			</td>
-			<td>${DTO.memberId}</td>
-			<td>${DTO.productQnADate}</td>
-			<td>
+			<td align="center" style="vertical-align: middle;">
+				<c:choose>
+					<c:when test="${member.adminCheck eq 1}">
+						<b>CWL</b>
+					</c:when>
+					<c:otherwise>
+						<b>${DTO.memberId}</b>
+					</c:otherwise>
+				</c:choose>
+			</td>
+			<td align="right" style="vertical-align: middle;">${DTO.productQnADate}</td>
+			<td align="right" style="vertical-align: middle;">
 				<c:if test="${member.adminCheck eq 1}">
-					<a href="./qna/reply?productQnANum=${DTO.productQnANum}&productNum=${DTO.productNum}" class="btn btn-primary" data-product-num-qna="${DTO.productNum}">답글</a>
+					<a href="./qna/reply?productQnANum=${DTO.productQnANum}&productNum=${DTO.productNum}" class="btn btn-primary btn-sm" data-product-num-qna="${DTO.productNum}">답글</a>
 				</c:if>
-			</td>
-			<td>
 				<c:if test="${member.memberId eq DTO.memberId}">
-					<a href="./qna/update?productQnANum=${DTO.productQnANum}&productNum=${DTO.productNum}" class="btn btn-info" data-productqna-num="${DTO.productQnANum}">수정</a>
+					<a href="./qna/update?productQnANum=${DTO.productQnANum}&productNum=${DTO.productNum}" class="btn btn-info btn-sm" data-productqna-num="${DTO.productQnANum}">수정</a>
 				</c:if>
-			</td>
-			<td>
 				<c:if test="${member.memberId eq DTO.memberId}">
-					<button class="btn btn-danger delete" data-productqna-num="${DTO.productQnANum}">삭제</button>
+					<button class="btn btn-danger btn-sm delete" data-productqna-num="${DTO.productQnANum}">삭제</button>
 				</c:if>
 			</td>
 		</tr>
 		<tr>
-			<td id="productQnAContents${DTO.productQnANum}" style="display:none;">
+			<td id="productQnAContents${DTO.productQnANum}" width="100%" colspan="4" style="display:none;">
 				<c:choose>
 					<c:when test="${DTO.productQnASecret eq 1}">
 						<c:if test="${member.memberId eq DTO.memberId}">
-							${DTO.productQnAContents}
+							⤷ ${DTO.productQnAContents}
 						</c:if>
 						<c:if test="${member.adminCheck eq 1}">
-							${DTO.productQnAContents}
+							⤷ ${DTO.productQnAContents}
 						</c:if>
 							비밀글입니다.
 					</c:when>
 					<c:otherwise>
-						${DTO.productQnAContents}
+						⤷ ${DTO.productQnAContents}
 					</c:otherwise>
 				</c:choose>
 			</td>

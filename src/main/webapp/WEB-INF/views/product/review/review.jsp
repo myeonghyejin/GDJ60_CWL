@@ -3,14 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- Contents -->
-<table class="table table-striped">
+<table class="table table-hover">
 	<c:forEach items="${list}" var="DTO">
 		<tr>
-			<td id="productReviewTitle${DTO.productReviewNum}" data-productreview-num="${DTO.productReviewNum}">
-				<a class="detail" data-productreview-num="${DTO.productReviewNum}">${DTO.productReviewTitle}</a>
+			<td class="detail" id="productReviewTitle${DTO.productReviewNum}" data-productreview-num="${DTO.productReviewNum}" width="50%">
+				<a data-productreview-num="${DTO.productReviewNum}"><b>${DTO.productReviewTitle}</b></a>
 			</td>
-			<td>${DTO.memberId}</td>
-			<td id="productRating${DTO.productReviewNum}">
+			<td align="center" style="vertical-align: middle;"><b>${DTO.memberId}</b></td>
+			<td id="productRating${DTO.productReviewNum}" align="right" style="vertical-align: middle; text-align: center;">
 				<c:if test="${DTO.productRating eq 1}">
 					★
 				</c:if>
@@ -27,32 +27,26 @@
 					★★★★★
 				</c:if>
 			</td>
-			<td>${DTO.productReviewDate}</td>
-			<td>
+			<td align="right" style="vertical-align: middle;">${DTO.productReviewDate}</td>
+			<td align="right" style="vertical-align: middle;">
 				<c:if test="${member.memberId eq DTO.memberId}">
-					<a href="./review/update?productReviewNum=${DTO.productReviewNum}&productNum=${DTO.productNum}" class="btn btn-info" data-productreview-num="${DTO.productReviewNum}">수정</a>
+					<a href="./review/update?productReviewNum=${DTO.productReviewNum}&productNum=${DTO.productNum}" class="btn btn-info btn-sm" data-productreview-num="${DTO.productReviewNum}">수정</a>
 				</c:if>
-			</td>
-			<td>
 				<c:if test="${member.memberId eq DTO.memberId}">
-					<button class="btn btn-danger delete" data-productreview-num="${DTO.productReviewNum}">삭제</button>
+					<button class="btn btn-danger btn-sm delete" data-productreview-num="${DTO.productReviewNum}">삭제</button>
 				</c:if>
 			</td>
 		</tr>
 		<tr>
-			<td id="productReviewContents${DTO.productReviewNum}" style="display:none;">
+			<td id="productReviewContents${DTO.productReviewNum}" width="100%" colspan="5" style="display:none;">
 				<div class="row">
- 					<c:if test="${not empty DTO.productReviewImgDTOs}">
+					<c:if test="${not empty DTO.productReviewImgDTOs}">
 						<c:forEach items="${DTO.productReviewImgDTOs}" var="imgDTO">
-							<img alt="" src="/resources/upload/product/review/${imgDTO.imgName}">
+							<img src="/resources/upload/product/review/${imgDTO.imgName}" alt="product_review_image">
 						</c:forEach>
- 					</c:if>
+					</c:if>
 				</div>
-				<div class="row">
-					<!-- <img alt="" src="/resources/upload/product/review/95da24e6-8c73-4a22-9fc5-a7d277f02249_2.jpg">
-					<img alt="" src="/resources/images/1.jpg"> -->
-				</div>
-				${DTO.productReviewContents}
+				⤷ ${DTO.productReviewContents}
 			</td>
 		</tr>
 	</c:forEach>

@@ -2,23 +2,23 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<table class="table table-striped">
+<table class="table table-hover">
 	<c:forEach items="${list}" var="DTO">
 		<tr>
-			<td id="boardCommentContents${DTO.boardCommentNum}" width="100%" colspan="3">
-				${DTO.boardCommentContents}
-			</td>
-		</tr>
-		<tr>
-			<td align="center" width="50%" style="vertical-align: middle;"><b>${DTO.memberId}</b></td>
+			<td align="center" style="vertical-align: middle;"><b>${DTO.memberId}</b></td>
 			<td align="right" style="vertical-align: middle;">${DTO.boardCommentDate}</td>
 			<td align="right" style="vertical-align: middle;">
 				<c:if test="${member.memberId eq DTO.memberId}">
-					<button class="btn btn-info update" data-boardcomment-num="${DTO.boardCommentNum}" data-bs-toggle="modal" data-bs-target="#contentsModal">수정</button>
+					<button class="btn btn-info btn-sm update" data-boardcomment-num="${DTO.boardCommentNum}" data-bs-toggle="modal" data-bs-target="#contentsModal">수정</button>
 				</c:if>
 				<c:if test="${member.memberId eq DTO.memberId}">
-					<button class="btn btn-danger delete" id="del" data-boardcomment-num="${DTO.boardCommentNum}">삭제</button>
+					<button class="btn btn-danger btn-sm delete" id="del" data-boardcomment-num="${DTO.boardCommentNum}">삭제</button>
 				</c:if>
+			</td>
+		</tr>
+		<tr>
+			<td id="boardCommentContents${DTO.boardCommentNum}" width="100%" colspan="5">
+				⤷ ${DTO.boardCommentContents}
 			</td>
 		</tr>
 	</c:forEach>

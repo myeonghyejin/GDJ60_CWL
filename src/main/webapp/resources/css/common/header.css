@@ -73,7 +73,7 @@ header {
 
 @media (max-width: 991px) {
     .navigation {
-        height: 450px;
+        height: 525px;
         flex-direction: column;
         background: #343DDB;
     }
@@ -112,6 +112,6 @@ header {
         align-items: center;
     }
     #body {
-        padding-top: 450px;
+        padding-top: 525px;
     }
 }
