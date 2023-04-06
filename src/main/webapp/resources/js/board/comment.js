@@ -12,7 +12,7 @@ function getList(page){
 }
 
 //page
-$("#boardCommentListResult").on("click",".page-link", function(e){
+$("#boardCommentListResult").on("click",".page-button", function(e){
     let page = $(this).attr("data-board-page");
     getList(page);
     e.preventDefault();

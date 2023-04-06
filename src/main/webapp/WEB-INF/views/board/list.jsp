@@ -53,15 +53,15 @@
 						</a>
 					</li>
 					<li class="list-inline-item ${pagination.prev?'disabled':''}">
-						<a href="./list?page=${pagination.startNum-1}&condition=${pagination.condition}&search=${pagination.search}" aria-label="Previous" data-board-page="${pagination.startNum-1}">
+						<a href="./list?page=${pagination.startNum}&condition=${pagination.condition}&search=${pagination.search}" aria-label="Previous" data-board-page="${pagination.startNum}">
 							<span aria-hidden="true">&lsaquo;</span>
 						</a>
 					</li>				
-					<c:forEach begin="${pagination.startNum}" end="${pagination.lastNum}" var="i">
-						<li class="list-inline-item"><a href="./list?page=${i}&condition=${pagination.condition}&search=${pagination.search}" data-board-page="${i}">${i}</a></li>
+					<c:forEach begin="${pagination.startNum}" end="${pagination.lastNum}" var="page">
+						<li class="list-inline-item"><a href="./list?page=${page}&condition=${pagination.condition}&search=${pagination.search}" data-board-page="${page}">${page}</a></li>
 					</c:forEach>
 					<li class="list-inline-item ${pagination.next eq false ? 'disabled' : ''}">
-						<a href="./list?page=${pagination.lastNum+1}&condition=${pagination.condition}&search=${pagination.search}"  aria-label="Next" data-board-page="${pagination.lastNum+1}">
+						<a href="./list?page=${pagination.lastNum}&condition=${pagination.condition}&search=${pagination.search}"  aria-label="Next" data-board-page="${pagination.lastNum}">
 							<span aria-hidden="true">&rsaquo;</span>
 						</a>
 					 </li>

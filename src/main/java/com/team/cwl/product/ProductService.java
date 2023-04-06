@@ -37,6 +37,10 @@ public class ProductService {
 			ar2.add(productDTO);
 		}
 		
+		if(productDAO.getTotalCount(pagination) == 0) {
+			pagination.setLastNum(1L);
+		}
+		
 		return ar2;
 	}
 

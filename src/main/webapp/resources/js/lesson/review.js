@@ -12,7 +12,7 @@ function getList(page){
 }
 
 //page
-$("#lessonReviewListResult").on("click",".page-link", function(e){
+$("#lessonReviewListResult").on("click",".page-button", function(e){
     let page = $(this).attr("data-board-page");
     getList(page);
     e.preventDefault();

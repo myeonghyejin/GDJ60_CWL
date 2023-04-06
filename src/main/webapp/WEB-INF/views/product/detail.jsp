@@ -19,56 +19,9 @@
 			<p class="fs-2" style="font-family: 'Impact'">PRODUCT</p>
 		</div>
 		
-		<!-- Contents -->
-		<div class="row mx-auto my-5">
-			<c:choose>
-				<c:when test="${not empty DTO.productNum}">	
-					<div class="wrapper row col-6 my-4 justify-content-center mx-auto">
-						<p class="fs-4 fw-bold">${DTO.productName}</p>
-						<p class="fs-5">${DTO.productDetail}</p>
-						<div class="wrap">						
-							<div class="content_area">		
-								<div class="content_top">
-									<div class="price">
-									<div class="product_price"><fmt:formatNumber value="${DTO.productPrice}" pattern="￦###,###,###,###" /></div>													
-								</div>													
-									<div class="line">
-								</div>	
-								<div class="button">						
-									<div class="button_quantity">
-										주문 수량
-										<input type="text" class="quantity_input" value="1">
-										<span>
-											<button class="plus_btn">+</button>
-											<button class="minus_btn">-</button>
-										</span>
-									</div>
-									<div class="button_set">
-										<a class="btn_cart">ADD TO CART</a>
-										<a class="btn_buy">BUY NOW</a>
-									</div>
-									</div>
-								</div>
-							</div>
-						</div>
-								<!-- 주문 form -->
-						<form action="/order/${member.memberId}" method="get" class="order_form" id="">
-							<input type="hidden" name="orders[0].productNum" value="${DTO.productNum}">
-							<input type="hidden" name="orders[0].productStock" value="">
-						</form>
-					</div>
-				</c:when>
-				<c:otherwise>
-					<div class="row mx-auto text-center">
-						<p class="fs-2">존재하지 않는 페이지입니다.</p>
-					</div>
-				</c:otherwise>
-			</c:choose>
-		</div>
-
 		<!-- Start Item Details -->
 		<section class="item-details section">
-			<div class="container">
+			<div class="container my-5">
 				<div class="top-area">
 					<div class="row align-items-center">
 						<div class="col-lg-6 col-md-12 col-12">
@@ -96,70 +49,30 @@
 								<h2 class="title">${DTO.productName}</h2>
 								<h3 class="price"><fmt:formatNumber value="${DTO.productPrice}" pattern="￦###,###,###,###"/></h3>
 								<p class="info-text">${DTO.productDetail}</p>
-								<div class="row">
-									<div class="col-lg-4 col-md-4 col-12">
-										<div class="form-group color-option">
-											<label class="title-label" for="size">Choose color</label>
-											<div class="single-checkbox checkbox-style-1">
-												<input type="checkbox" id="checkbox-1" checked>
-												<label for="checkbox-1"><span></span></label>
-											</div>
-											<div class="single-checkbox checkbox-style-2">
-												<input type="checkbox" id="checkbox-2">
-												<label for="checkbox-2"><span></span></label>
-											</div>
-											<div class="single-checkbox checkbox-style-3">
-												<input type="checkbox" id="checkbox-3">
-												<label for="checkbox-3"><span></span></label>
-											</div>
-											<div class="single-checkbox checkbox-style-4">
-												<input type="checkbox" id="checkbox-4">
-												<label for="checkbox-4"><span></span></label>
-											</div>
-										</div>
+								<div class="row">						
+									<div class="button_quantity my-3" align="right">
+										Quantity 
+										<span>
+											<button class="plus_btn">+</button>
+										</span>
+										<input type="text" class="quantity_input" value="1">
+										<span>
+											<button class="minus_btn">-</button>
+										</span>
 									</div>
-									<div class="col-lg-4 col-md-4 col-12">
-										<div class="form-group">
-											<label for="color">Battery capacity</label>
-											<select class="form-control" id="color">
-												<option>5100 mAh</option>
-												<option>6200 mAh</option>
-												<option>8000 mAh</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-lg-4 col-md-4 col-12">
-										<div class="form-group quantity">
-											<label for="color">Quantity</label>
-											<select class="form-control">
-												<option>1</option>
-												<option>2</option>
-												<option>3</option>
-												<option>4</option>
-												<option>5</option>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="bottom-content">
 									<div class="row align-items-end">
-										<div class="col-lg-4 col-md-4 col-12">
-											<div class="button cart-button">
-												<button class="btn" style="width: 100%;">Add to Cart</button>
+										<div class="col-lg-6 col-md-4 col-12">
+											<div class="wish-button">
+												<a class="btn btn_cart">Add to Cart</a>
 											</div>
 										</div>
-										<div class="col-lg-4 col-md-4 col-12">
+										<div class="col-lg-6 col-md-4 col-12">
 											<div class="wish-button">
-												<button class="btn"><i class="lni lni-reload"></i> Compare</button>
-											</div>
-										</div>
-										<div class="col-lg-4 col-md-4 col-12">
-											<div class="wish-button">
-												<button class="btn"><i class="lni lni-heart"></i> To Wishlist</button>
+												<a class="btn btn_buy">Buy Now</a>
 											</div>
 										</div>
 									</div>
-								</div>
+								</div>	
 							</div>
 						</div>
 					</div>
@@ -210,6 +123,12 @@
 		</section>
 		<!-- End Item Details -->
 		
+		<!-- 주문 form -->
+		<form action="/order/${member.memberId}" method="get" class="order_form" id="">
+			<input type="hidden" name="orders[0].productNum" value="${DTO.productNum}">
+			<input type="hidden" name="orders[0].productStock" value="">
+		</form>
+
 		<!-- Buttons -->
 	  	<c:if test="${member.memberId eq DTO.memberId}">
 			<form action="./update" id="frm">
