@@ -5,8 +5,11 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>ADD</title>
+	<title>PRODUCT QNA ADD</title>
 	<c:import url="../../template/common_css.jsp"></c:import>
+	<link rel="stylesheet" href="/resources/css/common/style.css">
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
 <body>
 	<c:import url="../../template/header.jsp"></c:import>
@@ -14,14 +17,12 @@
 		<!-- Contents -->
 		<% request.setCharacterEncoding("UTF-8");
 	    String productNum = request.getParameter("productNum");
+		String memberId = request.getParameter("memberId");
 	    %>
-		<form action="./add" method="post" enctype="multipart/form-data">
+		<form action="./add" method="post">
+			<input type="hidden" name="memberId" value="<%=memberId%>">
 			<input type="hidden" name="productNum" value="<%=productNum%>">
-			<div class="row col-md-4 mx-auto my-5">
-				<div class="fw-bold fs-5 col-12">
-					<label for="memberId" class="form-label">작성자</label>
-					<input type="text" name="memberId" class="form-control" id="memberId" value="${member.memberId}" readonly><br>
-				</div>
+			<div class="row col-8 mx-auto my-5">
 				<div class="fw-bold fs-5 col-12">
 					<label for="productQnATitle" class="form-label">제목</label>
 					<input type="text" name="productQnATitle" class="form-control" id="productQnATitle"><br>
@@ -39,11 +40,14 @@
 					<input id="bs2" type="radio" name="productQnASecret" value="1" class="form-check-input" for="secret">
 				</div>
 				<div class="row justify-content-center my-5">
-					<button type="submit" class="btn btn-primary col-2">글쓰기</button>
+					<button type="submit" class="btn btn-primary btn-sm btn-default">작성</button>
 				</div>
 			</div>
 	   </form>
 	</div>
+	<script>
+		$('#productQnAContents').summernote();
+	</script>
 	<c:import url="../../template/common_js.jsp"></c:import>
 </body>
 </html>

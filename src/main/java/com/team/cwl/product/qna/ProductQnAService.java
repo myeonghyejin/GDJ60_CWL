@@ -19,6 +19,11 @@ public class ProductQnAService {
 	public List<ProductQnADTO> getProductQnAList(Pagination pagination) throws Exception {
 		pagination.makeRow();
 		pagination.makeNum(productQnADAO.getTotalCount(pagination));
+		
+		if(productQnADAO.getTotalCount(pagination) == 0) {
+			pagination.setLastNum(1L);
+		}
+		
 		return productQnADAO.getProductQnAList(pagination);
 	}
 	

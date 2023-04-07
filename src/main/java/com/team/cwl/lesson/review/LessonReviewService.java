@@ -21,6 +21,11 @@ public class LessonReviewService {
 	public List<LessonReviewDTO> getLessonReviewList(Pagination pagination) throws Exception {
 		pagination.makeRow();
 		pagination.makeNum(lessonReviewDAO.getTotalCount(pagination));
+		
+		if(lessonReviewDAO.getTotalCount(pagination) == 0) {
+			pagination.setLastNum(1L);
+		}
+		
 		return lessonReviewDAO.getLessonReviewList(pagination);
 	}
 

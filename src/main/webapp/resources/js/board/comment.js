@@ -12,7 +12,7 @@ function getList(page){
 }
 
 //page
-$("#boardCommentListResult").on("click",".page-link", function(e){
+$("#boardCommentListResult").on("click",".page-button", function(e){
     let page = $(this).attr("data-board-page");
     getList(page);
     e.preventDefault();
@@ -24,7 +24,7 @@ $("#boardCommentAdd").click(function(){
         url:'../board/comment/add',
         type:'POST',
         data:{
-            'boardCommentContents': $("#boardCommentContents").val(),
+            'boardCommentContents': $("#boardCommentContents").val().replace(/(?:\r\n|\r|\n)/g, '<br>'),
             'boardNum': $("#boardCommentAdd").attr('data-board-num')
         },
         success:(res)=>{
@@ -78,7 +78,7 @@ $("#contentsConfirm").click(function(){
         type:'POST',
         data:{
             'boardCommentNum': boardCommentNum,
-            'boardCommentContents': $("#boardCommentEdit").val()
+            'boardCommentContents': $("#boardCommentEdit").val().replace(/(?:\r\n|\r|\n)/g, '<br>')
         },
         success:(res)=>{
             if(res.trim()!=0){

@@ -6,18 +6,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.team.cwl.board.comment.BoardCommentDAO">
 
-	<!-- SQL -->
-  	<sql id="commentCondition">
-    <where>
-		<if test="condition == 'boardCommentContents'">
-			BOARDCOMMENTCONTENTS LIKE '%' || #{search} || '%'
-		</if>
-		<if test="condition == 'memberId'">
-			MEMBERID LIKE '%' || #{search} || '%'
-		</if>
-		</where>
-	</sql>
-
 	<!-- SELECT -->
 	<select id="getBoardCommentList" resultType="BoardCommentDTO" parameterType="Pagination">
 		SELECT * FROM
@@ -25,7 +13,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  		SELECT ROWNUM R, C.* FROM
 		  		(
 		  			SELECT * FROM BOARDCOMMENT 
-		  			<include refid="commentCondition"></include>
 		  			WHERE BOARDNUM = #{boardNum}
 		  			ORDER BY BOARDCOMMENTDATE DESC
 		  		) C
@@ -36,7 +23,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getTotalCount" resultType="Long" parameterType="Pagination">
 		SELECT COUNT(BOARDCOMMENTNUM) FROM BOARDCOMMENT
-		<include refid="commentCondition"></include>
 		WHERE BOARDNUM = #{boardNum}
 	</select>
 	

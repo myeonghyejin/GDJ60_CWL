@@ -233,7 +233,6 @@ $(".individual_cart_checkbox").on("change", function(){
 	/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
 	setTotalInfo();
 });
-
 /* 체크박스 전체 선택 */
 $(".all_check_input").on("click", function(){
 	/* 체크박스 체크/해제 */
@@ -247,7 +246,6 @@ $(".all_check_input").on("click", function(){
 	setTotalInfo();	
 	
 });
-
 /* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
 function setTotalInfo(){
 	
