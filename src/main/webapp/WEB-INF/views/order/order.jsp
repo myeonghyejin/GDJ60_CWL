@@ -71,92 +71,6 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="orderGoods_div">
-					<!-- 상품 종류 -->
-					<div class="goods_kind_div">
-						주문상품 <span class="goods_kind_div_kind"></span>종 <span class="goods_kind_div_stock"></span>개						
-					</div>
-					<!-- 상품 테이블 -->
-					<table class="goods_subject_table">
-						<colgroup>
-							<col width="15%">
-							<col width="45%">
-							<col width="40%">							
-						</colgroup>
-						<tbody>
-							<tr>
-								<th>이미지</th>
-								<th>상품 정보</th>
-								<th>판매가</th>
-							</tr>
-						</tbody>
-					</table>
-					<table class="goods_table">
-						<colgroup>
-							<col width="15%">
-							<col width="45%">
-							<col width="40%">
-						</colgroup>
-						<tbody>
-							<c:forEach items="${orderList}" var="ol">
-								<tr>
-									<td>
-										<div class="image_wrap" data-productNum="${ol.imageList[0].productNum}" data-path="${ol.imageList[0].uploadPath}" data-uuid="${ol.imageList[0].uuid}" data-fileName="${ol.imageList[0].fileName}">>
-											<img alt="" src="">
-										</div>
-									</td>
-									<td>${ol.productName}</td>
-									<td class="goods_table_price_td">
-										<fmt:formatNumber value="${ol.productPrice}" pattern="#,### 원" /> | 수량 ${ol.productStock}개
-										<br><fmt:formatNumber value="${ol.totalPrice}" pattern="#,### 원" />
-										<input type="hidden" class="individual_productPrice_input" value="${ol.productPrice}">
-										<input type="hidden" class="individual_productStock_input" value="${ol.productStock}">
-										<input type="hidden" class="individual_totalPrice_input" value="${ol.productPrice * ol.productStock}">
-										<input type="hidden" class="individual_productNum_input" value="${ol.productNum}">
-									</td>
-								</tr>							
-							</c:forEach>
-						</tbody>
-					</table>
-				</div>
-				<!-- 주문 종합 정보 -->
-				<div class="total_info_div">
-					<!-- 가격 종합 정보 -->
-					<div class="total_info_price_div">
-						<ul>
-							<li>
-								<span class="price_span_label">상품 금액</span>
-								<span class="totalPrice_span">100000</span>원
-							</li>
-							<li>
-								<span class="price_span_label">배송비</span>
-								<span class="orderFee_price_span">100000</span>원
-							</li>
-							<li class="price_total_li">
-								<strong class="price_span_label total_price_label">최종 결제 금액</strong>
-								<strong class="strong_red">
-									<span class="total_price_red finalTotalPrice_span">150000</span>원
-								</strong>																
-							</li>
-						</ul>
-					</div>
-					<!-- 버튼 영역 -->
-					<div class="total_info_btn_div">
-						<a class="order_btn">결제하기</a>
-					</div>
-				</div>
-				
-				<!-- 주문 요청 form -->
-			<form class="order_form" action="/order" method="post">
-				<!-- 주문자 회원번호 -->
-				<input name="memberId" value="${memberInfo.memberId}" type="hidden">
-				<!-- 주소록 & 받는이-->
-				<input name="addressee" type="hidden">
-				<input name="memberAddress1" type="hidden">
-				<input name="memberAddress2" type="hidden">
-				<input name="memberAddress3" type="hidden">			
-				<!-- 상품 정보 -->
-			</form>
 				
 				<!-- 배송지 정보 -->
 				<div class="addressInfo_div">
@@ -220,16 +134,106 @@
 					</div>
 				</div>
 				<!-- 상품 정보 -->
-				<!-- 주문 종합 정보 -->				
+				<div class="orderGoods_div">
+					<!-- 상품 종류 -->
+					<div class="goods_kind_div">
+						주문상품 <span class="goods_kind_div_kind"></span>종 <span class="goods_kind_div_stock"></span>개						
+					</div>
+					<!-- 상품 테이블 -->
+					<table class="goods_subject_table">
+						<colgroup>
+							<col width="15%">
+							<col width="45%">
+							<col width="40%">							
+						</colgroup>
+						<tbody>
+							<tr>
+								<th>이미지</th>
+								<th>상품 정보</th>
+								<th>판매가</th>
+							</tr>
+						</tbody>
+					</table>
+					<table class="goods_table">
+						<colgroup>
+							<col width="15%">
+							<col width="45%">
+							<col width="40%">
+						</colgroup>
+						<tbody>
+							<c:forEach items="${orderList}" var="ol">
+								<tr>
+									<td>
+										<div class="image_wrap" data-productNum="${ol.imageList[0].productNum}" data-path="${ol.imageList[0].uploadPath}" data-uuid="${ol.imageList[0].uuid}" data-fileName="${ol.imageList[0].fileName}">>
+											<img alt="" src="">
+										</div>
+									</td>
+									<td>${ol.productName}</td>
+									<td class="goods_table_price_td">
+										<fmt:formatNumber value="${ol.productPrice}" pattern="#,### 원" /> | 수량 ${ol.orderStock}개
+										<br><fmt:formatNumber value="${ol.totalPrice}" pattern="#,### 원" />
+										<input type="hidden" class="individual_productPrice_input" value="${ol.productPrice}">
+										<input type="hidden" class="individual_orderStock_input" value="${ol.orderStock}">
+										<input type="hidden" class="individual_totalPrice_input" value="${ol.productPrice * ol.orderStock}">
+										<input type="hidden" class="individual_productNum_input" value="${ol.productNum}">
+									</td>
+								</tr>							
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+				<!-- 주문 종합 정보 -->
+				<div class="total_info_div">
+					<!-- 가격 종합 정보 -->
+					<div class="total_info_price_div">
+						<ul>
+							<li>
+								<span class="price_span_label">상품 금액</span>
+								<span class="totalPrice_span">100000</span>원
+							</li>
+							<li>
+								<span class="price_span_label">배송비</span>
+								<span class="orderFee_price_span">100000</span>원
+							</li>
+							<li class="price_total_li">
+								<strong class="price_span_label total_price_label">최종 결제 금액</strong>
+								<strong class="strong_red">
+									<span class="total_price_red finalTotalPrice_span">150000</span>원
+								</strong>																
+							</li>
+						</ul>
+					</div>
+					<!-- 버튼 영역 -->
+					<div class="total_info_btn_div">
+						<a class="order_btn">결제하기</a>
+					</div>
+				</div>
 			</div>
+			<!-- 주문 요청 form -->
+			<form class="order_form" action="/order" method="POST">
+				<!-- 주문자 회원번호 -->
+				<input name="memberId" value="${memberInfo.memberId}" type="hidden">
+				<!-- 주소록 & 받는이-->
+				<input name="addressee" type="hidden">
+				<input name="memberAddress1" type="hidden">
+				<input name="memberAddress2" type="hidden">
+				<input name="memberAddress3" type="hidden">			
+				<!-- 상품 정보 -->
+			</form>
+								
 		</div>
+	</div>
 </div>	
-</div>
+
 
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script>
 
 $(document).ready(function() {
+	
+	/* 주문 종합정보란 최신화 */
+	setTotalInfo();
+	
 	/* 이미지 삽입 */
 	$(".image_wrap").each(function(i, obj){
 		
@@ -249,9 +253,9 @@ $(document).ready(function() {
 		
 	});
 	
-	/* 주문 종합정보란 최신화 */
-	setTotalInfo();
+	
 });
+
 
 function showAddress(className) {
 	
@@ -338,7 +342,7 @@ function setTotalInfo() {
 		// 총 가격
 		totalPrice += parseInt($(element).find(".individual_totalPrice_input").val());
 		// 총 갯수
-		totalStock += parseInt($(element).find(".individual_productStock_input").val());
+		totalStock += parseInt($(element).find(".individual_orderStock_input").val());
 		// 총 종류
 		totalKind += 1;		
 	});
@@ -384,29 +388,23 @@ $(".order_btn").on("click", function() {
 	let form_contents = ''; 
 	$(".goods_table_price_td").each(function(index, element){
 		let productNum = $(element).find(".individual_productNum_input").val();
-		let productStock = $(element).find(".individual_productStock_input").val();
+		let orderStock = $(element).find(".individual_orderStock_input").val();
+		//let productNum_input = "<input name='productNum' type='hidden' value='" + productNum + "'>";
 		let productNum_input = "<input name='orders[" + index + "].productNum' type='hidden' value='" + productNum + "'>";
 		form_contents += productNum_input;
-		let productStock_input = "<input name='orders[" + index + "].productStock' type='hidden' value='" + productStock + "'>";
-		form_contents += productStock_input;
+		//let productStock_input = "<input name='productStock' type='hidden' value='" + productStock + "'>";
+		let orderStock_input = "<input name='orders[" + index + "].orderStock' type='hidden' value='" + orderStock + "'>";
+		form_contents += orderStock_input;
 	});	
 	$(".order_form").append(form_contents);	
 	
 	/* 서버 전송 */
 	$(".order_form").submit();
 	
-	/* <form class="order_form" action="/order" method="post">
-	<!-- 주문자 회원번호 -->
-	<input name="memberId" value="${memberInfo.memberId}" type="hidden">
-	<!-- 주소록 & 받는이-->
-	<input name="addressee" type="hidden">
-	<input name="memberAddress1" type="hidden">
-	<input name="memberAddress2" type="hidden">
-	<input name="memberAddress3" type="hidden">			
-	<!-- 상품 정보 -->
-	</form> */
 	
 });
+	
+	
 
 </script>
 

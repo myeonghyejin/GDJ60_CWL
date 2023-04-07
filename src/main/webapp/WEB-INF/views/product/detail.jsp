@@ -54,7 +54,7 @@
 								<!-- 주문 form -->
 						<form action="/order/${member.memberId}" method="get" class="order_form" id="">
 							<input type="hidden" name="orders[0].productNum" value="${DTO.productNum}">
-							<input type="hidden" name="orders[0].productStock" value="">
+							<input type="hidden" name="orders[0].orderStock" value="">
 						</form>
 					</div>
 					
@@ -126,11 +126,11 @@
 	const form = {
 			memberId : '${member.memberId}',
 			productNum : '${DTO.productNum}',
-			productStock : ''
+			orderStock : ''
 	}
 	// 장바구니 추가 버튼
 		$(".btn_cart").on("click", function(e){
-			form.productStock = $(".quantity_input").val();
+			form.orderStock = $(".quantity_input").val();
 			$.ajax({
 				url: '/cart/cartAdd',
 				type: 'POST',
@@ -154,8 +154,8 @@
 		}
 		/* 바로구매 버튼 */
 		$(".btn_buy").on("click", function(){
-			let productStock = $(".quantity_input").val();
-			$(".order_form").find("input[name='orders[0].productStock']").val(productStock);
+			let orderStock = $(".quantity_input").val();
+			$(".order_form").find("input[name='orders[0].orderStock']").val(orderStock);
 			$(".order_form").submit();
 		});
 </script>

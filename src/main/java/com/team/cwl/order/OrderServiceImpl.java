@@ -41,7 +41,7 @@ public class OrderServiceImpl implements OrderService {
 			
 			OrderPageItemDTO productDetail = orderMapper.getProductDetail(ord.getProductNum());
 			
-			productDetail.setProductStock(ord.getProductStock());
+			productDetail.setOrderStock(ord.getOrderStock());
 			
 			productDetail.initTotal();
 			
@@ -65,7 +65,7 @@ public class OrderServiceImpl implements OrderService {
 		for(OrderItemDTO oit : ord.getOrders()) {
 			OrderItemDTO orderItem = orderMapper.getOrderInfo(oit.getProductNum());
 			// 수량 세팅
-			orderItem.setProductStock(oit.getProductStock());
+			orderItem.setOrderStock(oit.getOrderStock());
 			// 기본정보 세팅
 			orderItem.initTotal();
 			// List 객체 추가
@@ -101,7 +101,7 @@ public class OrderServiceImpl implements OrderService {
 		for(OrderItemDTO oit : ord.getOrders()) {
 			// 변동 재고 값 구하기
 			ProductDTO productDTO = productDAO.getProductDetail(oit.getProductNum());
-			productDTO.setProductStock(productDTO.getProductStock() - oit.getProductStock());
+			productDTO.setProductStock(productDTO.getProductStock() - oit.getOrderStock());
 			// 변동 값 DB 적용
 			orderMapper.deductStock(productDTO);
 		}
@@ -147,7 +147,7 @@ public class OrderServiceImpl implements OrderService {
 		// 재고
 		for(OrderItemDTO ord : orw.getOrders()) {
 			ProductDTO productDTO = productDAO.getProductDetail(ord.getProductNum());
-			productDTO.setProductStock(productDTO.getProductStock() + ord.getProductStock());
+			productDTO.setProductStock(productDTO.getProductStock() + ord.getOrderStock());
 			orderMapper.deductStock(productDTO);
 		}
 		

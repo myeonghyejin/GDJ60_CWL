@@ -23,6 +23,9 @@ public class OrderController {
 	@Autowired
 	private MemberService memberService;
 	
+	@Autowired
+	private  HttpSession session;
+	
 	@GetMapping("/order/{memberId}")
 	public String orderPageGET(@PathVariable("memberId") String memberId, OrderPageDTO opd, Model model) throws Exception {
 		
@@ -36,24 +39,24 @@ public class OrderController {
 	}
 	
 	@PostMapping("/order")
-	public String orderPagePost(OrderDTO od, HttpServletRequest request) throws Exception {
+	public String orderPagePost(OrderDTO od, Long[] productNum, Integer[] productStock, HttpServletRequest request) throws Exception {
+		
+//	for(Long num : productNum)System.out.println(num);
+//	for(Integer num : productStock)System.out.println(num);
 		
 		System.out.println(od);
-		
 		orderService.order(od);
 		
-		MemberDTO member = new MemberDTO();
-		member.setMemberId(od.getMemberId());
+		MemberDTO member = (MemberDTO) session.getAttribute("member");  //new MemberDTO();
+		member.setMemberId(member.getMemberId());
 		
 		HttpSession session = request.getSession();
 		
-		try {
+		
 			MemberDTO memberLogin = memberService.memberLogin(member);
 			memberLogin.setMemberPw("");
 			session.setAttribute("member", memberLogin);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		
 		
 		return "redirect:/";
 		

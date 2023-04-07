@@ -6,8 +6,8 @@
 
 	<!-- 카트 추가 -->
 	<insert id="cartAdd" parameterType="CartDTO">
-		INSERT INTO CART(MEMBERID, PRODUCTNUM, PRODUCTSTOCK)
-		VALUES (#{memberId}, #{productNum}, #{productStock}) 
+		INSERT INTO CART(MEMBERID, PRODUCTNUM, ORDERSTOCK)
+		VALUES (#{memberId}, #{productNum}, #{orderStock}) 
 	</insert>
 	
 	<!-- 카트 삭제 -->
@@ -17,13 +17,13 @@
 	
 	<!-- 카트 수량 수정 -->
 	<update id="modifyCount" parameterType="CartDTO">
-		UPDATE CART SET PRODUCTSTOCK = #{productStock}
+		UPDATE CART SET ORDERSTOCK = #{orderStock}
 		WHERE CARTNUM = #{cartNum}
 	</update>
 	
 	<!-- 카트 목록 --> 
 	<select id="cartList" resultType="CartDTO">
-		SELECT A.CARTNUM, A.MEMBERID, A.PRODUCTNUM, A.PRODUCTSTOCK, P.PRODUCTNAME, P.PRODUCTPRICE
+		SELECT A.CARTNUM, A.MEMBERID, A.PRODUCTNUM, A.ORDERSTOCK, P.PRODUCTNAME, P.PRODUCTPRICE
 		FROM CART A
 		LEFT OUTER JOIN
 		PRODUCT P ON A.PRODUCTNUM = P.PRODUCTNUM

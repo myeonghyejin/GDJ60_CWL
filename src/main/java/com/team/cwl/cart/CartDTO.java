@@ -12,15 +12,15 @@ public class CartDTO {
 	
 	private Long productNum;
 	
-	private Long productStock;
+	private int orderStock;
 	
 	// product	
 	private String productName;
 	
-	private Long productPrice;
+	private int productPrice;
 	
 	// 추가
-	private Long totalPrice;
+	private int totalPrice;
 	
 	/* 상품 이미지 */
 	private List<ProductImgDTO> imageList;
@@ -49,12 +49,12 @@ public class CartDTO {
 		this.productNum = productNum;
 	}
 
-	public Long getProductStock() {
-		return productStock;
+	public int getOrderStock() {
+		return orderStock;
 	}
 
-	public void setProductStock(Long productStock) {
-		this.productStock = productStock;
+	public void setOrderStock(int orderStock) {
+		this.orderStock = orderStock;
 	}
 
 	public String getProductName() {
@@ -65,19 +65,19 @@ public class CartDTO {
 		this.productName = productName;
 	}
 
-	public Long getProductPrice() {
+	public int getProductPrice() {
 		return productPrice;
 	}
 
-	public void setProductPrice(Long productPrice) {
+	public void setProductPrice(int productPrice) {
 		this.productPrice = productPrice;
 	}
 
-	public Long getTotalPrice() {
+	public int getTotalPrice() {
 		return totalPrice;
 	}
 
-	public void setTotalPrice(Long totalPrice) {
+	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 
@@ -91,14 +91,14 @@ public class CartDTO {
 
 	
 	public void initTotal() {
-		this.totalPrice = this.productPrice*this.productStock;
+		this.totalPrice = this.productPrice*this.orderStock;
 	}
 	
 	
 	@Override
 	public String toString() {
 		return "CartDTO [cartNum=" + cartNum + ", memberId=" + memberId + ", productNum=" + productNum
-				+ ", productStock=" + productStock + ", productName=" + productName + ", productPrice=" + productPrice
+				+ ", orderStock=" + orderStock + ", productName=" + productName + ", productPrice=" + productPrice
 				+ ", totalPrice=" + totalPrice + ", imageList=" + imageList + "]";
 	}
 	
