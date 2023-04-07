@@ -51,7 +51,7 @@
 						<a class="nav-link menu sub-menu" style="font-size: 11px" href="/member/memberPage">MYPAGE</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link menu sub-menu" style="font-size: 11px" href="/cart/cart?id=${member.memberId}">CART</a>
+						<a class="nav-link menu sub-menu" style="font-size: 11px" href="/cart/${member.memberId}">CART</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link menu sub-menu" style="font-size: 11px" href="/member/memberLogout">LOGOUT</a>
