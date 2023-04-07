@@ -139,7 +139,7 @@
 								<tr>
 									<td>배송비</td>
 									<td>
-										<span class="delivery_price">3000</span>원
+										<span class="orderFee_price">3000</span>원
 									</td>
 								</tr>									
 								<tr>
@@ -254,7 +254,7 @@ function setTotalInfo(){
 	let totalPrice = 0;				// 총 가격
 	let totalCount = 0;				// 총 갯수
 	let totalKind = 0;				// 총 종류
-	let deliveryPrice = 0;			// 배송비
+	let orderFee = 0;				// 배송비
 	let finalTotalPrice = 0; 		// 최종 가격(총 가격 + 배송비)
 	
 	$(".cart_info_td").each(function(index, element){
@@ -272,14 +272,14 @@ function setTotalInfo(){
 	
 	/* 배송비 결정 */
 	if(totalPrice >= 30000){
-		deliveryPrice = 0;
+		orderFee = 0;
 	} else if(totalPrice == 0){
-		deliveryPrice = 0;
+		orderFee = 0;
 	} else {
-		deliveryPrice = 3000;	
+		orderFee = 3000;	
 	}
 	
-		finalTotalPrice = totalPrice + deliveryPrice;
+		finalTotalPrice = totalPrice + orderFee;
 	
 	/* ※ 세자리 컴마 Javscript Number 객체의 toLocaleString() */
 	
@@ -290,7 +290,7 @@ function setTotalInfo(){
 	// 총 종류
 	$(".totalKind_span").text(totalKind);
 	// 배송비
-	$(".delivery_price").text(deliveryPrice);	
+	$(".orderFee_price").text(orderFee);	
 	// 최종 가격(총 가격 + 배송비)
 	$(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());		
 }
