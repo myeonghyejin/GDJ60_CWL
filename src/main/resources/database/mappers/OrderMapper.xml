@@ -25,8 +25,8 @@
 	
 	<!-- 주문 아이템 테이블 등록 -->
 	<insert id="enrollOrderItem" parameterType="OrderItemDTO">
-		INSERT INTO ORDERITEM(ORDERNUM, PRODUCTNUM, PRODUCTSTOCK, PRODUCTPRICE)
-		VALUES (#{orderNum}, #{productNum}, #{productStock}, #{productPrice})
+		INSERT INTO ORDERITEM(ORDERNUM, PRODUCTNUM, ORDERSTOCK, PRODUCTPRICE)
+		VALUES (#{orderNum}, #{productNum}, #{orderStock}, #{productPrice})
 	</insert>	
 	
 	<!-- 주문 금액 차감 -->
@@ -40,7 +40,7 @@
 	</update>	
 	
 	<!-- 주문취소 -->
-	<update id="orderCancle" parameterType="OrderDTO">
+	<update id="orderCancel" parameterType="OrderDTO">
 		UPDATE "ORDER" SET ORDERSTATE = '주문취소' WHERE ORDERNUM = #{orderNum}		
 	</update>	
 

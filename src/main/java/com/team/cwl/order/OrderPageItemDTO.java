@@ -9,7 +9,7 @@ public class OrderPageItemDTO {
 	// 뷰로부터 전달받을 값
 	private Long productNum;
 	
-	private int productStock;
+	private int orderStock;
 	
 	// DB로부터 꺼내올 값
 	private String productName;
@@ -30,12 +30,12 @@ public class OrderPageItemDTO {
 		this.productNum = productNum;
 	}
 
-	public int getProductStock() {
-		return productStock;
+	public int getOrderStock() {
+		return orderStock;
 	}
 
-	public void setProductStock(int productStock) {
-		this.productStock = productStock;
+	public void setOrderStock(int orderStock) {
+		this.orderStock = orderStock;
 	}
 
 	public String getProductName() {
@@ -71,12 +71,12 @@ public class OrderPageItemDTO {
 	}
 
 	public void initTotal() {
-		this.totalPrice = this.productPrice*this.productStock;
+		this.totalPrice = this.productPrice*this.orderStock;
 	}
 	
 	@Override
 	public String toString() {
-		return "OrderPageItemDTO [productNum=" + productNum + ", productStock=" + productStock + ", productName="
+		return "OrderPageItemDTO [productNum=" + productNum + ", orderStock=" + orderStock + ", productName="
 				+ productName + ", productPrice=" + productPrice + ", totalPrice=" + totalPrice + ", imageList="
 				+ imageList + "]";
 	}

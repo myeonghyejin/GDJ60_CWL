@@ -8,7 +8,7 @@ public class OrderCancelDTO {
 	
 	private String keyword;
 	
-	private Long amount;
+	private int amount;
 	
 	private Long pageNum;
 
@@ -37,11 +37,11 @@ public class OrderCancelDTO {
 		this.keyword = keyword;
 	}
 
-	public Long getAmount() {
+	public int getAmount() {
 		return amount;
 	}
 
-	public void setAmount(Long amount) {
+	public void setAmount(int amount) {
 		this.amount = amount;
 	}
 

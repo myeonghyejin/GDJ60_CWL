@@ -63,9 +63,9 @@
 			<beans:bean id="AdminInterceptor" class="com.team.cwl.interceptor.AdminInterceptor"></beans:bean>
 		</interceptor>
 		<interceptor>
-			<mapping path="/cart/**"/>
+			<mapping path="/cart/*"/>
 			<exclude-mapping path="/cart/add"/>
-			<beans:bean id="CartInterceptor" class="com.team.cwl.interceptor.CartInterceptor"></beans:bean>
+			<beans:bean class="com.team.cwl.interceptor.CartInterceptor"></beans:bean>
 		</interceptor>		
 	</interceptors>
 	

@@ -51,9 +51,9 @@ public class CartServiceImpl implements CartService {
 			/* 이미지 정보 얻기 */
 			Long productNum = dto.getProductNum();
 			
-//			List<ProductImgDTO> imageList = productDAO.getProductImgList(productNum);
+			List<ProductImgDTO> imageList = productDAO.getProductImgList(productNum);
 			
-//			dto.setImageList(imageList);
+			dto.setImageList(imageList);
 			
 		}
 		

@@ -1,4 +1,4 @@
-//package com.team.cwl.member;
+//package com.team.cwl.admin;
 //
 //import org.springframework.stereotype.Service;
 //import org.springframework.transaction.annotation.Transactional;

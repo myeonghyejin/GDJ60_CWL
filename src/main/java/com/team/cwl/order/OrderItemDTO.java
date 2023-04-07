@@ -8,7 +8,7 @@ public class OrderItemDTO {
 	// 제품 번호
 	private Long productNum;
 	// 주문 수량
-	private int productStock;
+	private int orderStock;
 	// 상품 한 개 가격
 	private int productPrice;
 	// 총 가격(가격 * 주문 수량)
@@ -40,12 +40,12 @@ public class OrderItemDTO {
 		this.productNum = productNum;
 	}
 
-	public int getProductStock() {
-		return productStock;
+	public int getOrderStock() {
+		return orderStock;
 	}
 
-	public void setProductStock(int productStock) {
-		this.productStock = productStock;
+	public void setOrderStock(int orderStock) {
+		this.orderStock = orderStock;
 	}
 
 	public int getProductPrice() {
@@ -68,12 +68,12 @@ public class OrderItemDTO {
 	@Override
 	public String toString() {
 		return "OrderItemDTO [orderItemNum=" + orderItemNum + ", orderNum=" + orderNum + ", productNum=" + productNum
-				+ ", productStock=" + productStock + ", productPrice=" + productPrice + ", totalPrice=" + totalPrice
+				+ ", orderStock=" + orderStock + ", productPrice=" + productPrice + ", totalPrice=" + totalPrice
 				+ "]";
 	}
 
 	public void initTotal() {
-		this.totalPrice = this.productPrice * this.productStock;
+		this.totalPrice = this.productPrice * this.orderStock;
 	}
 	
 	

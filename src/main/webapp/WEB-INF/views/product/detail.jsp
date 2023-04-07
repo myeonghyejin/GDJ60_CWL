@@ -185,11 +185,11 @@
 	const form = {
 			memberId : '${member.memberId}',
 			productNum : '${DTO.productNum}',
-			productStock : ''
+			orderStock : ''
 	}
 	// 장바구니 추가 버튼
 		$(".btn_cart").on("click", function(e){
-			form.productStock = $(".quantity_input").val();
+			form.orderStock = $(".quantity_input").val();
 			$.ajax({
 				url: '/cart/cartAdd',
 				type: 'POST',
