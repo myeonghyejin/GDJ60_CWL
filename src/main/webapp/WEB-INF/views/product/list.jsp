@@ -71,14 +71,16 @@
 										</c:forEach>
 									</div>
 								</div>
-								<div class="overlay-box">
-									<div class="overlay-inner">
-										<a class="overlay-content" href="./detail?productNum=${DTO.productNum}"">
-											<h5 class="mb-0">${DTO.productName}</h5>
-											<p>${DTO.productPrice}</p>
-										</a>
+								<a href="./detail?productNum=${DTO.productNum}">
+									<div class="overlay-box">
+										<div class="overlay-inner">
+											<div class="overlay-content">
+												<h5 class="mb-0">${DTO.productName}</h5>
+												<p>${DTO.productPrice}</p>
+											</div>
+										</div>
 									</div>
-								</div>
+								</a>
 							</div> 
 						</div>
 					</div>
@@ -120,7 +122,7 @@
 		<!-- 상품 등록 버튼 -->
 	 	<c:if test="${not empty member}">
 			<c:if test="${member.adminCheck eq 1}">
-				<div class="row justify-content-center mx-auto">
+				<div class="row justify-content-center mx-auto my-3">
 					<a href=./add class="btn btn-primary btn-sm btn-default">등록</a>
 				</div>
 			</c:if>
@@ -128,6 +130,7 @@
 
 </div>
 	<c:import url="../template/common_js.jsp"></c:import>
+	<c:import url="../template/footer.jsp"></c:import>
 	<script src="../resources/js/common/paging.js"></script>
 </body>
 </html>

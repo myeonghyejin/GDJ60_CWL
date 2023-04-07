@@ -112,6 +112,7 @@
 	</div>
 	
 	<c:import url="../template/common_js.jsp"></c:import>
+	<c:import url="../template/footer.jsp"></c:import>
 	<script src="/resources/js/lesson/review.js"></script>
 </body>
 </html>

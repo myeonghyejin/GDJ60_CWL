@@ -39,13 +39,13 @@
 			<form action="./update" id="frm">
 				<div class="row col-6 justify-content-center mx-auto">
 					<input type="hidden" name="boardNum" value="${DTO.boardNum}">
-					<button id="update" type="submit" class="btn btn-outline-primary col-1 mx-1">수정</button>
-					<button id="delete" type="button" class="btn btn-outline-primary col-1 mx-1">삭제</button>
+					<button id="update" type="submit" class="btn btn-outline-primary btn-sm btn-default mx-1">수정</button>
+					<button id="delete" type="button" class="btn btn-outline-primary btn-sm btn-default mx-1">삭제</button>
 				</div>
 			</form>
 		</c:if>
 		<div class="row col-6 my-2 justify-content-center mx-auto">
-			<a href="./list" class="btn btn-primary col-1 mx-1">목록</a>
+			<a href="./list" class="btn btn-primary btn-sm btn-default mx-1">목록</a>
 		</div>
 		
 		<!-- Comment -->
@@ -63,7 +63,7 @@
 						<textarea class="form-control" rows="3" id="boardCommentContents"></textarea>
 					</div>
 					<div class="row mb-3 justify-content-end">
-						<button type="button" class="btn btn-primary col-1 mx-1" id="boardCommentAdd" data-board-num="${DTO.boardNum}">작성</button>
+						<button type="button" class="btn btn-primary btn-sm btn-default mx-1" id="boardCommentAdd" data-board-num="${DTO.boardNum}">작성</button>
 					</div>
 				</div>
 			</c:if>
@@ -85,14 +85,15 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModal">취소</button>
-					<button type="button" class="btn btn-primary" data-boardcomment-num="" id="contentsConfirm">확인</button>
+					<button type="button" class="btn btn-secondary btn-sm btn-default" data-bs-dismiss="modal" id="closeModal">취소</button>
+					<button type="button" class="btn btn-primary btn-sm btn-default" data-boardcomment-num="" id="contentsConfirm">확인</button>
 				</div>
 			</div>
 			</div>
 		</div>
 	</div>
 	<c:import url="../template/common_js.jsp"></c:import>
+	<c:import url="../template/footer.jsp"></c:import>
 	<script src="/resources/js/board/comment.js"></script>
 </body>
 </html>

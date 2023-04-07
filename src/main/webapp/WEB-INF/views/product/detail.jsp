@@ -238,6 +238,7 @@
 	
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<c:import url="../template/common_js.jsp"></c:import>
+	<c:import url="../template/footer.jsp"></c:import>
 	<script src="/resources/js/product/qna.js"></script>
 	<script src="/resources/js/product/review.js"></script>
 </body>

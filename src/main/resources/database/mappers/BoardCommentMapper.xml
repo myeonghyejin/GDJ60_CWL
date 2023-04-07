@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  		(
 		  			SELECT * FROM BOARDCOMMENT 
 		  			WHERE BOARDNUM = #{boardNum}
-		  			ORDER BY BOARDCOMMENTDATE DESC
+		  			ORDER BY BOARDCOMMENTDATE ASC
 		  		) C
 		  	
 		)

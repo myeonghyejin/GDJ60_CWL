@@ -5,7 +5,13 @@
 <table class="table table-hover">
 	<c:forEach items="${list}" var="DTO">
 		<tr>
-			<td align="center" style="vertical-align: middle;"><b>${DTO.memberId}</b></td>
+			<td align="center" style="vertical-align: middle;">
+				<b>${DTO.memberId}</b>
+				<c:if test="${member.memberId eq DTO.memberId}">
+					<p id="me">나</p>
+				</c:if>
+			</td>
+			
 			<td align="right" style="vertical-align: middle;">${DTO.boardCommentDate}</td>
 			<td align="right" style="vertical-align: middle;">
 				<c:if test="${member.memberId eq DTO.memberId}">

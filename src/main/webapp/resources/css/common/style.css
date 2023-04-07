@@ -23,6 +23,9 @@ a {
     background-color: yellow;
 }
 
+/* ------- radio -------- */
+
+
 /* ------- button -------- */
 .btn-primary {
     color: #fff;
@@ -71,9 +74,14 @@ a {
 /* ------- search -------- */
 #search {
     height: 31px;
+    width: 150px;
 }
 
-/* ------- reply -------- */
+#condition {
+    height: 31px;
+    font-size: 14px;
+    line-height: 16.5px;
+}
 
 /* ------- table-striped -------- */
 .table-striped>tbody>tr:nth-child(odd)>td, 
@@ -102,4 +110,35 @@ a {
     background: #343DDB;
     color: #fff;
     border-color: #343DDB;
+}
+
+/* ------- imgList -------- */
+#imgList h6 {
+    color: #999999;
+}
+
+.btn-image {
+    width: 50px;
+}
+
+/* ------- badge -------- */
+#me {
+    background-color: #343DDB;
+    color: #fff;
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+#re {
+    background-color: #343DDB;
+    color: #fff;
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+    border-radius: 50%;
+    display: inline-block;
+    margin-top: 12.5px;
 }

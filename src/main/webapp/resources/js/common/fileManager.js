@@ -26,9 +26,9 @@ $('#imgAdd').click(()=>{
         
         count++;
         
-        let child = '<div class="fw-bold fs-5 col-12 input-group" id="img'+idx+'">';
+        let child = '<div class="fw-bold fs-5 col-12 my-1 input-group" id="img'+idx+'">';
             child = child + '<input type="file" class="form-control" name="'+param+'">'
-            child = child + '<button type="button" class="btn btn-outline-danger delete" data-delete-id="img'+idx+'">X</button>'
+            child = child + '<button type="button" class="btn btn-outline-danger btn-image delete" data-delete-id="img'+idx+'">x</button>'
         $('#imgList').append(child);
         idx++;
 })

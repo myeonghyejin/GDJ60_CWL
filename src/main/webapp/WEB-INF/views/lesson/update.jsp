@@ -8,8 +8,6 @@
 	<title>LESSON UPDATE</title>
 	<%@ include file="../common/sessionCheck.jsp" %>
 	<c:import url="../template/common_css.jsp"></c:import>
-	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
@@ -47,8 +45,8 @@
 		setMax(4);
 		setCount('${DTO.lessonImgDTOs.size()}');
 		setParam("imgs")
-		$('#lessonContents').summernote();
 	</script>
 	<c:import url="../template/common_js.jsp"></c:import>
+	<c:import url="../template/footer.jsp"></c:import>
 </body>
 </html>

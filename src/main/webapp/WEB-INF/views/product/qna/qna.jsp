@@ -7,7 +7,9 @@
 	<c:forEach items="${list}" var="DTO">
 		<tr>
 			<td class="detail" id="productQnATitle${DTO.productQnANum}" data-productqna-num="${DTO.productQnANum}" width="50%">
-				<c:forEach begin="1" end="${DTO.productQnADepth}">[re]</c:forEach>
+				<c:forEach begin="1" end="${DTO.productQnADepth}">
+					<p id="re" height="100%" align="center" style="vertical-align: middle;">re</p>
+				</c:forEach>
 				<a data-productqna-num="${DTO.productQnANum}">${DTO.productQnATitle}</a>
 			</td>
 			<td align="center" style="vertical-align: middle;">
