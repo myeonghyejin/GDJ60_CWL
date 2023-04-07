@@ -29,6 +29,15 @@ public class Pagination {
 	public void setProductNum(Long productNum) {
 		this.productNum = productNum;
 	}
+	
+	private String productName;
+	
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
 
 //---------------------------------------
 

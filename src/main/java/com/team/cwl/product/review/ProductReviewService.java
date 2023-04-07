@@ -40,6 +40,10 @@ public class ProductReviewService {
 			ar2.add(productReviewDTO);
 		}
 		
+		if(productReviewDAO.getTotalCount(pagination) == 0) {
+			pagination.setLastNum(1L);
+		}
+		
 		return ar2;
 	}
 	

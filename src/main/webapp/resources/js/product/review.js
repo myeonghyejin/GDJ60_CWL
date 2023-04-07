@@ -12,7 +12,7 @@ function getReviewList(page){
 }
 
 //page
-$("#productReviewListResult").on("click",".page-link-review", function(e){
+$("#productReviewListResult").on("click",".page-button-review", function(e){
     let page = $(this).attr("data-review-page");
     getReviewList(page);
     e.preventDefault();

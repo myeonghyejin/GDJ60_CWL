@@ -1,0 +1,117 @@
+/** import */
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/** header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 294px;
+    background-color: #fff;
+}
+
+#title {
+    display: flex;
+    list-style: none;
+}
+
+#title a {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #343DDB;
+    font-size: 80px;
+    line-height: 95%;
+}
+
+.menu {
+    font-family: 'Pretendard-Regular';
+    color: #333333;
+    height: 230px;
+    line-height: 20px;
+}
+
+#main {
+    display: flex;
+    list-style: none;
+}
+
+.main-menu {
+    font-size: 20px;
+}
+
+#sub {
+    display: flex;
+    list-style: none;
+    float: right;
+}
+
+.sub-menu {
+    font-size: 18px;
+}
+
+#body {
+    padding-top: 294px;
+}
+
+/* 마우스 오버 */
+.navbar-nav .nav-item.active .nav-link,
+.navbar-nav .nav-item:hover .nav-link {
+    color: #343DDB;
+}
+
+/* 반응형 */
+.navigation {
+    padding: 20px 40px;
+    transition: 0.3s ease;
+}
+
+@media (max-width: 991px) {
+    .navigation {
+        height: 525px;
+        flex-direction: column;
+        background: #343DDB;
+    }
+    .navbar-nav .nav-item.active .nav-link,
+    .navbar-nav .nav-item:hover .nav-link {
+        color: yellow;
+    }
+    #title {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    #title a {
+        color: #fff;
+    }
+    #title br {
+        display: inline-block;
+        content: " ";
+    }
+    #main {
+        margin-top: 5px;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    #sub {
+        margin-top: 10px;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    .menu {
+        height: 100%;
+        color: #fff;
+        text-align: center;
+        align-items: center;
+    }
+    #body {
+        padding-top: 525px;
+    }
+}

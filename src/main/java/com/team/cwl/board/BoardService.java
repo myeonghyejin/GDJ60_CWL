@@ -21,11 +21,9 @@ public class BoardService {
 		pagination.makeRow();
 		pagination.makeNum(boardDAO.getTotalCount(pagination));
 		
-//		System.out.println(boardDAO.getTotalCount(pagination));
-//		
-//		if(boardDAO.getTotalCount(pagination) == 0) {
-//			pagination.setPerBlock(1L);
-//		}
+		if(boardDAO.getTotalCount(pagination) == 0) {
+			pagination.setLastNum(1L);
+		}
 		
 		return boardDAO.getBoardList(pagination);
 	}

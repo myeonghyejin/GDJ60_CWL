@@ -12,7 +12,7 @@ function getList(page){
 }
 
 //page
-$("#lessonReviewListResult").on("click",".page-link", function(e){
+$("#lessonReviewListResult").on("click",".page-button", function(e){
     let page = $(this).attr("data-board-page");
     getList(page);
     e.preventDefault();
@@ -25,7 +25,7 @@ $("#lessonReviewAdd").click(function(){
         type:'POST',
         data:{
         	'lessonRating': $("input[name='lessonRating']:checked").val(),
-            'lessonReviewContents': $("#lessonReviewContents").val(),
+            'lessonReviewContents': $("#lessonReviewContents").val().replace(/(?:\r\n|\r|\n)/g, '<br>'),
             'lessonNum': $("#lessonReviewAdd").attr('data-lesson-review')
         },
         success:(res)=>{
@@ -68,7 +68,7 @@ let lessonReviewNum = '';
 $("#lessonReviewListResult").on("click", ".update", function(e){
     lessonReviewNum = $(this).attr("data-lessonReview-num");
     console.log(lessonReviewNum)
-    $("#lessonReviewEdit").val($("#lessonReviewContents"+lessonReviewNum).text().trim());
+    $("#lessonReviewEdit").val($("#lessonReviewContents"+lessonReviewNum).text().trim().replace(/(?:\r\n|\r|\n)/g, '<br>'));
     $("#contentsConfirm").attr("data-lessonReview-num", lessonReviewNum);
     e.preventDefault();
 })

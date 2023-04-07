@@ -21,6 +21,11 @@ public class BoardCommentService {
 	public List<BoardCommentDTO> getBoardCommentList(Pagination pagination) throws Exception {
 		pagination.makeRow();
 		pagination.makeNum(boardCommentDAO.getTotalCount(pagination));
+		
+		if(boardCommentDAO.getTotalCount(pagination) == 0) {
+			pagination.setLastNum(1L);
+		}
+		
 		return boardCommentDAO.getBoardCommentList(pagination);
 	}
 	
