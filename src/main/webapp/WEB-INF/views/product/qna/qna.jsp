@@ -25,7 +25,7 @@
 			<td align="right" style="vertical-align: middle;">${DTO.productQnADate}</td>
 			<td align="right" style="vertical-align: middle;">
 				<c:if test="${member.adminCheck eq 1}">
-					<a href="./qna/reply?productQnANum=${DTO.productQnANum}&productNum=${DTO.productNum}" class="btn btn-primary btn-sm" data-product-num-qna="${DTO.productNum}">답글</a>
+					<a href="./qna/reply?productQnANum=${DTO.productQnANum}&productNum=${DTO.productNum}&productQnASecret=${DTO.productQnASecret}" class="btn btn-primary btn-sm" data-product-num-qna="${DTO.productNum}">답글</a>
 				</c:if>
 				<c:if test="${member.memberId eq DTO.memberId}">
 					<a href="./qna/update?productQnANum=${DTO.productQnANum}&productNum=${DTO.productNum}" class="btn btn-info btn-sm" data-productqna-num="${DTO.productQnANum}">수정</a>
