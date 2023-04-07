@@ -34,9 +34,7 @@ import com.team.cwl.member.MemberServiceImpl;
 public class ChatHandler extends TextWebSocketHandler{
 //	List<WebSocketSession> sessionList=new ArrayList<WebSocketSession>();
 //	List <WebSocketSession> my = new ArrayList<WebSocketSession>();
-//	Map<String, WebSocketSession> map = new HashMap<String, WebSocketSession>();
     private Map<String, WebSocketSession> maps = new HashMap<String, WebSocketSession>();
-    private Map<String, WebSocketSession> info = new HashMap<String, WebSocketSession>();
 
 //	private Map<Set<String>, StringBuffer> personal = new HashMap<Set<String>, StringBuffer>();
     private Map<String, Map<String, Long>> idChatInfo = new HashMap<String, Map<String,Long>>();
@@ -57,7 +55,7 @@ public class ChatHandler extends TextWebSocketHandler{
 		MemberDTO memberDTO=(MemberDTO)session.getAttributes().get("member");
 		System.out.println("채팅 로그인 : "+memberDTO.getMemberId());
 		maps.put(memberDTO.getMemberId(), session);
-		info.put(memberDTO.getMemberSI(), session);
+		maps.put(memberDTO.getMemberSI(), session);
 
 		idChatInfo.put(memberDTO.getMemberId(), new HashMap<String, Long>());
 		
@@ -115,7 +113,7 @@ public class ChatHandler extends TextWebSocketHandler{
 		System.out.println(messageDTO.getType());
 		MemberDTO memberDTO=(MemberDTO)session.getAttributes().get("member");
         String memberId = memberDTO.getMemberId();
-        String memberSI = memberDTO.getMemberSI();
+//        String memberSI = memberDTO.getMemberSI();
 
         
         //type이 list일때 친구목록 띄우는 메서드 출력 
@@ -211,22 +209,13 @@ public class ChatHandler extends TextWebSocketHandler{
 		Gson gson = new Gson();
 		JsonObject jsonObject = new JsonObject();
 		jsonObject.addProperty("type", "list");
-		jsonObject.add("value",gson.toJsonTree(maps.keySet().toArray()));
-		jsonObject.add("intro", gson.toJsonTree(info.keySet().toArray()));
+		jsonObject.add("value", gson.toJsonTree(maps.keySet().toArray()));
+//		jsonObject.add("intro", gson.toJsonTree(maps.keySet().);
 
 		memberDTO = (MemberDTO) session.getAttributes().get("member");
 		
 		System.out.println( "member DTO : "+memberDTO);
-//		MemberDTO memberSI = memberService.memberLogin(memberDTO);
 
-//		System.out.println("memberSI" + memberSI);
-//		if(memberDTO != null) {
-//							memberDTO.setMemberSI(memberSI.getMemberSI());
-//							jsonObject.addProperty("intro", memberDTO.getMemberSI()); // 세션에 회원 정보를 설정
-//					    }
-//					}else {
-//						jsonObject.addProperty("intro",memberDTO.getMemberSI());
-//					}
 		String jsonStr = jsonObject.toString();
 		session.sendMessage(new TextMessage(jsonStr));
 

@@ -68,8 +68,8 @@ sock.onmessage = function (m) {
   //     console.log('json.intro : ', json.intro[i])
   //     makeUser(user[i], json.intro[i])
   //   }
-
   //  }
+  
   for (let i = 0; i < json.value.length; i++) {
     if (json.value[i] != id) {
       console.log('user : ', json.value[i]);
@@ -78,8 +78,6 @@ sock.onmessage = function (m) {
     }
   }
   
-    
-
     return;
   }
 
