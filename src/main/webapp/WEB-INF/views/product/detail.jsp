@@ -49,7 +49,7 @@
 								<h2 class="title">${DTO.productName}</h2>
 								<h3 class="price"><fmt:formatNumber value="${DTO.productPrice}" pattern="￦###,###,###,###"/></h3>
 								<p class="info-text">${DTO.productDetail}</p>
-								<div class="row">						
+								<div class="row">											
 									<div class="button_quantity my-3" align="right">
 										Quantity 
 										<span>
@@ -70,7 +70,7 @@
 											<div class="wish-button">
 												<a class="btn btn_buy">Buy Now</a>
 											</div>
-										</div>
+										</div>										
 									</div>
 								</div>	
 							</div>
@@ -126,7 +126,7 @@
 		<!-- 주문 form -->
 		<form action="/order/${member.memberId}" method="get" class="order_form" id="">
 			<input type="hidden" name="orders[0].productNum" value="${DTO.productNum}">
-			<input type="hidden" name="orders[0].productStock" value="">
+			<input type="hidden" name="orders[0].orderStock" value="">
 		</form>
 
 		<!-- Buttons -->
@@ -213,8 +213,8 @@
 	}
 	/* 바로구매 버튼 */
 	$(".btn_buy").on("click", function(){
-		let productStock = $(".quantity_input").val();
-		$(".order_form").find("input[name='orders[0].productStock']").val(productStock);
+		let orderStock = $(".quantity_input").val();
+		$(".order_form").find("input[name='orders[0].orderStock']").val(orderStock);
 		$(".order_form").submit();
 	});
 	
@@ -232,7 +232,7 @@
 			//current.classList.add("fade-in");
 			//opacity
 			e.target.style.opacity = opacity;
-    	});
+    	}); 
     });
 </script>
 	
