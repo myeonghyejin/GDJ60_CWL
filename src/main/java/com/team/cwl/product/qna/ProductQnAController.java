@@ -36,16 +36,6 @@ public class ProductQnAController {
 		return modelAndView;
 	}
 	
-	@GetMapping("qna/qna")
-	public ModelAndView getProductQnaDetail(ProductQnADTO productQnADTO, ModelAndView modelAndView) throws Exception {
-		productQnADTO = productQnAService.getProductQnADetail(productQnADTO);
-		
-		modelAndView.addObject("DTO", productQnADTO);
-		modelAndView.setViewName("common/ajaxResult");
-		
-		return modelAndView;	
-	}
-	
 	/** INSERT **/
 	@GetMapping("qna/add")
 	public ModelAndView setProductQnAAdd(ModelAndView modelAndView) throws Exception {		

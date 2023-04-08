@@ -12,16 +12,7 @@
 				</c:forEach>
 				<a data-productqna-num="${DTO.productQnANum}">${DTO.productQnATitle}</a>
 			</td>
-			<td align="center" style="vertical-align: middle;">
-				<c:choose>
-					<c:when test="${member.adminCheck eq 1}">
-						<b>CWL</b>
-					</c:when>
-					<c:otherwise>
-						<b>${DTO.memberId}</b>
-					</c:otherwise>
-				</c:choose>
-			</td>
+			<td align="center" style="vertical-align: middle;"><b>${DTO.memberId}</b></td>
 			<td align="right" style="vertical-align: middle;">${DTO.productQnADate}</td>
 			<td align="right" style="vertical-align: middle;">
 				<c:if test="${member.adminCheck eq 1}">
@@ -39,13 +30,12 @@
 			<td id="productQnAContents${DTO.productQnANum}" width="100%" colspan="4" style="display:none;">
 				<c:choose>
 					<c:when test="${DTO.productQnASecret eq 1}">
-						<c:if test="${member.memberId eq DTO.memberId}">
+						<c:if test="${member.memberId eq DTO.memberId or member.adminCheck eq 1 or DTO.productQnARef eq DTO.productQnANum}">
 							⤷ ${DTO.productQnAContents}
 						</c:if>
-						<c:if test="${member.adminCheck eq 1}">
-							⤷ ${DTO.productQnAContents}
+						<c:if test="${member.memberId ne DTO.memberId and member.adminCheck eq 0}">
+							⤷ 비밀글입니다.
 						</c:if>
-							비밀글입니다.
 					</c:when>
 					<c:otherwise>
 						⤷ ${DTO.productQnAContents}

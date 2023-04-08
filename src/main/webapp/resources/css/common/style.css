@@ -130,6 +130,7 @@ a {
     vertical-align: middle;
     border-radius: 50%;
     display: inline-block;
+    margin-top: 12.5px;
 }
 
 #re {
@@ -139,6 +140,14 @@ a {
     height: 25px;
     vertical-align: middle;
     border-radius: 50%;
+    display: inline-block;
+    margin-top: 12.5px;
+}
+
+#re2 {
+    color: #343DDB;
+    height: 25px;
+    vertical-align: middle;
     display: inline-block;
     margin-top: 12.5px;
 }

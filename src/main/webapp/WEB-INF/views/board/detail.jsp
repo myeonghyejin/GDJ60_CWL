@@ -69,9 +69,8 @@
 			</c:if>
 		</div>
 	
-		<!--  Update Form Modal -->
-		<!-- Modal -->
-		<div class="modal fade" id="contentsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<!-- Update -->
+		<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -85,15 +84,50 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary btn-sm btn-default" data-bs-dismiss="modal" id="closeModal">취소</button>
-					<button type="button" class="btn btn-primary btn-sm btn-default" data-boardcomment-num="" id="contentsConfirm">확인</button>
+					<button type="button" class="btn btn-secondary btn-sm btn-default" data-bs-dismiss="modal" id="closeUpdateModal">취소</button>
+					<button type="button" class="btn btn-primary btn-sm btn-default" data-boardcomment-num="" id="updateConfirm">확인</button>
 				</div>
 			</div>
 			</div>
 		</div>
+
+		<!-- Reply -->
+		<div class="modal fade" id="replyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h1 class="modal-title fs-5" id="exampleModalLabel">답글</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="form-floating">
+						<textarea class="form-control" id="boardCommentReply"></textarea>
+						<label for="boardCommentReply">Comments</label>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary btn-sm btn-default" data-bs-dismiss="modal" id="closeReplyModal">취소</button>
+					<button type="button" class="btn btn-primary btn-sm btn-default" data-boardcomment-num="" id="replyConfirm">확인</button>
+				</div>
+			</div>
+			</div>
+		</div>
+
 	</div>
 	<c:import url="../template/common_js.jsp"></c:import>
 	<c:import url="../template/footer.jsp"></c:import>
 	<script src="/resources/js/board/comment.js"></script>
+	<script>
+		const d = document.getElementById("delete");
+
+		d.addEventListener("click", function(){
+			let check = window.confirm("삭제하시겠습니까?");
+			if(check) {
+				frm.setAttribute("action", "./delete");
+				frm.setAttribute("method", "post");
+				frm.submit();
+			}
+		})
+	</script>
 </body>
 </html>
