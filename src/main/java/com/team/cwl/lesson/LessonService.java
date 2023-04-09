@@ -27,6 +27,10 @@ public class LessonService {
 		pagination.makeRow();
 		pagination.makeNum(lessonDAO.getTotalCount(pagination));
 		
+		if(lessonDAO.getTotalCount(pagination) == 0) {
+			pagination.setLastNum(1L);
+		}
+		
 		return lessonDAO.getLessonList(pagination);
 	}
 

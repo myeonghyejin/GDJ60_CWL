@@ -118,6 +118,7 @@
 	<c:import url="../template/footer.jsp"></c:import>
 	<script src="/resources/js/board/comment.js"></script>
 	<script>
+		/* 삭제 버튼 */
 		const d = document.getElementById("delete");
 
 		d.addEventListener("click", function(){

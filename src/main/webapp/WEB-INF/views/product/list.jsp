@@ -20,16 +20,20 @@
 		</div>
 		
 		<!-- 검색창 -->
-		<div class="row mx-5 mt-5 justify-content-center">
-			<button class="btn btn-primary btn-sm btn-category mx-1">별점순</button>
-			<button class="btn btn-primary btn-sm btn-category mx-1">후기 많은순</button>
-			<button class="btn btn-primary btn-sm btn-category mx-1">높은 가격순</button>
-			<button class="btn btn-primary btn-sm btn-category mx-1">낮은 가격순</button>
+		<div class="col-11">
+			<form action="./list" method="get" class="row mx-5 my-5 justify-content-center">
+				<input type="hidden" name="page" value="1" id="page">
+				<button class="btn btn-primary btn-sm btn-category mx-1">별점순</button>
+				<button class="btn btn-primary btn-sm btn-category mx-1">후기 많은순</button>
+				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="highPriceOrder">높은 가격순</button>
+				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="lowPriceOrder">낮은 가격순</button>
+			</form>
 		</div>
 		<div class="col-11">
 			<form action="./list" method="get" class="row justify-content-end mx-auto g-3" id="searchForm">
-			<input type="hidden" name="page" value="1" id="page">
+				<input type="hidden" name="page" value="1" id="page">
 				<div class="col-auto">
+					<input type="hidden" name="condition" id="condition" value="productName">
 					<label for="search" class="visually-hidden">Search</label>
 					<input type="text" class="form-control" value="${pagination.search}" name="search" id="search" placeholder="">
 				</div>

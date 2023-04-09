@@ -9,8 +9,6 @@
 	<%@ include file="../common/sessionCheck.jsp" %>
 	<c:import url="../template/common_css.jsp"></c:import>
 	<link rel="stylesheet" href="/resources/css/common/style.css">
-	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
@@ -65,18 +63,17 @@
 	   </form>
 	</div>
 	<script src="../resources/js/common/fileManager.js"></script>
+	<c:import url="../template/common_js.jsp"></c:import>
+	<c:import url="../template/footer.jsp"></c:import>
 	<script>
 		setMax(4);
 		setCount('${DTO.productImgDTOs.size()}');
-		setParam("imgs")
-		$('#productDetail').summernote();
+		setParam("imgs");
 
 		if(!$('#imgs').val()) {
 			alert("최소 1장 이상의 이미지를 등록해야 합니다.")
 			return;
     	}
 	</script>
-	<c:import url="../template/common_js.jsp"></c:import>
-	<c:import url="../template/footer.jsp"></c:import>
 </body>
 </html>

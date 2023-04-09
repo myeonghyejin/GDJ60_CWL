@@ -12,12 +12,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="condition == 'lessonTitle'">
 			LESSONTITLE LIKE '%' || #{search} || '%'
 		</if>
-		<if test="condition == 'lessonContents'">
-			LESSONCONTENTS LIKE '%' || #{search} || '%'
-		</if>
-		<if test="condition == 'memberId'">
-			MEMBERID LIKE '%' || #{search} || '%'
-		</if>
 		</where>
 	</sql>
 

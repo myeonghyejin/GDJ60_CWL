@@ -1,7 +1,7 @@
 const imgList = document.getElementById("imgList");
 
 let count = 0;
-let max = 1;
+let max = 4;
 let param = 'imgs';
 let idx = 1;
 

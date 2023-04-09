@@ -16,7 +16,31 @@
 		<div class="row mx-auto text-center border-bottom border-dark pb-2">
 			<p class="fs-2" style="font-family: 'Impact'">LESSON</p>
 		</div>
-	
+		
+		<!-- 검색창 -->
+		<div class="col-11">
+			<form action="./list" method="get" class="row mx-5 my-5 justify-content-center">
+				<input type="hidden" name="page" value="1" id="page">
+				<button class="btn btn-primary btn-sm btn-category mx-1">별점순</button>
+				<button class="btn btn-primary btn-sm btn-category mx-1">후기 많은순</button>
+				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="">높은 가격순</button>
+				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="">낮은 가격순</button>
+			</form>
+		</div>
+		<div class="col-11">
+			<form action="./list" method="get" class="row justify-content-end mx-auto g-3" id="searchForm">
+				<input type="hidden" name="page" value="1" id="page">
+				<div class="col-auto">
+					<input type="hidden" name="condition" id="condition" value="lessonTitle">
+					<label for="search" class="visually-hidden">Search</label>
+					<input type="text" class="form-control" value="${pagination.search}" name="search" id="search" placeholder="">
+				</div>
+				<div class="col-auto">
+					<button type="submit" class="btn btn-outline-primary btn-sm btn-default mb-3">검색</button>
+				</div>
+			</form>
+		</div>
+
 		<div class="row col-8 mx-auto my-5">
 			<table class="table table-hover">
 				<thead>
@@ -73,28 +97,6 @@
 				</ul>	
 			</div>
 		</div>
-		
-		<!-- 검색창 -->
-		<form action="./list" method="get" class="row g-3" id="searchForm">
-			<input type="hidden" name="page" value="1" id="page">
-			<div class="row justify-content-center mx-auto">
-				<div class="col-auto">
-					<label for="condition" class="visually-hidden">Email</label>
-					<select class="form-select" name="condition" id="condition" aria-label="Default select example">
-						<option value="lessonTitle" ${pagination.condition eq 'lessonTitle' ? 'selected' : ''}>제목</option>
-						<option value="lessonContents" ${pagination.condition eq 'lessonContents' ? 'selected' : ''}>내용</option>
-						<option value="memberId" ${pagination.condition eq 'memberId' ? 'selected' : ''}>작성자</option>
-					</select>
-				</div>
-				<div class="col-auto">
-					<label for="search" class="visually-hidden">Search</label>
-					<input type="text" class="form-control" value="${pagination.search}" name="search" id="search" placeholder="검색어를 입력하세요.">
-				</div>
-				<div class="col-auto">
-					<button type="submit" class="btn btn-outline-primary mb-3">검색</button>
-				</div>
-			</div>
-		</form>
 		
 		<!-- 상품 등록 버튼 -->
 	 	<c:if test="${not empty member}">
