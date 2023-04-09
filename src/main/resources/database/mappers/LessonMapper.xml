@@ -41,6 +41,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<id column="LESSONNUM" property="lessonNum"/>
 		<result column="MEMBERID" property="memberId"/>
 		<result column="LESSONTITLE" property="lessonTitle"/>
+		<result column="LESSONTEACHER" property="lessonTeacher"/>
 		<result column="LESSONCONTENTS" property="lessonContents"/>
 		<result column="LESSONHIT" property="lessonHit"/>
 		<result column="LESSONDATE" property="lessonDate"/>
@@ -67,7 +68,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			SELECT LESSON_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
 		INSERT INTO LESSON
-		VALUES(#{lessonNum}, #{memberId}, #{lessonTitle}, #{lessonContents}, 0, SYSDATE)
+		VALUES(#{lessonNum}, #{memberId}, #{lessonTitle}, #{lessonTeacher}, #{lessonContents}, 0, SYSDATE)
 	</insert>
 	
 	<insert id="setLessonImgAdd" parameterType="LessonImgDTO">
@@ -77,7 +78,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- UPDATE -->
 	<update id="setLessonUpdate" parameterType="LessonDTO">
-		UPDATE LESSON SET LESSONTITLE = #{lessonTitle}, LESSONCONTENTS = #{lessonContents}
+		UPDATE LESSON SET LESSONTITLE = #{lessonTitle}, LESSONTEACHER = #{lessonTeacher}, LESSONCONTENTS = #{lessonContents}
 		WHERE LESSONNUM = #{lessonNum}
 	</update>
 	

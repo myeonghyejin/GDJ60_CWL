@@ -11,41 +11,39 @@
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
-	<div class="container-fluid my-5">
-		<!-- Title -->
-		<div class="row col-md-4 mx-auto text-center border-bottom border-dark pb-2">
-			<p class="fs-2" style="font-family: 'Impact'">${lessonName} Update Page</p>
-		</div>
-		
-		<!-- Contents -->
-		<form action="./update" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="lessonNum" value="${DTO.lessonNum}">
-			<div class="row col-md-4 mx-auto my-5">
-				<div class="fw-bold fs-5 col-12">
-					<label for="memberId" class="form-label">작성자</label>
-					<input type="text" name="memberId" class="form-control" id="memberId" value="${member.memberId}" readonly><br>
-				</div>
-				<div class="fw-bold fs-5 col-12">
-					<label for="lessonTitle" class="form-label">제목</label>
-					<input type="text" name="lessonTitle" class="form-control" id="lessonTitle" value="${DTO.lessonTitle}"><br>
-				</div>			
-				<div class="fw-bold fs-5 col-12">
-					<label for="lessonContents" class="form-label">내용</label>
-					<textarea name="lessonContents" class="form-control" id="lessonContents" rows="3">${DTO.lessonContents}</textarea><br>
-				</div>
-	
-				<div class="row justify-content-center my-5">
-					<button type="submit" class="btn btn-primary col-2">글쓰기</button>
-				</div>
-			</div>
-	   </form>
+<div class="container-fluid my-5">
+	<!-- Title -->
+	<div class="row mx-auto text-center border-bottom border-dark pb-2">
+		<p class="fs-2" style="font-family: 'Impact'">LESSON</p>
 	</div>
-	<script src="../resources/js/fileManager.js"></script>
-	<script>
-		setMax(4);
-		setCount('${DTO.lessonImgDTOs.size()}');
-		setParam("imgs")
-	</script>
+	<!-- Contents -->
+	<form action="./add" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="memberId" value="${member.memberId}">
+		<div class="row col-8 mx-auto my-5">
+			<div class="fw-bold fs-5 col-12">
+				<label for="lessonTitle" class="form-label">제목</label>
+				<input type="text" name="lessonTitle" class="form-control" id="lessonTitle" value="${DTO.lessonTitle}"><br>
+			</div>
+			<div class="fw-bold fs-5 col-12">
+				<label for="lessonTeacher" class="form-label">크리에이터</label>
+				<input type="text" name="lessonTeacher" class="form-control" id="lessonTeacher" value="${DTO.lessonTeacher}"><br>
+			</div>
+			<div class="fw-bold fs-5 col-12">
+				<label for="lessonContents" class="form-label">내용</label>
+				<textarea name="lessonContents" class="form-control" id="lessonContents" rows="3">${DTO.lessonContents}</textarea><br>
+			</div>
+			<div id="imgList">
+				<h5><b>썸네일</b></h5>
+				<div class="fw-bold fs-5 col-12 mt-3 input-group">
+					<input type="file" class="form-control" name="imgs" id="imgs">
+				</div>	
+			</div>
+			<div class="row justify-content-center my-5">
+				<button type="submit" id="submit" class="btn btn-primary btn-sm btn-default">등록</button>
+			</div>
+		</div>
+   </form>
+</div>
 	<c:import url="../template/common_js.jsp"></c:import>
 	<c:import url="../template/footer.jsp"></c:import>
 </body>

@@ -8,6 +8,7 @@ public class LessonDTO {
 	private Long lessonNum;
 	private String memberId;
 	private String lessonTitle;
+	private String lessonTeacher;
 	private String lessonContents;
 	private Long lessonHit;
 	private Date lessonDate;
@@ -31,6 +32,12 @@ public class LessonDTO {
 	}
 	public void setLessonTitle(String lessonTitle) {
 		this.lessonTitle = lessonTitle;
+	}
+	public String getLessonTeacher() {
+		return lessonTeacher;
+	}
+	public void setLessonTeacher(String lessonTeacher) {
+		this.lessonTeacher = lessonTeacher;
 	}
 	public String getLessonContents() {
 		return lessonContents;

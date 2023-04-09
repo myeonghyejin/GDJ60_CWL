@@ -8,6 +8,7 @@
 	<title>LESSON</title>
 	<c:import url="../template/common_css.jsp"></c:import>
 	<link rel="stylesheet" href="/resources/css/common/style.css">
+	<link rel="stylesheet" href="/resources/css/lesson/list.css">
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
@@ -41,6 +42,30 @@
 			</form>
 		</div>
 
+		<div class="container my-5">
+			<div class="row shuffle-wrapper portfolio-gallery">
+				<c:forEach items="${list}" var="DTO">
+					<div class="col-lg-4 col-6 mb-4 shuffle-item">
+						<div class="position-relative inner-box">
+							<div class="image position-relative ">
+							    <img src="/resources/upload/lesson/${DTO.lessonImgDTOs.imgName}" alt="lesson-image" class="img-fluid w-100 d-block">
+							    <a href="./detail?lessonNum=${DTO.lessonNum}">
+									<div class="overlay-box">
+										<div class="overlay-inner">
+											<div class="overlay-content">
+												<h5 class="mb-0">${DTO.lessonTitle}</h5>
+												<p>${DTO.lessonTeacher}</p>
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
+		</div>
+
 		<div class="row col-8 mx-auto my-5">
 			<table class="table table-hover">
 				<thead>
@@ -66,6 +91,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
+		</div>
 			
 		<!-- Paging -->
 		<div class="m-auto">
@@ -98,10 +124,10 @@
 			</div>
 		</div>
 		
-		<!-- 상품 등록 버튼 -->
+		<!-- 강의 등록 버튼 -->
 	 	<c:if test="${not empty member}">
 			<div class="row justify-content-center mx-auto">
-				<a href=./add class="btn btn-primary col-3">등록</a>
+				<a href=./add class="btn btn-primary btn-sm btn-default">등록</a>
 			</div>
 	 	</c:if>
 	</div>
