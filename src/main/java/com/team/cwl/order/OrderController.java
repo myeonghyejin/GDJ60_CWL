@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.team.cwl.member.MemberDTO;
 import com.team.cwl.member.MemberService;
@@ -60,6 +61,15 @@ public class OrderController {
 		
 		return "redirect:/";
 		
+	}
+	
+	// 주문 결제
+	@PostMapping("payment")
+	public ModelAndView OrderPayment(OrderDTO orderDTO) throws Exception {
+		ModelAndView modelAndView = new ModelAndView();
+		int result = orderService.orderPayment(orderDTO);
+		modelAndView.setViewName("redirect:/");
+		return modelAndView;
 	}
 	
 }

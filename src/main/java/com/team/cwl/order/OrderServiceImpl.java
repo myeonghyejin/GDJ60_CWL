@@ -153,4 +153,9 @@ public class OrderServiceImpl implements OrderService {
 		
 	}
 	
+	@Override
+	public int orderPayment(OrderDTO orderDTO) throws Exception {
+		return orderMapper.orderPayment(orderDTO);
+	}
+	
 }
