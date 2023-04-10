@@ -3,14 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- Contents -->
-<table class="table table-striped">
+<table class="table table-hover">
 	<c:forEach items="${list}" var="DTO">
 		<tr>
-			<td id="productReviewTitle${DTO.productReviewNum}" data-productreview-num="${DTO.productReviewNum}">
-				<a class="detail" data-productreview-num="${DTO.productReviewNum}">${DTO.productReviewTitle}</a>
+			<td class="detail" id="productReviewTitle${DTO.productReviewNum}" data-productreview-num="${DTO.productReviewNum}" width="50%">
+				<a data-productreview-num="${DTO.productReviewNum}"><b>${DTO.productReviewTitle}</b></a>
 			</td>
-			<td>${DTO.memberId}</td>
-			<td id="productRating${DTO.productReviewNum}">
+			<td align="center" style="vertical-align: middle;"><b>${DTO.memberId}</b></td>
+			<td id="productRating${DTO.productReviewNum}" align="right" style="vertical-align: middle; text-align: center;">
 				<c:if test="${DTO.productRating eq 1}">
 					★
 				</c:if>
@@ -27,70 +27,58 @@
 					★★★★★
 				</c:if>
 			</td>
-			<td>${DTO.productReviewDate}</td>
-			<td>
+			<td align="right" style="vertical-align: middle;">${DTO.productReviewDate}</td>
+			<td align="right" style="vertical-align: middle;">
 				<c:if test="${member.memberId eq DTO.memberId}">
-					<a href="./review/update?productReviewNum=${DTO.productReviewNum}&productNum=${DTO.productNum}" class="btn btn-info" data-productreview-num="${DTO.productReviewNum}">수정</a>
+					<a href="./review/update?productReviewNum=${DTO.productReviewNum}&productNum=${DTO.productNum}" class="btn btn-info btn-sm" data-productreview-num="${DTO.productReviewNum}">수정</a>
 				</c:if>
-			</td>
-			<td>
 				<c:if test="${member.memberId eq DTO.memberId}">
-					<button class="btn btn-danger delete" data-productreview-num="${DTO.productReviewNum}">삭제</button>
+					<button class="btn btn-danger btn-sm delete" data-productreview-num="${DTO.productReviewNum}">삭제</button>
 				</c:if>
 			</td>
 		</tr>
 		<tr>
-			<td id="productReviewContents${DTO.productReviewNum}" style="display:none;">
+			<td id="productReviewContents${DTO.productReviewNum}" width="100%" colspan="5" style="display:none;">
 				<div class="row">
- 					<c:if test="${not empty DTO.productReviewImgDTOs}">
+					<c:if test="${not empty DTO.productReviewImgDTOs}">
 						<c:forEach items="${DTO.productReviewImgDTOs}" var="imgDTO">
-							<img alt="" src="/resources/upload/product/review/${imgDTO.imgName}">
+							<img src="/resources/upload/product/review/${imgDTO.imgName}" alt="product_review_image">
 						</c:forEach>
- 					</c:if>
+					</c:if>
 				</div>
-				<div class="row">
-					<!-- <img alt="" src="/resources/upload/product/review/95da24e6-8c73-4a22-9fc5-a7d277f02249_2.jpg">
-					<img alt="" src="/resources/images/1.jpg"> -->
-				</div>
-				${DTO.productReviewContents}
+				⤷ ${DTO.productReviewContents}
 			</td>
 		</tr>
 	</c:forEach>
 </table>
 
 <!-- Paging -->
-<div class="rowmx-auto">
-	<nav aria-label="Page navigation example">
-		<ul class="pagination justify-content-center">
-		
-			<li class="page-item ${pagination.page eq 1?'disabled':''}">
-				<a class="page-link page-link-review" href="./review/list?page=1&condition=${pagination.condition}&search=${pagination.search}" aria-label="Previous" data-review-page="1">
+<div class="m-auto">
+	<div class="pagination justify-content-center mt-5 pt-4">
+		<ul class="list-inline">
+			<li class="list-inline-item ${pagination.page eq 1?'disabled':''}">
+				<a href="#" class="page-button-review" aria-label="Previous" data-board-page="1">
 					<span aria-hidden="true">&laquo;</span>
 				</a>
 			</li>
-			
-			<li class="page-item ${pagination.prev?'disabled':''}">
-				<a class="page-link page-link-review" href="./review/list?page=${pagination.startNum-1}&condition=${pagination.condition}&search=${pagination.search}" aria-label="Previous" data-review-page="${pagination.startNum-1}">
+			<li class="list-inline-item ${pagination.prev?'disabled':''}">
+				<a href="#" class="page-button-review" aria-label="Previous" data-board-page="${pagination.startNum}">
 					<span aria-hidden="true">&lsaquo;</span>
 				</a>
-			</li>
-								
-			<c:forEach begin="${pagination.startNum}" end="${pagination.lastNum}" var="i">
-				<li class="page-item"><a class="page-link page-link-review" href="./review/list?page=${i}&condition=${pagination.condition}&search=${pagination.search}" data-review-page="${i}">${i}</a></li>
+			</li>				
+			<c:forEach begin="${pagination.startNum}" end="${pagination.lastNum}" var="page">
+				<li class="list-inline-item"><a href="#" class="page-button-review" data-board-page="${page}">${page}</a></li>
 			</c:forEach>
-			
-			<li class="page-item ${pagination.next eq false ? 'disabled' : ''}">
-				<a class="page-link page-link-review" href="./review/list?page=${pagination.lastNum+1}&condition=${pagination.condition}&search=${pagination.search}"  aria-label="Next" data-review-page="${pagination.lastNum+1}">
+			<li class="list-inline-item ${pagination.next eq false ? 'disabled' : ''}">
+				<a href="#" class="page-button-review" aria-label="Next" data-board-page="${pagination.lastNum}">
 					<span aria-hidden="true">&rsaquo;</span>
 				</a>
-				</li>
- 				
- 			<li class="page-item ${pagination.page eq pagination.totalPage?'disabled' : ''}">
-				<a class="page-link page-link-review" href="./review/list?page=${pagination.totalPage}&condition=${pagination.condition}&search=${pagination.search}"  aria-label="Next" data-review-page="${pagination.totalPage}">
+			 </li>
+			 <li class="list-inline-item ${pagination.page eq pagination.totalPage?'disabled' : ''}">
+				<a href="#" class="page-button-review" aria-label="Next" data-board-page="${pagination.totalPage}">
 					<span aria-hidden="true">&raquo;</span>
 				</a>
-				</li>
-				
-		</ul>
-	</nav>
+			</li>
+		</ul>	
+	</div>
 </div>

@@ -58,11 +58,11 @@ public class LessonController {
 	
 	//DB에 Insert
 	@PostMapping("add")
-	public ModelAndView setLessonAdd(LessonDTO lessonDTO, MultipartFile [] imgs, HttpSession session, ModelAndView modelAndView) throws Exception {
+	public ModelAndView setLessonAdd(LessonDTO lessonDTO, MultipartFile img, HttpSession session, ModelAndView modelAndView) throws Exception {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		lessonDTO.setMemberId(memberDTO.getMemberId());
 		
-		int result = lessonService.setLessonAdd(lessonDTO, imgs, session);
+		int result = lessonService.setLessonAdd(lessonDTO, img, session);
 		
 		String message = "등록에 실패했습니다.";
 		
@@ -94,8 +94,8 @@ public class LessonController {
 	
 	//DB에 Insert
 	@PostMapping("update")
-	public ModelAndView setLessonUpdate(LessonDTO lessonDTO, MultipartFile [] imgs, HttpSession session, Long [] imgNums, ModelAndView modelAndView) throws Exception {
-		int result = lessonService.setLessonUpdate(lessonDTO, imgs, session, imgNums);
+	public ModelAndView setLessonUpdate(LessonDTO lessonDTO, MultipartFile img, HttpSession session, Long imgNum, ModelAndView modelAndView) throws Exception {
+		int result = lessonService.setLessonUpdate(lessonDTO, img, session, imgNum);
 		
 		String message = "수정에 실패했습니다.";
 		
@@ -125,15 +125,6 @@ public class LessonController {
 		
 		modelAndView.addObject("result", message);
 		modelAndView.addObject("URL", "./list");
-		
-		return modelAndView;
-	}
-	
-	@PostMapping("imgDelete")
-	public ModelAndView setLessonImgDelete(Long imgNum, ModelAndView modelAndView) throws Exception {
-		int result = lessonService.setLessonImgDelete(imgNum);
-		modelAndView.addObject("result", result);
-		modelAndView.setViewName("common/ajaxResult");
 		
 		return modelAndView;
 	}

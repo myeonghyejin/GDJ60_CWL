@@ -4,11 +4,11 @@ public class OrderCancelDTO {
 	
 	private String memberId;
 	
-	private Long orderNum;
+	private String orderNum;
 	
 	private String keyword;
 	
-	private Long amount;
+	private int amount;
 	
 	private Long pageNum;
 
@@ -21,11 +21,11 @@ public class OrderCancelDTO {
 		this.memberId = memberId;
 	}
 
-	public Long getOrderNum() {
+	public String getOrderNum() {
 		return orderNum;
 	}
 	
-	public void setOrderNum(Long orderNum) {
+	public void setOrderNum(String orderNum) {
 		this.orderNum = orderNum;
 	}
 
@@ -37,11 +37,11 @@ public class OrderCancelDTO {
 		this.keyword = keyword;
 	}
 
-	public Long getAmount() {
+	public int getAmount() {
 		return amount;
 	}
 
-	public void setAmount(Long amount) {
+	public void setAmount(int amount) {
 		this.amount = amount;
 	}
 

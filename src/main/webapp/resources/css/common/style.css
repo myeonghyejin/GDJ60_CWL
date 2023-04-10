@@ -1,0 +1,158 @@
+/* ------- import -------- */
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* ------- fonts -------- */
+* {
+    font-family: 'Pretendard-Regular';
+}
+
+/* ------- common -------- */
+a {
+    color: #333333;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+}
+
+/* ------- table -------- */
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: yellow;
+}
+
+/* ------- youtube -------- */
+#youtube {
+    background-color: #fff;
+	padding: 20px;
+	border: 1px solid #eee;
+	border-radius: 4px;
+}
+
+/* ------- button -------- */
+.btn-primary {
+    color: #fff;
+    background-color: #343DDB;
+    border-color: #343DDB;
+}
+
+.btn-primary:hover{
+    color: #fff;
+    background-color: #252dce;
+    border-color: #252dce;
+}
+
+.btn-outline-primary {
+    color: #343DDB;
+    border-color: #343DDB;
+}
+
+.btn-outline-primary:hover{
+    color: #fff;
+    background-color: #343DDB;
+    border-color: #343DDB;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #343DDB;
+    border-color: #343DDB;
+}
+
+.btn-info:hover {
+    color: #fff;
+    background-color: #252dce;
+    border-color: #252dce;
+}
+
+.btn-category {
+    width: 100px;
+    border-radius: 20px;
+}
+
+.btn-default {
+    width: 42.22px;
+}
+
+/* ------- search -------- */
+#search {
+    height: 31px;
+    width: 150px;
+}
+
+#condition {
+    height: 31px;
+    font-size: 14px;
+    line-height: 16.5px;
+}
+
+/* ------- table-striped -------- */
+.table-striped>tbody>tr:nth-child(odd)>td, 
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: #dadada00
+}
+
+/* ------- pagination -------- */
+.pagination ul li a {
+    color: #343DDB;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    text-align: center;
+    font-weight: 600;
+    padding-top: 8px;
+    font-size: 14px;
+}
+
+  .pagination ul li a:hover {
+    background: #343DDB;
+    color: #fff;
+}
+
+  .pagination ul li a.active {
+    background: #343DDB;
+    color: #fff;
+    border-color: #343DDB;
+}
+
+/* ------- imgList -------- */
+#imgList h6 {
+    color: #999999;
+}
+
+.btn-image {
+    width: 50px;
+}
+
+/* ------- badge -------- */
+#me {
+    background-color: #343DDB;
+    color: #fff;
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+    border-radius: 50%;
+    display: inline-block;
+    margin-top: 12.5px;
+}
+
+#re {
+    background-color: #343DDB;
+    color: #fff;
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+    border-radius: 50%;
+    display: inline-block;
+    margin-top: 12.5px;
+}
+
+#re2 {
+    color: #343DDB;
+    height: 25px;
+    vertical-align: middle;
+    display: inline-block;
+    margin-top: 12.5px;
+}

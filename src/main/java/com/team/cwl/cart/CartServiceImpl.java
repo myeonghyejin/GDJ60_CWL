@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.team.cwl.product.ProductDAO;
+import com.team.cwl.product.ProductImgDTO;
+
 
 
 @Service
@@ -13,17 +16,20 @@ public class CartServiceImpl implements CartService {
 	@Autowired
 	private CartMapper cartMapper;
 	
+	@Autowired
+	private ProductDAO productDAO;
+	
 	@Override
 	public int cartAdd(CartDTO cart) {
-
-		// Àå¹Ù±¸´Ï µ¥ÀÌÅÍ Ã¼Å©
+		
+		// ì¥ë°”êµ¬ë‹ˆ ë°ì´í„° ì²´í¬
 		CartDTO checkCart = cartMapper.checkCart(cart);
 		
 		if(checkCart != null) {
 			return 2;
 		}
 		
-		// Àå¹Ù±¸´Ï µî·Ï & ¿¡·¯ ½Ã 0¹İÈ¯
+		// ì¥ë°”êµ¬ë‹ˆ ë“±ë¡ & ì—ëŸ¬ ì‹œ 0ë°˜í™˜
 		try {
 			return cartMapper.cartAdd(cart);
 		} catch (Exception e) {
@@ -39,8 +45,15 @@ public class CartServiceImpl implements CartService {
 		
 		for(CartDTO dto : cart) {
 			
-			/* Á¾ÇÕ Á¤º¸ ÃÊ±âÈ­ */
+			/* ì¢…í•© ì •ë³´ ì´ˆê¸°í™” */
 			dto.initTotal();
+			
+			/* ì´ë¯¸ì§€ ì •ë³´ ì–»ê¸° */
+			Long productNum = dto.getProductNum();
+			
+			List<ProductImgDTO> imageList = productDAO.getProductImgList(productNum);
+			
+			dto.setImageList(imageList);
 			
 		}
 		

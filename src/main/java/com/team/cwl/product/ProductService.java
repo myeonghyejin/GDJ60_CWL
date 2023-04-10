@@ -1,5 +1,6 @@
 package com.team.cwl.product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.team.cwl.product.review.ProductReviewDTO;
 import com.team.cwl.util.FileManager;
 import com.team.cwl.util.Pagination;
 
@@ -27,7 +29,19 @@ public class ProductService {
 		pagination.makeRow();
 		pagination.makeNum(productDAO.getTotalCount(pagination));
 		
-		return productDAO.getProductList(pagination);
+		List<ProductDTO> ar = productDAO.getProductList(pagination);
+		ArrayList<ProductDTO> ar2 = new ArrayList<ProductDTO>();
+		
+		for(ProductDTO productDTO: ar) {
+			productDTO = productDAO.getProductDetail(productDTO);
+			ar2.add(productDTO);
+		}
+		
+		if(productDAO.getTotalCount(pagination) == 0) {
+			pagination.setLastNum(1L);
+		}
+		
+		return ar2;
 	}
 
 	public ProductDTO getProductDetail(ProductDTO productDTO) throws Exception {
@@ -43,7 +57,6 @@ public class ProductService {
 		System.out.println(realPath);
 		
 		for(MultipartFile multipartFile : multipartFiles) {
-			
 			if(multipartFile.isEmpty()) {
 				continue;
 			}
@@ -73,6 +86,10 @@ public class ProductService {
 		String realPath = session.getServletContext().getRealPath("resources/upload/product/");
 
 		for(MultipartFile multipartFile : multipartFiles) {
+			if(multipartFile.isEmpty()) {
+				continue;
+			}
+			
 			String imgName = fileManager.fileSave(multipartFile, realPath);
 
 			ProductImgDTO productImgDTO = new ProductImgDTO();

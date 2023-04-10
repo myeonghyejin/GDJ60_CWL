@@ -21,12 +21,31 @@ public class BoardCommentService {
 	public List<BoardCommentDTO> getBoardCommentList(Pagination pagination) throws Exception {
 		pagination.makeRow();
 		pagination.makeNum(boardCommentDAO.getTotalCount(pagination));
+		
+		if(boardCommentDAO.getTotalCount(pagination) == 0) {
+			pagination.setLastNum(1L);
+		}
+		
 		return boardCommentDAO.getBoardCommentList(pagination);
 	}
 	
 	/** INSERT **/
 	public int setBoardCommentAdd(BoardCommentDTO boardCommentDTO, HttpSession session) throws Exception {
 		return boardCommentDAO.setBoardCommentAdd(boardCommentDTO);
+	}
+	
+	public int setBoardCommentReplyAdd(BoardCommentDTO boardCommentDTO, HttpSession session) throws Exception {
+		BoardCommentDTO parent = boardCommentDAO.getBoardCommentDetail(boardCommentDTO);
+		
+		boardCommentDTO.setBoardCommentRef(parent.getBoardCommentRef());
+		boardCommentDTO.setBoardCommentStep(parent.getBoardCommentStep()+1);
+		boardCommentDTO.setBoardCommentDepth(parent.getBoardCommentDepth()+1);
+		
+		int result = boardCommentDAO.setStepUpdate(parent);
+		
+		result = boardCommentDAO.setBoardCommentReplyAdd(boardCommentDTO);
+		
+		return result;
 	}
 	
 	/** UPDATE **/

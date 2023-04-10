@@ -8,17 +8,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- SQL -->
   	<sql id="productCondition">
-    <where>
-		<if test="condition == 'productTitle'">
-			PRODUCTTITLE LIKE '%' || #{search} || '%'
-		</if>
-		<if test="condition == 'productContents'">
-			PRODUCTCONTENTS LIKE '%' || #{search} || '%'
-		</if>
-		<if test="condition == 'memberId'">
-			MEMBERID LIKE '%' || #{search} || '%'
-		</if>
+    	<where>
+    		<if test="condition == 'productName'">
+    			PRODUCTNAME LIKE '%' || #{search} || '%'
+    			ORDER BY PRODUCTNUM DESC
+    		</if>
 		</where>
+		<if test="condition == 'lowPriceOrder'">
+			ORDER BY PRODUCTPRICE ASC
+		</if>
+		<if test="condition == 'highPriceOrder'">
+			ORDER BY PRODUCTPRICE DESC
+		</if>
 	</sql>
 
 	<!-- SELECT -->
@@ -29,7 +30,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					(
 						SELECT * FROM PRODUCT
 						<include refid="productCondition"></include>
-						ORDER BY PRODUCTNUM DESC
 					) C
 			)
 		WHERE R BETWEEN #{startRow} AND #{lastRow}

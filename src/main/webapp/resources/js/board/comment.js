@@ -12,7 +12,7 @@ function getList(page){
 }
 
 //page
-$("#boardCommentListResult").on("click",".page-link", function(e){
+$("#boardCommentListResult").on("click",".page-button", function(e){
     let page = $(this).attr("data-board-page");
     getList(page);
     e.preventDefault();
@@ -24,8 +24,8 @@ $("#boardCommentAdd").click(function(){
         url:'../board/comment/add',
         type:'POST',
         data:{
-            'boardCommentContents': $("#boardCommentContents").val(),
-            'boardNum': $("#boardCommentAdd").attr('data-board-num')
+            'boardNum': $("#boardCommentAdd").attr('data-board-num'),
+            'boardCommentContents': $("#boardCommentContents").val().replace(/(?:\r\n|\r|\n)/g, '<br>')
         },
         success:(res)=>{
             if(res.trim()==1){
@@ -63,30 +63,58 @@ $("#boardCommentListResult").on("click",".delete",function(e){
 })
 
 //update
-let boardCommentNum = '';
 $("#boardCommentListResult").on("click", ".update", function(e){
-    boardCommentNum = $(this).attr("data-boardcomment-num");
+    let boardCommentNum = $(this).attr("data-boardcomment-num");
     $("#boardCommentEdit").val($("#boardCommentContents"+boardCommentNum).text().trim());
-    $("#contentsConfirm").attr("data-boardcomment-num", boardCommentNum);
+    $("#updateConfirm").attr("data-boardcomment-num", boardCommentNum);
     e.preventDefault();
 })
 
-//confirm
-$("#contentsConfirm").click(function(){
+//update confirm
+$("#updateConfirm").click(function(){
     $.ajax({
         url:'../board/comment/update',
         type:'POST',
         data:{
-            'boardCommentNum': boardCommentNum,
-            'boardCommentContents': $("#boardCommentEdit").val()
+            'boardCommentNum': $(this).attr("data-boardcomment-num"),
+            'boardCommentContents': $("#boardCommentEdit").val().replace(/(?:\r\n|\r|\n)/g, '<br>')
         },
         success:(res)=>{
             if(res.trim()!=0){
                 alert('댓글이 수정되었습니다.');
-                $("#closeModal").click();
+                $("#closeUpdateModal").click();
                 getList(1);            
             }else {
                 alert('수정 실패!');
+            }
+        }
+    })
+})
+
+//reply
+$("#boardCommentListResult").on("click", ".reply", function(e){
+    let boardCommentNum = $(this).attr("data-boardcomment-num");
+    $("#replyConfirm").attr("data-boardcomment-num", boardCommentNum);
+    e.preventDefault();
+})
+
+//update confirm
+$("#replyConfirm").click(function(){
+    $.ajax({
+        url:'../board/comment/reply',
+        type:'POST',
+        data:{
+            'boardNum': $("#boardCommentAdd").attr('data-board-num'),
+            'boardCommentNum': $(this).attr("data-boardcomment-num"),
+            'boardCommentContents': $("#boardCommentReply").val().replace(/(?:\r\n|\r|\n)/g, '<br>')
+        },
+        success:(res)=>{
+            if(res.trim()!=0){
+                alert('답글이 등록되었습니다.');
+                $("#closeReplyModal").click();
+                getList(1);            
+            }else {
+                alert('등록 실패!');
             }
         }
     })

@@ -9,31 +9,38 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	MemberMapper memberMapper;
 	
-	/* ȸ������ */
+	/* 회원가입 */
 	@Override
 	public void memberAdd(MemberDTO member) throws Exception {
 		memberMapper.memberAdd(member);
 	}
 	
-	/* ���̵� �ߺ� üũ */
+	/* 아이디 중복 체크 */
 	@Override
 	public int idCheck(String memberId) throws Exception {
 		return memberMapper.idCheck(memberId);
 	}
 	
-	/* �α��� */
+	/* 닉네임 중복 체크 */
+	@Override
+	public int nickNameCheck(String memberNickName) throws Exception {
+		return memberMapper.nickNameCheck(memberNickName);
+	}
+	
+	/* 로그인 */
 	@Override
 	public MemberDTO memberLogin(MemberDTO member) throws Exception {
 		return memberMapper.memberLogin(member);
 	}
 	
-	/* �ֹ��� ���� */
+	/* 주문자 정보 */
 	@Override
 	public MemberDTO getMemberInfo(String memberId) {
 		System.out.println(memberId);
 		return memberMapper.getMemberInfo(memberId);
 	}
 	
+	/* 마이페이지 */
 	public MemberDTO getMemberPage(MemberDTO memberDTO) throws Exception {
 		return memberMapper.memberLogin(memberDTO);
 	}

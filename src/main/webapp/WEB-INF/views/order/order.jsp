@@ -1,117 +1,89 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
-    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>          
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Welcome Cool With Lab</title>
+<title>Insert title here</title>
 <link rel="stylesheet" href="/resources/css/order.css">
-  <!-- 다음주소 -->
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 
+<!-- 다음주소 -->
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
-
 <div class="wrapper">
 	<div class="wrap">
 		<div class="top_gnb_area">
 			<ul class="list">
 				<c:if test = "${member == null}">	<!-- 로그인 x -->	
 					<li >
-						<a href="/member/login">로그인</a>
+						<a href="/member/memberLogin">로그인</a>
 					</li>
 					<li>
-						<a href="/member/join">회원가입</a>
+						<a href="/member/memberAdd">회원가입</a>
 					</li>
 				</c:if>
 				<c:if test="${member != null }">	<!-- 로그인 o -->		
-					<c:if test="${member.adminCheck == 1 }">	<!-- 관리자 계정 -->
+					<c:if test="${member.adminCheck == 1 }"> <!-- 관리자 계정 -->
 						<li><a href="/admin/main">관리자 페이지</a></li>
-					</c:if>							
+					</c:if>	
 					<li>
-						<a id="gnb_logout_button">로그아웃</a>
+						<a href="/member/memberLogout.do">로그아웃</a>
 					</li>
 					<li>
-						마이룸
+						<a href="/member/memberPage">마이룸</a>
 					</li>
 					<li>
 						<a href="/cart/${member.memberId}">장바구니</a>
 					</li>
-				</c:if>				
-				<li>
-					고객센터
-				</li>			
+				</c:if>
 			</ul>			
 		</div>
+		
 		<div class="top_area">
-			<!-- 로고영역 -->
-			<div class="logo_area">
-				<a href="/main"><img src="/resources/img/mLogo.png"></a>
-			</div>
-			<div class="search_area">
-                	<div class="search_wrap">
-                		<form id="searchForm" action="/search" method="get">
-                			<div class="search_input">
-                				<select name="type">
-                					<option value="T">책 제목</option>
-                					<option value="A">작가</option>
-                				</select>
-                				<input type="text" name="keyword" value="<c:out value="${pageMaker.cri.keyword}"/>">
-                    			<button class='btn search_btn'>검 색</button>                				
-                			</div>
-                		</form>
-                	</div>
-			</div>
 			<div class="login_area">
-			
-				<!-- 로그인 하지 않은 상태 -->
-				<c:if test = "${member == null }">
-					<div class="login_button"><a href="/member/login">로그인</a></div>
-					<span><a href="/member/join">회원가입</a></span>				
-				</c:if>				
-				
 				<!-- 로그인한 상태 -->
 				<c:if test="${ member != null }">
 					<div class="login_success_area">
 						<span>회원 : ${member.memberName}</span>
 						<span>충전금액 : <fmt:formatNumber value="${member.money}" pattern="\#,###.##"/></span>
-						<a href="/member/memberLogout">로그아웃</a>
+						
 					</div>
 				</c:if>
 				
 			</div>
 			<div class="clearfix"></div>			
 		</div>
+		
 		<div class="content_area">
-			
 			<div class="content_subject"><span>장바구니</span></div>
-
+			
 			<div class="content_main">
-				<!-- 회원 정보 -->
+				<!-- 회원정보 -->
 				<div class="member_info_div">
 					<table class="table_text_align_center memberInfo_table">
 						<tbody>
 							<tr>
 								<th style="width: 25%;">주문자</th>
-								<td style="width: *">${memberInfo.memberName} | ${memberInfo.memberMail}</td>
+								<td style="width: *">${memberInfo.memberName} | ${memberInfo.memberEmail}</td>
 							</tr>
 						</tbody>
 					</table>
-				</div>				
+				</div>
 				
 				<!-- 배송지 정보 -->
 				<div class="addressInfo_div">
 					<div class="addressInfo_button_div">
-						<button class="address_btn address_btn_1" onclick="showAdress('1')" style="background-color: #3c3838;">상용자 정보 주소록</button>
-						<button class="address_btn address_btn_2" onclick="showAdress('2')">직접 입력</button>
+						<button class="address_btn address_btn_1" onclick="showAddress('1')" style="background-color: #3c3838;">사용자 정보 주소록</button>
+						<button class="address_btn address_btn_2" onclick="showAddress('2')">직접 입력</button>
 					</div>
 					<div class="addressInfo_input_div_wrap">
 						<div class="addressInfo_input_div addressInfo_input_div_1" style="display: block">
 							<table>
 								<colgroup>
 									<col width="25%">
-									<col width="*">
+									<col width="*">									
 								</colgroup>
 								<tbody>
 									<tr>
@@ -123,12 +95,12 @@
 									<tr>
 										<th>주소</th>
 										<td>
-											${memberInfo.memberAddr1} ${memberInfo.memberAddr2}<br>${memberInfo.memberAddr3}
+											${memberInfo.memberAddress1} ${memberInfo.memberAddress2}<br>${memberInfo.memberAddress3}
 											<input class="selectAddress" value="T" type="hidden">
-											<input class="addressee_input" value="${memberInfo.memberName}" type="hidden">
-											<input class="address1_input" type="hidden" value="${memberInfo.memberAddr1}">
-											<input class="address2_input" type="hidden" value="${memberInfo.memberAddr2}">
-											<input class="address3_input" type="hidden" value="${memberInfo.memberAddr3}">																					
+											<input class="addressee_input" value="${memberInfo.memberName}" type="hidden" >
+											<input class="address1_input" type="hidden" value="${memberInfo.memberAddress1}">
+											<input class="address2_input" type="hidden" value="${memberInfo.memberAddress2}">
+											<input class="address3_input" type="hidden" value="${memberInfo.memberAddress3}">
 										</td>
 									</tr>
 								</tbody>
@@ -151,7 +123,7 @@
 										<th>주소</th>
 										<td>
 											<input class="selectAddress" value="F" type="hidden">
-											<input class="address1_input" readonly="readonly"> <a class="address_search_btn" onclick="execution_daum_address()">주소 찾기</a><br>
+											<input class="address1_input" readonly="readonly"><a class="address_search_btn" onclick="execution_daum_address()">주소 찾기</a><br>
 											<input class="address2_input" readonly="readonly"><br>
 											<input class="address3_input" readonly="readonly">
 										</td>
@@ -160,19 +132,19 @@
 							</table>
 						</div>
 					</div>
-				</div>				
+				</div>
 				<!-- 상품 정보 -->
 				<div class="orderGoods_div">
 					<!-- 상품 종류 -->
 					<div class="goods_kind_div">
-						주문상품 <span class="goods_kind_div_kind"></span>종 <span class="goods_kind_div_count"></span>개
+						주문상품 <span class="goods_kind_div_kind"></span>종 <span class="goods_kind_div_stock"></span>개						
 					</div>
 					<!-- 상품 테이블 -->
 					<table class="goods_subject_table">
 						<colgroup>
 							<col width="15%">
 							<col width="45%">
-							<col width="40%">
+							<col width="40%">							
 						</colgroup>
 						<tbody>
 							<tr>
@@ -187,33 +159,31 @@
 							<col width="15%">
 							<col width="45%">
 							<col width="40%">
-						</colgroup>					
+						</colgroup>
 						<tbody>
 							<c:forEach items="${orderList}" var="ol">
 								<tr>
 									<td>
-										<div class="image_wrap" data-productnum="${ol.imageList[0].productNum}" data-path="${ol.imageList[0].uploadPath}" data-uuid="${ol.imageList[0].uuid}" data-filename="${ol.imageList[0].fileName}">
-											<img>
+										<div class="image_wrap" data-productNum="${ol.imageList[0].productNum}" data-path="${ol.imageList[0].uploadPath}" data-uuid="${ol.imageList[0].uuid}" data-fileName="${ol.imageList[0].fileName}">>
+											<img alt="" src="">
 										</div>
 									</td>
-									<td>${ol.productName}</td>
+									<td class="goods_table_product_td">
+										<input type="hidden" class="individual_productName_input" id="productName" value="${ol.productName}"> 
+									</td>
 									<td class="goods_table_price_td">
-										<fmt:formatNumber value="${ol.productPrice}" pattern="#,### 원" /> | 수량 ${ol.orderCount}개
+										<fmt:formatNumber value="${ol.productPrice}" pattern="#,### 원" /> | 수량 ${ol.orderStock}개
 										<br><fmt:formatNumber value="${ol.totalPrice}" pattern="#,### 원" />
-										
 										<input type="hidden" class="individual_productPrice_input" value="${ol.productPrice}">
-										<input type="hidden" class="individual_orderCount_input" value="${ol.orderCount}">
-										<input type="hidden" class="individual_totalPrice_input" value="${ol.productPrice * ol.orderCount}">
-										
+										<input type="hidden" class="individual_orderStock_input" value="${ol.orderStock}">
+										<input type="hidden" class="individual_totalPrice_input" id="totalPrice" value="${ol.productPrice * ol.orderStock}">
 										<input type="hidden" class="individual_productNum_input" value="${ol.productNum}">
 									</td>
 								</tr>							
 							</c:forEach>
-
 						</tbody>
 					</table>
-				</div>		
-											
+				</div>
 				<!-- 주문 종합 정보 -->
 				<div class="total_info_div">
 					<!-- 가격 종합 정보 -->
@@ -225,47 +195,51 @@
 							</li>
 							<li>
 								<span class="price_span_label">배송비</span>
-								<span class="delivery_price_span">100000</span>원
-							</li>																																
+								<span class="orderFee_price_span">100000</span>원
+							</li>
 							<li class="price_total_li">
 								<strong class="price_span_label total_price_label">최종 결제 금액</strong>
 								<strong class="strong_red">
-									<span class="total_price_red finalTotalPrice_span">
-										1500000
-									</span>원
-								</strong>
+									<span class="total_price_red finalTotalPrice_span">150000</span>원
+								</strong>																
 							</li>
 						</ul>
 					</div>
 					<!-- 버튼 영역 -->
 					<div class="total_info_btn_div">
 						<a class="order_btn">결제하기</a>
-					</div>
-				</div>				
-				
-			</div>			
-
+					</div>						
+				</div>
+			</div>
 			<!-- 주문 요청 form -->
-			<form class="order_form" action="/order" method="post">
+			<form class="order_form" action="/order" method="POST">
 				<!-- 주문자 회원번호 -->
 				<input name="memberId" value="${memberInfo.memberId}" type="hidden">
 				<!-- 주소록 & 받는이-->
 				<input name="addressee" type="hidden">
 				<input name="memberAddress1" type="hidden">
 				<input name="memberAddress2" type="hidden">
-				<input name="memberAddress3" type="hidden">
+				<input name="memberAddress3" type="hidden">			
 				<!-- 상품 정보 -->
 			</form>
-			
-		</div>								
-	</div>	<!-- class="wrap" -->
-</div>	<!-- class="wrapper" -->
+								
+		</div>
+	</div>
+</div>	
+
+<a class="btn_payment">결제Test</a>
 
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<!-- iamport.payment.js -->
+<!-- <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-{SDK-최신버전}.js"></script> -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
-$(document).ready(function(){
+
+$(document).ready(function() {
 	
-	/* 주문 조합정보란 최신화 */
+	/* 주문 종합정보란 최신화 */
 	setTotalInfo();
 	
 	/* 이미지 삽입 */
@@ -273,44 +247,41 @@ $(document).ready(function(){
 		
 		const bobj = $(obj);
 		
-		if(bobj.data("productnum")){
+		if(bobj.data("productNum")){
 			const uploadPath = bobj.data("path");
 			const uuid = bobj.data("uuid");
-			const fileName = bobj.data("filename");
+			const fileName = bobj.data("fileName");
 			
 			const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
 			
 			$(this).find("img").attr('src', '/display?fileName=' + fileCallPath);
 		} else {
-			$(this).find("img").attr('src', '/resources/img/goodsNoImage.png');
+			$(this).find("img").attr('src', '/resources/images/iu2.jpg');
 		}
 		
-	});		
+	});
 	
 	
 });
-/* 주소입력란 버튼 동작(숨김, 등장) */
-function showAdress(className){
-	/* 컨텐츠 동작 */
-		/* 모두 숨기기 */
-		$(".addressInfo_input_div").css('display', 'none');
-		/* 컨텐츠 보이기 */
-		$(".addressInfo_input_div_" + className).css('display', 'block');		
+
+
+function showAddress(className) {
 	
-	/* 버튼 색상 변경 */
-		/* 모든 색상 동일 */
-			$(".address_btn").css('backgroundColor', '#555');
-		/* 지정 색상 변경 */
-			$(".address_btn_"+className).css('backgroundColor', '#3c3838');	
-	/* selectAddress T/F */
-		/* 모든 selectAddress F만들기 */
-			$(".addressInfo_input_div").each(function(i, obj){
-				$(obj).find(".selectAddress").val("F");
-			});
-		/* 선택한 selectAdress T만들기 */
-			$(".addressInfo_input_div_" + className).find(".selectAddress").val("T");		
-		
+	$(".addressInfo_input_div").css('display', 'none');
+	
+	$(".addressInfo_input_div_" + className).css('display', 'block');
+	
+	$(".address_btn").css('backgroundColor', '#555');
+	
+	$(".address_btn_" + className).css('backgroundColor', '#3c3838');
+	
+	$(".addressInfo_input_div").each(function(i, obj) {
+		$(obj).find(".selectAddress").val("F");
+	});
+	
+	$(".addressInfo_input_div_" + className).find(".selectAddress").val("T");
 }
+
 /* 다음 주소 연동 */
 function execution_daum_address(){
  		console.log("동작");
@@ -367,52 +338,108 @@ function execution_daum_address(){
 	
 }
 
-/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
-function setTotalInfo(){
-	let totalPrice = 0;				// 총 가격
-	let totalCount = 0;				// 총 갯수
-	let totalKind = 0;				// 총 종류
-	let deliveryPrice = 0;			// 배송비
-	let finalTotalPrice = 0; 		// 최종 가격(총 가격 + 배송비)	
+/* 총 주문 정보 세팅(배송비, 총 가격, 물품 수, 종류) */
+function setTotalInfo() {
+	let totalPrice = 0;
+	let totalStock = 0;
+	let totalKind = 0;
+	let orderFeePrice = 0;
+	let finalTotalPrice = 0;
 	
-	$(".goods_table_price_td").each(function(index, element){
+	$(".goods_table_product_td").each(function(index, element) {
+		productName += parseInt($(element).find(".individual_productName_input").val());
+	});
+	$(".goods_table_price_td").each(function(index, element) {
 		// 총 가격
 		totalPrice += parseInt($(element).find(".individual_totalPrice_input").val());
 		// 총 갯수
-		totalCount += parseInt($(element).find(".individual_orderCount_input").val());
+		totalStock += parseInt($(element).find(".individual_orderStock_input").val());
 		// 총 종류
-		totalKind += 1;
-	});	
+		totalKind += 1;		
+	});
+	
 	/* 배송비 결정 */
-	if(totalPrice >= 30000){
-		deliveryPrice = 0;
-	} else if(totalPrice == 0){
-		deliveryPrice = 0;
+	if(totalPrice >= 30000) {
+		orderFeePrice = 0;
+	} else if(totalPrice == 0) {
+		orderFeePrice = 0;
 	} else {
-		deliveryPrice = 3000;	
+		orderFeePrice = 3000;
 	}
 	
-	finalTotalPrice = totalPrice + deliveryPrice;	
-	
-	
-	
-	finalTotalPrice = totalPrice - usePoint;	
+	finalTotalPrice = totalPrice + orderFeePrice;
 	
 	/* 값 삽입 */
 	// 총 가격
 	$(".totalPrice_span").text(totalPrice.toLocaleString());
 	// 총 갯수
-	$(".goods_kind_div_count").text(totalCount);
+	$(".goods_kind_div_stock").text(totalStock);
 	// 총 종류
 	$(".goods_kind_div_kind").text(totalKind);
 	// 배송비
-	$(".delivery_price_span").text(deliveryPrice.toLocaleString());	
-	// 최종 가격(총 가격 + 배송비)
-	$(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());			
+	$(".orderFee_price_span").text(orderFeePrice.toLocaleString());
+	// 최종 가격(총 가격 + 배송비) 
+	$(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());
 	
 }
+
 /* 주문 요청 */
-$(".order_btn").on("click", function(){
+$(".order_btn").on("click", function(productName, productPrice, memberEmail, memberName, memberPhone, memberAddress2, memberAddress3, memberAddress1) {
+	
+	
+	
+	event.preventDefault();
+	console.log(productName);
+	console.log(totalPrice);
+	console.log(memberEmail);
+	
+	IMP.init('imp86115306');
+	IMP.request_pay({
+	    pg : 'kicc',
+	    pay_method : 'card',
+	    merchant_uid: 'merchant_' + new Date().getTime(), // 상점에서 관리하는 주문 번호
+	    name : productName,
+	    amount : totalPrice,
+	    buyer_email : memberEmail,
+	    buyer_name : memberName,
+	    buyer_phone : memberPhone,
+	    buyer_address2 : memberAddress2,
+	    buyer_address2 : memberAddress3,
+	    buyer_postcode : memberAddress1
+	}, function(rsp) {
+	    if ( rsp.success ) {
+	    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+	    	jQuery.ajax({
+	    		url: "/payments/complete", //cross-domain error가 발생하지 않도록 주의해주세요
+	    		type: 'POST',
+	    		dataType: 'json',
+	    		data: {
+		    		imp_uid : rsp.imp_uid
+		    		//기타 필요한 데이터가 있으면 추가 전달
+	    		}
+	    	}).done(function(data) {
+	    		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+	    		if ( everythings_fine ) {
+	    			var msg = '결제가 완료되었습니다.';
+	    			msg += '\n고유ID : ' + rsp.imp_uid;
+	    			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+	    			msg += '\결제 금액 : ' + rsp.paid_amount;
+	    			msg += '카드 승인번호 : ' + rsp.apply_num;
+	    			
+	    			alert(msg);
+	    		} else {
+	    			//[3] 아직 제대로 결제가 되지 않았습니다.
+	    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+	    		}
+	    	});
+	    } else {
+	        var msg = '결제에 실패하였습니다.';
+	        msg += '에러내용 : ' + rsp.error_msg;
+	        
+	        alert(msg);
+	    }
+	})
+	
 	/* 주소 정보 & 받는이*/
 	$(".addressInfo_input_div").each(function(i, obj){
 		if($(obj).find(".selectAddress").val() === 'T'){
@@ -421,25 +448,63 @@ $(".order_btn").on("click", function(){
 			$("input[name='memberAddress2']").val($(obj).find(".address2_input").val());
 			$("input[name='memberAddress3']").val($(obj).find(".address3_input").val());
 		}
-	});		
+	});
 	
 	/* 상품정보 */
 	let form_contents = ''; 
 	$(".goods_table_price_td").each(function(index, element){
 		let productNum = $(element).find(".individual_productNum_input").val();
-		let orderCount = $(element).find(".individual_orderCount_input").val();
+		let orderStock = $(element).find(".individual_orderStock_input").val();
+		//let productNum_input = "<input name='productNum' type='hidden' value='" + productNum + "'>";
 		let productNum_input = "<input name='orders[" + index + "].productNum' type='hidden' value='" + productNum + "'>";
 		form_contents += productNum_input;
-		let orderCount_input = "<input name='orders[" + index + "].orderCount' type='hidden' value='" + orderCount + "'>";
-		form_contents += orderCount_input;
+		//let productStock_input = "<input name='productStock' type='hidden' value='" + productStock + "'>";
+		let orderStock_input = "<input name='orders[" + index + "].orderStock' type='hidden' value='" + orderStock + "'>";
+		form_contents += orderStock_input;
 	});	
-	$(".order_form").append(form_contents);	
+	$(".order_form").append(form_contents);
 	
 	/* 서버 전송 */
-	$(".order_form").submit();	
+	$(".order_form").submit();
 	
-});	
-</script>
+	
+});
 
+$(".btn_payment").click(()=>{
+	let payment = iamport()	
+})
+function iamport() {
+	IMP.init('imp86115306');
+	IMP.request_pay({
+	    pg : 'kicc',
+	    pay_method : 'card',
+	    merchant_uid: 'merchant_' + new Date().getTime(), // 상점에서 관리하는 주문 번호
+	    name : $('#productName').val(),
+	    amount : $('#totalPrice').val(),
+	    buyer_email : 'memberEmail',
+	    buyer_name : 'memberName',
+	    buyer_phone : 'memberPhone',
+	    buyer_address2 : 'memberAddress2',
+	    buyer_address2 : 'memberAddress3',
+	    buyer_postcode : 'memberAddress1'
+	}, function(rsp) {
+	    console.log(rsp);
+		if ( rsp.success ) {
+   			let msg = '결제가 완료되었습니다.';
+   			msg += '\n고유ID : ' + rsp.imp_uid;
+   			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+   			msg += '\결제 금액 : ' + rsp.paid_amount;
+   			msg += '카드 승인번호 : ' + rsp.apply_num;
+   			console.log('결제 성공')
+   			alert(msg);
+   		} else {
+   			let msg = '결제에 실패하였습니다.';
+   	        msg += '에러내용 : ' + rsp.error_msg;
+   	        console.log('결제 실패')
+   	        alert(msg);
+   		}
+	});
+}	
+</script>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>이용약관</title>
 
 </head>
 
@@ -171,7 +171,7 @@
 					<div class="form-check">
 						<input class="form-check-input checks" type="checkbox" value="" id="check1">
 						<label class="form-check-label" for="check1">
-						동의1
+						동의 [필수]
 						</label>
 					</div>
 				</div>
@@ -238,55 +238,20 @@
 		<div class="form-check">
 			<input class="form-check-input checks" type="checkbox" value="" id="check2">
 			<label class="form-check-label" for="check2">
-			동의2
+			동의 [필수]
 			</label>
-		</div>
+		</div><br>
 		<div class="form-check">
 			<input class="form-check-input" type="checkbox" value="" id="checkAll">
 			<label class="form-check-label" for="check">
 			전체동의
 			</label>
-		</div>
+		</div><br>
 
 		<div>
 			<button id="agree" class="btn btn-primary">회원가입</button>
 		</div>
 	</div>
-
-	<!-- <div class="row col-md-6 mx-auto my-5">
-		<div class="form-check">
-			<input class="form-check-input" type="checkbox" value="" id="checkAll">
-			<label class="form-check-label" for="check">
-			전체동의
-			</label>
-		</div>
-		
-			<div class="form-check">
-				<input class="form-check-input checks" type="checkbox" value="" id="check1">
-				<label class="form-check-label" for="check1">
-				동의1
-				</label>
-			</div>
-			
-			<div class="form-check">
-				<input class="form-check-input checks" type="checkbox" value="" id="check2">
-				<label class="form-check-label" for="check2">
-				동의2
-				</label>
-			</div>
-			
-			<div class="form-check">
-				<input class="form-check-input checks" type="checkbox" value="" id="check3">
-				<label class="form-check-label" for="check3">
-				동의3
-				</label>
-			</div>
-
-			<div>
-				<button id="agree" class="btn btn-primary">회원가입</button>
-			</div>
-		</div> -->
-	
 		
 <script type="text/javascript" src="../resources/js/memberAgree.js"></script>
 </body>

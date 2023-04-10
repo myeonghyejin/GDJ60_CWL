@@ -90,9 +90,13 @@
 							<td class="td_width_1 cart_info_td">
 								<input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked" name="check" value="1">								
 								<input type="hidden" class="individual_productPrice_input" value="${ci.productPrice}">
-								<input type="hidden" class="individual_productAmount_input" value="${ci.productAmount}">
-								<input type="hidden" class="individual_totalPrice_input" value="${ci.productPrice * ci.productAmount}">
+								<input type="hidden" class="individual_orderStock_input" value="${ci.orderStock}">
+								<input type="hidden" class="individual_totalPrice_input" value="${ci.productPrice * ci.orderStock}">
 								<input type="hidden" class="individual_productNum_input" value="${ci.productNum}">								
+							</td>
+							<td class="td_width_2">
+								<div class="image_wrap" data-productNum="${ci.imageList[0].productNum}" data-path="${ci.imageList[0].uploadPath}" data-uuid="${ci.imageList[0].uuid}" data-filename="${ci.imageList[0].fileName}">></div>
+								<img>
 							</td>
 							<td class="td_width_3">${ci.productName}</td>
 							<td class="td_width_4 price_td">
@@ -100,14 +104,14 @@
 							</td>
 							<td class="td_width_4 table_text_align_center">
 								<div class="table_text_align_center quantity_div">
-									<input type="text" value="${ci.productAmount}" class="quantity_input">	
+									<input type="text" value="${ci.orderStock}" class="quantity_input">	
 									<button class="quantity_btn plus_btn">+</button>
 									<button class="quantity_btn minus_btn">-</button>
 								</div>
 								<a class="quantity_modify_btn" data-cartNum="${ci.cartNum}">변경</a>
 							</td>
 							<td class="td_width_4 table_text_align_center">
-								<fmt:formatNumber value="${ci.productPrice * ci.productAmount}" pattern="#,### 원" />
+								<fmt:formatNumber value="${ci.productPrice * ci.orderStock}" pattern="#,### 원" />
 							</td>
 							<td class="td_width_4 table_text_align_center">
 								<button class="delete_btn" data-cartNum="${ci.cartNum}">삭제</button>
@@ -135,7 +139,7 @@
 								<tr>
 									<td>배송비</td>
 									<td>
-										<span class="delivery_price">3000</span>원
+										<span class="orderFee_price">3000</span>원
 									</td>
 								</tr>									
 								<tr>
@@ -181,9 +185,9 @@
 		</div>
 		
 		<!-- 수량 조정 form -->
-		<form action="./cartUpdate" method="post" class="quantity_update_form">
+		<form action="./cartUpdate" method="post" class	="quantity_update_form">
 			<input type="hidden" name="cartNum" class="update_cartNum">
-			<input type="hidden" name="productAmount" class="update_productAmount">
+			<input type="hidden" name="orderStock" class="update_orderStock">
 			<input type="hidden" name="memberId" value="${member.memberId}">
 		</form>	
 		
@@ -194,7 +198,6 @@
 		</form>		
 		<!-- 주문 form -->
 		<form action="/order/${member.memberId}" method="get" class="order_form">
-
 		</form>				
 	</div>
 </div>	
@@ -207,71 +210,49 @@ $(document).ready(function(){
 	/* 종합 정보 섹션 정보 삽입 */
 	setTotalInfo();	
 	
+	/* 이미지 삽입 */
+	$(".image_wrap").each(function(i, obj){
+		const bobj = $(obj);
+		
+		if(bobj.data("productNum")){
+			const uploadPath = bobj.data("path");
+			const uuid = bobj.data("uuid");
+			const fileName = bobj.data("filename");
+			
+			const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+			
+			$(this).find("img").attr('src', '/display?fileName=' + fileCallPath);
+		} else {
+			$(this).find("img").attr('src', '/resources/images/iu.jpg');
+		}
+	});
+	
 });	
 /* 체크여부에따른 종합 정보 변화 */
 $(".individual_cart_checkbox").on("change", function(){
 	/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
-	setTotalInfo($(".cart_info_td"));
+	setTotalInfo();
 });
-
 /* 체크박스 전체 선택 */
 $(".all_check_input").on("click", function(){
 	/* 체크박스 체크/해제 */
 	if($(".all_check_input").prop("checked")){
-		$(".individual_cart_checkbox").attr("checked", true);
+		$(".individual_cart_checkbox").prop("checked", true);
 	} else{
-		$(".individual_cart_checkbox").attr("checked", false);
+		$(".individual_cart_checkbox").prop("checked", false);
 	}
 	
 	/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
-	setTotalInfo($(".cart_info_td"));	
+	setTotalInfo();	
 	
 });
-
-
-
-
-
-
-
-
-
-
-
-
-/* 체크박스 전체 선택 */
-//$(".all_check_input").on("click", function(){
-	// 전체 체크박스 클릭
-	/* 체크박스 체크/해제 */
-	//$("#checkAll").click(function(){
-		//if($("#checkAll").prop("checked")){
-			//$(".individual_cart_checkbox").attr("checked", true);
-		//} else{
-			//$(".individual_cart_checkbox").attr("checked", false);
-		//}
-	//});
-	// 전체 체크박스 중 체크박스 하나를 풀었을때 전체 체크해제
-	//$(".individual_cart_checkbox").click(function(){
-		//if($("input[value=1]:checked").length) {
-			//$("#checkAll").prop("checked", true);
-		//} else {
-			//$("#checkAll").prop("checked", false);
-		//}
-	//})
-	
-	
-	/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
-	//setTotalInfo($(".cart_info_td"));	
-	
-//});
-
 /* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
 function setTotalInfo(){
 	
 	let totalPrice = 0;				// 총 가격
 	let totalCount = 0;				// 총 갯수
 	let totalKind = 0;				// 총 종류
-	let deliveryPrice = 0;			// 배송비
+	let orderFee = 0;				// 배송비
 	let finalTotalPrice = 0; 		// 최종 가격(총 가격 + 배송비)
 	
 	$(".cart_info_td").each(function(index, element){
@@ -280,7 +261,7 @@ function setTotalInfo(){
 			// 총 가격
 			totalPrice += parseInt($(element).find(".individual_totalPrice_input").val());
 			// 총 갯수
-			totalCount += parseInt($(element).find(".individual_productAmount_input").val());
+			totalCount += parseInt($(element).find(".individual_orderStock_input").val());
 			// 총 종류
 			totalKind += 1;
 		}
@@ -289,14 +270,14 @@ function setTotalInfo(){
 	
 	/* 배송비 결정 */
 	if(totalPrice >= 30000){
-		deliveryPrice = 0;
+		orderFee = 0;
 	} else if(totalPrice == 0){
-		deliveryPrice = 0;
+		orderFee = 0;
 	} else {
-		deliveryPrice = 3000;	
+		orderFee = 3000;	
 	}
 	
-		finalTotalPrice = totalPrice + deliveryPrice;
+		finalTotalPrice = totalPrice + orderFee;
 	
 	/* ※ 세자리 컴마 Javscript Number 객체의 toLocaleString() */
 	
@@ -307,7 +288,7 @@ function setTotalInfo(){
 	// 총 종류
 	$(".totalKind_span").text(totalKind);
 	// 배송비
-	$(".delivery_price").text(deliveryPrice);	
+	$(".orderFee_price").text(orderFee);	
 	// 최종 가격(총 가격 + 배송비)
 	$(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());		
 }
@@ -324,17 +305,17 @@ $(".minus_btn").on("click", function(){
 });
 /* 수량 수정 버튼 */
 $(".quantity_modify_btn").on("click", function(){
-	let cartNum = $(this).data("cartNum");
-	let productAmount = $(this).parent("td").find("input").val();
+	let cartNum = $(this).attr("data-cartNum");
+	let orderStock = $(this).parent("td").find("input").val();
 	$(".update_cartNum").val(cartNum);
-	$(".update_productAmount").val(productAmount);
+	$(".update_orderStock").val(orderStock);
 	$(".quantity_update_form").submit();
 	
 });
 /* 장바구니 삭제 버튼 */
 $(".delete_btn").on("click", function(e){
 	e.preventDefault();
-	const cartNum = $(this).data("cartNum");
+	const cartNum = $(this).attr("data-cartNum");
 	$(".delete_cartNum").val(cartNum);
 	$(".quantity_delete_form").submit();
 });
@@ -350,13 +331,13 @@ $(".order_btn").on("click", function(){
 		if($(element).find(".individual_cart_checkbox").is(":checked") === true){	//체크여부
 			
 			let productNum = $(element).find(".individual_productNum_input").val();
-			let productAmount = $(element).find(".individual_productAmount_input").val();
+			let orderStock = $(element).find(".individual_orderStock_input").val();
 			
 			let productNum_input = "<input name='orders[" + orderNumber + "].productNum' type='hidden' value='" + productNum + "'>";
 			form_contents += productNum_input;
 			
-			let productAmount_input = "<input name='orders[" + orderNumber + "].productAmount' type='hidden' value='" + productAmount + "'>";
-			form_contents += productAmount_input;
+			let orderStock_input = "<input name='orders[" + orderNumber + "].orderStock' type='hidden' value='" + orderStock + "'>";
+			form_contents += orderStock_input;
 			
 			orderNumber += 1;
 			

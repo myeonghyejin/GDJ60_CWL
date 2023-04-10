@@ -3,14 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- Contents -->
-<table class="table table-striped">
+<table class="table table-hover">
 	<c:forEach items="${list}" var="DTO">
 		<tr>
-			<td id="lessonReviewContents${DTO.lessonReviewNum}">
-				${DTO.lessonReviewContents}
+			<td align="center" style="vertical-align: middle;" width="50%">
+				<b>${DTO.memberId}</b>
+				<c:if test="${member.memberId eq DTO.memberId}">
+					<p id="me">나</p>
+				</c:if>
 			</td>
-			<td>${DTO.memberId}</td>
-			<td id="lessonRating${DTO.lessonReviewNum}">
+			<td id="lessonRating${DTO.lessonReviewNum}" align="center" style="vertical-align: middle;">
 				<c:if test="${DTO.lessonRating eq 1}">
 					★
 				</c:if>
@@ -27,54 +29,51 @@
 					★★★★★
 				</c:if>
 			</td>
-			<td>${DTO.lessonReviewDate}</td>
-			<td>
+			<td align="right" style="vertical-align: middle;">${DTO.lessonReviewDate}</td>
+			<td align="right" style="vertical-align: middle;">
 				<c:if test="${member.memberId eq DTO.memberId}">
-					<button class="btn btn-info update" data-lessonReview-num="${DTO.lessonReviewNum}" data-bs-toggle="modal" data-bs-target="#contentsModal">수정</button>
+					<button class="btn btn-info btn-sm update my-0" data-lessonReview-num="${DTO.lessonReviewNum}" data-bs-toggle="modal" data-bs-target="#updateModal">수정</button>
+				</c:if>
+				<c:if test="${member.memberId eq DTO.memberId}">
+					<button class="btn btn-danger btn-sm delete" id="del" data-lessonReview-num="${DTO.lessonReviewNum}">삭제</button>
 				</c:if>
 			</td>
-			<td>
-				<c:if test="${member.memberId eq DTO.memberId}">
-					<button class="btn btn-danger delete" data-lessonReview-num="${DTO.lessonReviewNum}">삭제</button>
-				</c:if>
+		</tr>
+		<tr>
+			<td id="lessonReviewContents${DTO.lessonReviewNum}" width="100%" height="70px" style="vertical-align: middle;" colspan="4">
+				${DTO.lessonReviewContents}
 			</td>
 		</tr>
 	</c:forEach>
 </table>
 
 <!-- Paging -->
-<div class="rowmx-auto">
-	<nav aria-label="Page navigation example">
-		<ul class="pagination justify-content-center">
-		
-			<li class="page-item ${pagination.page eq 1?'disabled':''}">
-				<a class="page-link" href="./list?page=1&condition=${pagination.condition}&search=${pagination.search}" aria-label="Previous" data-board-page="1">
+<div class="m-auto">
+	<div class="pagination justify-content-center mt-5 pt-4">
+		<ul class="list-inline">
+			<li class="list-inline-item ${pagination.page eq 1?'disabled':''}">
+				<a href="#" class="page-button" aria-label="Previous" data-board-page="1">
 					<span aria-hidden="true">&laquo;</span>
 				</a>
 			</li>
-			
-			<li class="page-item ${pagination.prev?'disabled':''}">
-				<a class="page-link" href="./list?page=${pagination.startNum-1}&condition=${pagination.condition}&search=${pagination.search}" aria-label="Previous" data-board-page="${pagination.startNum-1}">
+			<li class="list-inline-item ${pagination.prev?'disabled':''}">
+				<a href="#" class="page-button" aria-label="Previous" data-board-page="${pagination.startNum}">
 					<span aria-hidden="true">&lsaquo;</span>
 				</a>
-			</li>
-								
-			<c:forEach begin="${pagination.startNum}" end="${pagination.lastNum}" var="i">
-				<li class="page-item"><a class="page-link" href="./list?page=${i}&condition=${pagination.condition}&search=${pagination.search}" data-board-page="${i}">${i}</a></li>
+			</li>				
+			<c:forEach begin="${pagination.startNum}" end="${pagination.lastNum}" var="page">
+				<li class="list-inline-item"><a href="#" class="page-button" data-board-page="${page}">${page}</a></li>
 			</c:forEach>
-			
-			<li class="page-item ${pagination.next eq false ? 'disabled' : ''}">
-				<a class="page-link" href="./list?page=${pagination.lastNum+1}&condition=${pagination.condition}&search=${pagination.search}"  aria-label="Next" data-board-page="${pagination.lastNum+1}">
+			<li class="list-inline-item ${pagination.next eq false ? 'disabled' : ''}">
+				<a href="#" class="page-button" aria-label="Next" data-board-page="${pagination.lastNum}">
 					<span aria-hidden="true">&rsaquo;</span>
 				</a>
-				</li>
- 				
- 			<li class="page-item ${pagination.page eq pagination.totalPage?'disabled' : ''}">
-				<a class="page-link" href="./list?page=${pagination.totalPage}&condition=${pagination.condition}&search=${pagination.search}"  aria-label="Next" data-board-page="${pagination.totalPage}">
+			 </li>
+			 <li class="list-inline-item ${pagination.page eq pagination.totalPage?'disabled' : ''}">
+				<a href="#" class="page-button" aria-label="Next" data-board-page="${pagination.totalPage}">
 					<span aria-hidden="true">&raquo;</span>
 				</a>
-				</li>
-				
-		</ul>
-	</nav>
+			</li>
+		</ul>	
+	</div>
 </div>

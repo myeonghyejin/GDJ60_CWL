@@ -12,7 +12,7 @@ function getList(page){
 }
 
 //page
-$("#lessonReviewListResult").on("click",".page-link", function(e){
+$("#lessonReviewListResult").on("click",".page-button", function(e){
     let page = $(this).attr("data-board-page");
     getList(page);
     e.preventDefault();
@@ -25,7 +25,7 @@ $("#lessonReviewAdd").click(function(){
         type:'POST',
         data:{
         	'lessonRating': $("input[name='lessonRating']:checked").val(),
-            'lessonReviewContents': $("#lessonReviewContents").val(),
+            'lessonReviewContents': $("#lessonReviewContents").val().replace(/(?:\r\n|\r|\n)/g, '<br>'),
             'lessonNum': $("#lessonReviewAdd").attr('data-lesson-review')
         },
         success:(res)=>{
@@ -67,14 +67,13 @@ $("#lessonReviewListResult").on("click",".delete",function(e){
 let lessonReviewNum = '';
 $("#lessonReviewListResult").on("click", ".update", function(e){
     lessonReviewNum = $(this).attr("data-lessonReview-num");
-    console.log(lessonReviewNum)
-    $("#lessonReviewEdit").val($("#lessonReviewContents"+lessonReviewNum).text().trim());
-    $("#contentsConfirm").attr("data-lessonReview-num", lessonReviewNum);
+    $("#lessonReviewEdit").val($("#lessonReviewContents"+lessonReviewNum).text().trim().replace(/(?:\r\n|\r|\n)/g, '<br>'));
+    $("#updateConfirm").attr("data-lessonReview-num", lessonReviewNum);
     e.preventDefault();
 })
 
 //confirm (Modal)
-$("#contentsConfirm").click(function(){
+$("#updateConfirm").click(function(){
     $.ajax({
         url:'../lesson/review/update',
         type:'POST',
@@ -86,7 +85,7 @@ $("#contentsConfirm").click(function(){
         success:(res)=>{
             if(res.trim()!=0){
                 alert('후기가 수정되었습니다.');
-                $("#closeModal").click();
+                $("#closeUpdateModal").click();
                 getList(1);            
             }else {
                 alert('수정 실패!');

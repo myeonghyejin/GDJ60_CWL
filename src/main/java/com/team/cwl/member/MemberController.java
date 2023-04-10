@@ -33,60 +33,78 @@ public class MemberController {
 		return new BCryptPasswordEncoder();
 	};
 	
-	// ¾à°üµ¿ÀÇ
+	// ì•½ê´€ë™ì˜
 	@RequestMapping(value = "memberAgree", method = RequestMethod.GET)
 	public void setMemberAgree() throws Exception {
 		
 	}
 	
-	// È¸¿ø°¡ÀÔ ÆäÀÌÁö ÀÌµ¿
+	// íšŒì›ê°€ì… í˜ì´ì§€ ì´ë™
 	@RequestMapping(value = "memberAdd", method = RequestMethod.GET)
 	public void loginGET() {
-		logger.info("È¸¿ø°¡ÀÔ ÆäÀÌÁö ÁøÀÔ");
+		logger.info("íšŒì›ê°€ì… í˜ì´ì§€ ì§„ì…");
 	}
 	
-	// È¸¿ø°¡ÀÔ
+	// íšŒì›ê°€ì…
 	@RequestMapping(value="memberAdd", method=RequestMethod.POST)
 	public String addPOST(MemberDTO member) throws Exception {
 		
-		String rawPw = ""; // ÀÎÄÚµù Àü ºñ¹Ğ¹øÈ£
-		String encodePw = ""; // ÀÎÄÚµù ÈÄ ºñ¹Ğ¹øÈ£
+		String rawPw = ""; // ì¸ì½”ë”© ì „ ë¹„ë°€ë²ˆí˜¸
+		String encodePw = ""; // ì¸ì½”ë”© í›„ ë¹„ë°€ë²ˆí˜¸
 		
-		rawPw = member.getMemberPw(); // ºñ¹Ğ¹øÈ£ µ¥ÀÌÅÍ ¾òÀ½
-		encodePw = pwEncoder.encode(rawPw); // ºñ¹Ğ¹øÈ£ ÀÎÄÚµù
-		member.setMemberPw(encodePw); // ÀÎÄÚµùµÈ ºñ¹Ğ¹øÈ£ member °´Ã¼¿¡ ´Ù½Ã ÀúÀå
+		rawPw = member.getMemberPw(); // ë¹„ë°€ë²ˆí˜¸ ë°ì´í„° ì–»ìŒ
+		encodePw = pwEncoder.encode(rawPw); // ë¹„ë°€ë²ˆí˜¸ ì¸ì½”ë”©
+		member.setMemberPw(encodePw); // ì¸ì½”ë”©ëœ ë¹„ë°€ë²ˆí˜¸ member ê°ì²´ì— ë‹¤ì‹œ ì €ì¥
 		
-		/* È¸¿ø°¡ÀÔ Äõ¸® ½ÇÇà */
+		/* íšŒì›ê°€ì… ì¿¼ë¦¬ ì‹¤í–‰ */
 		memberService.memberAdd(member);
 		
 		return "redirect:/";		
 	}
 	
-	// ·Î±×ÀÎ ÆäÀÌÁö ÀÌµ¿
+	// ë¡œê·¸ì¸ í˜ì´ì§€ ì´ë™
 	@RequestMapping(value = "memberLogin", method = RequestMethod.GET)
 	public void addGET() {
-		logger.info("·Î±×ÀÎ ÆäÀÌÁö ÁøÀÔ");
+		logger.info("ë¡œê·¸ì¸ í˜ì´ì§€ ì§„ì…");
 	}
 
-	// ¾ÆÀÌµğ Áßº¹ Ã¼Å©
+	// ì•„ì´ë”” ì¤‘ë³µ ì²´í¬
 	@RequestMapping(value = "memberIdCheck", method = RequestMethod.POST)
 	@ResponseBody
 	public String memberIdCheckPOST(String memberId) throws Exception {
 		
-		logger.info("memberIdCheck() ÁøÀÔ");
+		logger.info("memberIdCheck() ì§„ì…");
 		
 		int result = memberService.idCheck(memberId);
 		
-		logger.info("°á°ú°ª = " + result);
+		logger.info("ê²°ê³¼ê°’ = " + result);
 		
 		if(result != 0) {
-			return "fail"; // Áßº¹ ¾ÆÀÌµğ Á¸Àç
+			return "fail"; // ì¤‘ë³µ ì•„ì´ë”” ì¡´ì¬
 		} else {
-			return "success"; // Áßº¹ ¾ÆÀÌµğ ¾øÀ½
+			return "success"; // ì¤‘ë³µ ì•„ì´ë”” ì—†ìŒ
 		}
-	} // memberIdCheckPOST() Á¾·á
+	} // memberIdCheckPOST() ì¢…ë£Œ
 	
-	/* ·Î±×ÀÎ */
+	// ë‹‰ë„¤ì„ ì¤‘ë³µ ì²´í¬
+		@RequestMapping(value = "memberNickNameCheck", method = RequestMethod.POST)
+		@ResponseBody
+		public String memberNickNameCheckPOST(String memberNickName) throws Exception {
+			
+			logger.info("memberNickNameCheck() ì§„ì…");
+			
+			int result = memberService.nickNameCheck(memberNickName);
+			
+			logger.info("ê²°ê³¼ê°’ = " + result);
+			
+			if(result != 0) {
+				return "fail"; // ì¤‘ë³µ ì•„ì´ë”” ì¡´ì¬
+			} else {
+				return "success"; // ì¤‘ë³µ ì•„ì´ë”” ì—†ìŒ
+			}
+		} // memberNickNameCheckPOST() ì¢…ë£Œ
+	
+	/* ë¡œê·¸ì¸ */
 	@RequestMapping(value = "login.do", method = RequestMethod.POST)
 	public String loginPOST(HttpServletRequest request, MemberDTO member, RedirectAttributes rttr) throws Exception {
 		
@@ -94,33 +112,33 @@ public class MemberController {
 		String rawPw = "";
 		String encodePw = "";
 		
-		MemberDTO membercheck = memberService.memberLogin(member); // Á¦ÃâÇÑ ¾ÆÀÌµğ¿Í ÀÏÄ¡ÇÑ ¾ÆÀÌµğ°¡ ÀÖ´ÂÁö È®ÀÎ
+		MemberDTO membercheck = memberService.memberLogin(member); // ì œì¶œí•œ ì•„ì´ë””ì™€ ì¼ì¹˜í•œ ì•„ì´ë””ê°€ ìˆëŠ”ì§€ í™•ì¸
 		
-		if(membercheck != null) { // ÀÏÄ¡ÇÏ´Â ¾ÆÀÌµğ Á¸Àç½Ã
-			rawPw = member.getMemberPw(); // »ç¿ëÀÚ°¡ Á¦ÃâÇÑ ºñ¹Ğ¹øÈ£
-			encodePw = membercheck.getMemberPw(); // DB¿¡ ÀúÀåÇÑ ÀÎÄÚµùµÈ ºñ¹Ğ¹øÈ£
+		if(membercheck != null) { // ì¼ì¹˜í•˜ëŠ” ì•„ì´ë”” ì¡´ì¬ì‹œ
+			rawPw = member.getMemberPw(); // ì‚¬ìš©ìê°€ ì œì¶œí•œ ë¹„ë°€ë²ˆí˜¸
+			encodePw = membercheck.getMemberPw(); // DBì— ì €ì¥í•œ ì¸ì½”ë”©ëœ ë¹„ë°€ë²ˆí˜¸
 			
-			if(true == pwEncoder.matches(rawPw, encodePw)) { // ºñ¹Ğ¹øÈ£ ÀÏÄ¡¿©ºÎ ÆÇ´Ü
+			if(true == pwEncoder.matches(rawPw, encodePw)) { // ë¹„ë°€ë²ˆí˜¸ ì¼ì¹˜ì—¬ë¶€ íŒë‹¨
 				
-				membercheck.setMemberPw(""); // ÀÎÄÚµùµÈ ºñ¹Ğ¹øÈ£ Á¤º¸ Áö¿ò
-				session.setAttribute("member", membercheck); // session¿¡ »ç¿ëÀÚÀÇ Á¤º¸ ÀúÀå
-				return "redirect:/"; // ¸ŞÀÎÆäÀÌÁö·Î ÀÌµ¿
+				membercheck.setMemberPw(""); // ì¸ì½”ë”©ëœ ë¹„ë°€ë²ˆí˜¸ ì •ë³´ ì§€ì›€
+				session.setAttribute("member", membercheck); // sessionì— ì‚¬ìš©ìì˜ ì •ë³´ ì €ì¥
+				return "redirect:/"; // ë©”ì¸í˜ì´ì§€ë¡œ ì´ë™
 			} else {
 				rttr.addFlashAttribute("result", 0);
-				return "redirect:/member/memberLogin"; // ·Î±×ÀÎ ÆäÀÌÁö·Î ÀÌµ¿
+				return "redirect:/member/memberLogin"; // ë¡œê·¸ì¸ í˜ì´ì§€ë¡œ ì´ë™
 			}
-		} else {									// ÀÏÄ¡ÇÏ´Â ¾ÆÀÌµğ°¡ Á¸ÀçÇÏÁö ¾ÊÀ» ½Ã(·Î±×ÀÎ ½ÇÆĞ)
+		} else {									// ì¼ì¹˜í•˜ëŠ” ì•„ì´ë””ê°€ ì¡´ì¬í•˜ì§€ ì•Šì„ ì‹œ(ë¡œê·¸ì¸ ì‹¤íŒ¨)
 			rttr.addFlashAttribute("result", 0);
-			return "redirect:/member/memberLogin"; // ·Î±×ÀÎ ÆäÀÌÁö·Î ÀÌµ¿
+			return "redirect:/member/memberLogin"; // ë¡œê·¸ì¸ í˜ì´ì§€ë¡œ ì´ë™
 		} 
 		
 	}
 	
-	/* ¸ŞÀÎÆäÀÌÁö ·Î±×¾Æ¿ô */
+	/* ë©”ì¸í˜ì´ì§€ ë¡œê·¸ì•„ì›ƒ */
 	@RequestMapping(value = "memberLogout", method = RequestMethod.GET)
 	public String logoutMainGET(HttpServletRequest request) throws Exception {
 		
-		logger.info("logoutMainGET¸Ş¼­µå ÁøÀÔ");
+		logger.info("logoutMainGETë©”ì„œë“œ ì§„ì…");
 		
 		HttpSession session = request.getSession();
 		
@@ -129,12 +147,12 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	/* ºñµ¿±â¹æ½Ä ·Î±×¾Æ¿ô ¸Ş¼­µå */
+	/* ë¹„ë™ê¸°ë°©ì‹ ë¡œê·¸ì•„ì›ƒ ë©”ì„œë“œ */
 	@RequestMapping(value = "memberLogout", method = RequestMethod.POST)
 	@ResponseBody
 	public void logoutPOST(HttpServletRequest request) throws Exception {
 		
-		logger.info("ºñµ¿±â ·Î±×¾Æ¿ô ¸Ş¼­µå ÁøÀÔ");
+		logger.info("ë¹„ë™ê¸° ë¡œê·¸ì•„ì›ƒ ë©”ì„œë“œ ì§„ì…");
 		
 		HttpSession session = request.getSession();
 		

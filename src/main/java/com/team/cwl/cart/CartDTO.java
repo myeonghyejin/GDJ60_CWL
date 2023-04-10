@@ -1,5 +1,9 @@
 package com.team.cwl.cart;
 
+import java.util.List;
+
+import com.team.cwl.product.ProductImgDTO;
+
 public class CartDTO {
 	
 	private Long cartNum;
@@ -8,17 +12,19 @@ public class CartDTO {
 	
 	private Long productNum;
 	
-	private Long ProductAmount;
+	private int orderStock;
 	
 	// product	
 	private String productName;
 	
-	private Long productPrice;
+	private int productPrice;
 	
-	// �߰�
-	private Long totalPrice;
+	// 추가
+	private int totalPrice;
+	
+	/* 상품 이미지 */
+	private List<ProductImgDTO> imageList;
 
-	
 	public Long getCartNum() {
 		return cartNum;
 	}
@@ -43,12 +49,12 @@ public class CartDTO {
 		this.productNum = productNum;
 	}
 
-	public Long getProductAmount() {
-		return ProductAmount;
+	public int getOrderStock() {
+		return orderStock;
 	}
 
-	public void setProductAmount(Long productAmount) {
-		ProductAmount = productAmount;
+	public void setOrderStock(int orderStock) {
+		this.orderStock = orderStock;
 	}
 
 	public String getProductName() {
@@ -59,32 +65,45 @@ public class CartDTO {
 		this.productName = productName;
 	}
 
-	public Long getProductPrice() {
+	public int getProductPrice() {
 		return productPrice;
 	}
 
-	public void setProductPrice(Long productPrice) {
+	public void setProductPrice(int productPrice) {
 		this.productPrice = productPrice;
 	}
 
-	public Long getTotalPrice() {
+	public int getTotalPrice() {
 		return totalPrice;
 	}
 
-	public void setTotalPrice(Long totalPrice) {
+	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
 	}
+
+	public List<ProductImgDTO> getImageList() {
+		return imageList;
+	}
+
+	public void setImageList(List<ProductImgDTO> imageList) {
+		this.imageList = imageList;
+	}
+
 	
 	public void initTotal() {
-		this.totalPrice = this.productPrice * this.ProductAmount;
+		this.totalPrice = this.productPrice*this.orderStock;
 	}
+	
 	
 	@Override
 	public String toString() {
-		return "CartDTO2 [cartNum=" + cartNum + ", memberId=" + memberId + ", productNum=" + productNum + ", productAmount="
-				+ ProductAmount + ", productName=" + productName + ", productPrice=" + productPrice+ ", totalPrice=" + totalPrice
-				+ "]";
+		return "CartDTO [cartNum=" + cartNum + ", memberId=" + memberId + ", productNum=" + productNum
+				+ ", orderStock=" + orderStock + ", productName=" + productName + ", productPrice=" + productPrice
+				+ ", totalPrice=" + totalPrice + ", imageList=" + imageList + "]";
 	}
+	
+	
+	
 	
 	
 }

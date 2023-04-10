@@ -4,34 +4,34 @@ import java.sql.Date;
 import java.util.List;
 
 public class OrderDTO {
-	// ÁÖ¹® ¹øÈ£
+	// ì£¼ë¬¸ ë²ˆí˜¸
 	private String orderNum;
-	// ¹è¼Û ¹Ş´Â »ç¶÷
+	// ë°°ì†¡ ë°›ëŠ” ì‚¬ëŒ
 	private String addressee;
-	// È¸¿ø ¾ÆÀÌµğ
+	// íšŒì› ì•„ì´ë””
 	private String memberId;
-	// ¿ìÆí¹øÈ£
+	// ìš°í¸ë²ˆí˜¸
 	private String memberAddress1;
-	// È¸¿ø ÁÖ¼Ò
+	// íšŒì› ì£¼ì†Œ
 	private String memberAddress2;
-	// È¸¿ø »ó¼¼ÁÖ¼Ò
+	// íšŒì› ìƒì„¸ì£¼ì†Œ
 	private String memberAddress3;
-	// Ã³¸®»óÅÂ
+	// ì²˜ë¦¬ìƒíƒœ
 	private String orderState;
-	// ÁÖ¹®¿äÃ»»çÇ×
+	// ì£¼ë¬¸ìš”ì²­ì‚¬í•­
 	private String orderComment;
-	// ÁÖ¹® »óÇ°
+	// ì£¼ë¬¸ ìƒí’ˆ
 	private List<OrderItemDTO> orders;
-	// ¹è¼Ûºñ
-	private Long orderFee;
-	// ÁÖ¹® ³¯Â¥
+	// ë°°ì†¡ë¹„
+	private int orderFee;
+	// ì£¼ë¬¸ ë‚ ì§œ
 	private Date orderDate;
 	
-	/* DB Å×ÀÌºí¿¡ Á¸ÀçÇÏÁö ¾Ê´Â µ¥ÀÌÅÍ */
-	// ÆÇ¸Å°¡(¸ğµç »óÇ° ºñ¿ë)
-	private Long orderSalePrice;
-	// ÃÖÁ¾ ÆÇ¸Å ºñ¿ë(¹è¼Ûºñ Æ÷ÇÔ)
-	private Long orderFinalSalePrice;
+	/* DB í…Œì´ë¸”ì— ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ë°ì´í„° */
+	// íŒë§¤ê°€(ëª¨ë“  ìƒí’ˆ ë¹„ìš©)
+	private int orderPrice;
+	// ìµœì¢… íŒë§¤ ë¹„ìš©(ë°°ì†¡ë¹„ í¬í•¨)
+	private int orderFinalPrice;
 	
 	
 	public String getOrderNum() {
@@ -106,11 +106,11 @@ public class OrderDTO {
 		this.orders = orders;
 	}
 
-	public Long getOrderFee() {
+	public int getOrderFee() {
 		return orderFee;
 	}
 
-	public void setOrderFee(Long orderFee) {
+	public void setOrderFee(int orderFee) {
 		this.orderFee = orderFee;
 	}
 
@@ -122,43 +122,47 @@ public class OrderDTO {
 		this.orderDate = orderDate;
 	}
 
-	public Long getOrderSalePrice() {
-		return orderSalePrice;
+	public int getOrderPrice() {
+		return orderPrice;
 	}
 
-	public void setOrderSalePrice(Long orderSalePrice) {
-		this.orderSalePrice = orderSalePrice;
+	public void setOrderPrice(int orderPrice) {
+		this.orderPrice = orderPrice;
 	}
 
-	public Long getOrderFinalSalePrice() {
-		return orderFinalSalePrice;
+	public int getOrderFinalPrice() {
+		return orderFinalPrice;
 	}
 
-	public void setOrderFinalSalePrice(Long orderFinalSalePrice) {
-		this.orderFinalSalePrice = orderFinalSalePrice;
+	public void setOrderFinalPrice(int orderFinalPrice) {
+		this.orderFinalPrice = orderFinalPrice;
 	}
 
+	
+	
 	@Override
 	public String toString() {
-		return "OrderDTO [orderNum=" + orderNum + ", memberId=" + memberId + ",addressee=" + addressee + ", memberAddress1=" + memberAddress1 + ", memberAddress2=" 
-				+ memberAddress2 + ", memberAddress3=" + memberAddress3 + ", orderState="+ orderState + ", orderComment=" + orderComment + ", orders=" + orders 
-				+ ", orderFee=" + orderFee + ", orderDate=" + orderDate + ", orderSalePrice=" + orderSalePrice + ", orderFinalSalePrice=" + orderFinalSalePrice + "]";			
+		return "OrderDTO [orderNum=" + orderNum + ", addressee=" + addressee + ", memberId=" + memberId
+				+ ", memberAddress1=" + memberAddress1 + ", memberAddress2=" + memberAddress2 + ", memberAddress3="
+				+ memberAddress3 + ", orderState=" + orderState + ", orderComment=" + orderComment + ", orders="
+				+ orders + ", orderFee=" + orderFee + ", orderDate=" + orderDate + ", orderPrice=" + orderPrice
+				+ ", orderFinalPrice=" + orderFinalPrice + "]";
 	}
-	
+
 	public void getOrderPriceInfo() {
-		// »óÇ° ºñ¿ë
-		for(OrderItemDTO order : orders) {
-			orderSalePrice += order.getTotalPrice();
-		}
-		// ¹è¼Û ºñ¿ë
-		if(orderSalePrice >= 30000) {
-			orderFee = 0L;
-		} else {
-			orderFee = 3000L;
-		}
-		// ÃÖÁ¾ ÆÇ¸Å ºñ¿ë(»óÇ° ºñ¿ë + ¹è¼Ûºñ)
-		orderFinalSalePrice = orderSalePrice + orderFee;
-	}
+		/* ìƒí’ˆ ë¹„ìš© & ì ë¦½í¬ì¸íŠ¸ */
+			for(OrderItemDTO order : orders) {
+				orderPrice += order.getTotalPrice();
+			}
+		/* ë°°ì†¡ë¹„ìš© */
+			if(orderPrice >= 30000) {
+				orderFee = 0;
+			} else {
+				orderFee = 3000;
+			}
+		/* ìµœì¢… ë¹„ìš©(ìƒí’ˆ ë¹„ìš© + ë°°ì†¡ë¹„) */
+			orderFinalPrice = orderPrice + orderFee;
+	}	
 	
 	
 	

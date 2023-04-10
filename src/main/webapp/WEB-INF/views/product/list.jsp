@@ -7,107 +7,134 @@
 	<meta charset="UTF-8">
 	<title>PRODUCT</title>
 	<c:import url="../template/common_css.jsp"></c:import>
+	<link rel="stylesheet" href="/resources/css/common/style.css">
+	<link rel="stylesheet" href="/resources/css/product/list.css">
+
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
 	<div class="container-fluid my-5">
 		<!-- Title -->
-		<div class="row col-md-4 mx-auto text-center border-bottom border-dark pb-2">
+		<div class="row mx-auto text-center border-bottom border-dark pb-2">
 			<p class="fs-2" style="font-family: 'Impact'">PRODUCT</p>
-		</div>
-	
-		<div class="row col-md-4 mx-auto my-5">
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>NUM</th>
-						<th>TITLE</th>
-						<th>WRITER</th>
-						<th>DATE</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${list}" var="DTO">
-						<tr>
-							<td>${DTO.productNum}</td>
-							<td>
-								<a href="./detail?productNum=${DTO.productNum}">${DTO.productName}</a>
-							</td>
-							<td>${DTO.memberId}</td>
-							<td>${DTO.productDate}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-			
-		<!-- Paging -->
-		<div class="rowmx-auto">
-			<nav aria-label="Page navigation example">
-				<ul class="pagination justify-content-center">
-				
-					<li class="page-item ${pagination.page eq 1?'disabled':''}">
-						<a class="page-link" href="./list?page=1&condition=${pagination.condition}&search=${pagination.search}" aria-label="Previous" data-board-page="1">
-							<span aria-hidden="true">&laquo;</span>
-						</a>
-					</li>
-					
-					<li class="page-item ${pagination.prev?'disabled':''}">
-						<a class="page-link" href="./list?page=${pagination.startNum-1}&condition=${pagination.condition}&search=${pagination.search}" aria-label="Previous" data-board-page="${pagination.startNum-1}">
-							<span aria-hidden="true">&lsaquo;</span>
-						</a>
-					</li>
-										
-					<c:forEach begin="${pagination.startNum}" end="${pagination.lastNum}" var="i">
-						<li class="page-item"><a class="page-link" href="./list?page=${i}&condition=${pagination.condition}&search=${pagination.search}" data-board-page="${i}">${i}</a></li>
-					</c:forEach>
-					
-					<li class="page-item ${pagination.next eq false ? 'disabled' : ''}">
-						<a class="page-link" href="./list?page=${pagination.lastNum+1}&condition=${pagination.condition}&search=${pagination.search}"  aria-label="Next" data-board-page="${pagination.lastNum+1}">
-							<span aria-hidden="true">&rsaquo;</span>
-						</a>
-	 				</li>
-		 				
-		 			<li class="page-item ${pagination.page eq pagination.totalPage?'disabled' : ''}">
-						<a class="page-link" href="./list?page=${pagination.totalPage}&condition=${pagination.condition}&search=${pagination.search}"  aria-label="Next" data-board-page="${pagination.totalPage}">
-							<span aria-hidden="true">&raquo;</span>
-						</a>
-						</li>
-						
-				</ul>
-			</nav>
 		</div>
 		
 		<!-- 검색창 -->
-		<form action="./list" method="get" class="row g-3" id="searchForm">
-			<input type="hidden" name="page" value="1" id="page">
-			<div class="row justify-content-center mx-auto">
+		<div class="col-11 mx-auto">
+			<form action="./list" method="get" class="row mx-5 my-5 justify-content-center">
+				<input type="hidden" name="page" value="1" id="page">
+				<button class="btn btn-primary btn-sm btn-category mx-1">별점순</button>
+				<button class="btn btn-primary btn-sm btn-category mx-1">후기 많은순</button>
+				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="highPriceOrder">높은 가격순</button>
+				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="lowPriceOrder">낮은 가격순</button>
+			</form>
+		</div>
+		<div class="col-11">
+			<form action="./list" method="get" class="row justify-content-end mx-auto g-3" id="searchForm">
+				<input type="hidden" name="page" value="1" id="page">
 				<div class="col-auto">
-					<label for="condition" class="visually-hidden">Search</label>
-					<select class="form-select" name="condition" id="condition" aria-label="Default select example">
-						<option value="title" ${pagination.condition eq 'title' ? 'selected' : ''}>제목</option>
-						<option value="contents" ${pagination.condition eq 'contents' ? 'selected' : ''}>내용</option>
-						<option value="writer" ${pagination.condition eq 'writer' ? 'selected' : ''}>작성자</option>
-					</select>
-				</div>
-				<div class="col-auto">
+					<input type="hidden" name="condition" id="condition" value="productName">
 					<label for="search" class="visually-hidden">Search</label>
-					<input type="text" class="form-control" value="${pagination.search}" name="search" id="search" placeholder="검색어를 입력하세요.">
+					<input type="text" class="form-control" value="${pagination.search}" name="search" id="search" placeholder="">
 				</div>
 				<div class="col-auto">
-					<button type="submit" class="btn btn-outline-primary mb-3">검색</button>
+					<button type="submit" class="btn btn-outline-primary btn-sm btn-default mb-3">검색</button>
 				</div>
+			</form>
+		</div>
+
+		<div class="container my-5">
+			<div class="row shuffle-wrapper portfolio-gallery">
+				<c:forEach items="${list}" var="DTO">
+					<div class="col-lg-4 col-6 mb-4 shuffle-item">
+						<div class="position-relative inner-box">
+							<div class="image position-relative">
+								<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+									<div class="carousel-inner">
+										<c:set var="loop_flag" value="false"/>
+										<c:forEach items="${DTO.productImgDTOs}" var="imgDTO" varStatus="index">
+											<c:if test="${index.end eq 0}">
+												<div class="carousel-item">
+													<img src="/resources/upload/product/${imgDTO.imgName}" alt="product-image" class="img-fluid w-100 d-block">
+												</div>
+												<c:set var="loop_flag" value="true"/>
+											</c:if>
+											
+											<c:choose>
+												<c:when test="${index.index eq 0}">
+													<div class="carousel-item active">
+														<img src="/resources/upload/product/${imgDTO.imgName}" alt="product-image" class="img-fluid w-100 d-block">
+													</div>
+												</c:when>
+												<c:otherwise>
+													<div class="carousel-item">
+														<img src="/resources/upload/product/${imgDTO.imgName}" alt="product-image" class="img-fluid w-100 d-block">
+													</div>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+									</div>
+								</div>
+								<a href="./detail?productNum=${DTO.productNum}">
+									<div class="overlay-box">
+										<div class="overlay-inner">
+											<div class="overlay-content">
+												<h5 class="mb-0">${DTO.productName}</h5>
+												<p>${DTO.productPrice}</p>
+											</div>
+										</div>
+									</div>
+								</a>
+							</div> 
+						</div>
+					</div>
+				</c:forEach>
 			</div>
-		</form>
+		</div>
+			
+		<!-- Paging -->
+		<div class="m-auto">
+			<div class="pagination justify-content-center mt-5 pt-4">
+				<ul class="list-inline">
+					<li class="list-inline-item ${pagination.page eq 1?'disabled':''}">
+						<a href="./list?page=1&condition=${pagination.condition}&search=${pagination.search}" aria-label="Previous" data-board-page="1">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+					<li class="list-inline-item ${pagination.prev?'disabled':''}">
+						<a href="./list?page=${pagination.startNum}&condition=${pagination.condition}&search=${pagination.search}" aria-label="Previous" data-board-page="${pagination.startNum}">
+							<span aria-hidden="true">&lsaquo;</span>
+						</a>
+					</li>				
+					<c:forEach begin="${pagination.startNum}" end="${pagination.lastNum}" var="page">
+						<li class="list-inline-item"><a href="./list?page=${page}&condition=${pagination.condition}&search=${pagination.search}" data-board-page="${page}">${page}</a></li>
+					</c:forEach>
+					<li class="list-inline-item ${pagination.next eq false ? 'disabled' : ''}">
+						<a href="./list?page=${pagination.lastNum}&condition=${pagination.condition}&search=${pagination.search}"  aria-label="Next" data-board-page="${pagination.lastNum}">
+							<span aria-hidden="true">&rsaquo;</span>
+						</a>
+					 </li>
+					 <li class="list-inline-item ${pagination.page eq pagination.totalPage?'disabled' : ''}">
+						<a href="./list?page=${pagination.totalPage}&condition=${pagination.condition}&search=${pagination.search}"  aria-label="Next" data-board-page="${pagination.totalPage}">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+				</ul>	
+			</div>
+		</div>
 		
 		<!-- 상품 등록 버튼 -->
 	 	<c:if test="${not empty member}">
-			<div class="row justify-content-center mx-auto">
-				<a href=./add class="btn btn-primary col-3">게시글 등록</a>
-			</div>
+			<c:if test="${member.adminCheck eq 1}">
+				<div class="row justify-content-center mx-auto my-3">
+					<a href=./add class="btn btn-primary btn-sm btn-default">등록</a>
+				</div>
+			</c:if>
 	 	</c:if>
-	</div>
+
 </div>
 	<c:import url="../template/common_js.jsp"></c:import>
+	<c:import url="../template/footer.jsp"></c:import>
 	<script src="../resources/js/common/paging.js"></script>
 </body>
 </html>

@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.team.cwl.member.MemberDTO;
 
@@ -18,15 +19,29 @@ public class AdminInterceptor implements HandlerInterceptor {
 		
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		
-		if(memberDTO == null || memberDTO.getAdminCheck() == 0) { // °ü¸®ÀÚ °èÁ¤ÀÌ ¾Æ´Ñ °æ¿ì
+		if(memberDTO == null || memberDTO.getAdminCheck() == 0) { // ê´€ë¦¬ì ê³„ì •ì´ ì•„ë‹Œ ê²½ìš°
 			
-			response.sendRedirect("/"); // È¨À¸·Î ¸®´ÙÀÌ·ºÆ®
+			response.sendRedirect("/"); // í™ˆìœ¼ë¡œ ë¦¬ë‹¤ì´ë ‰íŠ¸
 			
 			return false;
 		}
 		
 		
-		return true;  //  °ü¸®ÀÚ °èÁ¤ ·Î±×ÀÎ °æ¿ì (memberDTOs != null && memberDTOs.getAdmincheck() == 1)
+		return true;   //  ê´€ë¦¬ì ê³„ì • ë¡œê·¸ì¸ ê²½ìš° (memberDTOs != null && memberDTOs.getAdmincheck() == 1)
+	}
+
+	@Override
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+			ModelAndView modelAndView) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+			throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

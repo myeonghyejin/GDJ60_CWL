@@ -7,109 +7,104 @@
 	<meta charset="UTF-8">
 	<title>LESSON</title>
 	<c:import url="../template/common_css.jsp"></c:import>
+	<link rel="stylesheet" href="/resources/css/common/style.css">
+	<link rel="stylesheet" href="/resources/css/lesson/list.css">
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
 	<div class="container-fluid my-5">
 		<!-- Title -->
-		<div class="row col-md-4 mx-auto text-center border-bottom border-dark pb-2">
+		<div class="row mx-auto text-center border-bottom border-dark pb-2">
 			<p class="fs-2" style="font-family: 'Impact'">LESSON</p>
-		</div>
-	
-		<div class="row col-md-4 mx-auto my-5">
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>NUM</th>
-						<th>TITLE</th>
-						<th>WRITER</th>
-						<th>DATE</th>
-						<th>HIT</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${list}" var="DTO">
-						<tr>
-							<td>${DTO.lessonNum}</td>
-							<td>
-								<a href="./detail?lessonNum=${DTO.lessonNum}">${DTO.lessonTitle}</a>
-							</td>
-							<td>${DTO.memberId}</td>
-							<td>${DTO.lessonDate}</td>
-							<td>${DTO.lessonHit}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-			
-		<!-- Paging -->
-		<div class="rowmx-auto">
-			<nav aria-label="Page navigation example">
-				<ul class="pagination justify-content-center">
-				
-					<li class="page-item ${pagination.page eq 1?'disabled':''}">
-						<a class="page-link" href="#" aria-label="Previous" data-board-page="1">
-							<span aria-hidden="true">&laquo;</span>
-						</a>
-					</li>
-					
-					<li class="page-item ${pagination.prev?'disabled':''}">
-						<a class="page-link" href="#" aria-label="Previous" data-board-page="${pagination.startNum-1}">
-							<span aria-hidden="true">&lsaquo;</span>
-						</a>
-					</li>
-										
-					<c:forEach begin="${pagination.startNum}" end="${pagination.lastNum}" var="i">
-						<li class="page-item"><a class="page-link" href="#" data-board-page="${i}">${i}</a></li>
-					</c:forEach>
-					
-					<li class="page-item ${pagination.next eq false ? 'disabled' : ''}">
-						<a class="page-link" href="#"  aria-label="Next" data-board-page="${pagination.lastNum+1}">
-							<span aria-hidden="true">&rsaquo;</span>
-						</a>
-	 				</li>
-		 				
-		 			<li class="page-item ${pagination.page eq pagination.totalPage?'disabled' : ''}">
-						<a class="page-link" href="#" data-board-page="${pagination.totalPage}">
-							<span aria-hidden="true">&raquo;</span>
-						</a>
-						</li>
-						
-				</ul>
-			</nav>
 		</div>
 		
 		<!-- 검색창 -->
-		<form action="./list" method="get" class="row g-3" id="searchForm">
-			<input type="hidden" name="page" value="1" id="page">
-			<div class="row justify-content-center mx-auto">
+		<div class="col-11 mx-auto">
+			<form action="./list" method="get" class="row mx-5 my-5 justify-content-center">
+				<input type="hidden" name="page" value="1" id="page">
+				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="nameOrder">이름순</button>
+				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="latestOrder">최신순</button>
+			</form>
+		</div>
+		<div class="col-11">
+			<form action="./list" method="get" class="row justify-content-end mx-auto g-3" id="searchForm">
+				<input type="hidden" name="page" value="1" id="page">
 				<div class="col-auto">
-					<label for="condition" class="visually-hidden">Email</label>
-					<select class="form-select" name="condition" id="condition" aria-label="Default select example">
-						<option value="title" ${pagination.condition eq 'title' ? 'selected' : ''}>제목</option>
-						<option value="contents" ${pagination.condition eq 'contents' ? 'selected' : ''}>내용</option>
-						<option value="writer" ${pagination.condition eq 'writer' ? 'selected' : ''}>작성자</option>
-					</select>
-				</div>
-				<div class="col-auto">
+					<input type="hidden" name="condition" id="condition" value="lessonTitle">
 					<label for="search" class="visually-hidden">Search</label>
-					<input type="text" class="form-control" value="${pagination.search}" name="search" id="search" placeholder="검색어를 입력하세요.">
+					<input type="text" class="form-control" value="${pagination.search}" name="search" id="search" placeholder="">
 				</div>
 				<div class="col-auto">
-					<button type="submit" class="btn btn-outline-primary mb-3">검색</button>
+					<button type="submit" class="btn btn-outline-primary btn-sm btn-default mb-3">검색</button>
 				</div>
+			</form>
+		</div>
+
+		<div class="container my-5">
+			<div class="row shuffle-wrapper portfolio-gallery">
+				<c:forEach items="${list}" var="DTO">
+					<div class="col-lg-4 col-6 mb-4 shuffle-item">
+						<div class="position-relative inner-box">
+							<div class="image position-relative">
+							    <img src="/resources/upload/lesson/${DTO.lessonImgDTOs.imgName}" alt="lesson-image" class="img-fluid w-100 d-block">
+							    <a href="./detail?lessonNum=${DTO.lessonNum}">
+									<div class="overlay-box">
+										<div class="overlay-inner">
+											<div class="overlay-content">
+												<h5 class="mb-0">${DTO.lessonTitle}</h5>
+												<p>${DTO.lessonTeacher}</p>
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
 			</div>
-		</form>
+		</div>
+			
+		<!-- Paging -->
+		<div class="m-auto">
+			<div class="pagination justify-content-center mt-5 pt-4">
+				<ul class="list-inline">
+					<li class="list-inline-item ${pagination.page eq 1?'disabled':''}">
+						<a href="./list?page=1&condition=${pagination.condition}&search=${pagination.search}" aria-label="Previous" data-board-page="1">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+					<li class="list-inline-item ${pagination.prev?'disabled':''}">
+						<a href="./list?page=${pagination.startNum}&condition=${pagination.condition}&search=${pagination.search}" aria-label="Previous" data-board-page="${pagination.startNum}">
+							<span aria-hidden="true">&lsaquo;</span>
+						</a>
+					</li>				
+					<c:forEach begin="${pagination.startNum}" end="${pagination.lastNum}" var="page">
+						<li class="list-inline-item"><a href="./list?page=${page}&condition=${pagination.condition}&search=${pagination.search}" data-board-page="${page}">${page}</a></li>
+					</c:forEach>
+					<li class="list-inline-item ${pagination.next eq false ? 'disabled' : ''}">
+						<a href="./list?page=${pagination.lastNum}&condition=${pagination.condition}&search=${pagination.search}"  aria-label="Next" data-board-page="${pagination.lastNum}">
+							<span aria-hidden="true">&rsaquo;</span>
+						</a>
+					 </li>
+					 <li class="list-inline-item ${pagination.page eq pagination.totalPage?'disabled' : ''}">
+						<a href="./list?page=${pagination.totalPage}&condition=${pagination.condition}&search=${pagination.search}"  aria-label="Next" data-board-page="${pagination.totalPage}">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+				</ul>	
+			</div>
+		</div>
 		
-		<!-- 상품 등록 버튼 -->
+		<!-- 강의 등록 버튼 -->
 	 	<c:if test="${not empty member}">
 			<div class="row justify-content-center mx-auto">
-				<a href=./add class="btn btn-primary col-3">게시글 등록</a>
+				<a href=./add class="btn btn-primary btn-sm btn-default">등록</a>
 			</div>
 	 	</c:if>
 	</div>
 </div>
 	<c:import url="../template/common_js.jsp"></c:import>
+	<c:import url="../template/footer.jsp"></c:import>
 	<script src="../resources/js/common/paging.js"></script>
 </body>
 </html>
