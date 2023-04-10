@@ -6,7 +6,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.team.cwl.lesson.LessonImgDTO;
 import com.team.cwl.util.Pagination;
 
 @Repository
@@ -56,6 +55,16 @@ public class ProductDAO {
 	
 	public int setProductImgDelete(Long imgNum) throws Exception {
 		return sqlSession.delete(NAMESPACE+"setProductImgDelete", imgNum);
+	}
+
+	public List<ProductImgDTO> getProductImgList(Long productNum) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ProductDTO getProductDetail(Long productNum) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
