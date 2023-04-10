@@ -19,7 +19,7 @@
 		</div>
 		
 		<!-- 검색창 -->
-		<div class="col-11">
+		<div class="col-11 mx-auto">
 			<form action="./list" method="get" class="row mx-5 my-5 justify-content-center">
 				<input type="hidden" name="page" value="1" id="page">
 				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="nameOrder">이름순</button>

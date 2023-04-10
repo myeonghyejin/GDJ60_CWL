@@ -19,8 +19,10 @@
 					<div class="row">
 						<p class="fs-4 fw-bold text-center border-bottom border-dark pb-4">${DTO.lessonTitle}</p>
 					</div>
+					<div class="row col-8 my-4 justify-content-center mx-auto" id="youtube">
+						<iframe width="800" height="420" src="https://www.youtube.com/embed/${DTO.lessonUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+					</div>
 					<div class="row col-8 my-4 justify-content-center mx-auto">
-						<iframe width="560" height="400" src="https://www.youtube.com/embed/${DTO.lessonUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 						<p class="fs-4">${DTO.lessonContents}</p>
 					</div>
 				</c:when>

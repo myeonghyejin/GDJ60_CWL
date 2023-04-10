@@ -20,7 +20,7 @@
 		</div>
 		
 		<!-- 검색창 -->
-		<div class="col-11">
+		<div class="col-11 mx-auto">
 			<form action="./list" method="get" class="row mx-5 my-5 justify-content-center">
 				<input type="hidden" name="page" value="1" id="page">
 				<button class="btn btn-primary btn-sm btn-category mx-1">별점순</button>

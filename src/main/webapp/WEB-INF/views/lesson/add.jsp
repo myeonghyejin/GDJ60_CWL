@@ -39,7 +39,7 @@
 					</div>
 					<div class="form-text" id="basic-addon4">ID를 정확히 입력해야 플레이어 및 썸네일 이미지가 정상적으로 출력됩니다.</div>
 				</div>
-				<div class="col-12 mx-auto mt-3">
+				<div class="col-12 mx-auto mt-4">
 					<label for="lessonContents" class="form-label fw-bold fs-5">내용</label>
 					<textarea name="lessonContents" class="form-control" id="lessonContents" rows="3"></textarea><br>
 				</div>

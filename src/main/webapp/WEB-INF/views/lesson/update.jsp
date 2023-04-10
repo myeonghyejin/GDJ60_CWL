@@ -23,20 +23,24 @@
 			<input type="hidden" name="lessonNum" value="${DTO.lessonNum}">
 			<input type="hidden" name="lessonImgDTOs" value="${DTO.lessonImgDTOs}">
 			<div class="row col-8 mx-auto my-5">
-				<div class="fw-bold fs-5 col-12">
-					<label for="lessonTitle" class="form-label">제목</label>
+				<div class="col-12">
+					<label for="lessonTitle" class="form-label fw-bold fs-5">제목</label>
 					<input type="text" name="lessonTitle" class="form-control" id="lessonTitle" value="${DTO.lessonTitle}"><br>
 				</div>
-				<div class="fw-bold fs-5 col-12">
-					<label for="lessonTeacher" class="form-label">크리에이터</label>
+				<div class="col-12">
+					<label for="lessonTeacher" class="form-label fw-bold fs-5">크리에이터</label>
 					<input type="text" name="lessonTeacher" class="form-control" id="lessonTeacher" value="${DTO.lessonTeacher}"><br>
 				</div>
-				<div class="fw-bold fs-5 col-12">
-					<label for="lessonUrl" class="form-label">URL</label>
-					<input type="text" name="lessonUrl" class="form-control" id="lessonUrl" value="${DTO.lessonUrl}"><br>
+				<div class="col-12 mx-auto">
+					<label for="lessonUrl" class="form-label fw-bold fs-5">URL</label>
+					<div class="input-group">
+						<span class="input-group-text" id="basic-addon3">https://youtu.be/</span>
+						<input type="text" class="form-control" name="lessonUrl" id="lessonUrl" value="${DTO.lessonUrl}">
+					</div>
+					<div class="form-text" id="basic-addon4">ID를 정확히 입력해야 플레이어 및 썸네일 이미지가 정상적으로 출력됩니다.</div>
 				</div>
-				<div class="fw-bold fs-5 col-12">
-					<label for="lessonContents" class="form-label">내용</label>
+				<div class="col-12 mx-auto mt-4">
+					<label for="lessonContents" class="form-label fw-bold fs-5">내용</label>
 					<textarea name="lessonContents" class="form-control" id="lessonContents" rows="3">${DTO.lessonContents}</textarea><br>
 				</div>
 				<div id="imgList">
