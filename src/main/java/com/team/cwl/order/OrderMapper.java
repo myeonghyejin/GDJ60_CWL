@@ -37,4 +37,7 @@ public interface OrderMapper {
 	// 주문 정보(주문취소)
 	public OrderDTO getOrder(String orderNum);
 	
+	// 주문 결제
+	public int orderPayment(OrderDTO orderDTO) throws Exception;
+	
 }
