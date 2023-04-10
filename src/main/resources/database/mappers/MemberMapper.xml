@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	
   	<!-- 로그인 -->
   	<select id="memberLogin" resultType="com.team.cwl.member.MemberDTO">
-		SELECT MEMBERID, MEMBERPW, MEMBERNAME, ADMINCHECK, MONEY 
+		SELECT MEMBERID, MEMBERPW, MEMBERNAME, ADMINCHECK, MONEY, MEMBERSI
 		FROM MEMBER
 		WHERE MEMBERID = #{memberId}
   	</select>
