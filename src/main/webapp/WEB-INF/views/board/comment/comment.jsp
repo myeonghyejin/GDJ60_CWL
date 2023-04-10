@@ -19,7 +19,9 @@
 				<c:if test="${member.memberId eq DTO.memberId}">
 					<button class="btn btn-danger btn-sm delete" id="del" data-boardcomment-num="${DTO.boardCommentNum}">삭제</button>
 				</c:if>
-				<button class="btn btn-info btn-sm reply" data-boardcomment-num="${DTO.boardCommentNum}" data-bs-toggle="modal" data-bs-target="#replyModal">답글</button>
+				<c:if test="${DTO.boardCommentDepth eq 0}">
+					<button class="btn btn-info btn-sm reply" data-boardcomment-num="${DTO.boardCommentNum}" data-bs-toggle="modal" data-bs-target="#replyModal">답글</button>
+				</c:if>
 			</td>
 		</tr>
 		<tr>
