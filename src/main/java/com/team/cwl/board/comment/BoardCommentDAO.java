@@ -22,6 +22,10 @@ public class BoardCommentDAO {
 		return sqlSession.selectList(NAMESPACE+"getBoardCommentList", pagination);
 	}
 	
+	public BoardCommentDTO getBoardCommentDetail(BoardCommentDTO boardCommentDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getBoardCommentDetail", boardCommentDTO);
+	}
+	
 	public Long getTotalCount(Pagination pagination) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"getTotalCount", pagination);
 	}
@@ -31,9 +35,17 @@ public class BoardCommentDAO {
 		return sqlSession.insert(NAMESPACE+"setBoardCommentAdd", boardCommentDTO);
 	}
 	
+	public int setBoardCommentReplyAdd(BoardCommentDTO boardCommentDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setBoardCommentReplyAdd", boardCommentDTO);
+	}
+	
 	/** UPDATE **/
 	public int setBoardCommentUpdate(BoardCommentDTO boardCommentDTO) throws Exception {
 		return sqlSession.update(NAMESPACE+"setBoardCommentUpdate", boardCommentDTO);
+	}
+	
+	public int setStepUpdate(BoardCommentDTO boardCommentDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"setStepUpdate", boardCommentDTO);
 	}
 	
 	/** DELETE **/

@@ -49,6 +49,20 @@ public class BoardCommentController {
 		return modelAndView;
 	}
 	
+	@PostMapping("reply")
+	public ModelAndView setBoardCommentReplyAdd(BoardCommentDTO boardCommentDTO, HttpSession session, ModelAndView modelAndView) throws Exception {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		
+		boardCommentDTO.setMemberId(memberDTO.getMemberId());
+		
+		int result = boardCommentService.setBoardCommentReplyAdd(boardCommentDTO, null);
+		
+		modelAndView.addObject("result", result);
+		modelAndView.setViewName("common/ajaxResult");
+		
+		return modelAndView;
+	}
+	
 	/** UPDATE **/
 	@PostMapping("update")
 	public ModelAndView setBoardCommentUpdate(BoardCommentDTO boardCommentDTO, ModelAndView modelAndView) throws Exception {

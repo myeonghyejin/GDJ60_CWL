@@ -21,7 +21,7 @@
 		</div>
 
 		<!-- Contents -->
-		<form action="./add" method="post">
+		<form action="./add" method="post" id="frm">
 			<input type="hidden" name="memberId" value="${member.memberId}">
 			<div class="row col-8 mx-auto my-5">
 				<div class="fw-bold fs-5 col-12">
@@ -33,14 +33,16 @@
 					<textarea name="boardContents" class="form-control" id="boardContents" rows="3"></textarea><br>
 				</div>	
 				<div class="row justify-content-center my-5">
-					<button type="submit" class="btn btn-primary btn-sm btn-default">작성</button>
+					<button type="button" id="boardConfirm" class="btn btn-primary btn-sm btn-default">작성</button>
 				</div>
 			</div>
 	   </form>
 	</div>
+	<c:import url="../template/common_js.jsp"></c:import>
+	<c:import url="../template/footer.jsp"></c:import>
+	<script src="/resources/js/common/confirm.js"></script>
 	<script>
 		$('#boardContents').summernote();
 	</script>
-	<c:import url="../template/common_js.jsp"></c:import>
 </body>
 </html>

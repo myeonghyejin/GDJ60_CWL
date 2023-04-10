@@ -32,7 +32,6 @@
 				</div>
 				<span class="nickName_input_re_1">사용 가능한 닉네임입니다.</span>
 				<span class="nickName_input_re_2">닉네임이 이미 존재합니다.</span>	
-							
 			</div>	 -->			
 			<div class="pw_wrap">
 				<div class="pw_name">비밀번호</div>

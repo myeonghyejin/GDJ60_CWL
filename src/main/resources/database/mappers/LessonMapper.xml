@@ -8,17 +8,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- SQL -->
   	<sql id="lessonCondition">
-    <where>
-		<if test="condition == 'lessonTitle'">
-			LESSONTITLE LIKE '%' || #{search} || '%'
-		</if>
-		<if test="condition == 'lessonContents'">
-			LESSONCONTENTS LIKE '%' || #{search} || '%'
-		</if>
-		<if test="condition == 'memberId'">
-			MEMBERID LIKE '%' || #{search} || '%'
-		</if>
+	    <where>
+			<if test="condition == 'lessonTitle'">
+				LESSONTITLE LIKE '%' || #{search} || '%'
+				ORDER BY LESSONNUM DESC
+			</if>
 		</where>
+		<if test="condition == 'nameOrder'">
+			ORDER BY LESSONTITLE ASC
+		</if>
+		<if test="condition == 'latestOrder'">
+			ORDER BY LESSONDATE DESC
+		</if>
 	</sql>
 
 	<!-- SELECT -->
@@ -29,7 +30,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					(
 						SELECT * FROM LESSON
 						<include refid="lessonCondition"></include>
-						ORDER BY LESSONNUM DESC
 					) C
 			)
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
@@ -47,20 +47,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<id column="LESSONNUM" property="lessonNum"/>
 		<result column="MEMBERID" property="memberId"/>
 		<result column="LESSONTITLE" property="lessonTitle"/>
+		<result column="LESSONTEACHER" property="lessonTeacher"/>
+		<result column="LESSONURL" property="lessonUrl"/>
 		<result column="LESSONCONTENTS" property="lessonContents"/>
 		<result column="LESSONHIT" property="lessonHit"/>
 		<result column="LESSONDATE" property="lessonDate"/>
-		<collection property="lessonImgDTOs" javaType="List" ofType="LessonImgDTO">
+		<association property="lessonImgDTOs" javaType="LessonImgDTO">
 			<id column="LESSONIMGNUM" property="lessonImgNum"/>
 			<result column="IMGNAME" property="imgName"/>
 			<result column="ORIGINALNAME" property="originalName"/>
-		</collection>
+		</association>
 	</resultMap>
-  	
-  	<select id="getLessonImgList" resultType="LessonImgDTO" parameterType="LessonDTO">
-  		SELECT * FROM LESSONIMG
-  		WHERE LESSONNUM = #{lessonNum}
-  	</select>
 	
 	<select id="getTotalCount" resultType="Long" parameterType="Pagination">
 		SELECT COUNT(LESSONNUM) FROM LESSON
@@ -73,7 +70,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			SELECT LESSON_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
 		INSERT INTO LESSON
-		VALUES(#{lessonNum}, #{memberId}, #{lessonTitle}, #{lessonContents}, 0, SYSDATE)
+		VALUES(#{lessonNum}, #{memberId}, #{lessonTitle}, #{lessonTeacher}, #{lessonUrl}, #{lessonContents}, 0, SYSDATE)
 	</insert>
 	
 	<insert id="setLessonImgAdd" parameterType="LessonImgDTO">
@@ -83,7 +80,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- UPDATE -->
 	<update id="setLessonUpdate" parameterType="LessonDTO">
-		UPDATE LESSON SET LESSONTITLE = #{lessonTitle}, LESSONCONTENTS = #{lessonContents}
+		UPDATE LESSON SET LESSONTITLE = #{lessonTitle}, LESSONTEACHER = #{lessonTeacher}, LESSONURL = #{lessonUrl}, LESSONCONTENTS = #{lessonContents}
 		WHERE LESSONNUM = #{lessonNum}
 	</update>
 	

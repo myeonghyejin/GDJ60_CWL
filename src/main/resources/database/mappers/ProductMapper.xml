@@ -6,6 +6,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.team.cwl.product.ProductDAO">
 
+	<!-- SQL -->
+  	<sql id="productCondition">
+    	<where>
+    		<if test="condition == 'productName'">
+    			PRODUCTNAME LIKE '%' || #{search} || '%'
+    			ORDER BY PRODUCTNUM DESC
+    		</if>
+		</where>
+		<if test="condition == 'lowPriceOrder'">
+			ORDER BY PRODUCTPRICE ASC
+		</if>
+		<if test="condition == 'highPriceOrder'">
+			ORDER BY PRODUCTPRICE DESC
+		</if>
+	</sql>
+
 	<!-- SELECT -->
   	<select id="getProductList" resultType="ProductDTO">
   		SELECT * FROM
@@ -13,8 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				SELECT ROWNUM R, C.* FROM
 					(
 						SELECT * FROM PRODUCT
-						WHERE PRODUCTNAME LIKE '%' || #{search} || '%'
-						ORDER BY PRODUCTNUM DESC
+						<include refid="productCondition"></include>
 					) C
 			)
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
@@ -51,6 +66,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getTotalCount" resultType="Long" parameterType="Pagination">
 		SELECT COUNT(PRODUCTNUM) FROM PRODUCT
+		<include refid="productCondition"></include>
 	</select>
 	
 	<!-- INSERT -->

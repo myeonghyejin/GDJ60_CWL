@@ -234,10 +234,23 @@
 			e.target.style.opacity = opacity;
     	}); 
     });
+    
+    /* 삭제 버튼 */
+    const d = document.getElementById("delete");
+
+	d.addEventListener("click", function(){
+		let check = window.confirm("삭제하시겠습니까?");
+		if(check) {
+			frm.setAttribute("action", "./delete");
+			frm.setAttribute("method", "post");
+			frm.submit();
+		}
+	})
 </script>
 	
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<c:import url="../template/common_js.jsp"></c:import>
+	<c:import url="../template/footer.jsp"></c:import>
 	<script src="/resources/js/product/qna.js"></script>
 	<script src="/resources/js/product/review.js"></script>
 </body>
