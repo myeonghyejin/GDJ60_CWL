@@ -1,17 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.team.cwl.chat.ChatDAO">
- 	<select id="getChatList" resultType="ChatDTO" parameterType="ChatDTO">
- 		SELECT C.* 
- 		FROM CHAT C 
- 		FULL OUTER JOIN MEMBER M
- 		ON (M.MEMBERID = C.SENDER)
- 		WHERE M.MEMBERID = C.SENDER
+
+	<select id="getChatContents" resultType="ChatDTO" parameterType="ChatDTO">
+ 		SELECT * FROM CHAT 
+  		WHERE M1 = #{m1} AND M2 = #{m2} OR M1 = #{m2} AND M2 =#{m1}
+	</select>
+
+ 	<update id="setChatContents">
+ 		UPDATE CHAT SET MESSAGECONTENTS = #{messageContents}
+   		WHERE ROOMNUM = #{roomNum} AND (M1 = #{m1} AND M2 = #{m2} OR M1 = #{m2} AND M2 = #{m1})
+ 	</update>
+ 	
+ 	<select id="getChatRoomNum" resultType="Long">
+ 		SELECT CHAT_SEQ.NEXTVAL FROM DUAL
+ 	</select>
+
+ 	<insert id="setChatRoom" parameterType="ChatDTO">
+ 		INSERT INTO CHAT (ROOMNUM ,M1 ,M2, MESSAGECONTENTS)
+ 		VALUES (#{roomNum} , #{m1}, #{m2}, #{messageContents} )
+ 	</insert>
+ 	
+ 	<select id="">
+ 		SELECT ROOMNUM FROM CHAT
+ 		WHERE 
+ 		
+ 	
  	</select>
  	
- 	<insert id="setChatAdd" parameterType="ChatDTO">
- 		INSERT INTO CHAT (CHATNUM ,SENDER, MESSAGE)
- 		VALUES (CHAT_SEQ.NEXTVAL , #{sender}, #{message})
- 	</insert>
-
 </mapper>

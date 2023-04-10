@@ -22,31 +22,43 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.team.cwl.member.MemberDTO;
 import com.team.cwl.member.MemberMapper;
+import com.team.cwl.member.MemberService;
 import com.team.cwl.member.MemberServiceImpl;
 
 public class ChatHandler extends TextWebSocketHandler{
 //	List<WebSocketSession> sessionList=new ArrayList<WebSocketSession>();
 //	List <WebSocketSession> my = new ArrayList<WebSocketSession>();
-//	Map<String, WebSocketSession> map = new HashMap<String, WebSocketSession>();
     private Map<String, WebSocketSession> maps = new HashMap<String, WebSocketSession>();
-    //private Map<String, List<WebSocketSession>> personal = new HashMap<String, List<WebSocketSession>>();
-	private Map<Set<String>, StringBuffer> personal = new HashMap<Set<String>, StringBuffer>();
+    private Map<MemberDTO, WebSocketSession> mw = new HashMap<MemberDTO, WebSocketSession>();
+
+//	private Map<Set<String>, StringBuffer> personal = new HashMap<Set<String>, StringBuffer>();
+    private Map<String, Map<String, Long>> idChatInfo = new HashMap<String, Map<String,Long>>();
+    private Map<Long, JsonArray> messages = new HashMap<Long, JsonArray>();
+	
+	@Autowired
+	private MemberService memberService;
+	@Autowired
+	private ChatDAO chatDAO;
+	@Autowired
+	private ChatService chatService;
 	
 	//소켓 연결 
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+		
 		System.out.println("소켓 연결됨 : " + session);
 		MemberDTO memberDTO=(MemberDTO)session.getAttributes().get("member");
 		System.out.println("채팅 로그인 : "+memberDTO.getMemberId());
 		maps.put(memberDTO.getMemberId(), session);
-			
+		mw.put(memberDTO, session);
 
-
+		idChatInfo.put(memberDTO.getMemberId(), new HashMap<String, Long>());
 		
 	}
 	
@@ -56,8 +68,51 @@ public class ChatHandler extends TextWebSocketHandler{
 		System.out.println("소켓 종료 :" + session.getId());
 		MemberDTO memberDTO = (MemberDTO) session.getAttributes().get("member");
         String memberId = memberDTO.getMemberId();
-		
+        
+        
+        //내 아이디로 value(map) 가져오기 
+        Map<String, Long> m2 = idChatInfo.get(memberId);
+        
+        //꺼낸 value로 key(String)가져오기 
+        Iterator<String> it =m2.keySet().iterator();
+        
+        
+        
+        while(it.hasNext()) {
+        	
+        	// b c 
+        	// b : 1
+        	// c : 2
+        	//m2의키 가져오기 =it
+        	// 값이 m2.get(it.next())인
+        	ChatDTO chatDTO = new ChatDTO();
+        	
+        	chatDTO.setM1(memberId);
+        	chatDTO.setM2(it.next());
+        	chatDTO.setRoomNum(m2.get(chatDTO.getM2()));
+        	chatDTO.setMessageContents(messages.get(chatDTO.getRoomNum()).toString());
+        	
+        	System.out.println("내 아디 : "+chatDTO.getM1() + "/ 상대방  : "+ chatDTO.getM2() + "/ 방번호 : "+ chatDTO.getRoomNum() + "/ 메세지 내용 : " + chatDTO.getMessageContents());
+        	
+            if(chatService.getChatContents(chatDTO)==null) {
+            	//채팅 내용 인서트 
+            	System.out.println("채팅 내용 인서트 ");
+            	chatService.setChatRoom(chatDTO);
+
+            }else {
+            	System.out.println("채팅 내용 업데이트");
+            	//업데이트 
+            	chatService.setChatContents(chatDTO);
+				
+			}
+				
+            
+
+        }
+        
+        
 		maps.remove(memberId);
+		mw.remove(memberDTO);
 	    //personal.remove(memberId);
 
 		//super.afterConnectionClosed(session, status);
@@ -74,108 +129,195 @@ public class ChatHandler extends TextWebSocketHandler{
 		System.out.println(messageDTO.getType());
 		MemberDTO memberDTO=(MemberDTO)session.getAttributes().get("member");
         String memberId = memberDTO.getMemberId();
-        System.out.println(memberDTO);
-        
-        // 친구 목록 뜨게 list 전송
-		if(messageDTO.getType().equals("list")) {
-			Gson gson = new Gson();
-			JsonObject jsonObject = new JsonObject();
-			jsonObject.addProperty("type", "list");
-			jsonObject.add("value",gson.toJsonTree(maps.keySet().toArray()));
-			System.out.println(memberDTO.getMemberSI());
-			if(memberDTO.getMemberSI() == null ) {
-				// 회원 정보가 세션에 없는 경우, DB에서 가져와서 세션에 설정
-				MemberServiceImpl impl = new MemberServiceImpl();
-			    MemberDTO member = impl.getMemberInfo(memberId); // DAO를 사용하여 회원 정보를 가져옴
-			    System.out.println(impl.getMemberInfo(memberId));
-			    if(member != null) {
-			    memberDTO.setMemberSI(member.getMemberSI()); // 가져온 회원 정보에서 memberSI 값을 가져와 세션에 설정
-			    System.out.println(member.getMemberSI());
-			    jsonObject.addProperty("intro", memberDTO.getMemberSI()); // 세션에 회원 정보를 설정
-			    }
-			}else {
-				jsonObject.addProperty("intro",memberDTO.getMemberSI());
-			}
-			String jsonStr = jsonObject.toString();
-			session.sendMessage(new TextMessage(jsonStr));
-			return;
-		}
+//        String memberSI = memberDTO.getMemberSI();
 
-        // 채팅했던 친구 목록 뜨게 list 전송
-		if(messageDTO.getType().equals("list-2nd")) {
-			Gson gson = new Gson();
-			JsonObject jsonObject = new JsonObject();
-			jsonObject.addProperty("type", "list-2nd");
-			jsonObject.add("value",gson.toJsonTree(maps.keySet().toArray()));
-			String jsonStr = jsonObject.toString();
-			session.sendMessage(new TextMessage(jsonStr));
-			return;
-		}
-		
-	    // 1:1 채팅 초대 invite 요청 
+        
+        //type이 list일때 친구목록 띄우는 메서드 출력 
+        if(messageDTO.getType().equals("list")) {
+        	makeList(session, memberDTO);
+        }
+        
+        //type이 msg일때 메세지 보내는 메서드 출력  
+        if(messageDTO.getType().equals("msg")) {
+        	makeMessage(messageDTO, memberDTO);
+        }
+        
+	
+	    //type이 invite일때 세션에 추가하는 메서드 출력   
 		if(messageDTO.getType().equals("invite")){
 			System.out.println("invite 요청됨");
-			invite(messageDTO, memberId, session);
-			
+			invite(messageDTO, memberDTO.getMemberId(), session);
 		}
 		
-		if(messageDTO.getType().equals("msg")){
-			System.out.println("msg");
-//			
-			Set<String> ids = new HashSet<String>();
-			ids.add(messageDTO.getReceiveId());
-			ids.add(memberId);
+		
+	}
+	
+	// 1:1 채팅 초대 요청 처리
+	private Long invite(MessageDTO messageDTO, String host, WebSocketSession session) throws Exception {
+	   ChatDTO chatDTO = new ChatDTO();
+	   WebSocketSession invitedSession = maps.get(messageDTO.getReceiveId());//초대된 session
+	        System.out.println("초대된 세션 : "+invitedSession);
+	        long roomNum = 0;
+	        
+	        if(invitedSession != null){
+	        	
+	        	//Map<String, Map<String, Long>> idChatInfo 
+	        	
+	            //host(memberId)가 키인 벨류(맵)을 꺼내와서 myInfo 라고 지정하고 
+	            Map<String, Long> myInfo = idChatInfo.get(host);
+
+	            //messageDTO.getReceivedId가 키인 벨류(맵)을 꺼내와서 receive라고 지정하고 
+	            Map<String, Long> receive = idChatInfo.get(messageDTO.getReceiveId());
+	            
+	            if(receive != null) {
+	            	
+	            	//receive의 키가 host(memberId)로 된 map이 있는지 확인 
+	            	boolean check = receive.containsKey(host);
+	            	
+	            	//없으면 
+	            	if(!check) {
+	            		//넣어주기 
+	            		chatDTO.setM1(host);
+	            		chatDTO.setM2(messageDTO.getReceiveId());
+	            		System.out.println("Service ");
+	            		ChatDTO chatMsg = chatService.getChatContents(chatDTO);
+	            		System.out.println("chatMSG:"+chatMsg);
+	            		if(chatMsg==null) {
+	            			roomNum = chatService.getChatRoomNum();
+	            			System.out.println("DB생성 방 번호 : "+roomNum);
+	            			receive.put(host, roomNum);
+	            			myInfo.put(messageDTO.getReceiveId(), roomNum);
+	            			messages.put(roomNum, new JsonArray());
+	            			
+	            		}else{
+	            			roomNum= chatMsg.getRoomNum();
+	            			receive.put(host,chatMsg.getRoomNum());
+	            			myInfo.put(messageDTO.getReceiveId(), chatMsg.getRoomNum());
+	            			Gson g = new Gson();
+	            			JsonParser jp = new JsonParser();
+	            			JsonElement element = jp.parse(chatMsg.getMessageContents());
+	            			messages.put(chatMsg.getRoomNum(), element.getAsJsonArray());
+	            			System.out.println("element : " +element.getAsJsonArray());
+	            			chatDTO.setRoomNum(roomNum);
+	                    	chatDTO.setMessageContents(messages.get(chatDTO.getRoomNum()).toString());
+	                    	
+	            		}
+	            		
+	            	}else {
+						roomNum = idChatInfo.get(messageDTO.getReceiveId()).get(host);
+					}
+	            }
+	            
+	          }
+	        JsonObject jsonObject = new JsonObject();
+	        
+	        if(roomNum==0) {
+	        	jsonObject.addProperty("type", "msg");
+	        	jsonObject.addProperty("value", "상대를 찾을수 없습니다. 새로고침을 해보세요 ");
+	    		jsonObject.addProperty("sendTime", Calendar.getInstance().getTimeInMillis());
+
+	        	session.sendMessage(new TextMessage(jsonObject.toString()));
+	        	
+	        	
+	        	return roomNum;
+	        }else {
+	        	
+	        	System.out.println("invite : "+ host + " / receive :"+ messageDTO.getReceiveId()+" / roomNum : " +roomNum );
+	        	JsonArray msgs = messages.get(roomNum);
+	        	jsonObject.addProperty("type", "invite");
+	        	jsonObject.add("value", new Gson().toJsonTree(msgs));
+	        	
+	        	session.sendMessage(new TextMessage(jsonObject.toString()));
+	        	
+	        	return roomNum;
+	        	
+	        }
+	       
+	}
+	
+	private void makeList(WebSocketSession session, MemberDTO memberDTO) throws Exception {
+	    //private Map<MemberDTO, WebSocketSession> mw = new HashMap<MemberDTO, WebSocketSession>();
+	
+		// 친구 목록 뜨게 list 전송
+		Gson gson = new Gson();
+		JsonObject jsonObject = new JsonObject();		
+		
+		
+		jsonObject.addProperty("type", "list");
+//		jsonObject.add("value", gson.toJsonTree(mw.keySet().toArray()));
+		List<String> members = new ArrayList<String>();
+		for(MemberDTO member : mw.keySet()) {
+		    members.add(member.getMemberId());
+		    members.add(member.getMemberSI());
+		}
+		jsonObject.add("value", gson.toJsonTree(members.toArray()));
+		System.out.println(gson.toJsonTree(members.toArray()));
+//	    
+//	    // "intro" 속성을 만드는 부분 수정
+//	    JsonArray introArray = new JsonArray();
+//	    introArray.add(memberDTO.getMemberId());
+//	    introArray.add(memberDTO.getMemberSI());
+//	    jsonObject.add("intro", introArray);
+//
+
+		
+		System.out.println( "member DTO : "+memberDTO);
+
+		String jsonStr = jsonObject.toString();
+		session.sendMessage(new TextMessage(jsonStr));
+
+	}
+	
+	
+	private String makeMessage(MessageDTO messageDTO, MemberDTO memberDTO) throws Exception {
+		System.out.println("msg");
+		
+		JsonObject jsonObject = new JsonObject();
+		jsonObject.addProperty("type", "msg");
+		jsonObject.addProperty("senderId",memberDTO.getMemberId());
+		jsonObject.addProperty("receiveId",messageDTO.getReceiveId());
+		jsonObject.addProperty("sendTime", Calendar.getInstance().getTimeInMillis());
+		
+		
+		if(maps.get(messageDTO.getReceiveId())==null){
+			System.out.println("채팅상대가 나갔습니다.");
 			
-			JsonObject jsonObject = new JsonObject();
-			jsonObject.addProperty("type", "msg");
+			jsonObject.addProperty("value", "**채팅상대가 온라인중이 아닙니다**");
+			String jsonStr = jsonObject.toString();
+
+			maps.get(memberDTO.getMemberId()).sendMessage(new TextMessage(jsonStr));
+
+			return jsonStr;
+
+		}else {
 			jsonObject.addProperty("value", messageDTO.getValue());
-			jsonObject.addProperty("senderId",memberDTO.getMemberId());
-			jsonObject.addProperty("sendTime", Calendar.getInstance().getTimeInMillis());
-			
+			System.out.println("json object: "+ jsonObject.toString());
+			Long roomNum = idChatInfo.get(memberDTO.getMemberId()).get(messageDTO.getReceiveId());
+			System.out.println(roomNum);
+
+			if(roomNum==null) {
+				roomNum = idChatInfo.get(messageDTO.getReceiveId()).get(memberDTO.getMemberId());
+
+
+			}
+			System.out.println(roomNum);
+			messages.get(roomNum).add(jsonObject);
+			System.out.println("messageList : " + messages.get(roomNum).toString());
 			
 			String jsonStr = jsonObject.toString();
 			System.out.println(jsonStr);
 			
 			maps.get(messageDTO.getReceiveId()).sendMessage(new TextMessage(jsonStr));
+			maps.get(memberDTO.getMemberId()).sendMessage(new TextMessage(jsonStr));
+			
+			return jsonStr;
 		}
 		
 		
-//전체 메세지 전송 
-//		Iterator<String> keys = maps.keySet().iterator();
-//		while(keys.hasNext()){
-//			String key = keys.next();
-//			System.out.println(String.format("키 : %s, 값 : %s", key, maps.get(key)));
-//			WebSocketSession webSocketSession = maps.get(key);
-//			webSocketSession.sendMessage(new TextMessage(memberDTO.getMemberId()+":"+strMessage));
-//			}
-	
-	}//보내는 메서드 끝 
-	
-	// 1:1 채팅 초대 요청 처리
-	private void invite(MessageDTO messageDTO,String host, WebSocketSession session) throws Exception {
-	      
-	   WebSocketSession invitedSession = maps.get(messageDTO.getValue());//초대된 session
-	        System.out.println("초대된 세션 : "+invitedSession);
-	        if(invitedSession != null){
-	            List<WebSocketSession> personalSessions = new ArrayList<WebSocketSession>();
-	            personalSessions.add(invitedSession);
-	            personalSessions.add(session);//자기 session
-	            
-	            Set<String> ids = new HashSet<String>();
-	            ids.add(messageDTO.getValue());
-	            ids.add(host);
-	            System.out.println("1:1 요청 : "+ids);
-	            
-	            
-	            if(!personal.containsKey(ids)) {
-	            	personal.put(ids, new StringBuffer());	            	
-	            }
-
-	          }
-	            
-	    
 	}
-
+	
+	
+	
 }
 
 		
