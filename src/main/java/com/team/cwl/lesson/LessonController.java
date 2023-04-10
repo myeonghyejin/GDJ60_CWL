@@ -58,11 +58,11 @@ public class LessonController {
 	
 	//DB에 Insert
 	@PostMapping("add")
-	public ModelAndView setLessonAdd(LessonDTO lessonDTO, MultipartFile multipartFile, HttpSession session, ModelAndView modelAndView) throws Exception {
+	public ModelAndView setLessonAdd(LessonDTO lessonDTO, MultipartFile img, HttpSession session, ModelAndView modelAndView) throws Exception {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		lessonDTO.setMemberId(memberDTO.getMemberId());
 		
-		int result = lessonService.setLessonAdd(lessonDTO, multipartFile, session);
+		int result = lessonService.setLessonAdd(lessonDTO, img, session);
 		
 		String message = "등록에 실패했습니다.";
 		
@@ -94,8 +94,8 @@ public class LessonController {
 	
 	//DB에 Insert
 	@PostMapping("update")
-	public ModelAndView setLessonUpdate(LessonDTO lessonDTO, MultipartFile multipartFile, HttpSession session, Long imgNum, ModelAndView modelAndView) throws Exception {
-		int result = lessonService.setLessonUpdate(lessonDTO, multipartFile, session, imgNum);
+	public ModelAndView setLessonUpdate(LessonDTO lessonDTO, MultipartFile img, HttpSession session, Long imgNum, ModelAndView modelAndView) throws Exception {
+		int result = lessonService.setLessonUpdate(lessonDTO, img, session, imgNum);
 		
 		String message = "수정에 실패했습니다.";
 		

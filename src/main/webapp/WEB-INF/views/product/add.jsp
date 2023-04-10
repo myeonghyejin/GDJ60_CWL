@@ -9,6 +9,8 @@
 	<%@ include file="../common/sessionCheck.jsp" %>
 	<c:import url="../template/common_css.jsp"></c:import>
 	<link rel="stylesheet" href="/resources/css/common/style.css">
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
@@ -17,9 +19,8 @@
 		<div class="row mx-auto text-center border-bottom border-dark pb-2">
 			<p class="fs-2" style="font-family: 'Impact'">PRODUCT</p>
 		</div>
-		
 		<!-- Contents -->
-		<form action="./add" method="post" enctype="multipart/form-data">
+		<form action="./add" method="post" enctype="multipart/form-data" id="frm">
 			<input type="hidden" name="memberId" value="${member.memberId}">
 			<div class="row col-8 mx-auto my-5">
 				<div class="fw-bold fs-5 col-12">
@@ -42,7 +43,7 @@
 					<h5><b>제품 사진</b></h5>
 					<h6>최소 1장, 최대 5장까지 등록 가능합니다.</h6>
 					<div class="fw-bold fs-5 col-12 mt-3 input-group">
-						<input type="file" class="form-control" name="imgs" id="imgs">
+						<input type="file" class="form-control img" name="imgs">
 						<button type="button" class="btn btn-outline-primary btn-image" id="imgAdd">+</button>
 					</div>	
 				</div>
@@ -57,23 +58,20 @@
 					</div>
 				</div>
 				<div class="row justify-content-center my-5">
-					<button type="submit" id="submit" class="btn btn-primary btn-sm btn-default">등록</button>
+					<button type="button" id="productConfirm" class="btn btn-primary btn-sm btn-default">등록</button>
 				</div>
 			</div>
 	   </form>
 	</div>
-	<script src="../resources/js/common/fileManager.js"></script>
 	<c:import url="../template/common_js.jsp"></c:import>
 	<c:import url="../template/footer.jsp"></c:import>
+	<script src="/resources/js/common/fileManager.js"></script>
+	<script src="/resources/js/common/confirm.js"></script>
 	<script>
+		$('#productDetail').summernote();
 		setMax(4);
 		setCount('${DTO.productImgDTOs.size()}');
-		setParam("imgs");
-
-		if(!$('#imgs').val()) {
-			alert("최소 1장 이상의 이미지를 등록해야 합니다.")
-			return;
-    	}
+		setParam('imgs');
 	</script>
 </body>
 </html>

@@ -1,8 +1,8 @@
 const imgList = document.getElementById("imgList");
 
 let count = 0;
-let max = 4;
-let param = 'imgs';
+let max = 1;
+let param = 'multipartFiles';
 let idx = 1;
 
 function setCount(c){

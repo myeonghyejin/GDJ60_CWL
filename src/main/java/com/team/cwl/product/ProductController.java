@@ -58,12 +58,12 @@ public class ProductController {
 	
 	//DB에 Insert
 	@PostMapping("add")
-	public ModelAndView setProductAdd(ProductDTO productDTO, MultipartFile [] imgs, HttpSession session, ModelAndView modelAndView) throws Exception {
+	public ModelAndView setProductAdd(ProductDTO productDTO, MultipartFile [] multipartFiles, HttpSession session, ModelAndView modelAndView) throws Exception {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		
 		productDTO.setMemberId(memberDTO.getMemberId());
 		
-		int result = productService.setProductAdd(productDTO, imgs, session);
+		int result = productService.setProductAdd(productDTO, multipartFiles, session);
 		
 		String message = "등록에 실패했습니다.";
 		

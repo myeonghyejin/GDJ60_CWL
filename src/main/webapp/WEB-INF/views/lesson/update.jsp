@@ -18,7 +18,7 @@
 			<p class="fs-2" style="font-family: 'Impact'">LESSON</p>
 		</div>
 		<!-- Contents -->
-		<form action="./update" method="post" enctype="multipart/form-data">
+		<form action="./update" method="post" enctype="multipart/form-data" id="frm">
 			<input type="hidden" name="memberId" value="${member.memberId}">
 			<input type="hidden" name="lessonNum" value="${DTO.lessonNum}">
 			<div class="row col-8 mx-auto my-5">
@@ -41,16 +41,17 @@
 				<div id="imgList">
 					<h5><b>썸네일</b></h5>
 					<div class="fw-bold fs-5 col-12 mt-3 input-group">
-						<input type="file" class="form-control" name="multipartFile" id="multipartFile">
+						<input type="file" class="form-control" name="img" id="img" value="img">
 					</div>	
 				</div>
 				<div class="row justify-content-center my-5">
-					<button type="submit" id="submit" class="btn btn-primary btn-sm btn-default">등록</button>
+					<button type="button" id="lessonConfirm" class="btn btn-primary btn-sm btn-default">등록</button>
 				</div>
 			</div>
 	   </form>
 	</div>
 	<c:import url="../template/common_js.jsp"></c:import>
 	<c:import url="../template/footer.jsp"></c:import>
+	<script src="/resources/js/common/confirm.js"></script>
 </body>
 </html>

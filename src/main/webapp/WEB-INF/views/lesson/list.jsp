@@ -22,10 +22,8 @@
 		<div class="col-11">
 			<form action="./list" method="get" class="row mx-5 my-5 justify-content-center">
 				<input type="hidden" name="page" value="1" id="page">
-				<button class="btn btn-primary btn-sm btn-category mx-1">별점순</button>
-				<button class="btn btn-primary btn-sm btn-category mx-1">후기 많은순</button>
-				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="">높은 가격순</button>
-				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="">낮은 가격순</button>
+				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="nameOrder">이름순</button>
+				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="latestOrder">최신순</button>
 			</form>
 		</div>
 		<div class="col-11">
@@ -64,33 +62,6 @@
 					</div>
 				</c:forEach>
 			</div>
-		</div>
-
-		<div class="row col-8 mx-auto my-5">
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>NUM</th>
-						<th>TITLE</th>
-						<th>WRITER</th>
-						<th>DATE</th>
-						<th>HIT</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${list}" var="DTO">
-						<tr>
-							<td>${DTO.lessonNum}</td>
-							<td>
-								<a href="./detail?lessonNum=${DTO.lessonNum}">${DTO.lessonTitle}</a>
-							</td>
-							<td>${DTO.memberId}</td>
-							<td>${DTO.lessonDate}</td>
-							<td>${DTO.lessonHit}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
 		</div>
 			
 		<!-- Paging -->

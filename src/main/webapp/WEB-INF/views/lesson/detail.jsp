@@ -19,9 +19,6 @@
 					<div class="row">
 						<p class="fs-4 fw-bold text-center border-bottom border-dark pb-4">${DTO.lessonTitle}</p>
 					</div>
-					<div class="row my-4 mx-auto text-center">
-						<p class="fs-6"><b>글 번호</b>&ensp;${DTO.lessonNum}&emsp;<b>작성자</b>&ensp;${DTO.memberId}&emsp;<b>날짜</b>&ensp;${DTO.lessonDate}&emsp;<b>조회수</b>&ensp;${DTO.lessonHit+1}</p>
-					</div>
 					<div class="row col-6 my-4 justify-content-center mx-auto">
 						<p class="fs-4">${DTO.lessonContents}</p>
 					</div>

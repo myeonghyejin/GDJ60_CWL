@@ -19,7 +19,7 @@
 		</div>
 		
 		<!-- Contents -->
-		<form action="./update" method="post" enctype="multipart/form-data">
+		<form action="./update" method="post" enctype="multipart/form-data" id="frm">
 			<input type="hidden" name="memberId" value="${member.memberId}">
 			<input type="hidden" name="productNum" value="${DTO.productNum}">
 			<div class="row col-8 mx-auto my-5">
@@ -60,7 +60,7 @@
 					</div>
 				</div>
 				<div class="row justify-content-center my-5">
-					<button type="submit" id="submit" class="btn btn-primary btn-sm btn-default">등록</button>
+					<button type="button" id="productConfirm" class="btn btn-primary btn-sm btn-default">등록</button>
 				</div>
 			</div>
 	   </form>
@@ -77,5 +77,6 @@
 	</script>
 	<c:import url="../template/common_js.jsp"></c:import>
 	<c:import url="../template/footer.jsp"></c:import>
+	<script src="/resources/js/common/confirm.js"></script>
 </body>
 </html>
