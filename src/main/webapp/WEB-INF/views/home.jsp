@@ -7,6 +7,7 @@
 	<title>홈</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<c:import url="./template/common_css.jsp"></c:import>
+	<link rel="stylesheet" href="/resources/css/common/style.css">
 </head>
 <body>
 	<!-- 서버 내부 주소, 상대경로 -->
@@ -15,4 +16,5 @@
 	
 	<c:import url="./template/common_js.jsp"></c:import>
 </body>
+<c:import url="./template/footer.jsp"></c:import>
 </html>

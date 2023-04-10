@@ -14,12 +14,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  		(
 		  			SELECT * FROM BOARDCOMMENT 
 		  			WHERE BOARDNUM = #{boardNum}
-		  			ORDER BY BOARDCOMMENTDATE DESC
+		  			ORDER BY BOARDCOMMENTDATE ASC
 		  		) C
 		  	
 		)
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
   	</select>
+  	
+  	<select id="getBoardCommentDetail" resultType="BoardCommentDTO" parameterType="BoardCommentDTO">
+		SELECT * FROM BOARDCOMMENT
+  		WHERE BOARDCOMMENTNUM = #{boardCommentNum}
+	</select>
 	
 	<select id="getTotalCount" resultType="Long" parameterType="Pagination">
 		SELECT COUNT(BOARDCOMMENTNUM) FROM BOARDCOMMENT
@@ -32,13 +37,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   			SELECT BOARDCOMMENT_SEQ.NEXTVAL FROM DUAL
   		</selectKey>
 		INSERT INTO BOARDCOMMENT
-		VALUES (#{boardCommentNum}, #{boardNum}, #{memberId}, #{boardCommentContents}, SYSDATE)
+		VALUES (#{boardCommentNum}, #{boardNum}, #{memberId}, #{boardCommentContents}, SYSDATE, #{boardCommentNum}, 0, 0)
+	</insert>
+	
+	<insert id="setBoardCommentReplyAdd" parameterType="BoardCommentDTO">
+		INSERT INTO BOARDCOMMENT
+		VALUES (BOARDCOMMENT_SEQ.NEXTVAL, #{boardNum}, #{memberId}, #{boardCommentContents}, SYSDATE, #{boardCommentRef}, #{boardCommentStep}, #{boardCommentDepth})
 	</insert>
 	
 	<!-- UPDATE -->
 	<update id="setBoardCommentUpdate" parameterType="BoardCommentDTO">
 		UPDATE BOARDCOMMENT SET BOARDCOMMENTCONTENTS = #{boardCommentContents}
 		WHERE BOARDCOMMENTNUM = #{boardCommentNum}
+	</update>
+	
+	<update id="setStepUpdate" parameterType="BoardCommentDTO">
+		UPDATE BOARDCOMMENT SET BOARDCOMMENTSTEP = BOARDCOMMENTSTEP + 1
+		WHERE BOARDCOMMENTREF = #{boardCommentRef} AND BOARDCOMMENTSTEP > #{boardCommentStep}
 	</update>
 	
 	<!-- DELETE -->

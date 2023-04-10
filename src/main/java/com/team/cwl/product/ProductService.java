@@ -57,7 +57,6 @@ public class ProductService {
 		System.out.println(realPath);
 		
 		for(MultipartFile multipartFile : multipartFiles) {
-			
 			if(multipartFile.isEmpty()) {
 				continue;
 			}
@@ -87,6 +86,10 @@ public class ProductService {
 		String realPath = session.getServletContext().getRealPath("resources/upload/product/");
 
 		for(MultipartFile multipartFile : multipartFiles) {
+			if(multipartFile.isEmpty()) {
+				continue;
+			}
+			
 			String imgName = fileManager.fileSave(multipartFile, realPath);
 
 			ProductImgDTO productImgDTO = new ProductImgDTO();

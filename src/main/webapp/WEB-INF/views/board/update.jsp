@@ -19,9 +19,9 @@
 		<div class="row mx-auto text-center border-bottom border-dark pb-2">
 			<p class="fs-2" style="font-family: 'Impact'">FREE BOARD</p>
 		</div>
-
+		
 		<!-- Contents -->
-		<form action="./update" method = "post">
+		<form action="./update" method="post" id="frm">
 			<input type="hidden" name="memberId" value="${member.memberId}">
 			<input type="hidden" name="boardNum" value="${DTO.boardNum}">
 			<div class="row col-8 mx-auto my-5">
@@ -35,7 +35,7 @@
 				</div>
 	
 				<div class="row justify-content-center my-5">
-					<button type="submit" class="btn btn-primary col-2">글쓰기</button>
+					<button type="button" id="boardConfirm" class="btn btn-primary btn-sm btn-default">작성</button>
 				</div>
 			</div>
 	   </form>
@@ -44,5 +44,7 @@
 		$('#boardContents').summernote();
 	</script>
 	<c:import url="../template/common_js.jsp"></c:import>
+	<c:import url="../template/footer.jsp"></c:import>
+	<script src="/resources/js/common/confirm.js"></script>
 </body>
 </html>

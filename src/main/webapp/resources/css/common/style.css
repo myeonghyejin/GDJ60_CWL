@@ -23,6 +23,14 @@ a {
     background-color: yellow;
 }
 
+/* ------- youtube -------- */
+#youtube {
+    background-color: #fff;
+	padding: 20px;
+	border: 1px solid #eee;
+	border-radius: 4px;
+}
+
 /* ------- button -------- */
 .btn-primary {
     color: #fff;
@@ -71,9 +79,14 @@ a {
 /* ------- search -------- */
 #search {
     height: 31px;
+    width: 150px;
 }
 
-/* ------- reply -------- */
+#condition {
+    height: 31px;
+    font-size: 14px;
+    line-height: 16.5px;
+}
 
 /* ------- table-striped -------- */
 .table-striped>tbody>tr:nth-child(odd)>td, 
@@ -102,4 +115,44 @@ a {
     background: #343DDB;
     color: #fff;
     border-color: #343DDB;
+}
+
+/* ------- imgList -------- */
+#imgList h6 {
+    color: #999999;
+}
+
+.btn-image {
+    width: 50px;
+}
+
+/* ------- badge -------- */
+#me {
+    background-color: #343DDB;
+    color: #fff;
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+    border-radius: 50%;
+    display: inline-block;
+    margin-top: 12.5px;
+}
+
+#re {
+    background-color: #343DDB;
+    color: #fff;
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+    border-radius: 50%;
+    display: inline-block;
+    margin-top: 12.5px;
+}
+
+#re2 {
+    color: #343DDB;
+    height: 25px;
+    vertical-align: middle;
+    display: inline-block;
+    margin-top: 12.5px;
 }

@@ -20,16 +20,20 @@
 		</div>
 		
 		<!-- 검색창 -->
-		<div class="row mx-5 mt-5 justify-content-center">
-			<button class="btn btn-primary btn-sm btn-category mx-1">별점순</button>
-			<button class="btn btn-primary btn-sm btn-category mx-1">후기 많은순</button>
-			<button class="btn btn-primary btn-sm btn-category mx-1">높은 가격순</button>
-			<button class="btn btn-primary btn-sm btn-category mx-1">낮은 가격순</button>
+		<div class="col-11 mx-auto">
+			<form action="./list" method="get" class="row mx-5 my-5 justify-content-center">
+				<input type="hidden" name="page" value="1" id="page">
+				<button class="btn btn-primary btn-sm btn-category mx-1">별점순</button>
+				<button class="btn btn-primary btn-sm btn-category mx-1">후기 많은순</button>
+				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="highPriceOrder">높은 가격순</button>
+				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="lowPriceOrder">낮은 가격순</button>
+			</form>
 		</div>
 		<div class="col-11">
 			<form action="./list" method="get" class="row justify-content-end mx-auto g-3" id="searchForm">
-			<input type="hidden" name="page" value="1" id="page">
+				<input type="hidden" name="page" value="1" id="page">
 				<div class="col-auto">
+					<input type="hidden" name="condition" id="condition" value="productName">
 					<label for="search" class="visually-hidden">Search</label>
 					<input type="text" class="form-control" value="${pagination.search}" name="search" id="search" placeholder="">
 				</div>
@@ -71,14 +75,16 @@
 										</c:forEach>
 									</div>
 								</div>
-								<div class="overlay-box">
-									<div class="overlay-inner">
-										<a class="overlay-content" href="./detail?productNum=${DTO.productNum}"">
-											<h5 class="mb-0">${DTO.productName}</h5>
-											<p>${DTO.productPrice}</p>
-										</a>
+								<a href="./detail?productNum=${DTO.productNum}">
+									<div class="overlay-box">
+										<div class="overlay-inner">
+											<div class="overlay-content">
+												<h5 class="mb-0">${DTO.productName}</h5>
+												<p>${DTO.productPrice}</p>
+											</div>
+										</div>
 									</div>
-								</div>
+								</a>
 							</div> 
 						</div>
 					</div>
@@ -120,7 +126,7 @@
 		<!-- 상품 등록 버튼 -->
 	 	<c:if test="${not empty member}">
 			<c:if test="${member.adminCheck eq 1}">
-				<div class="row justify-content-center mx-auto">
+				<div class="row justify-content-center mx-auto my-3">
 					<a href=./add class="btn btn-primary btn-sm btn-default">등록</a>
 				</div>
 			</c:if>
@@ -128,6 +134,7 @@
 
 </div>
 	<c:import url="../template/common_js.jsp"></c:import>
+	<c:import url="../template/footer.jsp"></c:import>
 	<script src="../resources/js/common/paging.js"></script>
 </body>
 </html>

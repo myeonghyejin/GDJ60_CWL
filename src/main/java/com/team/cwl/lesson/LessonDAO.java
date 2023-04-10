@@ -25,10 +25,6 @@ public class LessonDAO {
 	public LessonDTO getLessonDetail(LessonDTO lessonDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"getLessonDetail", lessonDTO);
 	}
-	
-	public List<LessonImgDTO> getLessonImgList(LessonDTO lessonDTO) throws Exception {
-		return sqlSession.selectList(NAMESPACE+"getLessonImgList", lessonDTO);
-	}
 
 	public Long getTotalCount(Pagination pagination) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"getTotalCount", pagination);

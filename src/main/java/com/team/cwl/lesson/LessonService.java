@@ -1,5 +1,6 @@
 package com.team.cwl.lesson;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.team.cwl.product.ProductDTO;
 import com.team.cwl.util.FileManager;
 import com.team.cwl.util.Pagination;
 
@@ -27,7 +29,19 @@ public class LessonService {
 		pagination.makeRow();
 		pagination.makeNum(lessonDAO.getTotalCount(pagination));
 		
-		return lessonDAO.getLessonList(pagination);
+		List<LessonDTO> ar = lessonDAO.getLessonList(pagination);
+		ArrayList<LessonDTO> ar2 = new ArrayList<LessonDTO>();
+		
+		for(LessonDTO lessonDTO: ar) {
+			lessonDTO = lessonDAO.getLessonDetail(lessonDTO);
+			ar2.add(lessonDTO);
+		}
+		
+		if(lessonDAO.getTotalCount(pagination) == 0) {
+			pagination.setLastNum(1L);
+		}
+		
+		return ar2;
 	}
 
 	public LessonDTO getLessonDetail(LessonDTO lessonDTO) throws Exception {
@@ -35,18 +49,14 @@ public class LessonService {
 	}
 
 	/** INSERT **/
-	public int setLessonAdd(LessonDTO lessonDTO, MultipartFile [] multipartFiles, HttpSession session) throws Exception {
+	public int setLessonAdd(LessonDTO lessonDTO, MultipartFile multipartFile, HttpSession session) throws Exception {
 		int result = lessonDAO.setLessonAdd(lessonDTO);
 		
 		String realPath = session.getServletContext().getRealPath("resources/upload/lesson/");
 
 		System.out.println(realPath);
 		
-		for(MultipartFile multipartFile : multipartFiles) {
-			
-			if(multipartFile.isEmpty()) {
-				continue;
-			}
+		if(!multipartFile.isEmpty()) {
 			
 			String imgName = fileManager.fileSave(multipartFile, realPath);
 
@@ -61,18 +71,17 @@ public class LessonService {
 	}
 
 	/** UPDATE **/
-	public int setLessonUpdate(LessonDTO lessonDTO, MultipartFile [] multipartFiles, HttpSession session, Long [] imgNums) throws Exception {
-		int result = lessonDAO.setLessonAdd(lessonDTO);
+	public int setLessonUpdate(LessonDTO lessonDTO, MultipartFile multipartFile, HttpSession session, Long imgNum) throws Exception {
+		int result = lessonDAO.setLessonUpdate(lessonDTO);
 		
-		if(imgNums != null) {
-			for(Long imgNum : imgNums) {
-				lessonDAO.setLessonImgDelete(imgNum);
-			}
+		if(imgNum != null) {
+			lessonDAO.setLessonImgDelete(imgNum);
 		}
 		
 		String realPath = session.getServletContext().getRealPath("resources/upload/lesson/");
-
-		for(MultipartFile multipartFile : multipartFiles) {
+		
+		if(!multipartFile.isEmpty()) {
+			
 			String imgName = fileManager.fileSave(multipartFile, realPath);
 
 			LessonImgDTO lessonImgDTO = new LessonImgDTO();
@@ -82,6 +91,7 @@ public class LessonService {
 			
 			result = lessonDAO.setLessonImgAdd(lessonImgDTO);	
 		}
+		
 		return result;
 	}
 	
@@ -91,23 +101,7 @@ public class LessonService {
 
 	/** DELETE **/
 	public int setLessonDelete(LessonDTO lessonDTO, HttpSession session) throws Exception {
-		List<LessonImgDTO> ar = lessonDAO.getLessonImgList(lessonDTO);
-		
-		int result = lessonDAO.setLessonDelete(lessonDTO);
-		
-		if(result > 0) {			
-			String realPath = session.getServletContext().getRealPath("resources/upload/lesson/");
-			
-			for(LessonImgDTO lessonImgDTO : ar) {
-				boolean check = fileManager.fileDelete(realPath, lessonImgDTO.getImgName());
-			}
-			
-		}
 		return lessonDAO.setLessonDelete(lessonDTO);
-	}
-	
-	public int setLessonImgDelete(Long imgNum) throws Exception {
-		return lessonDAO.setLessonImgDelete(imgNum);
 	}
 	
 }

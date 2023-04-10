@@ -2,6 +2,8 @@ package com.team.cwl.product.qna;
 
 import java.sql.Date;
 
+import com.team.cwl.member.MemberDTO;
+
 public class ProductQnADTO {
 	
 	private Long productQnANum;

@@ -58,14 +58,4 @@ public class ProductDAO {
 		return sqlSession.delete(NAMESPACE+"setProductImgDelete", imgNum);
 	}
 
-	public List<ProductImgDTO> getProductImgList(Long productNum) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public ProductDTO getProductDetail(Long productNum) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
