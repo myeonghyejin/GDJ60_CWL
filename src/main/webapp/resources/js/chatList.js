@@ -23,14 +23,14 @@ let ipAddress = "192.168.1.199";
 // let ipAddress = "192.168.1.27";
 
 let sock = new SockJS("http://" + ipAddress + "/echo",{
-  timeout: 300000 // 300초
+  timeout: 30000000 // 30000초
 });
 
 sock.onopen = function () {
   console.log("연결 성공");
   
   //sock.send('list');
-  let v = makeJson("list", null, null, null, "${memberSI}")
+  let v = makeJson("list", null, null, null)
   let c = makeJson("list-2nd", null, null, null)
   sendMessage(v);
   sendMessage(c);
@@ -39,6 +39,7 @@ sock.onopen = function () {
 
 sock.onclose=function() {	
   console.log("연결을 끊었습니다");
+  alert("연결이 끊겼습니다");
 }
 
 //message 전송시 사용
@@ -46,22 +47,36 @@ function sendMessage (m){
   sock.send(m);
 }
 
+  //친구 list or 채팅 메세지 출력
+  sock.onmessage = function (m) {
 
-//친구 list or 채팅 메세지 출력
-sock.onmessage = function (m) {
-
-  console.log(m) // 받은 메세지 출력
-
-  let json = JSON.parse(m.data); // 받은 메세지를 JSON 형식으로 파싱
-  console.log("DATA : " + json) // 받은 메세지 출력
-  console.log(json.type); // 전송 타입 출력
-  console.log(json.value); // 유저 목록 출력
-  console.log(json.intro);
-
+    console.log(m); // 받은 메세지 출력
+  
+    let json = JSON.parse(m.data); // 받은 메세지를 JSON 형식으로 파싱
+    console.log("DATA : " + json); // 받은 메세지 출력
+    console.log(json.type); // 전송 타입 출력
+    console.log(json.value); // 유저 목록 출력
+    let valueArray = json.value;
+    
+    
+    if (json.type === 'list') {
+      for (let i = 0; i < valueArray.length; i+=2) {
+        let memberId = valueArray[i];
+        let memberSI = valueArray[i+1];
+        console.log("memberID" + memberId);
+        console.log('memberSI : ', memberSI);
+        if(memberId!=id){
+          makeUser(memberId, memberSI);
+        }
+        // return;
+      }
+    }
+    
   
 
-  if (json.type === 'list') {
-    console.log("users : ", json.value);
+  
+  // if (json.type === 'list') {
+  //   console.log("users : ", json.value);
   //  for(let i =0; i<json.value; i++){
   //   if(json.value != id){
   //     console.log('user : ', user[i])
@@ -69,17 +84,17 @@ sock.onmessage = function (m) {
   //     makeUser(user[i], json.intro[i])
   //   }
   //  }
+
+  // for (let i = 0; i < json.value.length; i++) {
+  //   if (json.value[i] != id) {
+  //     console.log('user : ', json.value[i]);
+  //     console.log('json.intro : ', json.intro[i]);
+  //     makeUser(json.value[i], json.intro[i]);
+  //   }
+  // }
   
-  for (let i = 0; i < json.value.length; i++) {
-    if (json.value[i] != id) {
-      console.log('user : ', json.value[i]);
-      console.log('json.intro : ', json.intro[i]);
-      makeUser(json.value[i], json.intro[i]);
-    }
-  }
-  
-    return;
-  }
+  //   return;
+  // }
 
   if(json.type=='invite'){
     for(let t of json.value){
@@ -90,7 +105,6 @@ sock.onmessage = function (m) {
       $(".msg").append(makeRecv(t.value, t.senderId, t.receiveId, getTimeString(t.sendTime)));
 
     }
-    
 
   }
 
@@ -212,7 +226,14 @@ $("#chat-list").on('click','.friend' ,function (e) {
   $(".chatbox").css("display", "block")
   // $("#map").css("display", "none")
 
+  // let chatboxHeight = $(".chatbox").height();
+  // var maxScroll = $(".modal-body").height() - chatboxHeight;
+  // $(".chatbox").scrollTop(maxScroll);
 
+  $(".msg-body").scrollTop($(".msg-body")[0].scrollHeight);
+
+
+  
 
 
 })
@@ -230,6 +251,11 @@ function makeRecv(msg, senderId, receiveId, timeString) {
     // }
     return;
   }
+  if(msg=="**채팅상대가 온라인중이 아닙니다**"){
+    console.log("여끼까지 오나?")
+    $(".send-box").css("display", "none");
+
+  }
   let direct = "sender"
   if(senderId==id){
     direct = "repaly"
@@ -239,6 +265,7 @@ function makeRecv(msg, senderId, receiveId, timeString) {
   recv = recv + '<span class="time">'+timeString+'</span>'
   recv = recv + '</li>'
   
+  $('.msg-body').scrollTop($('.msg-body').prop('scrollHeight'));
 
   return recv;
 }
@@ -250,9 +277,12 @@ $(".chatbox").on('keyup', '#txtMessage', function (e) {
   if (e.which === 13) { // 엔터키 누를 때 전송
       e.preventDefault();
       console.log("엔터키 입력함");
-      sock.send($("#txtMessage").val());
-      let timeString = getTimeString(); // getTimeString 함수를 호출하여 시간 정보를 문자열로 변환
+      let r = makeJson('msg',$("#txtMessage").val(), $("#txtMessage").attr("data-id"), getTimeString)
+      sock.send(r);
+  
       $("#txtMessage").val(''); // 메시지 전송 후 텍스트 필드 초기화
+      return false; 
+
     }
 });
   
@@ -262,7 +292,7 @@ $(".chatbox").on('click', '#sendButton', function () {
     console.log("메세지 내용 : " + $("#txtMessage").val());
     let r = makeJson('msg',$("#txtMessage").val(), $("#txtMessage").attr("data-id"), getTimeString)
     sock.send(r);
-    let timeString = getTimeString(); // getTimeString 함수를 호출하여 시간 정보를 문자열로 변환
+
     $("#txtMessage").val(''); // 메시지 전송 후 텍스트 필드 초기화
 });
 
@@ -280,13 +310,13 @@ function getTimeString(sendTime) {
   
 
 //보낼 메세지를 JSON 형태로 변경
-function makeJson(type, message, receiveId, sendTime, memberSI){
+function makeJson(type, message, receiveId, sendTime){
   let json = {
     "type": type,
     "value": message,
     "receiveId": receiveId,
     "sendTime": sendTime,
-    "intro":memberSI
+    // "intro":memberSI
   };
   return JSON.stringify(json);
 }

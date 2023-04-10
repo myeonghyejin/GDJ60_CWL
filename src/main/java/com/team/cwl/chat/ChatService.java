@@ -21,6 +21,8 @@ public class ChatService {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+		
+		
 		System.out.println("Servicd : "+chatDTO2);
 		return chatDTO2;
 	}
@@ -34,6 +36,7 @@ public class ChatService {
 	}
 	
 	public int setChatRoom(ChatDTO chatDTO) {
+		
 		return chatDAO.setChatRoom(chatDTO);
 	}
 }

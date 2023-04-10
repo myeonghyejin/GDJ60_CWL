@@ -35,6 +35,7 @@ public class ChatHandler extends TextWebSocketHandler{
 //	List<WebSocketSession> sessionList=new ArrayList<WebSocketSession>();
 //	List <WebSocketSession> my = new ArrayList<WebSocketSession>();
     private Map<String, WebSocketSession> maps = new HashMap<String, WebSocketSession>();
+    private Map<MemberDTO, WebSocketSession> mw = new HashMap<MemberDTO, WebSocketSession>();
 
 //	private Map<Set<String>, StringBuffer> personal = new HashMap<Set<String>, StringBuffer>();
     private Map<String, Map<String, Long>> idChatInfo = new HashMap<String, Map<String,Long>>();
@@ -55,7 +56,7 @@ public class ChatHandler extends TextWebSocketHandler{
 		MemberDTO memberDTO=(MemberDTO)session.getAttributes().get("member");
 		System.out.println("채팅 로그인 : "+memberDTO.getMemberId());
 		maps.put(memberDTO.getMemberId(), session);
-		maps.put(memberDTO.getMemberSI(), session);
+		mw.put(memberDTO, session);
 
 		idChatInfo.put(memberDTO.getMemberId(), new HashMap<String, Long>());
 		
@@ -76,6 +77,7 @@ public class ChatHandler extends TextWebSocketHandler{
         Iterator<String> it =m2.keySet().iterator();
         
         
+        
         while(it.hasNext()) {
         	
         	// b c 
@@ -90,13 +92,27 @@ public class ChatHandler extends TextWebSocketHandler{
         	chatDTO.setRoomNum(m2.get(chatDTO.getM2()));
         	chatDTO.setMessageContents(messages.get(chatDTO.getRoomNum()).toString());
         	
-//        	System.out.println(m2.get(it.next())); //roomNum이 나옴 
+        	System.out.println("내 아디 : "+chatDTO.getM1() + "/ 상대방  : "+ chatDTO.getM2() + "/ 방번호 : "+ chatDTO.getRoomNum() + "/ 메세지 내용 : " + chatDTO.getMessageContents());
         	
-        	chatService.setChatRoom(chatDTO);
+            if(chatService.getChatContents(chatDTO)==null) {
+            	//채팅 내용 인서트 
+            	System.out.println("채팅 내용 인서트 ");
+            	chatService.setChatRoom(chatDTO);
+
+            }else {
+            	System.out.println("채팅 내용 업데이트");
+            	//업데이트 
+            	chatService.setChatContents(chatDTO);
+				
+			}
+				
+            
+
         }
         
         
 		maps.remove(memberId);
+		mw.remove(memberDTO);
 	    //personal.remove(memberId);
 
 		//super.afterConnectionClosed(session, status);
@@ -182,8 +198,10 @@ public class ChatHandler extends TextWebSocketHandler{
 	            			JsonElement element = jp.parse(chatMsg.getMessageContents());
 	            			messages.put(chatMsg.getRoomNum(), element.getAsJsonArray());
 	            			System.out.println("element : " +element.getAsJsonArray());
+	            			chatDTO.setRoomNum(roomNum);
+	                    	chatDTO.setMessageContents(messages.get(chatDTO.getRoomNum()).toString());
+	                    	
 	            		}
-	            		
 	            		
 	            	}else {
 						roomNum = idChatInfo.get(messageDTO.getReceiveId()).get(host);
@@ -191,28 +209,57 @@ public class ChatHandler extends TextWebSocketHandler{
 	            }
 	            
 	          }
-	        System.out.println("invite : "+ host + " / receive :"+ messageDTO.getReceiveId()+" / roomNum : " +roomNum);
-	        JsonArray msgs = messages.get(roomNum);
-			JsonObject jsonObject = new JsonObject();
-			jsonObject.addProperty("type", "invite");
-			jsonObject.add("value", new Gson().toJsonTree(msgs));
-			
-	        session.sendMessage(new TextMessage(jsonObject.toString()));
-	        //invitedSession.sendMessage(new TextMessage(jsonObject.toString()));
+	        JsonObject jsonObject = new JsonObject();
 	        
-	        
-	        return roomNum;
+	        if(roomNum==0) {
+	        	jsonObject.addProperty("type", "msg");
+	        	jsonObject.addProperty("value", "상대를 찾을수 없습니다. 새로고침을 해보세요 ");
+	    		jsonObject.addProperty("sendTime", Calendar.getInstance().getTimeInMillis());
+
+	        	session.sendMessage(new TextMessage(jsonObject.toString()));
+	        	
+	        	
+	        	return roomNum;
+	        }else {
+	        	
+	        	System.out.println("invite : "+ host + " / receive :"+ messageDTO.getReceiveId()+" / roomNum : " +roomNum );
+	        	JsonArray msgs = messages.get(roomNum);
+	        	jsonObject.addProperty("type", "invite");
+	        	jsonObject.add("value", new Gson().toJsonTree(msgs));
+	        	
+	        	session.sendMessage(new TextMessage(jsonObject.toString()));
+	        	
+	        	return roomNum;
+	        	
+	        }
+	       
 	}
 	
 	private void makeList(WebSocketSession session, MemberDTO memberDTO) throws Exception {
+	    //private Map<MemberDTO, WebSocketSession> mw = new HashMap<MemberDTO, WebSocketSession>();
+	
 		// 친구 목록 뜨게 list 전송
 		Gson gson = new Gson();
-		JsonObject jsonObject = new JsonObject();
+		JsonObject jsonObject = new JsonObject();		
+		
+		
 		jsonObject.addProperty("type", "list");
-		jsonObject.add("value", gson.toJsonTree(maps.keySet().toArray()));
-//		jsonObject.add("intro", gson.toJsonTree(maps.keySet().);
+//		jsonObject.add("value", gson.toJsonTree(mw.keySet().toArray()));
+		List<String> members = new ArrayList<String>();
+		for(MemberDTO member : mw.keySet()) {
+		    members.add(member.getMemberId());
+		    members.add(member.getMemberSI());
+		}
+		jsonObject.add("value", gson.toJsonTree(members.toArray()));
+		System.out.println(gson.toJsonTree(members.toArray()));
+//	    
+//	    // "intro" 속성을 만드는 부분 수정
+//	    JsonArray introArray = new JsonArray();
+//	    introArray.add(memberDTO.getMemberId());
+//	    introArray.add(memberDTO.getMemberSI());
+//	    jsonObject.add("intro", introArray);
+//
 
-		memberDTO = (MemberDTO) session.getAttributes().get("member");
 		
 		System.out.println( "member DTO : "+memberDTO);
 
@@ -221,29 +268,52 @@ public class ChatHandler extends TextWebSocketHandler{
 
 	}
 	
+	
 	private String makeMessage(MessageDTO messageDTO, MemberDTO memberDTO) throws Exception {
 		System.out.println("msg");
 		
 		JsonObject jsonObject = new JsonObject();
 		jsonObject.addProperty("type", "msg");
-		jsonObject.addProperty("value", messageDTO.getValue());
 		jsonObject.addProperty("senderId",memberDTO.getMemberId());
 		jsonObject.addProperty("receiveId",messageDTO.getReceiveId());
 		jsonObject.addProperty("sendTime", Calendar.getInstance().getTimeInMillis());
 		
-		System.out.println("json object: "+ jsonObject.toString());
-		Long roomNum = idChatInfo.get(memberDTO.getMemberId()).get(messageDTO.getReceiveId());
-		messages.get(roomNum).add(jsonObject);
-		System.out.println("messageList : " + messages.get(roomNum).toString());
+		
+		if(maps.get(messageDTO.getReceiveId())==null){
+			System.out.println("채팅상대가 나갔습니다.");
+			
+			jsonObject.addProperty("value", "**채팅상대가 온라인중이 아닙니다**");
+			String jsonStr = jsonObject.toString();
+
+			maps.get(memberDTO.getMemberId()).sendMessage(new TextMessage(jsonStr));
+
+			return jsonStr;
+
+		}else {
+			jsonObject.addProperty("value", messageDTO.getValue());
+			System.out.println("json object: "+ jsonObject.toString());
+			Long roomNum = idChatInfo.get(memberDTO.getMemberId()).get(messageDTO.getReceiveId());
+			System.out.println(roomNum);
+
+			if(roomNum==null) {
+				roomNum = idChatInfo.get(messageDTO.getReceiveId()).get(memberDTO.getMemberId());
+
+
+			}
+			System.out.println(roomNum);
+			messages.get(roomNum).add(jsonObject);
+			System.out.println("messageList : " + messages.get(roomNum).toString());
+			
+			String jsonStr = jsonObject.toString();
+			System.out.println(jsonStr);
+			
+			maps.get(messageDTO.getReceiveId()).sendMessage(new TextMessage(jsonStr));
+			maps.get(memberDTO.getMemberId()).sendMessage(new TextMessage(jsonStr));
+			
+			return jsonStr;
+		}
 		
 		
-		String jsonStr = jsonObject.toString();
-		System.out.println(jsonStr);
-		
-		maps.get(messageDTO.getReceiveId()).sendMessage(new TextMessage(jsonStr));
-		maps.get(memberDTO.getMemberId()).sendMessage(new TextMessage(jsonStr));
-		
-		return jsonStr;
 	}
 	
 	

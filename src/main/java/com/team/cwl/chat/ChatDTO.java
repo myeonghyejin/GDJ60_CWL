@@ -13,12 +13,11 @@ public class ChatDTO{
 	private String m2;
 	
 	private String messageContents;
+	
 
 
 	
 	
-
-
 	public String getM1() {
 		return m1;
 	}

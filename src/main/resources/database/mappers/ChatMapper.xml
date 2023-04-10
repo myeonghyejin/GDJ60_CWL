@@ -9,7 +9,7 @@
 
  	<update id="setChatContents">
  		UPDATE CHAT SET MESSAGECONTENTS = #{messageContents}
-   		WHERE ROOMNUM = #{roomNum} AND (M1 = #{senderId} AND M2 = #{receiveId} OR M1 = #{receiveId} AND M2 = #{senderId})
+   		WHERE ROOMNUM = #{roomNum} AND (M1 = #{m1} AND M2 = #{m2} OR M1 = #{m2} AND M2 = #{m1})
  	</update>
  	
  	<select id="getChatRoomNum" resultType="Long">
@@ -18,7 +18,14 @@
 
  	<insert id="setChatRoom" parameterType="ChatDTO">
  		INSERT INTO CHAT (ROOMNUM ,M1 ,M2, MESSAGECONTENTS)
- 		VALUES (#{roomNum} , #{m1}, #{m2}, #{messageContents})
+ 		VALUES (#{roomNum} , #{m1}, #{m2}, #{messageContents} )
  	</insert>
+ 	
+ 	<select id="">
+ 		SELECT ROOMNUM FROM CHAT
+ 		WHERE 
+ 		
+ 	
+ 	</select>
  	
 </mapper>
