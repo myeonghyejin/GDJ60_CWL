@@ -47,7 +47,7 @@
 				<c:forEach items="${list}" var="DTO">
 					<div class="col-lg-4 col-6 mb-4 shuffle-item">
 						<div class="position-relative inner-box">
-							<div class="image position-relative ">
+							<div class="image position-relative">
 							    <img src="/resources/upload/lesson/${DTO.lessonImgDTOs.imgName}" alt="lesson-image" class="img-fluid w-100 d-block">
 							    <a href="./detail?lessonNum=${DTO.lessonNum}">
 									<div class="overlay-box">

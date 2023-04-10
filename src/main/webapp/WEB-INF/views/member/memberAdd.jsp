@@ -25,15 +25,14 @@
 				<span class="id_input_re_2">아이디가 이미 존재합니다.</span>	
 				<span class="final_id_ck">아이디를 입력해주세요.</span>			
 			</div>
-			<div class="nickName_wrap">
+			<!-- <div class="nickName_wrap">
 				<div class="nickName_name">닉네임</div>
 				<div class="nickName_input_box">
 					<input class="nickName_input" name="memberNickName">
 				</div>
 				<span class="nickName_input_re_1">사용 가능한 닉네임입니다.</span>
-				<span class="nickName_input_re_2">닉네임이 이미 존재합니다.</span>	
-							
-			</div>				
+				<span class="nickName_input_re_2">닉네임이 이미 존재합니다.</span>		
+			</div> -->				
 			<div class="pw_wrap">
 				<div class="pw_name">비밀번호</div>
 				<div class="pw_input_box">

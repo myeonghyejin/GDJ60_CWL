@@ -30,13 +30,17 @@
 					<input type="text" name="lessonTeacher" class="form-control" id="lessonTeacher"><br>
 				</div>
 				<div class="fw-bold fs-5 col-12">
+					<label for="lessonUrl" class="form-label">URL</label>
+					<input type="text" name="lessonUrl" class="form-control" id="lessonUrl"><br>
+				</div>
+				<div class="fw-bold fs-5 col-12">
 					<label for="lessonContents" class="form-label">내용</label>
 					<textarea name="lessonContents" class="form-control" id="lessonContents" rows="3"></textarea><br>
 				</div>
 				<div id="imgList">
 					<h5><b>썸네일</b></h5>
 					<div class="fw-bold fs-5 col-12 mt-3 input-group">
-						<input type="file" class="form-control" name="imgs" id="imgs">
+						<input type="file" class="form-control" name="multipartFile" id="multipartFile">
 					</div>	
 				</div>
 				<div class="row justify-content-center my-5">

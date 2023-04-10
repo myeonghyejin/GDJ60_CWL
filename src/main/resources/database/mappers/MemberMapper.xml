@@ -7,8 +7,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 회원가입 -->  
   	<insert id="memberAdd">
-  		INSERT INTO MEMBER(MEMBERID, MEMBERNICKNAME, MEMBERPW, MEMBERNAME, MEMBERPHONE, MEMBERADDRESS1, MEMBERADDRESS2, MEMBERADDRESS3, MEMBEREMAIL, ADMINCHECK, MEMBERGENDER, MEMBERSI, MEMBERAGE, MONEY)
-  		VALUES (#{memberId}, #{memberNickName}, #{memberPw}, #{memberName}, #{memberPhone}, #{memberAddress1}, #{memberAddress2}, #{memberAddress3}, #{memberEmail}, 0, #{memberGender}, #{memberSI}, #{memberAge}, 100000)
+  		INSERT INTO MEMBER(MEMBERID, MEMBERPW, MEMBERNAME, MEMBERPHONE, MEMBERADDRESS1, MEMBERADDRESS2, MEMBERADDRESS3, MEMBEREMAIL, ADMINCHECK, MEMBERGENDER, MEMBERSI, MEMBERAGE, MONEY)
+  		VALUES (#{memberId}, #{memberPw}, #{memberName}, #{memberPhone}, #{memberAddress1}, #{memberAddress2}, #{memberAddress3}, #{memberEmail}, 0, #{memberGender}, #{memberSI}, #{memberAge}, 100000)
   	</insert>
   	
   	<!-- 아이디 중복검사 -->
@@ -17,20 +17,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	</select>
   	
   	<!-- 닉네임 중복검사 -->
-  	<select id="nickNameCheck" resultType="int">
+  	<!-- <select id="nickNameCheck" resultType="int">
   		SELECT COUNT(*) FROM MEMBER WHERE MEMBERNICKNAME = #{memberNickName}  		  	
-  	</select>
+  	</select> -->
   	
   	<!-- 로그인 -->
   	<select id="memberLogin" resultType="com.team.cwl.member.MemberDTO">
-		SELECT MEMBERID, MEMBERNICKNAME, MEMBERPW, MEMBERNAME, ADMINCHECK, MONEY 
+		SELECT MEMBERID, MEMBERPW, MEMBERNAME, ADMINCHECK, MONEY 
 		FROM MEMBER
 		WHERE MEMBERID = #{memberId}
   	</select>
   	
    	<!-- 주문자 정보 -->
   	<select id="getMemberInfo" resultType="com.team.cwl.member.MemberDTO">  	
-  		SELECT MEMBERID, MEMBERNICKNAME, MEMBERNAME, MEMBEREMAIL, MEMBERADDRESS1, MEMBERADDRESS2, MEMBERADDRESS3, MONEY 
+  		SELECT MEMBERID, MEMBERNAME, MEMBEREMAIL, MEMBERADDRESS1, MEMBERADDRESS2, MEMBERADDRESS3, MONEY 
   		FROM MEMBER 
   		WHERE MEMBERID = #{memberId}  	
   	</select>

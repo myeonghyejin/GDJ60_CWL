@@ -92,7 +92,7 @@
 		</div>
 		
 		<!-- Update Modal -->
-		<div class="modal fade" id="contentsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -106,8 +106,8 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModal">취소</button>
-					<button type="button" class="btn btn-primary" data-lessonReview-num="" id="contentsConfirm">확인</button>
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeUpdateModal">취소</button>
+					<button type="button" class="btn btn-primary" data-lessonReview-num="" id="updateConfirm">확인</button>
 				</div>
 				</div>
 			</div>

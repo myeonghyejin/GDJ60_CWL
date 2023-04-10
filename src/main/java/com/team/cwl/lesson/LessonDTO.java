@@ -7,13 +7,14 @@ public class LessonDTO {
 	
 	private Long lessonNum;
 	private String memberId;
+	private String lessonUrl;
 	private String lessonTitle;
 	private String lessonTeacher;
 	private String lessonContents;
 	private Long lessonHit;
 	private Date lessonDate;
 	
-	private List<LessonImgDTO> lessonImgDTOs;
+	private LessonImgDTO lessonImgDTOs;
 	
 	public Long getLessonNum() {
 		return lessonNum;
@@ -26,6 +27,12 @@ public class LessonDTO {
 	}
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
+	}
+	public String getLessonUrl() {
+		return lessonUrl;
+	}
+	public void setLessonUrl(String lessonUrl) {
+		this.lessonUrl = lessonUrl;
 	}
 	public String getLessonTitle() {
 		return lessonTitle;
@@ -57,10 +64,11 @@ public class LessonDTO {
 	public void setLessonDate(Date lessonDate) {
 		this.lessonDate = lessonDate;
 	}
-	public List<LessonImgDTO> getLessonImgDTOs() {
+	public LessonImgDTO getLessonImgDTOs() {
 		return lessonImgDTOs;
 	}
-	public void setLessonImgDTOs(List<LessonImgDTO> lessonImgDTOs) {
+	public void setLessonImgDTOs(LessonImgDTO lessonImgDTOs) {
 		this.lessonImgDTOs = lessonImgDTOs;
 	}
+
 }
