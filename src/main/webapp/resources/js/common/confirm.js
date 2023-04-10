@@ -36,10 +36,10 @@ $('#lessonConfirm').click(function(){
 		alert("내용을 입력하세요.")
 		return;
 	}
-	else if(!$('#img').val()){
-		alert("최소 1장 이상의 썸네일을 첨부하세요.")
-		return;
-	}
+	// else if(!$('#img').val()){
+	// 	alert("최소 1장 이상의 썸네일을 첨부하세요.")
+	// 	return;
+	// }
 
 	//submit
 	else{

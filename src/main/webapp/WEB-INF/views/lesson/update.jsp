@@ -21,6 +21,7 @@
 		<form action="./update" method="post" enctype="multipart/form-data" id="frm">
 			<input type="hidden" name="memberId" value="${member.memberId}">
 			<input type="hidden" name="lessonNum" value="${DTO.lessonNum}">
+			<input type="hidden" name="lessonImgDTOs" value="${DTO.lessonImgDTOs}">
 			<div class="row col-8 mx-auto my-5">
 				<div class="fw-bold fs-5 col-12">
 					<label for="lessonTitle" class="form-label">제목</label>

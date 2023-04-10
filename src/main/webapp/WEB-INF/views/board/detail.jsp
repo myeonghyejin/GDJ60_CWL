@@ -22,7 +22,7 @@
 					<div class="row my-4 mx-auto text-center">
 						<p class="fs-6"><b>글 번호</b>&ensp;${DTO.boardNum}&emsp;<b>작성자</b>&ensp;${DTO.memberId}&emsp;<b>날짜</b>&ensp;${DTO.boardDate}&emsp;<b>조회수</b>&ensp;${DTO.boardHit+1}</p>
 					</div>
-					<div class="row col-6 my-4 justify-content-center mx-auto">
+					<div class="row col-8 my-4 justify-content-center mx-auto">
 						<p class="fs-4">${DTO.boardContents}</p>
 					</div>
 				</c:when>

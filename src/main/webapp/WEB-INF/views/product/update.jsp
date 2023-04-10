@@ -65,18 +65,14 @@
 			</div>
 	   </form>
 	</div>
+	<c:import url="../template/common_js.jsp"></c:import>
+	<c:import url="../template/footer.jsp"></c:import>
+	<script src="/resources/js/common/fileManager.js"></script>
+	<script src="/resources/js/common/confirm.js"></script>
 	<script>
 		setMax(4);
 		setCount('${DTO.productImgDTOs.size()}');
 		setParam("imgs")
-
-		if(!$('#imgs').val()) {
-			alert("최소 1장 이상의 이미지를 등록해야 합니다.")
-			return;
-    	}
 	</script>
-	<c:import url="../template/common_js.jsp"></c:import>
-	<c:import url="../template/footer.jsp"></c:import>
-	<script src="/resources/js/common/confirm.js"></script>
 </body>
 </html>

@@ -19,7 +19,8 @@
 					<div class="row">
 						<p class="fs-4 fw-bold text-center border-bottom border-dark pb-4">${DTO.lessonTitle}</p>
 					</div>
-					<div class="row col-6 my-4 justify-content-center mx-auto">
+					<div class="row col-8 my-4 justify-content-center mx-auto">
+						<iframe width="560" height="400" src="https://www.youtube.com/embed/${DTO.lessonUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 						<p class="fs-4">${DTO.lessonContents}</p>
 					</div>
 				</c:when>
@@ -34,14 +35,14 @@
 		<!-- Buttons -->
 	  	<c:if test="${member.memberId eq DTO.memberId}">
 			<form action="./update" id="frm">
-				<div class="row col-md-4 justify-content-center mx-auto">
+				<div class="row justify-content-center mx-auto">
 					<input type="hidden" name="lessonNum" value="${DTO.lessonNum}">
 					<button id="update" type="submit" class="btn btn-outline-primary btn-sm btn-default mx-1">수정</button>
 					<button id="delete" type="button" class="btn btn-outline-primary btn-sm btn-default mx-1">삭제</button>
 				</div>
 			</form>
 	  	</c:if>
-		<div class="row col-md-4 justify-content-center mx-auto my-2">
+		<div class="row justify-content-center mx-auto my-2">
 			<a href="./list" class="btn btn-primary btn-sm btn-default mx-1">목록</a>
 		</div>
 		
@@ -115,5 +116,18 @@
 	<c:import url="../template/common_js.jsp"></c:import>
 	<c:import url="../template/footer.jsp"></c:import>
 	<script src="/resources/js/lesson/review.js"></script>
+	<script>
+		/* 삭제 버튼 */
+		const d = document.getElementById("delete");
+
+		d.addEventListener("click", function(){
+			let check = window.confirm("삭제하시겠습니까?");
+			if(check) {
+				frm.setAttribute("action", "./delete");
+				frm.setAttribute("method", "post");
+				frm.submit();
+			}
+		})
+	</script>
 </body>
 </html>
