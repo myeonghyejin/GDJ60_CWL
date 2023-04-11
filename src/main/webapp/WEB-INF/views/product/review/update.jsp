@@ -21,23 +21,24 @@
 			<input type="hidden" name="productNum" value="<%=productNum%>">
 			<input type="hidden" name="productReviewNum" value="<%=productReviewNum%>">
 			<div class="row col-md-4 mx-auto my-5">
-				<div class="fw-bold fs-5 col-12">
-					<label for="memberId" class="form-label">작성자</label>
+				<div class="col-12">
+					<label for="memberId" class="form-label fw-bold fs-5">작성자</label>
 					<input type="text" name="memberId" class="form-control" id="memberId" value="${member.memberId}" readonly><br>
 				</div>
-				<div class="fw-bold fs-5 col-12">
-					<label for="productReviewTitle" class="form-label">제목</label>
+				<div class="col-12">
+					<label for="productReviewTitle" class="form-label fw-bold fs-5">제목</label>
 					<input type="text" name="productReviewTitle" class="form-control" id="productReviewTitle" value="${DTO.productReviewTitle}"><br>
 				</div>	
-				<div class="fw-bold fs-5 col-12">
-					<label for="productReviewContents" class="form-label">내용</label>
+				<div class="col-12">
+					<label for="productReviewContents" class="form-label fw-bold fs-5">내용</label>
 					<textarea name="productReviewContents" class="form-control" id="productReviewContents" rows="3">${DTO.productReviewContents}</textarea><br>
 				</div>
 				<div class="fw-bold fs-5 col-12 input-group">
 					<input type="file" class="form-control" id="productReviewImg" aria-describedby="productReviewImg" name="multipartfile" aria-label="Upload">
   					<button class="btn btn-outline-secondary" type="button" id="productReviewImg" name="multipartfile">X</button>
 				</div>	
-				<div class="fw-bold fs-5 col-12 my-5">
+				<div class="col-12 my-5">
+					<h5 class="fw-bold fs-5"><b>별점</b></h5>
 					<div class="form-check form-check-block">
 						<label for="bs1" class="form-check-label" id="inlineRadio1">★</label>
 						<input id="bs1" type="radio" name="productRating" value="1" checked class="form-check-input" for="inlineRadio1" ${DTO.productRating eq 1 ? 'checked' :''} readonly>

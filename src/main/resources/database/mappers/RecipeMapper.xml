@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team.cwl.recipe.RecipeDAO">
+
+	<!-- SQL -->
+  	<sql id="recipeCondition">
+	    <where>
+			<if test="condition == 'recipeTitle'">
+				RECIPETITLE LIKE '%' || #{search} || '%'
+				ORDER BY RECIPENUM DESC
+			</if>
+			<if test="condition == 'tequila'">
+				RECIPEBASE LIKE 'TEQUILA'
+				ORDER BY RECIPENUM DESC
+			</if>
+			<if test="condition == 'rum'">
+				RECIPEBASE = 'RUM'
+				ORDER BY RECIPENUM DESC
+			</if>
+			<if test="condition == 'brandy'">
+				RECIPEBASE = 'BRANDY'
+				ORDER BY RECIPENUM DESC
+			</if>
+			<if test="condition == 'vodka'">
+				RECIPEBASE = 'VODKA'
+				ORDER BY RECIPENUM DESC
+			</if>
+			<if test="condition == 'gin'">
+				RECIPEBASE = 'GIN'
+				ORDER BY RECIPENUM DESC
+			</if>
+			<if test="condition == 'whisky'">
+				RECIPEBASE = 'WHISKY'
+				ORDER BY RECIPENUM DESC
+			</if>
+			<if test="condition == 'beer'">
+				RECIPEBASE = 'BEER'
+				ORDER BY RECIPENUM DESC
+			</if>
+			<if test="condition == 'wine'">
+				RECIPEBASE = 'WINE'
+				ORDER BY RECIPENUM DESC
+			</if>
+			<if test="condition == 'liqueur'">
+				RECIPEBASE = 'LIQUEUR'
+				ORDER BY RECIPENUM DESC
+			</if>
+			<if test="condition == 'non-alcoholic'">
+				RECIPEBASE = 'NON-ALCOHOLIC'
+				ORDER BY RECIPENUM DESC
+			</if>
+		</where>
+	</sql>
+
+	<!-- SELECT -->
+  	<select id="getRecipeList" resultType="RecipeDTO">
+  		SELECT * FROM
+			(
+				SELECT ROWNUM R, C.* FROM
+					(
+						SELECT * FROM RECIPE
+						<include refid="recipeCondition"></include>
+					) C
+			)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+  	</select>
+  	
+  	<select id="getRecipeDetail" resultMap="getRecipeDetailResult" parameterType="RecipeDTO">
+  		SELECT * FROM RECIPE
+  			LEFT OUTER JOIN
+  			RECIPEIMG
+  			USING (RECIPENUM)
+  		WHERE RECIPENUM = #{recipeNum}
+  	</select>
+  	
+  	<resultMap type="RecipeDTO" id="getRecipeDetailResult">
+		<id column="RECIPENUM" property="recipeNum"/>
+		<result column="MEMBERID" property="memberId"/>
+		<result column="RECIPETITLE" property="recipeTitle"/>
+		<result column="RECIPECONTENTS" property="recipeContents"/>
+		<result column="RECIPEINGREDIENTS" property="recipeIngredients"/>
+		<result column="RECIPEBASE" property="recipeBase"/>
+		<association property="recipeImgDTOs" javaType="RecipeImgDTO">
+			<id column="RECIPEIMGNUM" property="recipeImgNum"/>
+			<result column="IMGNAME" property="imgName"/>
+			<result column="ORIGINALNAME" property="originalName"/>
+		</association>
+	</resultMap>
+	
+	<select id="getTotalCount" resultType="Long" parameterType="Pagination">
+		SELECT COUNT(RECIPENUM) FROM RECIPE
+		<include refid="recipeCondition"></include>
+	</select>
+	
+	<!-- INSERT -->
+	<insert id="setRecipeAdd" parameterType="RecipeDTO">
+		<selectKey keyProperty="recipeNum" resultType="Long" order="BEFORE">
+			SELECT RECIPE_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO RECIPE
+		VALUES(#{recipeNum}, #{memberId}, #{recipeTitle}, #{recipeContents}, #{recipeIngredients}, #{recipeBase})
+	</insert>
+	
+	<insert id="setRecipeImgAdd" parameterType="RecipeImgDTO">
+		INSERT INTO RECIPEIMG
+		VALUES (RECIPEIMG_SEQ.NEXTVAL, #{recipeNum}, #{imgName}, #{originalName})
+	</insert>
+	
+	<!-- UPDATE -->
+	<update id="setRecipeUpdate" parameterType="RecipeDTO">
+		UPDATE RECIPE SET RECIPETITLE = #{recipeTitle}, RECIPECONTENTS = #{recipeContents}, RECIPECATEGORY = #{recipeCategory}
+		WHERE RECIPENUM = #{recipeNum}
+	</update>
+	
+	<!-- DELETE -->
+	<delete id="setRecipeDelete" parameterType="RecipeDTO">
+		DELETE RECIPE
+		WHERE RECIPENUM = #{recipeNum}
+	</delete>
+	
+	<delete id="setRecipeImgDelete" parameterType="Long">
+		DELETE RECIPEIMG
+		WHERE IMGNUM = #{imgNum}
+	</delete>
+
+</mapper>

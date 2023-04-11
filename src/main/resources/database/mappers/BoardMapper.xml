@@ -51,7 +51,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
 		INSERT INTO BOARD
-		VALUES(#{boardNum}, #{memberId}, #{boardTitle}, #{boardContents}, SYSDATE, 0)
+		VALUES(#{boardNum}, #{memberId}, #{boardTitle}, #{boardContents}, SYSDATE, 0, 0)
 	</insert>
 	
 	<!-- UPDATE -->
@@ -63,6 +63,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="setBoardHitUpdate" parameterType="BoardDTO">
 		UPDATE BOARD SET BOARDHIT = #{boardHit} + 1
 		WHERE BOARDNUM = #{boardNum}
+	</update>
+	
+	<update id="setBoardCommentCount" parameterType="Long">
+		UPDATE BOARD SET BOARDCOMMENTCOUNT =
+			(
+				SELECT COUNT(BOARDCOMMENTNUM) FROM BOARDCOMMENT
+				WHERE BOARDNUM = #{boardNum}
+			)
 	</update>
 	
 	<!-- DELETE -->

@@ -16,13 +16,14 @@
 		<div class="row mx-auto my-5">
 			<c:choose>
 				<c:when test="${not empty DTO.lessonNum}">
-					<div class="row">
-						<p class="fs-4 fw-bold text-center border-bottom border-dark pb-4">${DTO.lessonTitle}</p>
-					</div>
 					<div class="row col-8 my-4 justify-content-center mx-auto" id="youtube">
 						<iframe width="800" height="420" src="https://www.youtube.com/embed/${DTO.lessonUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 					</div>
-					<div class="row col-8 my-4 justify-content-center mx-auto">
+					<div class="row mx-auto">
+						<p class="fs-4 fw-bold text-center">${DTO.lessonTitle}</p>
+						<p class="fs-6 text-center border-bottom border-dark pb-4">${DTO.lessonTeacher}</p>
+					</div>
+					<div class="row col-8 my-4 mx-auto" align="center">
 						<p class="fs-4">${DTO.lessonContents}</p>
 					</div>
 				</c:when>

@@ -20,12 +20,12 @@
 			<input type="hidden" name="productNum" value="<%=productNum%>">
 			<input type="hidden" name="memberId" value="${member.memberId}">
 			<div class="row col-8 mx-auto my-5">
-				<div class="fw-bold fs-5 col-12">
-					<label for="productReviewTitle" class="form-label">제목</label>
+				<div class="col-12">
+					<label for="productReviewTitle" class="form-label fw-bold fs-5">제목</label>
 					<input type="text" name="productReviewTitle" class="form-control" id="productReviewTitle"><br>
 				</div>	
-				<div class="fw-bold fs-5 col-12">
-					<label for="productReviewContents" class="form-label">내용</label>
+				<div class="col-12">
+					<label for="productReviewContents" class="form-label fw-bold fs-5">내용</label>
 					<textarea name="productReviewContents" class="form-control" id="productReviewContents" rows="3"></textarea><br>
 				</div>
 				<div id="imgList">
@@ -36,8 +36,8 @@
 						<button type="button" class="btn btn-outline-primary btn-image" id="imgAdd">+</button>
 					</div>	
 				</div>
-				<div class="fw-bold fs-5 col-12 my-4">
-					<h5><b>별점</b></h5>
+				<div class="col-12 my-4">
+					<h5 class="fw-bold fs-5"><b>별점</b></h5>
 					<div class="form-check form-check-block">
 						<label for="bs1" class="form-check-label" id="oneStar">★</label>
 						<input id="bs1" type="radio" name="productRating" value="1" checked class="form-check-input" for="oneStar">

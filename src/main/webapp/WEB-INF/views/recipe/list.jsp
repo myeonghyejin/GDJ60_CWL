@@ -5,33 +5,44 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>LESSON</title>
+	<title>RECIPE</title>
 	<c:import url="../template/common_css.jsp"></c:import>
 	<link rel="stylesheet" href="/resources/css/common/style.css">
-	<link rel="stylesheet" href="/resources/css/lesson/list.css">
+	<link rel="stylesheet" href="/resources/css/recipe/list.css">
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
 	<div class="container-fluid my-5">
 		<!-- Title -->
 		<div class="row mx-auto text-center border-bottom border-dark pb-2">
-			<p class="fs-2" style="font-family: 'Impact'">LESSON</p>
+			<p class="fs-2" style="font-family: 'Impact'">RECIPE</p>
 		</div>
 		
 		<!-- 검색창 -->
 		<div class="col-11 mx-auto">
 			<form action="./list" method="get" class="row mx-5 my-5 justify-content-center">
 				<input type="hidden" name="page" value="1" id="page">
-				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition">인기순</button>
-				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="nameOrder">이름순</button>
-				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="latestOrder">최신순</button>
+				<div>
+					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="tequila">데킬라 베이스</button>
+					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="rum">럼 베이스</button>
+					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="brandy">브랜디 베이스</button>
+					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="vodka">보드카 베이스</button>
+					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="gin">진 베이스</button>
+				</div>
+				<div>
+					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="whisky">위스키 베이스</button>
+					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="beer">맥주 베이스</button>
+					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="wine">포도주 베이스</button>
+					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="liqueur">리큐르 베이스</button>
+					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="non-alcoholic">논 알콜 칵테일</button>
+				</div>
 			</form>
 		</div>
 		<div class="col-11">
 			<form action="./list" method="get" class="row justify-content-end mx-auto g-3" id="searchForm">
 				<input type="hidden" name="page" value="1" id="page">
 				<div class="col-auto">
-					<input type="hidden" name="condition" id="condition" value="lessonTitle">
+					<input type="hidden" name="condition" id="condition" value="recipeTitle">
 					<label for="search" class="visually-hidden">Search</label>
 					<input type="text" class="form-control" value="${pagination.search}" name="search" id="search" placeholder="">
 				</div>
@@ -46,21 +57,14 @@
 				<c:forEach items="${list}" var="DTO">
 					<div class="col-lg-4 col-6 mb-4 shuffle-item">
 						<div class="position-relative inner-box">
-							<a href="./detail?lessonNum=${DTO.lessonNum}">
+							<a href="./detail?recipeNum=${DTO.recipeNum}">
 								<div class="image position-relative">
-									<c:choose>
-										<c:when test="${not empty DTO.lessonImgDTOs}">
-											<img src="/resources/upload/lesson/${DTO.lessonImgDTOs.imgName}" alt="lesson-image" class="img-fluid w-100 d-block">
-										</c:when>
-										<c:otherwise>
-											<img src="https://img.youtube.com/vi/${DTO.lessonUrl}/mqdefault.jpg" alt="lesson-image">
-										</c:otherwise>
-									</c:choose>
+									<img src="/resources/upload/recipe/${DTO.recipeImgDTOs.imgName}" alt="recipe-image" class="img-fluid w-100 d-block">
 								</div>
 							</a>
 						</div>
 						<div class="row my-1" align="center">
-							<p><b>${DTO.lessonTitle}</b></p>
+							<p><b>${DTO.recipeTitle}</b></p>
 						</div>
 					</div>
 				</c:forEach>
