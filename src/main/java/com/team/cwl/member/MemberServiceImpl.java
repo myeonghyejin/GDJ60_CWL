@@ -43,4 +43,9 @@ public class MemberServiceImpl implements MemberService {
 	public MemberDTO getMemberPage(MemberDTO memberDTO) throws Exception {
 		return memberMapper.memberLogin(memberDTO);
 	}
+	
+	/* 회원 수정 */
+	public int memberUpdate(MemberDTO memberDTO) throws Exception {
+		return memberMapper.memberUpdate(memberDTO);
+	}
 }

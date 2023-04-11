@@ -19,4 +19,6 @@ public interface MemberService {
 	
 	/* 마이 페이지 */
 	public MemberDTO getMemberPage(MemberDTO memberDTO) throws Exception;
+	
+	public int memberUpdate(MemberDTO memberDTO) throws Exception;
 }

@@ -118,9 +118,8 @@ public class MemberController {
 			rawPw = member.getMemberPw(); // 사용자가 제출한 비밀번호
 			encodePw = membercheck.getMemberPw(); // DB에 저장한 인코딩된 비밀번호
 			
-			if(true == pwEncoder.matches(rawPw, encodePw)) { // 비밀번호 일치여부 판단
-				
-				membercheck.setMemberPw(""); // 인코딩된 비밀번호 정보 지움
+			if(true == pwEncoder.matches(rawPw, encodePw)) { // 비밀번호 일치여부 판단				
+				membercheck.setMemberPw(""); // 인코딩된 비밀번호 정보 지움				
 				session.setAttribute("member", membercheck); // session에 사용자의 정보 저장
 				return "redirect:/"; // 메인페이지로 이동
 			} else {
@@ -167,6 +166,17 @@ public class MemberController {
 		memberDTO = memberService.getMemberPage(memberDTO);
 		modelAndView.addObject("dto", memberDTO);
 		modelAndView.setViewName("/member/memberPage");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "memberUpdate", method = RequestMethod.GET)
+	public ModelAndView memberUpdate(HttpSession session) throws Exception {
+		ModelAndView modelAndView = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		
+		memberDTO = memberService.getMemberPage(memberDTO);
+		modelAndView.addObject("dto", memberDTO);
+		modelAndView.setViewName("/member/memberUpdate");		
 		return modelAndView;
 	}
 	

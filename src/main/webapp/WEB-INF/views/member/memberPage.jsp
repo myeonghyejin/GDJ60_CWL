@@ -25,7 +25,6 @@
 			<h3>성별 : ${member.memberGender}</h3>
 			<h3>자기소개 : ${member.memberSI}</h3>
 			<h3>나이 : ${member.memberAge}</h3>
-			<h3>보유중인 돈 : ${member.money}</h3>
 			<a href="./memberUpdate" class="btn btn-info">회원수정</a>
 		</div>
 	</div>

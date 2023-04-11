@@ -20,6 +20,10 @@ public interface MemberMapper {
 	/* 주문자 주소 정보 */
 	public MemberDTO getMemberInfo(String memberId);
 	
+	/* 마이페이지 */
 	public MemberDTO getMemberPage(MemberDTO memberDTO);
+	
+	/* 회원 수정 */
+	public int memberUpdate(MemberDTO memberDTO);
 	
 }
