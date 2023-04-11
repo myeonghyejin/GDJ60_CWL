@@ -40,6 +40,9 @@
 				</c:if>
 			</ul>			
 		</div>
+		
+		<div class="top_area"></div>
+		
 		<div class="content_area">
 			<div class="content_subject"><span>장바구니</span></div>
 			
@@ -383,7 +386,7 @@ $(".order_btn").click(()=>{
 		    buyer_name : $('#memberName').val(),
 		    buyer_tel : $('#memberPhone').val(),
 		    buyer_email : $('#memberEmail').val(),		    
-		    buyer_address : $('#memberAddress1').val() + $('#memberAddress2').val() + $('#memberAddress3').val(),
+		    buyer_address : $('#memberAddress1').val() + $('#memberAddress2').val() + $('#memberAddress3').val()
 		    
 		}, function(rsp) {
 		    console.log(rsp);

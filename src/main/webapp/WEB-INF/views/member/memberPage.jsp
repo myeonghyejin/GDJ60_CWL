@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MyPage</title>
 
 </head>
 <body>
@@ -16,15 +16,14 @@
 		</div>
 		
 		<div class="row">
-			<h3>아이디 : ${member.memberId}</h3>
-			<h3>닉네임 : ${member.memberNickName}</h3>
-			<h3>이름 : ${member.memberName}</h3>
-			<h3>휴대폰 : ${member.memberPhone}</h3>
-			<h3>주소 : ${member.memberAddress1}<br>${dto.memberAddress2}<br>${dto.memberAddress3}</h3>
-			<h3>이메일 : ${member.memberEmail}</h3>
-			<h3>성별 : ${member.memberGender}</h3>
-			<h3>자기소개 : ${member.memberSI}</h3>
-			<h3>나이 : ${member.memberAge}</h3>
+			<h3>아이디 : ${dto.memberId}</h3>
+			<h3>이름 : ${dto.memberName}</h3>
+			<h3>휴대폰 : ${dto.memberPhone}</h3>
+			<h3>주소 : ${dto.memberAddress1}<br>${dto.memberAddress2}<br>${dto.memberAddress3}</h3>
+			<h3>이메일 : ${dto.memberEmail}</h3>
+			<h3>성별 : ${dto.memberGender}</h3>
+			<h3>자기소개 : ${dto.memberSI}</h3>
+			<h3>나이 : ${dto.memberAge}</h3>
 			<a href="./memberUpdate" class="btn btn-info">회원수정</a>
 		</div>
 	</div>

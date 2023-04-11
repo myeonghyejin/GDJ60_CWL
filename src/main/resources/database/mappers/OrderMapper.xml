@@ -56,7 +56,6 @@
 		WHERE ORDERNUM = #{orderNum}
 	</select>
 	
-	
 	<!-- Payment 주문 결제 -->
 	<update id="orderPayment" parameterType="OrderDTO">
 		UPDATE ORDER SET MEMBERADDRESS1=#{memberAddress1}, MEMBERADDRESS2=#{memberAddress2}, MEMBERADDRESS3=#{memberAddress3}, ORDERSTATE=#{orderState}

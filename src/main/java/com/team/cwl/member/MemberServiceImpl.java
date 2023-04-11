@@ -1,6 +1,7 @@
 package com.team.cwl.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -47,5 +48,19 @@ public class MemberServiceImpl implements MemberService {
 	/* 회원 수정 */
 	public int memberUpdate(MemberDTO memberDTO) throws Exception {
 		return memberMapper.memberUpdate(memberDTO);
+	}
+	
+	public void modifyPw(MemberDTO member) throws Exception {
+		
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		System.out.println("암호화 전 비밀번호 : " + member.getMemberPw());
+		
+		String securePw = encoder.encode(member.getMemberPw());
+		member.setMemberPw(securePw);
+		
+		System.out.println("암호화 후 비밀번호 : " + member.getMemberPw());
+		
+		memberMapper.modifyPw(member);
+		
 	}
 }

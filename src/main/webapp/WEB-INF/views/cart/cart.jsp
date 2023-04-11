@@ -39,20 +39,7 @@
 			</ul>			
 		</div>
 		
-		<div class="top_area">
-			<div class="login_area">
-				<!-- 로그인한 상태 -->
-				<c:if test="${ member != null }">
-					<div class="login_success_area">
-						<span>회원 : ${member.memberName}</span>
-						<span>충전금액 : <fmt:formatNumber value="${member.money}" pattern="\#,###.##"/></span>
-						
-					</div>
-				</c:if>
-				
-			</div>
-			<div class="clearfix"></div>			
-		</div>
+		<div class="top_area"></div>
 		
 		<div class="content_area">
 		<div class="content_subject"><span>장바구니</span></div>

@@ -26,4 +26,7 @@ public interface MemberMapper {
 	/* 회원 수정 */
 	public int memberUpdate(MemberDTO memberDTO);
 	
+	/* 비밀번호 변경 */
+	public void modifyPw(MemberDTO member) throws Exception;
+	
 }
