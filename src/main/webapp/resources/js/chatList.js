@@ -68,6 +68,7 @@ function sendMessage (m){
         if(memberId!=id){
           makeUser(memberId, memberSI);
         }
+        
         // return;
       }
     }
@@ -103,7 +104,7 @@ function sendMessage (m){
       console.log("receiveId :"+t.receiveId)
       console.log("time :"+t.sendTime)
       $(".msg").append(makeRecv(t.value, t.senderId, t.receiveId, getTimeString(t.sendTime)));
-
+      
     }
 
   }
@@ -121,9 +122,9 @@ function makelist2nd(users) {
   let u = ''
   u = u + '<div class="d-flex align-items-center 2ndList" data-user="'+users+'">'
   u = u + '<div class="flex-shrink-0">'
-  u = u + '<img class="img-fluid"'
-  u = u + 'src="https://mehedihtml.com/chatbox/assets/img/user.png"'
-  u = u + 'alt="user img">'
+  // u = u + '<img class="img-fluid"'
+  // u = u + 'src="https://mehedihtml.com/chatbox/assets/img/user.png"'
+  // u = u + 'alt="user img">'
   u = u + '</div>'
   u = u + '<div class="flex-grow-1 ms-3" >'
   u = u + '<h7 class="pull-right">5km</h7>'
@@ -137,12 +138,13 @@ function makelist2nd(users) {
 
 //친구목록 나타내기
 function makeUser(users, intro) {
+  
   let u = ''
   u = u + '<div class="d-flex align-items-center friend" data-user="'+users+'" data-memberSI="'+intro+'">'
   u = u + '<div class="flex-shrink-0">'
-  u = u + '<img class="img-fluid"'
-  u = u + 'src="https://mehedihtml.com/chatbox/assets/img/user.png"'
-  u = u + 'alt="user img">'
+  // u = u + '<img class="img-fluid"'
+  // u = u + 'src="https://mehedihtml.com/chatbox/assets/img/user.png"'
+  // u = u + 'alt="user img">'
   u = u + '</div>'
   u = u + '<div class="flex-grow-1 ms-3" >'
   u = u + '<h7 class="pull-right">5km</h7>'
@@ -155,8 +157,10 @@ function makeUser(users, intro) {
 
 //개인 채팅방 나타내기
 $("#chat-list").on('click','.friend' ,function (e) {
+  
   // e.stopPropagation();
   $(".chatbox").empty();
+
   console.log("초대 : ", $(this));
   let userId = $(this).attr("data-user");
   userName = userId;
@@ -165,7 +169,9 @@ $("#chat-list").on('click','.friend' ,function (e) {
   let r = makeJson('invite',null, userId);
   sock.send(r)
 
-
+                      // <span class="chat-icon"><img class="img-fluid"
+                      //         src="https://mehedihtml.com/chatbox/assets/img/arroleftt.svg"
+                      //         alt="image title"></span>
   let chattingroom = `
   <div class="modal-dialog-scrollable">
   <div class="modal-content">
@@ -173,9 +179,7 @@ $("#chat-list").on('click','.friend' ,function (e) {
           <div class="row">
               <div class="col-8">
                   <div class="d-flex align-items-center">
-                      <span class="chat-icon"><img class="img-fluid"
-                              src="https://mehedihtml.com/chatbox/assets/img/arroleftt.svg"
-                              alt="image title"></span>
+
                       <div class="flex-grow-1 ms-3">
                           <h3>${userId}</h3>
                           <p>${memberSI}</p>
@@ -189,7 +193,7 @@ $("#chat-list").on('click','.friend' ,function (e) {
                               data-bs-toggle="dropdown" aria-expanded="false"><i
                                   class="fa fa-ellipsis-v" aria-hidden="true"></i></a>
                           <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#">Leave Chat</a></li>
+                              <li><a class="dropdown-item" >메세지 창 닫기</a></li>
                           </ul>
                       </li>
                   </ul>
@@ -221,17 +225,30 @@ $("#chat-list").on('click','.friend' ,function (e) {
   `;
   $(".chatbox").append(chattingroom);
 
+  $('.modal-body').scrollTop($('.modal-body')[0].scrollHeight);
 
 
   $(".chatbox").css("display", "block")
+
+  $(".chatbox").on('click','.dropdown-item' ,function (e) {
+    console.log("리브 클릭")
+    $(".chatbox").empty();
+  })
+
+  
   // $("#map").css("display", "none")
 
   // let chatboxHeight = $(".chatbox").height();
   // var maxScroll = $(".modal-body").height() - chatboxHeight;
   // $(".chatbox").scrollTop(maxScroll);
 
-  $(".msg-body").scrollTop($(".msg-body")[0].scrollHeight);
-
+  const chatbox = $('.chatbox');
+  chatbox.scrollTop(chatbox[0].scrollHeight);
+  // setTimeout(function() {
+  //   $('.msg-body').scrollTop($('.msg-body')[0].scrollHeight);
+  //   console.log("스크롤")
+  // }, 5000);
+  
 
   
 
@@ -265,26 +282,24 @@ function makeRecv(msg, senderId, receiveId, timeString) {
   recv = recv + '<span class="time">'+timeString+'</span>'
   recv = recv + '</li>'
   
-  $('.msg-body').scrollTop($('.msg-body').prop('scrollHeight'));
+  $('.chatbox').scrollTop($('.chatbox')[0].scrollHeight);
 
   return recv;
 }
 
 
 
-//엔터키 눌렀을때 채팅 메세지 전송
-$(".chatbox").on('keyup', '#txtMessage', function (e) {
-  if (e.which === 13) { // 엔터키 누를 때 전송
-      e.preventDefault();
-      console.log("엔터키 입력함");
-      let r = makeJson('msg',$("#txtMessage").val(), $("#txtMessage").attr("data-id"), getTimeString)
-      sock.send(r);
-  
-      $("#txtMessage").val(''); // 메시지 전송 후 텍스트 필드 초기화
-      return false; 
 
-    }
+$(".chatbox").on('submit', 'form', function (e) {
+  e.preventDefault();
+  console.log("엔터키 입력함");
+  let r = makeJson('msg',$("#txtMessage").val(), $("#txtMessage").attr("data-id"), getTimeString)
+  sock.send(r);
+
+  $("#txtMessage").val(''); // 메시지 전송 후 텍스트 필드 초기화
+  return false; 
 });
+
   
 //send버튼 눌렀을때 채팅 메세지 전송
 $(".chatbox").on('click', '#sendButton', function () {
@@ -294,6 +309,8 @@ $(".chatbox").on('click', '#sendButton', function () {
     sock.send(r);
 
     $("#txtMessage").val(''); // 메시지 전송 후 텍스트 필드 초기화
+    $('.chatbox').scrollTop($('.chatbox')[0].scrollHeight);
+
 });
 
 function getTimeString(sendTime) {
