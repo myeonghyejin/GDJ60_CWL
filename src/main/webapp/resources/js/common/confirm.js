@@ -82,10 +82,6 @@ $('#recipeConfirm').click(function(){
 		alert("내용을 입력하세요.")
 		return;
 	}
-	else if(!$('#img').val()){
-		alert("썸네일을 등록하세요.")
-		return;
-	}
 	//submit
 	else{
 		$('#frm').submit();

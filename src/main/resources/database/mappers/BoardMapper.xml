@@ -8,17 +8,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- SQL -->
   	<sql id="boardCondition">
-    <where>
-		<if test="condition == 'boardTitle'">
-			BOARDTITLE LIKE '%' || #{search} || '%'
-		</if>
-		<if test="condition == 'boardContents'">
-			BOARDCONTENTS LIKE '%' || #{search} || '%'
-		</if>
-		<if test="condition == 'memberId'">
-			MEMBERID LIKE '%' || #{search} || '%'
-		</if>
-		</where>
+  		<choose>
+  			<when test="condition == 'boardTitle'">
+  				BOARDTITLE LIKE '%' || #{search} || '%'
+  			</when>
+  			<when test="condition == 'boardContents'">
+  				BOARDCONTENTS LIKE '%' || #{search} || '%'
+  			</when>
+  			<when test="condition == 'memberId'">
+  				MEMBERID LIKE '%' || #{search} || '%'
+  			</when>
+  			<otherwise>
+  				ORDER BY BOARDNUM DESC
+  			</otherwise>
+  		</choose>
 	</sql>
 
 	<!-- SELECT -->
@@ -29,7 +32,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					(
 						SELECT * FROM BOARD
 						<include refid="boardCondition"></include>
-						ORDER BY BOARDNUM DESC
 					) C
 			)
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
@@ -51,7 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
 		INSERT INTO BOARD
-		VALUES(#{boardNum}, #{memberId}, #{boardTitle}, #{boardContents}, SYSDATE, 0, 0)
+		VALUES(#{boardNum}, #{memberId}, #{boardTitle}, #{boardContents}, SYSDATE, 0)
 	</insert>
 	
 	<!-- UPDATE -->

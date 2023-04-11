@@ -8,16 +8,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- SQL -->
   	<sql id="recipeCondition">
-	    <where>
-			<if test="condition == 'recipeTitle'">
-				RECIPETITLE LIKE '%' || #{search} || '%'
-				ORDER BY RECIPENUM DESC
-			</if>
-			<if test="condition == 'recipeBase'">
-				RECIPEBASE = #{recipeBase}
-				ORDER BY RECIPENUM DESC
-			</if>
-		</where>
+  		<choose>
+  			<when test="condition == 'recipeTitle'">
+  				WHERE RECIPETITLE LIKE '%' || #{search} || '%'
+  			</when>
+  			<when test="condition == 'recipeBase'">
+  				WHERE RECIPEBASE = #{recipeBase}
+  			</when>
+  			<otherwise>
+  				ORDER BY RECIPENUM DESC
+  			</otherwise>
+  		</choose>
 	</sql>
 
 	<!-- SELECT -->
@@ -76,7 +77,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- UPDATE -->
 	<update id="setRecipeUpdate" parameterType="RecipeDTO">
-		UPDATE RECIPE SET RECIPETITLE = #{recipeTitle}, RECIPECONTENTS = #{recipeContents}, RECIPECATEGORY = #{recipeCategory}
+		UPDATE RECIPE SET RECIPETITLE = #{recipeTitle}, RECIPECONTENTS = #{recipeContents}, RECIPEINGREDIENTS = #{recipeIngredients}, RECIPEBASE = #{recipeBase}
 		WHERE RECIPENUM = #{recipeNum}
 	</update>
 	

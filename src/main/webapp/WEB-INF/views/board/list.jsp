@@ -16,7 +16,7 @@
 		<div class="row mx-auto text-center border-bottom border-dark pb-2">
 			<p class="fs-2" style="font-family: 'Impact'">FREE BOARD</p>
 		</div>
-	
+		
 		<div class="row col-8 justify-content-center mx-auto my-5">
 			<table class="table table-hover">
 				<thead>
@@ -42,6 +42,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
+		</div>
 			
 		<!-- Paging -->
 		<div class="m-auto">

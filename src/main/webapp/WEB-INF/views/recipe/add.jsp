@@ -80,37 +80,6 @@
 	<script>
 		$('#recipeIngredients').summernote();
 		$('#recipeContents').summernote();
-		
-		/* 체크 */
-		$('#tequila').prop('checked', true);
-		$('#tequila').prop('checked', false);
-		
-		$('#rum').prop('checked', true);
-		$('#rum').prop('checked', false);
-		
-		$('#brandy').prop('checked', true);
-		$('#brandy').prop('checked', false);
-		
-		$('#vodka').prop('checked', true);
-		$('#vodka').prop('checked', false);
-		
-		$('#gin').prop('checked', true);
-		$('#gin').prop('checked', false);
-		
-		$('#whisky').prop('checked', true);
-		$('#whisky').prop('checked', false);
-		
-		$('#beer').prop('checked', true);
-		$('#beer').prop('checked', false);
-		
-		$('#wine').prop('checked', true);
-		$('#wine').prop('checked', false);
-		
-		$('#liqueur').prop('checked', true);
-		$('#liqueur').prop('checked', false);
-		
-		$('#non-alcoholic').prop('checked', true);
-		$('#non-alcoholic').prop('checked', false);
 	</script>
 </body>
 </html>
