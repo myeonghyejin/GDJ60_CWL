@@ -15,5 +15,5 @@ public interface OrderService {
 	public void orderCancel(OrderCancelDTO dto) throws Exception;
 	
 	// 주문결제
-	public void orderPayment(OrderDTO orderDTO) throws Exception;
+	public int orderPayment(OrderDTO orderDTO) throws Exception;
 }

@@ -481,6 +481,7 @@ function iamport() {
 	    merchant_uid: 'merchant_' + new Date().getTime(), // 상점에서 관리하는 주문 번호
 	    name : $('#productName').val(),
 	    amount : $('#totalPrice').val(),
+	    orderFee : $('orderFee').val(),
 	    buyer_email : 'memberEmail',
 	    buyer_name : 'memberName',
 	    buyer_phone : 'memberPhone',
