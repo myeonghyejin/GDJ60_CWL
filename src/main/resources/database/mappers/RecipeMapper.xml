@@ -13,44 +13,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				RECIPETITLE LIKE '%' || #{search} || '%'
 				ORDER BY RECIPENUM DESC
 			</if>
-			<if test="condition == 'tequila'">
-				RECIPEBASE = 'TEQUILA'
-				ORDER BY RECIPENUM DESC
-			</if>
-			<if test="condition == 'rum'">
-				RECIPEBASE = 'RUM'
-				ORDER BY RECIPENUM DESC
-			</if>
-			<if test="condition == 'brandy'">
-				RECIPEBASE = 'BRANDY'
-				ORDER BY RECIPENUM DESC
-			</if>
-			<if test="condition == 'vodka'">
-				RECIPEBASE = 'VODKA'
-				ORDER BY RECIPENUM DESC
-			</if>
-			<if test="condition == 'gin'">
-				RECIPEBASE = 'GIN'
-				ORDER BY RECIPENUM DESC
-			</if>
-			<if test="condition == 'whisky'">
-				RECIPEBASE = 'WHISKY'
-				ORDER BY RECIPENUM DESC
-			</if>
-			<if test="condition == 'beer'">
-				RECIPEBASE = 'BEER'
-				ORDER BY RECIPENUM DESC
-			</if>
-			<if test="condition == 'wine'">
-				RECIPEBASE = 'WINE'
-				ORDER BY RECIPENUM DESC
-			</if>
-			<if test="condition == 'liqueur'">
-				RECIPEBASE = 'LIQUEUR'
-				ORDER BY RECIPENUM DESC
-			</if>
-			<if test="condition == 'non-alcoholic'">
-				RECIPEBASE = 'NON-ALCOHOLIC'
+			<if test="condition == 'recipeBase'">
+				RECIPEBASE = #{recipeBase}
 				ORDER BY RECIPENUM DESC
 			</if>
 		</where>

@@ -47,6 +47,15 @@ public class Pagination {
 	public void setRecipeNum(Long recipeNum) {
 		this.recipeNum = recipeNum;
 	}
+	
+	private String recipeBase;
+	
+	public String getRecipeBase() {
+		return recipeBase;
+	}
+	public void setRecipeBase(String recipeBase) {
+		this.recipeBase = recipeBase;
+	}
 
 //---------------------------------------
 
