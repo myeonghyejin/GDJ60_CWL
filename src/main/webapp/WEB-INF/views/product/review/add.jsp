@@ -39,24 +39,24 @@
 				<div class="col-12 my-4">
 					<h5 class="fw-bold fs-5"><b>별점</b></h5>
 					<div class="form-check form-check-block">
-						<label for="bs1" class="form-check-label" id="oneStar">★</label>
-						<input id="bs1" type="radio" name="productRating" value="1" checked class="form-check-input" for="oneStar">
+						<label for="oneStar" class="form-check-label">★</label>
+						<input id="oneStar" type="radio" name="productRating" value="1" checked class="form-check-input">
 					</div>
 					<div class="form-check form-check-block">
-						<label for="bs2" class="form-check-label" id="twoStars">★★</label>
-						<input id="bs2" type="radio" name="productRating" value="2" class="form-check-input" for="twoStars">
+						<label for="twoStars" class="form-check-label">★★</label>
+						<input id="twoStars" type="radio" name="productRating" value="2" class="form-check-input">
 					</div>
 					<div class="form-check form-check-block">
-						<label for="bs3" class="form-check-label" id="threeStars">★★★</label>
-						<input id="bs3" type="radio" name="productRating" value="3" class="form-check-input" for="threeStars">
+						<label for="threeStars" class="form-check-label">★★★</label>
+						<input id="threeStars" type="radio" name="productRating" value="3" class="form-check-input">
 					</div>
 					<div class="form-check form-check-block">
-						<label for="bs4" class="form-check-label" id="fourStars">★★★★</label>
-						<input id="bs4" type="radio" name="productRating" value="4" class="form-check-input" for="fourStars">
+						<label for="fourStars" class="form-check-label">★★★★</label>
+						<input id="fourStars" type="radio" name="productRating" value="4" class="form-check-input">
 					</div>
 					<div class="form-check form-check-block">
-						<label for="bs5" class="form-check-label" id="fiveStars">★★★★★</label>
-						<input id="bs5" type="radio" name="productRating" value="5" class="form-check-input" for="fiveStars">
+						<label for="fiveStars" class="form-check-label">★★★★★</label>
+						<input id="fiveStars" type="radio" name="productRating" value="5" class="form-check-input">
 					</div>
 				</div>
 				<div class="row justify-content-center my-5">

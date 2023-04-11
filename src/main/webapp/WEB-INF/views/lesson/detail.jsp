@@ -16,7 +16,7 @@
 		<div class="row mx-auto my-5">
 			<c:choose>
 				<c:when test="${not empty DTO.lessonNum}">
-					<div class="row col-8 my-4 justify-content-center mx-auto" id="youtube">
+					<div class="row col-8 my-4 justify-content-center mx-auto" id="frame">
 						<iframe width="800" height="420" src="https://www.youtube.com/embed/${DTO.lessonUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 					</div>
 					<div class="row mx-auto">
@@ -62,24 +62,24 @@
 			   <div class="row my-5">
 				   <div class="fw-bold fs-5 col-12 mb-3">
 						   <div class="form-check form-check-inline">
-							   <label for="bs1" class="form-check-label" id="oneStar">★</label>
-							   <input id="bs1" type="radio" id="oneStar" name="lessonRating" value="1" checked class="form-check-input lessonRating" for="oneStar">
+							   <label for="oneStar" class="form-check-label">★</label>
+							   <input id="oneStar" type="radio" id="oneStar" name="lessonRating" value="1" checked class="form-check-input lessonRating">
 						   </div>
 						   <div class="form-check form-check-inline">
-							   <label for="bs2" class="form-check-label" id="twoStars">★★</label>
-							   <input id="bs2" type="radio" id="twoStars" name="lessonRating" value="2" class="form-check-input lessonRating" for="twoStars">
+							   <label for="twoStars" class="form-check-label">★★</label>
+							   <input id="twoStars" type="radio" id="twoStars" name="lessonRating" value="2" class="form-check-input lessonRating">
 						   </div>
 						   <div class="form-check form-check-inline">
-							   <label for="bs3" class="form-check-label" id="threeStars">★★★</label>
-							   <input id="bs3" type="radio" id="threeStars" name="lessonRating" value="3" class="form-check-input lessonRating" for="threeStars">
+							   <label for="threeStars" class="form-check-label">★★★</label>
+							   <input id="threeStars" type="radio" id="threeStars" name="lessonRating" value="3" class="form-check-input lessonRating">
 						   </div>
 						   <div class="form-check form-check-inline">
-							   <label for="bs4" class="form-check-label" id="fourStars">★★★★</label>
-							   <input id="bs4" type="radio" id="fourStars" name="lessonRating" value="4" class="form-check-input lessonRating" for="fourStars">
+							   <label for="fourStars" class="form-check-label">★★★★</label>
+							   <input id="fourStars" type="radio" id="fourStars" name="lessonRating" value="4" class="form-check-input lessonRating">
 						   </div>
 						   <div class="form-check form-check-inline">
-							   <label for="bs5" class="form-check-label" id="fiveStars">★★★★★</label>
-							   <input id="bs5" type="radio" id="fiveStars" name="lessonRating" value="5" class="form-check-input lessonRating" for="fiveStars">
+							   <label for="fiveStars" class="form-check-label">★★★★★</label>
+							   <input id="fiveStars" type="radio" id="fiveStars" name="lessonRating" value="5" class="form-check-input lessonRating">
 						   </div>
 					   </div>
 				   <div class="row mb-3">

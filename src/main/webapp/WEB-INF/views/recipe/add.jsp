@@ -30,28 +30,28 @@
 				<div class="col-12 my-4">
 					<h5 class="fw-bold fs-5"><b>베이스</b></h5>
 					<div class="form-check form-check-block select">
-						<input id="bs1" type="radio" name="recipeBase" value="Tequila" class="form-check-input" for="tequila">
-						<label for="bs1" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1" id="tequila">데킬라 베이스</label>
-						<input id="bs2" type="radio" name="recipeBase" value="Rum" class="form-check-input" for="rum">
-						<label for="bs2" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1" id="rum">럼 베이스</label>
-						<input id="bs3" type="radio" name="recipeBase" value="Brandy" class="form-check-input" for="brandy">
-						<label for="bs3" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1" id="brandy">브랜디 베이스</label>
-						<input id="bs4" type="radio" name="recipeBase" value="Vodka" class="form-check-input" for="vodka">
-						<label for="bs4" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1" id="vodka">보드카 베이스</label>
-						<input id="bs5" type="radio" name="recipeBase" value="Gin" class="form-check-input" for="gin">
-						<label for="bs5" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1" id="gin">진 베이스</label>
+						<input id="tequila" type="radio" name="recipeBase" value="Tequila" class="form-check-input">
+						<label for="tequila" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">데킬라 베이스</label>
+						<input id="rum" type="radio" name="recipeBase" value="Rum" class="form-check-input">
+						<label for="rum" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">럼 베이스</label>
+						<input id="brandy" type="radio" name="recipeBase" value="Brandy" class="form-check-input">
+						<label for="brandy" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">브랜디 베이스</label>
+						<input id="vodka" type="radio" name="recipeBase" value="Vodka" class="form-check-input">
+						<label for="vodka" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">보드카 베이스</label>
+						<input id="gin" type="radio" name="recipeBase" value="Gin" class="form-check-input">
+						<label for="gin" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">진 베이스</label>
 					</div>
 					<div class="form-check form-check-block select">
-						<input id="bs6" type="radio" name="recipeBase" value="Whisky" class="form-check-input" for="whisky">
-						<label for="bs6" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1" id="whisky">위스키 베이스</label>
-						<input id="bs7" type="radio" name="recipeBase" value="Beer" class="form-check-input" for="beer">
-						<label for="bs7" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1" id="beer">맥주 베이스</label>
-						<input id="bs8" type="radio" name="recipeBase" value="Wine" class="form-check-input" for="wine">
-						<label for="bs8" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1" id="wine">포도주 베이스</label>
-						<input id="bs9" type="radio" name="recipeBase" value="Liqueur" class="form-check-input" for="liqueur">
-						<label for="bs9" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1" id="liqueur">리큐르 베이스</label>
-						<input id="bs10" type="radio" name="recipeBase" value="Non-Alcoholic" class="form-check-input" for="non-alcoholic">
-						<label for="bs10" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1" id="non-alcoholic">논 알콜 칵테일</label>
+						<input id="whisky" type="radio" name="recipeBase" value="Whisky" class="form-check-input" >
+						<label for="whisky" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">위스키 베이스</label>
+						<input id="beer" type="radio" name="recipeBase" value="Beer" class="form-check-input">
+						<label for="beer" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">맥주 베이스</label>
+						<input id="wine" type="radio" name="recipeBase" value="Wine" class="form-check-input">
+						<label for="wine" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">포도주 베이스</label>
+						<input id="liqueur" type="radio" name="recipeBase" value="Liqueur" class="form-check-input">
+						<label for="liqueur" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">리큐르 베이스</label>
+						<input id="non-alcoholic" type="radio" name="recipeBase" value="Non-Alcoholic" class="form-check-input">
+						<label for="non-alcoholic" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">논 알콜 칵테일</label>
 					</div>
 				</div>
 				<div class="col-12 mx-auto mt-4">
@@ -80,6 +80,37 @@
 	<script>
 		$('#recipeIngredients').summernote();
 		$('#recipeContents').summernote();
+		
+		/* 체크 */
+		$('#tequila').prop('checked', true);
+		$('#tequila').prop('checked', false);
+		
+		$('#rum').prop('checked', true);
+		$('#rum').prop('checked', false);
+		
+		$('#brandy').prop('checked', true);
+		$('#brandy').prop('checked', false);
+		
+		$('#vodka').prop('checked', true);
+		$('#vodka').prop('checked', false);
+		
+		$('#gin').prop('checked', true);
+		$('#gin').prop('checked', false);
+		
+		$('#whisky').prop('checked', true);
+		$('#whisky').prop('checked', false);
+		
+		$('#beer').prop('checked', true);
+		$('#beer').prop('checked', false);
+		
+		$('#wine').prop('checked', true);
+		$('#wine').prop('checked', false);
+		
+		$('#liqueur').prop('checked', true);
+		$('#liqueur').prop('checked', false);
+		
+		$('#non-alcoholic').prop('checked', true);
+		$('#non-alcoholic').prop('checked', false);
 	</script>
 </body>
 </html>

@@ -22,9 +22,9 @@
 		<div class="col-11 mx-auto">
 			<form action="./list" method="get" class="row mx-5 my-5 justify-content-center">
 				<input type="hidden" name="page" value="1" id="page">
-				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition">인기순</button>
-				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="nameOrder">이름순</button>
-				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="latestOrder">최신순</button>
+				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition">인기순</button>
+				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" value="nameOrder">이름순</button>
+				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" value="latestOrder">최신순</button>
 			</form>
 		</div>
 		<div class="col-11">

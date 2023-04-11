@@ -22,19 +22,19 @@
 		<div class="col-11 mx-auto">
 			<form action="./list" method="get" class="row mx-5 my-5 justify-content-center">
 				<input type="hidden" name="page" value="1" id="page">
-				<div>
-					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="tequila">데킬라 베이스</button>
-					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="rum">럼 베이스</button>
-					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="brandy">브랜디 베이스</button>
-					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="vodka">보드카 베이스</button>
-					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="gin">진 베이스</button>
+				<div class="row justify-content-center mx-auto my-1">
+					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" value="tequila">데킬라 베이스</button>
+					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" value="rum">럼 베이스</button>
+					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" value="brandy">브랜디 베이스</button>
+					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" value="vodka">보드카 베이스</button>
+					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" value="gin">진 베이스</button>
 				</div>
-				<div>
-					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="whisky">위스키 베이스</button>
-					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="beer">맥주 베이스</button>
-					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="wine">포도주 베이스</button>
-					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="liqueur">리큐르 베이스</button>
-					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="non-alcoholic">논 알콜 칵테일</button>
+				<div class="row justify-content-center mx-auto my-1">
+					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" value="whisky">위스키 베이스</button>
+					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" value="beer">맥주 베이스</button>
+					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" value="wine">포도주 베이스</button>
+					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" value="liqueur">리큐르 베이스</button>
+					<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" value="non-alcoholic">논 알콜 칵테일</button>
 				</div>
 			</form>
 		</div>

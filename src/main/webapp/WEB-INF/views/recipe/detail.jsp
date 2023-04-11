@@ -19,7 +19,10 @@
 					<div class="row">
 						<p class="fs-4 fw-bold text-center border-bottom border-dark pb-4">${DTO.recipeTitle}</p>
 					</div>
-					<div class="row col-8 my-4 justify-content-center mx-auto" align="center" id="ingredients">
+					<div class="row col-8 my-4 justify-content-center mx-auto">
+						<img src="/resources/upload/recipe/${DTO.recipeImgDTOs.imgName}" alt="recipe-image">
+					</div>
+					<div class="row col-8 my-4 justify-content-center mx-auto" align="center" id="frame">
 						<p class="fs-4">${DTO.recipeIngredients}</p>
 					</div>
 					<div class="row col-8 my-4 justify-content-center mx-auto">
