@@ -82,7 +82,7 @@
 								<input type="hidden" class="individual_productNum_input" value="${ci.productNum}">								
 							</td>
 							<td class="td_width_2">
-								<div class="image_wrap" data-productNum="${ci.imageList[0].productNum}" data-path="${ci.imageList[0].uploadPath}" data-uuid="${ci.imageList[0].uuid}" data-filename="${ci.imageList[0].fileName}">></div>
+								<div class="image_wrap" data-productImgNum="${ci.imageList[0].productImgNum}" data-productNum="${ci.imageList[0].productNum}" data-path="${ci.imageList[0].uploadPath}" data-uuid="${ci.imageList[0].uuid}" data-imagename="${ci.imageList[0].imageName}" data-originalName="${ci.imageList[0].originalName}" ></div>
 								<img>
 							</td>
 							<td class="td_width_3">${ci.productName}</td>
