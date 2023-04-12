@@ -34,29 +34,29 @@
 		<form action="./add" method="post" enctype="multipart/form-data" id="frm">
 			<input type="hidden" name="memberId" value="${member.memberId}">
 			<div class="row col-8 mx-auto my-5">
-				<div class="fw-bold fs-5 col-12">
-					<label for="productName" class="form-label">제품 이름</label>
+				<div class="col-12">
+					<label for="productName" class="form-label fw-bold fs-5">제품 이름</label>
 					<input type="text" name="productName" class="form-control" id="productName"><br>
 				</div>	
-				<div class="fw-bold fs-5 col-12">
-					<label for="productPrice" class="form-label">가격</label>
+				<div class="col-12">
+					<label for="productPrice" class="form-label fw-bold fs-5">가격</label>
 					<input type="number" name="productPrice" class="form-control" id="productPrice" placeholder="숫자로만 입력하세요."><br>
 				</div>
-				<div class="fw-bold fs-5 col-12">
-					<label for="productDetail" class="form-label">제품 상세 내용</label>
+				<div class="col-12">
+					<label for="productDetail" class="form-label fw-bold fs-5">제품 상세 내용</label>
 					<textarea name="productDetail" class="form-control" id="productDetail" rows="3"></textarea><br>
 				</div>
-				<div class="fw-bold fs-5 col-12">
-					<label for="productStock" class="form-label">재고</label>
+				<div class="col-12">
+					<label for="productStock" class="form-label fw-bold fs-5">재고</label>
 					<input type="number" name="productStock" class="form-control" id="productStock" placeholder="숫자로만 입력하세요."><br>
 				</div>
 				<div id="imgList">
 					<h5><b>제품 사진</b></h5>
-					<h6>최소 1장, 최대 5장까지 등록 가능합니다.</h6>
 					<div class="fw-bold fs-5 col-12 mt-3 input-group">
-						<input type="file" class="form-control img" name="imgs">
+						<input type="file" class="form-control img" name="imgs" id="imgs">
 						<button type="button" class="btn btn-outline-primary btn-image" id="imgAdd">+</button>
-					</div>	
+					</div>
+					<div class="form-text" id="basic-addon4">최소 1장, 최대 5장까지 등록 가능합니다.</div>
 				</div>
 				<div class="fw-bold fs-5 col-12 my-4">
 					<div class="form-check form-check-inline">

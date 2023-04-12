@@ -58,7 +58,8 @@
 					<h5><b>썸네일</b></h5>
 					<div class="fw-bold fs-5 col-12 mt-3 input-group">
 						<input type="file" class="form-control" name="img" id="img" value="img">
-					</div>	
+					</div>
+					<div class="form-text" id="basic-addon4">미등록 시 유튜브 썸네일 이미지가 출력됩니다.</div>
 				</div>
 				<div class="row justify-content-center my-5">
 					<button type="button" id="lessonConfirm" class="btn btn-primary btn-sm btn-default">등록</button>

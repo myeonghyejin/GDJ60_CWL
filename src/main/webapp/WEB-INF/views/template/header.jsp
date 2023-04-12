@@ -21,7 +21,7 @@
 					<a class="nav-link menu main-menu" href="#">Cool with Cocktail</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link menu main-menu" href="#">Recipe</a>
+					<a class="nav-link menu main-menu" href="/recipe/list">Recipe</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link menu main-menu" href="/lesson/list">Lesson</a>

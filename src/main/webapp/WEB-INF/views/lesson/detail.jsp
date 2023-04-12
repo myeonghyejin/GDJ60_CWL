@@ -27,13 +27,14 @@
 		<div class="row mx-auto my-5">
 			<c:choose>
 				<c:when test="${not empty DTO.lessonNum}">
-					<div class="row">
-						<p class="fs-4 fw-bold text-center border-bottom border-dark pb-4">${DTO.lessonTitle}</p>
-					</div>
-					<div class="row col-8 my-4 justify-content-center mx-auto" id="youtube">
+					<div class="row col-8 my-4 justify-content-center mx-auto" id="frame">
 						<iframe width="800" height="420" src="https://www.youtube.com/embed/${DTO.lessonUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 					</div>
-					<div class="row col-8 my-4 justify-content-center mx-auto">
+					<div class="row mx-auto">
+						<p class="fs-4 fw-bold text-center">${DTO.lessonTitle}</p>
+						<p class="fs-6 text-center border-bottom border-dark pb-4">${DTO.lessonTeacher}</p>
+					</div>
+					<div class="row col-8 my-4 mx-auto" align="center">
 						<p class="fs-4">${DTO.lessonContents}</p>
 					</div>
 				</c:when>
@@ -70,28 +71,18 @@
 		   
 		   <c:if test="${not empty member}">
 			   <div class="row my-5">
-				   <div class="fw-bold fs-5 col-12 mb-3">
-						   <div class="form-check form-check-inline">
-							   <label for="bs1" class="form-check-label" id="oneStar">★</label>
-							   <input id="bs1" type="radio" id="oneStar" name="lessonRating" value="1" checked class="form-check-input lessonRating" for="oneStar">
-						   </div>
-						   <div class="form-check form-check-inline">
-							   <label for="bs2" class="form-check-label" id="twoStars">★★</label>
-							   <input id="bs2" type="radio" id="twoStars" name="lessonRating" value="2" class="form-check-input lessonRating" for="twoStars">
-						   </div>
-						   <div class="form-check form-check-inline">
-							   <label for="bs3" class="form-check-label" id="threeStars">★★★</label>
-							   <input id="bs3" type="radio" id="threeStars" name="lessonRating" value="3" class="form-check-input lessonRating" for="threeStars">
-						   </div>
-						   <div class="form-check form-check-inline">
-							   <label for="bs4" class="form-check-label" id="fourStars">★★★★</label>
-							   <input id="bs4" type="radio" id="fourStars" name="lessonRating" value="4" class="form-check-input lessonRating" for="fourStars">
-						   </div>
-						   <div class="form-check form-check-inline">
-							   <label for="bs5" class="form-check-label" id="fiveStars">★★★★★</label>
-							   <input id="bs5" type="radio" id="fiveStars" name="lessonRating" value="5" class="form-check-input lessonRating" for="fiveStars">
-						   </div>
-					   </div>
+				   <div class="form-check-block select col-12 justify-content-center mx-auto mb-3" align="center">
+							<input id="oneStar" type="radio" name="lessonRating" value="1" class="form-check-input lessonRating">
+							<label for="oneStar" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★</label>
+							<input id="twoStars" type="radio" name="lessonRating" value="2" class="form-check-input lessonRating">
+							<label for="twoStars" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★★</label>
+							<input id="threeStars" type="radio" name="lessonRating" value="3" class="form-check-input lessonRating">
+							<label for="threeStars" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★★★</label>
+							<input id="fourStars" type="radio" name="lessonRating" value="4" class="form-check-input lessonRating">
+							<label for="fourStars" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★★★★</label>
+							<input id="fiveStars" type="radio" name="lessonRating" value="5" class="form-check-input lessonRating">
+							<label for="fiveStars" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★★★★★</label>
+					</div>
 				   <div class="row mb-3">
 					   <textarea class="form-control" rows="3" id="lessonReviewContents"></textarea>
 				   </div>

@@ -10,6 +10,9 @@
   		<typeAlias type="java.lang.Long" alias="Long"/>
   		
   		<!-- 혜진 -->
+  		<typeAlias type="com.team.cwl.recipe.RecipeDTO" alias="RecipeDTO"/>
+  		<typeAlias type="com.team.cwl.recipe.RecipeImgDTO" alias="RecipeImgDTO"/>
+  		
   		<typeAlias type="com.team.cwl.board.BoardDTO" alias="BoardDTO"/>
   		<typeAlias type="com.team.cwl.board.comment.BoardCommentDTO" alias="BoardCommentDTO"/>
   		

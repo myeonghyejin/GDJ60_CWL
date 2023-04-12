@@ -23,12 +23,37 @@ a {
     background-color: yellow;
 }
 
-/* ------- youtube -------- */
-#youtube {
+/* ------- frame -------- */
+#frame {
     background-color: #fff;
 	padding: 20px;
 	border: 1px solid #eee;
 	border-radius: 4px;
+}
+
+/* ------- radio -------- */
+.select {
+    padding: 3px 3px;
+}
+.select input[type=radio]{
+    display: none;
+}
+.select input[type=radio]+label{
+    display: inline-block;
+    cursor: pointer;
+    border: 1px solid #343DDB;
+    line-height: 24px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 13px;
+}
+.select input[type=radio]+label{
+    background-color: #fff;
+    color: #343DDB;
+}
+.select input[type=radio]:checked+label{
+    background-color: #343DDB;
+    color: #fff;
 }
 
 /* ------- button -------- */
@@ -69,6 +94,11 @@ a {
 
 .btn-category {
     width: 100px;
+    border-radius: 20px;
+}
+
+.btn-condition {
+    width: 140px;
     border-radius: 20px;
 }
 
