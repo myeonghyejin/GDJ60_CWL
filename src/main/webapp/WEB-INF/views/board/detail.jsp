@@ -8,9 +8,20 @@
 	<title>DETAIL</title>
 	<c:import url="../template/common_css.jsp"></c:import>
 	<link rel="stylesheet" href="/resources/css/common/style.css">
+	 <!-- page-title -->
+	 <section class="page-title bg-cover" data-background="/resources/images/banner/page-title.jpg">
+		<div class="container">
+		  <div class="row">
+			<div class="col-12 text-center">
+			  <h1 class="display-1 text-white font-weight-bold font-primary">Board</h1>
+			</div>
+		  </div>
+		</div>
+		</section>
+		<!-- /page-title -->
 </head>
 <body>
-	<c:import url="../template/header.jsp"></c:import>
+	<c:import url="../template/newheader.jsp"></c:import>
 	<div class="container-fluid my-5">
 		<!-- Contents -->
 		<div class="row mx-auto my-5">

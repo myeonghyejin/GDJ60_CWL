@@ -26,10 +26,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
     <!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7cfe0a988351b935c1deefc425b4cc46"></script> -->
 
+  <!-- page-title -->
+  <section class="page-title bg-cover" data-background="/resources/images/banner/page-title.jpg">
+	<div class="container">
+	  <div class="row">
+		<div class="col-12 text-center">
+		  <h1 class="display-1 text-white font-weight-bold font-primary">with Drink</h1>
+		</div>
+	  </div>
+	</div>
+	</section>
+	<!-- /page-title -->
 
 </head>
 <body>
-    
+    <c:import url="../template/newheader.jsp"></c:import>
+
 
     <!-- char-area -->
     <section class="message-area">
