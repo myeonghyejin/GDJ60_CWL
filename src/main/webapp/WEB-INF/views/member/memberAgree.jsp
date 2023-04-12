@@ -1,26 +1,55 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>이용약관</title>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+		<!DOCTYPE html>
+		<html>
 
-</head>
+		<head>
+			<meta charset="UTF-8">
+			<title>이용약관</title>
 
-<body>
+			<link rel="stylesheet" type="text/css" href="/resources/css/member/animsition.css">
+			
+			<link rel="stylesheet" type="text/css" href="/resources/css/member/animsition.min.css">
+			<link rel="stylesheet" type="text/css" href="/resources/css/member/select2.min.css">
+			<link rel="stylesheet" type="text/css" href="/resources/css/member/daterangepicker.css">
+			<link rel="stylesheet" type="text/css" href="/resources/css/member/main.css">
 
-	<div style="padding: 20px;">
-		<div id="subpage_contents">
-			<div id="subpagebody_contents">
-				<!-- 이용약관 및 회원유형 -->
-				<div class="agreement">
-					<div class="confirm_subtitle">이용약관</div>
-					<div class="useStplatCn">
-						<ul>
-							<li>
-								<textarea id="useStplatCn" cols="109" rows="17" class="agreement_contents" title="나라통계 운영홈페이지 인터넷서비스 이용약관">제 1 장 총칙
+
+			<!-- page-title -->
+			<section class="page-title bg-cover" data-background="/resources/images/banner/page-title.jpg">
+				<div class="container">
+					<div class="row">
+						<div class="col-12 text-center">
+							<h1 class="display-1 text-white font-weight-bold font-primary">Join</h1>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- /page-title -->
+
+				
+	<script
+	nonce="72ebb00d-4cf5-48bf-a297-1f73e9ce5986">(function (w, d) { !function (bv, bw, bx, by) { bv[bx] = bv[bx] || {}; bv[bx].executed = []; bv.zaraz = { deferred: [], listeners: [] }; bv.zaraz.q = []; bv.zaraz._f = function (bz) { return function () { var bA = Array.prototype.slice.call(arguments); bv.zaraz.q.push({ m: bz, a: bA }) } }; for (const bB of ["track", "set", "debug"]) bv.zaraz[bB] = bv.zaraz._f(bB); bv.zaraz.init = () => { var bC = bw.getElementsByTagName(by)[0], bD = bw.createElement(by), bE = bw.getElementsByTagName("title")[0]; bE && (bv[bx].t = bw.getElementsByTagName("title")[0].text); bv[bx].x = Math.random(); bv[bx].w = bv.screen.width; bv[bx].h = bv.screen.height; bv[bx].j = bv.innerHeight; bv[bx].e = bv.innerWidth; bv[bx].l = bv.location.href; bv[bx].r = bw.referrer; bv[bx].k = bv.screen.colorDepth; bv[bx].n = bw.characterSet; bv[bx].o = (new Date).getTimezoneOffset(); if (bv.dataLayer) for (const bI of Object.entries(Object.entries(dataLayer).reduce(((bJ, bK) => ({ ...bJ[1], ...bK[1] }))))) zaraz.set(bI[0], bI[1], { scope: "page" }); bv[bx].q = []; for (; bv.zaraz.q.length;) { const bL = bv.zaraz.q.shift(); bv[bx].q.push(bL) } bD.defer = !0; for (const bM of [localStorage, sessionStorage]) Object.keys(bM || {}).filter((bO => bO.startsWith("_zaraz_"))).forEach((bN => { try { bv[bx]["z_" + bN.slice(7)] = JSON.parse(bM.getItem(bN)) } catch { bv[bx]["z_" + bN.slice(7)] = bM.getItem(bN) } })); bD.referrerPolicy = "origin"; bD.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(bv[bx]))); bC.parentNode.insertBefore(bD, bC) };["complete", "interactive"].includes(bw.readyState) ? zaraz.init() : bv.addEventListener("DOMContentLoaded", zaraz.init) }(w, d, "zarazData", "script"); })(window, document);</script>
+
+
+
+		</head>
+
+		<body>
+			<c:import url="../template/newheader.jsp"></c:import>
+
+				<div class="container-agree100">
+					<div class="col-6" style="margin-left: 25%;">
+						<!--시작 -->
+						<div id="subpage_contents">
+							<div id="subpagebody_contents">
+
+								<!-- 이용약관 및 회원유형 -->
+								<div class="agreement">
+									<br><br>
+									<label for="exampleFormControlTextarea1" class="txt1">이용약관</label>
+									<textarea class="form-control agreement_contents" id="useStplatCn" rows="10"
+										title="나라통계 운영홈페이지 인터넷서비스 이용약관">제 1 장 총칙
 
 제 1 조 (목적)
 본 약관은 통계청이 운영하는 나라통계시스템 운영홈페이지(이하 "당 사이트")에서 제공하는 모든 서비스(이하 "서비스")의 이용조건 및 절차, 이용자와 당 사이트의 권리, 의무, 책임사항과 기타 필요한 사항을 규정함을 목적으로 합니다.
@@ -163,27 +192,22 @@
 본 서비스 이용과 관련하여 발생한 분쟁에 대해 소송이 제기될 경우 대전지방법원을 전속적 관할 법원으로 합니다.
 
 부 칙
-(시행일) 본 약관은 2018년 8월 1일부터 시행됩니다. 개정된 약관의 적용일자 이전 이용자 또는 회원은 개정된 이용약관의 적용을 받습니다.
-								</textarea>
-							</li>
-						</ul>
-					</div>
-					<div class="form-check">
-						<input class="form-check-input checks" type="checkbox" value="" id="check1">
-						<label class="form-check-label" for="check1">
-						동의 [필수]
-						</label>
-					</div>
-				</div>
-				
-				<br>
-				<!-- 개인정보 보호정책 -->
-				<div class="agreement">
-					<div class="confirm_subtitle">개인정보 수집/이용 동의</div>
-					<div class="useStplatCn">
-						<ul>
-							<li>
-								<textarea id="useStplatCn2" cols="109" rows="17" class="agreement_contents" title="나라통계시스템 포털 인터넷서비스 개인정보보호정책">1. 개인정보의 수집항목 및 수집방법&nbsp;
+(시행일) 본 약관은 2018년 8월 1일부터 시행됩니다. 개정된 약관의 적용일자 이전 이용자 또는 회원은 개정된 이용약관의 적용을 받습니다.</textarea>
+									<div class="form-check">
+										<input class="form-check-input checks" type="checkbox" value="" id="check1">
+										<label class="form-check-label" for="check1">
+											동의 [필수]
+										</label>
+									</div>
+								</div>
+
+
+								<!-- 개인정보 보호정책 -->
+								<div class="agreement">
+
+									<label for="exampleFormControlTextarea1" class="txt1">개인정보 수집/이용 동의</label>
+									<textarea class="form-control agreement_contents" id="useStplatCn2" rows="10"
+										title="나라통계시스템 포털 인터넷서비스 개인정보보호정책">1. 개인정보의 수집항목 및 수집방법&nbsp;
 통계청 나라통계사이트에서는 기본적인 회원 서비스 제공을 위한 필수정보로 실명인증정보와 가입정보로 구분하여 다음의 정보를 수집하고 있습니다. 필수정보를 입력해주셔야 회원 서비스 이용이 가능합니다.
 
   가. 수집하는 개인정보의 항목&nbsp;
@@ -228,31 +252,46 @@
     - 행정자치부
       · 위탁업무 내용 : 공공 I-PIN, GPKI 인증
       · 개인정보 보유 및 이용 기간 : 행정자치부에서는 이미 보유하고 있는 개인정보이기 때문에 별도로 저장하지 않음
-								</textarea>
-							</li>
-						</ul>
+		</textarea>
+									<div class="form-check">
+										<input class="form-check-input checks" type="checkbox" value="" id="check2">
+										<label class="form-check-label" for="check2">
+											동의 [필수]
+										</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="" id="checkAll">
+										<label class="form-check-label" for="check">
+											전체동의
+										</label>
+									</div>
+									<br>
+
+								</div>
+							</div>
+						</div>
+						<!--끝 -->
+
+						<div class="container-login100-form-btn">
+							<button id="agree" class="login100-form-btn btn">
+								회원가입
+							</button>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-		<div class="form-check">
-			<input class="form-check-input checks" type="checkbox" value="" id="check2">
-			<label class="form-check-label" for="check2">
-			동의 [필수]
-			</label>
-		</div><br>
-		<div class="form-check">
-			<input class="form-check-input" type="checkbox" value="" id="checkAll">
-			<label class="form-check-label" for="check">
-			전체동의
-			</label>
-		</div><br>
+				<c:import url="../template/footer.jsp"></c:import>
 
-		<div>
-			<button id="agree" class="btn btn-primary">회원가입</button>
-		</div>
-	</div>
-		
-<script type="text/javascript" src="../resources/js/memberAgree.js"></script>
-</body>
-</html>
+
+				
+			<script src="/resources/js//member/animsition.min.js"></script>
+			<script src="/resources/js/member/moment.js"></script>
+			<script src="/resources/js/member/daterangepicker.js"></script>
+			<script src="/resources/js/member/main.js"></script>
+			
+
+			<script type="text/javascript" src="/resources/js/memberAgree.js"></script>
+			<c:import url="../template/common_js.jsp"></c:import>
+
+		</body>
+
+		</html>

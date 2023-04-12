@@ -18,7 +18,7 @@
   <!-- themefy-icon -->
   <link rel="stylesheet" href="/resources/js/plugins/themify-icons/themify-icons.css">
   <!-- venobox css -->
-  <link rel="stylesheet" href="/resources/js/pluginsvenobox/venobox.css">
+  <link rel="stylesheet" href="/resources/js/plugins/venobox/venobox.css">
   <!-- card slider -->
   <link rel="stylesheet" href="/resources/js/plugins/card-slider/css/style.css">
 
