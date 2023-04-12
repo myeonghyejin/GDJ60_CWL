@@ -26,9 +26,19 @@ public class ProductDAO {
       return sqlSession.selectOne(NAMESPACE+"getProductDetail", productDTO);
    }
    
+   public ProductDTO getProductDetail(Long productNum) {
+	      // TODO Auto-generated method stub
+	      return null;
+	   }
+   
    public List<ProductImgDTO> getProductImgList(ProductDTO productDTO) throws Exception {
       return sqlSession.selectList(NAMESPACE+"getProductImgList", productDTO);
    }
+   
+   public List<ProductImgDTO> getProductImgList(Long productNum) {
+	      // TODO Auto-generated method stub
+	      return null;
+	   }
    
    public Long getTotalCount(Pagination pagination) throws Exception {
       return sqlSession.selectOne(NAMESPACE+"getTotalCount", pagination);
@@ -55,16 +65,6 @@ public class ProductDAO {
    
    public int setProductImgDelete(Long imgNum) throws Exception {
       return sqlSession.delete(NAMESPACE+"setProductImgDelete", imgNum);
-   }
-
-   public List<ProductImgDTO> getProductImgList(Long productNum) {
-      // TODO Auto-generated method stub
-      return null;
-   }
-
-   public ProductDTO getProductDetail(Long productNum) {
-      // TODO Auto-generated method stub
-      return null;
    }
 
 }
