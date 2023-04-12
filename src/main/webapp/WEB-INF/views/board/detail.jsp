@@ -8,9 +8,20 @@
 	<title>DETAIL</title>
 	<c:import url="../template/common_css.jsp"></c:import>
 	<link rel="stylesheet" href="/resources/css/common/style.css">
+	 <!-- page-title -->
+	 <section class="page-title bg-cover" data-background="/resources/images/banner/page-title.jpg">
+		<div class="container">
+		  <div class="row">
+			<div class="col-12 text-center">
+			  <h1 class="display-1 text-white font-weight-bold font-primary">Board</h1>
+			</div>
+		  </div>
+		</div>
+		</section>
+		<!-- /page-title -->
 </head>
 <body>
-	<c:import url="../template/header.jsp"></c:import>
+	<c:import url="../template/newheader.jsp"></c:import>
 	<div class="container-fluid my-5">
 		<!-- Contents -->
 		<div class="row mx-auto my-5">
@@ -22,7 +33,7 @@
 					<div class="row my-4 mx-auto text-center">
 						<p class="fs-6"><b>글 번호</b>&ensp;${DTO.boardNum}&emsp;<b>작성자</b>&ensp;${DTO.memberId}&emsp;<b>날짜</b>&ensp;${DTO.boardDate}&emsp;<b>조회수</b>&ensp;${DTO.boardHit+1}</p>
 					</div>
-					<div class="row col-6 my-4 justify-content-center mx-auto">
+					<div class="row col-8 my-4 justify-content-center mx-auto">
 						<p class="fs-4">${DTO.boardContents}</p>
 					</div>
 				</c:when>
@@ -39,13 +50,13 @@
 			<form action="./update" id="frm">
 				<div class="row col-6 justify-content-center mx-auto">
 					<input type="hidden" name="boardNum" value="${DTO.boardNum}">
-					<button id="update" type="submit" class="btn btn-outline-primary col-1 mx-1">수정</button>
-					<button id="delete" type="button" class="btn btn-outline-primary col-1 mx-1">삭제</button>
+					<button id="update" type="submit" class="btn btn-outline-primary btn-sm btn-default mx-1">수정</button>
+					<button id="delete" type="button" class="btn btn-outline-primary btn-sm btn-default mx-1">삭제</button>
 				</div>
 			</form>
 		</c:if>
 		<div class="row col-6 my-2 justify-content-center mx-auto">
-			<a href="./list" class="btn btn-primary col-1 mx-1">목록</a>
+			<a href="./list" class="btn btn-primary btn-sm btn-default mx-1">목록</a>
 		</div>
 		
 		<!-- Comment -->
@@ -63,15 +74,14 @@
 						<textarea class="form-control" rows="3" id="boardCommentContents"></textarea>
 					</div>
 					<div class="row mb-3 justify-content-end">
-						<button type="button" class="btn btn-primary col-1 mx-1" id="boardCommentAdd" data-board-num="${DTO.boardNum}">작성</button>
+						<button type="button" class="btn btn-primary btn-sm btn-default mx-1" id="boardCommentAdd" data-board-num="${DTO.boardNum}">작성</button>
 					</div>
 				</div>
 			</c:if>
 		</div>
 	
-		<!--  Update Form Modal -->
-		<!-- Modal -->
-		<div class="modal fade" id="contentsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<!-- Update -->
+		<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -85,14 +95,51 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModal">취소</button>
-					<button type="button" class="btn btn-primary" data-boardcomment-num="" id="contentsConfirm">확인</button>
+					<button type="button" class="btn btn-secondary btn-sm btn-default" data-bs-dismiss="modal" id="closeUpdateModal">취소</button>
+					<button type="button" class="btn btn-primary btn-sm btn-default" data-boardcomment-num="" id="updateConfirm">확인</button>
 				</div>
 			</div>
 			</div>
 		</div>
+
+		<!-- Reply -->
+		<div class="modal fade" id="replyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h1 class="modal-title fs-5" id="exampleModalLabel">답글</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="form-floating">
+						<textarea class="form-control" id="boardCommentReply"></textarea>
+						<label for="boardCommentReply">Comments</label>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary btn-sm btn-default" data-bs-dismiss="modal" id="closeReplyModal">취소</button>
+					<button type="button" class="btn btn-primary btn-sm btn-default" data-boardcomment-num="" id="replyConfirm">확인</button>
+				</div>
+			</div>
+			</div>
+		</div>
+
 	</div>
 	<c:import url="../template/common_js.jsp"></c:import>
+	<c:import url="../template/footer.jsp"></c:import>
 	<script src="/resources/js/board/comment.js"></script>
+	<script>
+		/* 삭제 버튼 */
+		const d = document.getElementById("delete");
+
+		d.addEventListener("click", function(){
+			let check = window.confirm("삭제하시겠습니까?");
+			if(check) {
+				frm.setAttribute("action", "./delete");
+				frm.setAttribute("method", "post");
+				frm.submit();
+			}
+		})
+	</script>
 </body>
 </html>

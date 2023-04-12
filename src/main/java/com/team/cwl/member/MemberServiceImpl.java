@@ -37,6 +37,7 @@ public class MemberServiceImpl implements MemberService {
 	/* 주문자 정보 */
 	@Override
 	public MemberDTO getMemberInfo(String memberId) {
+		System.out.println(memberId);
 		return memberMapper.getMemberInfo(memberId);
 	}
 	

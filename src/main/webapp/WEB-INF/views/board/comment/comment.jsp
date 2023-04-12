@@ -5,20 +5,29 @@
 <table class="table table-hover">
 	<c:forEach items="${list}" var="DTO">
 		<tr>
-			<td align="center" style="vertical-align: middle;"><b>${DTO.memberId}</b></td>
+			<td align="center" style="vertical-align: middle;" width="50%">
+				<b>${DTO.memberId}</b>
+				<c:if test="${member.memberId eq DTO.memberId}">
+					<p id="me">나</p>
+				</c:if>
+			</td>
 			<td align="right" style="vertical-align: middle;">${DTO.boardCommentDate}</td>
 			<td align="right" style="vertical-align: middle;">
 				<c:if test="${member.memberId eq DTO.memberId}">
-					<button class="btn btn-info btn-sm update" data-boardcomment-num="${DTO.boardCommentNum}" data-bs-toggle="modal" data-bs-target="#contentsModal">수정</button>
+					<button class="btn btn-info btn-sm update" data-boardcomment-num="${DTO.boardCommentNum}" data-bs-toggle="modal" data-bs-target="#updateModal">수정</button>
 				</c:if>
 				<c:if test="${member.memberId eq DTO.memberId}">
 					<button class="btn btn-danger btn-sm delete" id="del" data-boardcomment-num="${DTO.boardCommentNum}">삭제</button>
 				</c:if>
+				<button class="btn btn-info btn-sm reply" data-boardcomment-num="${DTO.boardCommentNum}" data-bs-toggle="modal" data-bs-target="#replyModal">답글</button>
 			</td>
 		</tr>
 		<tr>
-			<td id="boardCommentContents${DTO.boardCommentNum}" width="100%" colspan="5">
-				⤷ ${DTO.boardCommentContents}
+			<td id="boardCommentContents${DTO.boardCommentNum}" width="100%" height="70px" style="vertical-align: middle;" colspan="3">
+				<c:forEach begin="1" end="${DTO.boardCommentDepth}">
+					<p id="re2" height="100%" align="center" style="vertical-align: middle;">⤷</p>
+				</c:forEach>
+				${DTO.boardCommentContents}
 			</td>
 		</tr>
 	</c:forEach>

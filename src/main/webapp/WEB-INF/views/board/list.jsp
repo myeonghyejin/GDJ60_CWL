@@ -8,14 +8,26 @@
 	<title>BOARD</title>
 	<c:import url="../template/common_css.jsp"></c:import>
 	<link rel="stylesheet" href="/resources/css/common/style.css">
+
+	 <!-- page-title -->
+	 <section class="page-title bg-cover" data-background="/resources/images/banner/page-title.jpg">
+		<div class="container">
+		  <div class="row">
+			<div class="col-12 text-center">
+			  <h1 class="display-1 text-white font-weight-bold font-primary">Board</h1>
+			</div>
+		  </div>
+		</div>
+		</section>
+		<!-- /page-title -->
 </head>
 <body>
-	<c:import url="../template/header.jsp"></c:import>
+	<c:import url="../template/newheader.jsp"></c:import>
 	<div class="container-fluid my-5">
 		<!-- Title -->
-		<div class="row mx-auto text-center border-bottom border-dark pb-2">
+		<!-- <div class="row mx-auto text-center border-bottom border-dark pb-2">
 			<p class="fs-2" style="font-family: 'Impact'">FREE BOARD</p>
-		</div>
+		</div> -->
 	
 		<div class="row col-8 justify-content-center mx-auto my-5">
 			<table class="table table-hover">
@@ -88,23 +100,24 @@
 				</div>
 				<div class="col-auto">
 					<label for="search" class="visually-hidden">Search</label>
-					<input type="text" class="form-control" value="${pagination.search}" name="search" id="search" placeholder="검색어를 입력하세요.">
+					<input type="text" class="form-control" value="${pagination.search}" name="search" id="search">
 				</div>
 				<div class="col-auto">
-					<button type="submit" class="btn btn-outline-primary mb-3">검색</button>
+					<button type="submit" class="btn btn-outline-primary btn-sm btn-default mb-3">검색</button>
 				</div>
 			</div>
 		</form>
 		
 		<!-- 상품 등록 버튼 -->
 	 	<c:if test="${not empty member}">
-			<div class="row justify-content-center mx-auto">
-				<a href=./add class="btn btn-primary col-1">등록</a>
+			<div class="row justify-content-center mx-auto my-3">
+				<a href=./add class="btn btn-primary btn-sm btn-default">등록</a>
 			</div>
 	 	</c:if>
 		</div>
 	</div>
 	<c:import url="../template/common_js.jsp"></c:import>
+	<c:import url="../template/footer.jsp"></c:import>
 	<script src="../resources/js/common/paging.js"></script>
 </body>
 </html>

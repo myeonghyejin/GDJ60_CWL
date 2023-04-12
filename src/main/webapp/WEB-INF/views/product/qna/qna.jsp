@@ -7,23 +7,16 @@
 	<c:forEach items="${list}" var="DTO">
 		<tr>
 			<td class="detail" id="productQnATitle${DTO.productQnANum}" data-productqna-num="${DTO.productQnANum}" width="50%">
-				<c:forEach begin="1" end="${DTO.productQnADepth}">[re]</c:forEach>
+				<c:forEach begin="1" end="${DTO.productQnADepth}">
+					<p id="re" height="100%" align="center" style="vertical-align: middle;">re</p>
+				</c:forEach>
 				<a data-productqna-num="${DTO.productQnANum}">${DTO.productQnATitle}</a>
 			</td>
-			<td align="center" style="vertical-align: middle;">
-				<c:choose>
-					<c:when test="${member.adminCheck eq 1}">
-						<b>CWL</b>
-					</c:when>
-					<c:otherwise>
-						<b>${DTO.memberId}</b>
-					</c:otherwise>
-				</c:choose>
-			</td>
+			<td align="center" style="vertical-align: middle;"><b>${DTO.memberId}</b></td>
 			<td align="right" style="vertical-align: middle;">${DTO.productQnADate}</td>
 			<td align="right" style="vertical-align: middle;">
 				<c:if test="${member.adminCheck eq 1}">
-					<a href="./qna/reply?productQnANum=${DTO.productQnANum}&productNum=${DTO.productNum}" class="btn btn-primary btn-sm" data-product-num-qna="${DTO.productNum}">답글</a>
+					<a href="./qna/reply?productQnANum=${DTO.productQnANum}&productNum=${DTO.productNum}&productQnASecret=${DTO.productQnASecret}" class="btn btn-primary btn-sm" data-product-num-qna="${DTO.productNum}">답글</a>
 				</c:if>
 				<c:if test="${member.memberId eq DTO.memberId}">
 					<a href="./qna/update?productQnANum=${DTO.productQnANum}&productNum=${DTO.productNum}" class="btn btn-info btn-sm" data-productqna-num="${DTO.productQnANum}">수정</a>
@@ -37,13 +30,12 @@
 			<td id="productQnAContents${DTO.productQnANum}" width="100%" colspan="4" style="display:none;">
 				<c:choose>
 					<c:when test="${DTO.productQnASecret eq 1}">
-						<c:if test="${member.memberId eq DTO.memberId}">
+						<c:if test="${member.memberId eq DTO.memberId or member.adminCheck eq 1 or DTO.productQnARef eq DTO.productQnANum}">
 							⤷ ${DTO.productQnAContents}
 						</c:if>
-						<c:if test="${member.adminCheck eq 1}">
-							⤷ ${DTO.productQnAContents}
+						<c:if test="${member.memberId ne DTO.memberId and member.adminCheck eq 0}">
+							⤷ 비밀글입니다.
 						</c:if>
-							비밀글입니다.
 					</c:when>
 					<c:otherwise>
 						⤷ ${DTO.productQnAContents}

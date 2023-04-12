@@ -34,6 +34,20 @@ public class BoardCommentService {
 		return boardCommentDAO.setBoardCommentAdd(boardCommentDTO);
 	}
 	
+	public int setBoardCommentReplyAdd(BoardCommentDTO boardCommentDTO, HttpSession session) throws Exception {
+		BoardCommentDTO parent = boardCommentDAO.getBoardCommentDetail(boardCommentDTO);
+		
+		boardCommentDTO.setBoardCommentRef(parent.getBoardCommentRef());
+		boardCommentDTO.setBoardCommentStep(parent.getBoardCommentStep()+1);
+		boardCommentDTO.setBoardCommentDepth(parent.getBoardCommentDepth()+1);
+		
+		int result = boardCommentDAO.setStepUpdate(parent);
+		
+		result = boardCommentDAO.setBoardCommentReplyAdd(boardCommentDTO);
+		
+		return result;
+	}
+	
 	/** UPDATE **/
 	public int setBoardCommentUpdate(BoardCommentDTO boardCommentDTO) throws Exception {
 		return boardCommentDAO.setBoardCommentUpdate(boardCommentDTO);

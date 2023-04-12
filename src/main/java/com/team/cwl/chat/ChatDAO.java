@@ -14,15 +14,25 @@ public class ChatDAO {
 	private final String NAMESPACE="com.team.cwl.chat.ChatDAO.";
 	
 	
-	//채팅방 가져오기 
-	public List<ChatDTO> getChatList(ChatDTO chatDTO) throws Exception{
+	//채팅 내용 가져오기 
+	public ChatDTO getChatContents(ChatDTO chatDTO) throws Exception{
 		System.out.println("DAO");
-		return sqlSession.selectList(NAMESPACE + "getChatList", chatDTO);
+		return sqlSession.selectOne(NAMESPACE + "getChatContents", chatDTO);
 	}
 
-	//채팅 보내기  
-	public int setChatAdd(ChatDTO chatDTO) {
-		return sqlSession.insert(NAMESPACE + "setChatAdd", chatDTO);
+	//채팅 내용 업데이트  
+	public int setChatContents(ChatDTO chatDTO) {
+		return sqlSession.update(NAMESPACE + "setChatContents", chatDTO);
+	}
+	
+	//방번호 시퀀스 생성  
+	public Long getChatRoomNum() {
+		return sqlSession.selectOne(NAMESPACE+"getChatRoomNum");
+	}
+	
+	//채팅방 새로 생성 
+	public int setChatRoom(ChatDTO chatDTO) {
+		return sqlSession.insert(NAMESPACE+"setChatRoom", chatDTO);
 	}
 
 

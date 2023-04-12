@@ -1,6 +1,6 @@
 package com.team.cwl.chat;
 
-public class MessageDTO extends ChatDTO {
+public class MessageDTO {
 	
 	private String type;
 	
@@ -10,9 +10,19 @@ public class MessageDTO extends ChatDTO {
 	
 	private Long sendTime;
 	
+	private String senderId;
 	
 	
 	
+	
+
+	public String getSenderId() {
+		return senderId;
+	}
+
+	public void setSenderId(String senderId) {
+		this.senderId = senderId;
+	}
 
 	public Long getSendTime() {
 		return sendTime;

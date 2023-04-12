@@ -49,5 +49,7 @@
 		$('#productQnAContents').summernote();
 	</script>
 	<c:import url="../../template/common_js.jsp"></c:import>
+	<c:import url="../../template/footer.jsp"></c:import>
+	
 </body>
 </html>
