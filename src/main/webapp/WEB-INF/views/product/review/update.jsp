@@ -5,12 +5,23 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>ADD</title>
+	<title>PRODUCT REVIEW UPDATE</title>
 	
 	<c:import url="../../template/common_css.jsp"></c:import>
+	
+	<!-- page-title -->
+	<section class="page-title bg-cover" data-background="/resources/images/banner/page-title.jpg">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 text-center">
+					<h1 class="display-1 text-white font-weight-bold font-primary">Product</h1>
+				</div>
+			</div>
+		</div>
+	</section>
 </head>
 <body>
-	<c:import url="../../template/header.jsp"></c:import>
+	<c:import url="../../template/newheader.jsp"></c:import>
 	<div class="container-fluid my-5">
 	<!-- Contents -->
 	<% request.setCharacterEncoding("UTF-8");

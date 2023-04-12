@@ -33,7 +33,7 @@ a {
 
 /* ------- radio -------- */
 .select {
-    padding: 3px 3px;
+    padding: 3px;
 }
 .select input[type=radio]{
     display: none;
@@ -129,6 +129,7 @@ a {
     color: #343DDB;
     width: 40px;
     height: 40px;
+    line-height: 20px;
     display: inline-block;
     text-align: center;
     font-weight: 600;
