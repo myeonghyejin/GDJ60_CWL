@@ -21,12 +21,10 @@ body {
   font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   font-size: 15px;
-  color: #6c6c86;
 }
 
 p {
   font-weight: 400;
-  color: #6c6c86;
   font-size: 15px;
   line-height: 1.7;
   font-family: "Poppins", sans-serif;
@@ -47,7 +45,6 @@ p {
 
 h1, h2, h3, h4, h5, h6 {
   color: #000;
-  font-family: "Noto Sans", sans-serif;
   font-weight: 700;
   line-height: 1.2;
 }
@@ -106,93 +103,6 @@ h6, .h6 {
 .icon-xs {
   font-size: 20px;
 }
-
-/* Button style */
-/* .btn {
-  font-size: 15px;
-  font-family: "Poppins", sans-serif;
-  text-transform: capitalize;
-  padding: 13px 45px;
-  border-radius: 35px;
-  font-weight: 600;
-  border: 1px solid;
-  position: relative;
-  z-index: 1;
-  transition: 0.2s ease;
-}
-.btn:hover, .btn:active, .btn:focus {
-  outline: 0;
-  box-shadow: none !important;
-  box-shadow: 0px 18px 18px 0px rgba(20, 28, 91, 0.19);
-}
-
-.btn-lg {
-  font-size: 20px;
-  padding: 20px 90px;
-}
-
-.btn-primary {
-  background: linear-gradient(37deg, rgb(180, 62, 121) 1%, rgb(247, 70, 58) 100%);
-  color: #fff;
-  border: 0;
-}
-.btn-primary:active, .btn-primary:hover, .btn-primary.focus, .btn-primary.active {
-  background: linear-gradient(37deg, rgb(180, 62, 121) 1%, rgb(247, 70, 58) 100%) !important;
-  color: #fff;
-  border: 0;
-}
-
-.btn-outline-primary {
-  background: transparent;
-  color: #f7463a;
-  border-color: #f7463a;
-}
-.btn-outline-primary:active, .btn-outline-primary:hover, .btn-outline-primary.focus, .btn-outline-primary.active {
-  background: linear-gradient(37deg, rgb(180, 62, 121) 1%, rgb(247, 70, 58) 100%) !important;
-  color: #fff;
-  border-color: #f7463a;
-}
-
-.btn-secondary {
-  background: #07085d;
-  color: #fff;
-  border: 0;
-}
-.btn-secondary:active, .btn-secondary:hover, .btn-secondary.focus, .btn-secondary.active {
-  background: #07085d !important;
-  color: #fff;
-  border: 0;
-}
-
-.btn-outline-light {
-  background: transparent;
-  color: #fff;
-  border-color: #fff;
-}
-.btn-outline-light:active, .btn-outline-light:hover, .btn-outline-light.focus, .btn-outline-light.active {
-  background: #fff !important;
-  color: #000;
-  border-color: #fff;
-}
-
-.btn-transparent {
-  color: #f7463a;
-  border: 0;
-  padding-left: 0;
-  background: linear-gradient(37deg, rgb(180, 62, 121) 1%, rgb(247, 70, 58) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.btn-transparent:active, .btn-transparent:hover, .btn-transparent.focus, .btn-transparent.active {
-  color: #f7463a;
-  border: 0;
-  padding-left: 0;
-  background: linear-gradient(37deg, rgb(180, 62, 121) 1%, rgb(247, 70, 58) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  box-shadow: none;
-  text-decoration: underline;
-} */
 
 body {
   background-color: #fff;
@@ -381,28 +291,6 @@ a:hover {
   background: #07085d !important;
 }
 
-.text-primary {
-  color: #f7463a !important;
-}
-
-.text-secondary {
-  color: #07085d !important;
-}
-
-.text-gradient-primary {
-  background: linear-gradient(37deg, rgb(180, 62, 121) 1%, rgb(247, 70, 58) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.text-light {
-  color: #b7b8f1 !important;
-}
-
-.text-color {
-  color: #6c6c86 !important;
-}
-
 .mb-10 {
   margin-bottom: 10px !important;
 }
@@ -457,10 +345,6 @@ a:hover {
 
 .font-primary {
   font-family: "Poppins", sans-serif !important;
-}
-
-.font-secondary {
-  font-family: "Noto Sans", sans-serif !important;
 }
 
 .shadow {
