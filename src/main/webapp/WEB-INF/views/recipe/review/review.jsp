@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<!-- Contents -->
 <table class="table table-hover">
 	<c:forEach items="${list}" var="DTO">
 		<tr>
@@ -11,25 +12,36 @@
 					<p id="me">나</p>
 				</c:if>
 			</td>
-			<td align="right" style="vertical-align: middle;">${DTO.boardCommentDate}</td>
+			<td id="lessonRating${DTO.lessonReviewNum}" align="center" style="vertical-align: middle;">
+				<c:if test="${DTO.lessonRating eq 1}">
+					★
+				</c:if>
+				<c:if test="${DTO.lessonRating eq 2}">
+					★★
+				</c:if>
+				<c:if test="${DTO.lessonRating eq 3}">
+					★★★
+				</c:if>
+				<c:if test="${DTO.lessonRating eq 4}">
+					★★★★
+				</c:if>
+				<c:if test="${DTO.lessonRating eq 5}">
+					★★★★★
+				</c:if>
+			</td>
+			<td align="right" style="vertical-align: middle;">${DTO.lessonReviewDate}</td>
 			<td align="right" style="vertical-align: middle;">
-				<c:if test="${DTO.boardCommentDepth eq 0}">
-					<button class="btn btn-info btn-sm reply" data-boardcomment-num="${DTO.boardCommentNum}" data-bs-toggle="modal" data-bs-target="#replyModal">답글</button>
+				<c:if test="${member.memberId eq DTO.memberId}">
+					<button class="btn btn-info btn-sm update my-0" data-lessonReview-num="${DTO.lessonReviewNum}" data-bs-toggle="modal" data-bs-target="#updateModal">수정</button>
 				</c:if>
 				<c:if test="${member.memberId eq DTO.memberId}">
-					<button class="btn btn-info btn-sm update" data-boardcomment-num="${DTO.boardCommentNum}" data-bs-toggle="modal" data-bs-target="#updateModal">수정</button>
-				</c:if>
-				<c:if test="${member.memberId eq DTO.memberId}">
-					<button class="btn btn-danger btn-sm delete" id="del" data-boardcomment-num="${DTO.boardCommentNum}">삭제</button>
+					<button class="btn btn-danger btn-sm delete" id="del" data-lessonReview-num="${DTO.lessonReviewNum}">삭제</button>
 				</c:if>
 			</td>
 		</tr>
 		<tr>
-			<td id="boardCommentContents${DTO.boardCommentNum}" width="100%" height="70px" style="vertical-align: middle;" colspan="3">
-				<c:forEach begin="1" end="${DTO.boardCommentDepth}">
-					<p id="re2" height="100%" align="center" style="vertical-align: middle;">⤷</p>
-				</c:forEach>
-				${DTO.boardCommentContents}
+			<td id="lessonReviewContents${DTO.lessonReviewNum}" width="100%" height="70px" style="vertical-align: middle;" colspan="4">
+				${DTO.lessonReviewContents}
 			</td>
 		</tr>
 	</c:forEach>

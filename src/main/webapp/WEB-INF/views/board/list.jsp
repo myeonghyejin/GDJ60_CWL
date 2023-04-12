@@ -28,7 +28,8 @@
 		<!-- <div class="row mx-auto text-center border-bottom border-dark pb-2">
 			<p class="fs-2" style="font-family: 'Impact'">FREE BOARD</p>
 		</div> -->
-	
+		
+		<!-- Contents -->
 		<div class="row col-8 justify-content-center mx-auto my-5">
 			<table class="table table-hover">
 				<thead>
@@ -54,6 +55,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
+		</div>
 			
 		<!-- Paging -->
 		<div class="m-auto">
@@ -114,7 +116,6 @@
 				<a href=./add class="btn btn-primary btn-sm btn-default">등록</a>
 			</div>
 	 	</c:if>
-		</div>
 	</div>
 	<c:import url="../template/common_js.jsp"></c:import>
 	<c:import url="../template/footer.jsp"></c:import>

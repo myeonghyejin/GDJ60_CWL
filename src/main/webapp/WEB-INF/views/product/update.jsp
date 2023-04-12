@@ -53,11 +53,11 @@
 				</div>
 				<div id="imgList">
 					<h5><b>제품 사진</b></h5>
-					<h6>최소 1장, 최대 5장까지 등록 가능합니다.</h6>
 					<div class="fw-bold fs-5 col-12 mt-3 input-group">
 						<input type="file" class="form-control" name="imgs" id="imgs">
 						<button type="button" class="btn btn-outline-primary btn-image" id="imgAdd">+</button>
-					</div>	
+					</div>
+					<div class="form-text" id="basic-addon4">최소 1장, 최대 5장까지 등록 가능합니다.</div>
 				</div>
 				<div class="fw-bold fs-5 col-12 my-4">
 					<div class="form-check form-check-inline">

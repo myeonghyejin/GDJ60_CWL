@@ -8,18 +8,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- SQL -->
   	<sql id="lessonCondition">
-	    <where>
-			<if test="condition == 'lessonTitle'">
-				LESSONTITLE LIKE '%' || #{search} || '%'
+  		<choose>
+  			<when test="condition == 'lessonTitle'">
+  				WHERE LESSONTITLE LIKE '%' || #{search} || '%'
 				ORDER BY LESSONNUM DESC
-			</if>
-		</where>
-		<if test="condition == 'nameOrder'">
-			ORDER BY LESSONTITLE ASC
-		</if>
-		<if test="condition == 'latestOrder'">
-			ORDER BY LESSONDATE DESC
-		</if>
+  			</when>
+  			<when test="condition == 'nameOrder'">
+  				ORDER BY LESSONTITLE ASC
+  			</when>
+  			<when test="condition == 'latestOrder'">
+  				ORDER BY LESSONDATE DESC
+  			</when>
+  			<otherwise>
+  				ORDER BY LESSONNUM DESC
+  			</otherwise>
+  		</choose>
 	</sql>
 
 	<!-- SELECT -->
