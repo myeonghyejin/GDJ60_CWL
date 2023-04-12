@@ -26,23 +26,8 @@
 	<c:import url="../template/newheader.jsp"></c:import>
 <div class="wrapper container-fluid" align="center">
 	<div class="wrap col-8">
-		<div class="top_area mx-4" align="left">
-			<div class="login_area">
-				<!-- 로그인한 상태 -->
-				<c:if test="${member != null}">
-					<div class="row login_success_area my-5">
-						<div class="col-md-6">
-							회원
-							<h5 class="my-1">${member.memberName}</h5>
-						</div>
-						<div class="col-md-6">
-							충전 금액
-							<h5 class="my-1"><fmt:formatNumber value="${member.money}" pattern="￦###,###,###,###"/></h5>
-						</div>
-					</div>
-				</c:if>
-				
-			</div>		
+		<div class="top_area mx-4 mt-5" align="left">
+			<div class="login_area"></div>		
 		</div>
 		
 		<div class="content_area">
@@ -65,9 +50,9 @@
 						<th class="td_width_2"></th>
 						<th class="td_width_3">상품명</th>
 						<th class="td_width_4">가격</th>
-						<th class="td_width_5">수량</th>
-						<th class="td_width_6">합계</th>
-						<th class="td_width_7">삭제</th>
+						<th class="td_width_4">수량</th>
+						<th class="td_width_4">합계</th>
+						<th class="td_width_4">삭제</th>
 					</tr>
 				</tbody>
 			</table>
@@ -76,7 +61,7 @@
 				<tbody>
 					<c:forEach items="${cartInfo}" var="ci">
 						<tr>
-							<td class="td_width_1 cart_info_td justify-content-center mx-auto" align="center">
+							<td class="cart_info_td" align="center">
 								<input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked" name="check" value="1">								
 								<input type="hidden" class="individual_productPrice_input" value="${ci.productPrice}">
 								<input type="hidden" class="individual_orderStock_input" value="${ci.orderStock}">
@@ -91,23 +76,19 @@
 							<td class="td_width_4 price_td">
 								<fmt:formatNumber value="${ci.productPrice}" pattern="###,###,###,###원" /><br>
 							</td>
-							<td class="td_width_5 table_text_align_center">
-								<div class="button_quantity my-3">
-									<span>
-										<button class="plus_btn">+</button>
-									</span>
+							<td class="td_width_4 table_text_align_center">
+								<div class="button_quantity my-3">									
+									<button class="plus_btn">+</button>									
 									<input type="text" class="quantity_input" value="${ci.orderStock}">
-									<span>
-										<button class="minus_btn">-</button>
-									</span>
+									<button class="minus_btn">-</button>									
 								</div>
-								<a class="btn btn-primary btn-sm btn-default mx-1" data-cartNum="${ci.cartNum}">변경</a>
+								<a class="btn btn-primary btn-sm btn-default mx-1" data-cartNum="${ci.cartNum}" id="quantity_modify_btn">변경</a>
 							</td>
-							<td class="td_width_6 table_text_align_center">
+							<td class="td_width_4 table_text_align_center">
 								<fmt:formatNumber value="${ci.productPrice * ci.orderStock}" pattern="###,###,###,###원" />
 							</td>
-							<td class="td_width_7 table_text_align_center">
-								<button class="btn btn-primary btn-sm btn-default mx-1" data-cartNum="${ci.cartNum}">삭제</button>
+							<td class="td_width_4 table_text_align_center">
+								<button class="btn btn-primary btn-sm btn-default mx-1" data-cartNum="${ci.cartNum}" id="delete_btn">삭제</button>
 							</td>
 						</tr>
 					</c:forEach>
@@ -174,7 +155,7 @@
 		</div>
 		<!-- 구매 버튼 영역 -->
 		<div class="row my-3 justify-content-center mx-auto" align="center">
-			<a class="btn btn-primary btn-sm btn-default mx-1">주문</a>
+			<a class="btn btn-primary btn-sm btn-default mx-1" id="order_btn">주문</a>
 		</div>
 		
 		<!-- 수량 조정 form -->
@@ -297,7 +278,7 @@
 		}
 	});
 	/* 수량 수정 버튼 */
-	$(".quantity_modify_btn").on("click", function(){
+	$("#quantity_modify_btn").on("click", function(){
 		let cartNum = $(this).attr("data-cartNum");
 		let orderStock = $(this).parent("td").find("input").val();
 		$(".update_cartNum").val(cartNum);
@@ -306,7 +287,7 @@
 		
 	});
 	/* 장바구니 삭제 버튼 */
-	$(".delete_btn").on("click", function(e){
+	$("#delete_btn").on("click", function(e){
 		e.preventDefault();
 		const cartNum = $(this).attr("data-cartNum");
 		$(".delete_cartNum").val(cartNum);
@@ -314,7 +295,7 @@
 	});
 		
 	/* 주문 페이지 이동*/	
-	$(".order_btn").on("click", function(){
+	$("#order_btn").on("click", function(){
 		
 		let form_contents ='';
 		let orderNumber = 0;
