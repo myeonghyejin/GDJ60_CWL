@@ -59,7 +59,7 @@
 								</div>
 							</a>
 						</div>
-						<div class="row my-1" align="center">
+						<div class="row my-2" align="center">
 							<p><b>${DTO.lessonTitle}</b></p>
 						</div>
 					</div>

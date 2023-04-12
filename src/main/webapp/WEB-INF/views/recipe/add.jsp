@@ -29,7 +29,7 @@
 				</div>
 				<div class="col-12 my-4">
 					<h5 class="fw-bold fs-5"><b>베이스</b></h5>
-					<div class="form-check form-check-block select">
+					<div class="form-check-block select">
 						<input id="tequila" type="radio" name="recipeBase" value="Tequila" class="form-check-input">
 						<label for="tequila" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">데킬라 베이스</label>
 						<input id="rum" type="radio" name="recipeBase" value="Rum" class="form-check-input">
@@ -41,7 +41,7 @@
 						<input id="gin" type="radio" name="recipeBase" value="Gin" class="form-check-input">
 						<label for="gin" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">진 베이스</label>
 					</div>
-					<div class="form-check form-check-block select">
+					<div class="form-check-block select">
 						<input id="whisky" type="radio" name="recipeBase" value="Whisky" class="form-check-input" >
 						<label for="whisky" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">위스키 베이스</label>
 						<input id="beer" type="radio" name="recipeBase" value="Beer" class="form-check-input">

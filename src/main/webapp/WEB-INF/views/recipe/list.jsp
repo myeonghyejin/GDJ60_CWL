@@ -64,7 +64,11 @@
 								</div>
 							</a>
 						</div>
-						<div class="row my-1" align="center">
+						<div>
+
+						</div>
+						<div class="row justify-content-center mx-auto my-2" align="center">
+							<button type="button" class="btn btn-outline-primary btn-sm btn-condition mx-1 my-1" name="recipeBase" value="${DTO.recipeBase}">${DTO.recipeBase}</button>
 							<p><b>${DTO.recipeTitle}</b></p>
 						</div>
 					</div>

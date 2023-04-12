@@ -60,28 +60,18 @@
 		   
 		   <c:if test="${not empty member}">
 			   <div class="row my-5">
-				   <div class="fw-bold fs-5 col-12 mb-3">
-						   <div class="form-check form-check-inline">
-							   <label for="oneStar" class="form-check-label">★</label>
-							   <input id="oneStar" type="radio" id="oneStar" name="lessonRating" value="1" checked class="form-check-input lessonRating">
-						   </div>
-						   <div class="form-check form-check-inline">
-							   <label for="twoStars" class="form-check-label">★★</label>
-							   <input id="twoStars" type="radio" id="twoStars" name="lessonRating" value="2" class="form-check-input lessonRating">
-						   </div>
-						   <div class="form-check form-check-inline">
-							   <label for="threeStars" class="form-check-label">★★★</label>
-							   <input id="threeStars" type="radio" id="threeStars" name="lessonRating" value="3" class="form-check-input lessonRating">
-						   </div>
-						   <div class="form-check form-check-inline">
-							   <label for="fourStars" class="form-check-label">★★★★</label>
-							   <input id="fourStars" type="radio" id="fourStars" name="lessonRating" value="4" class="form-check-input lessonRating">
-						   </div>
-						   <div class="form-check form-check-inline">
-							   <label for="fiveStars" class="form-check-label">★★★★★</label>
-							   <input id="fiveStars" type="radio" id="fiveStars" name="lessonRating" value="5" class="form-check-input lessonRating">
-						   </div>
-					   </div>
+				   <div class="form-check-block select col-12 justify-content-center mx-auto mb-3" align="center">
+							<input id="oneStar" type="radio" name="lessonRating" value="1" class="form-check-input lessonRating">
+							<label for="oneStar" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★</label>
+							<input id="twoStars" type="radio" name="lessonRating" value="2" class="form-check-input lessonRating">
+							<label for="twoStars" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★★</label>
+							<input id="threeStars" type="radio" name="lessonRating" value="3" class="form-check-input lessonRating">
+							<label for="threeStars" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★★★</label>
+							<input id="fourStars" type="radio" name="lessonRating" value="4" class="form-check-input lessonRating">
+							<label for="fourStars" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★★★★</label>
+							<input id="fiveStars" type="radio" name="lessonRating" value="5" class="form-check-input lessonRating">
+							<label for="fiveStars" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★★★★★</label>
+					</div>
 				   <div class="row mb-3">
 					   <textarea class="form-control" rows="3" id="lessonReviewContents"></textarea>
 				   </div>

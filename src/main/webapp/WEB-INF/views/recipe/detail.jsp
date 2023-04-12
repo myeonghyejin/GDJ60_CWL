@@ -23,11 +23,11 @@
 						<img src="/resources/upload/recipe/${DTO.recipeImgDTOs.imgName}" alt="recipe-image">
 					</div>
 					<div class="row col-8 my-4 justify-content-center mx-auto" align="center" id="frame">
-						<p class="fs-3"><b>레시피</b></p>
-						<p class="fs-4">${DTO.recipeIngredients}</p>
+						<p class="fs-5"><b>레시피</b></p>
+						<p class="fs-6">${DTO.recipeIngredients}</p>
 					</div>
 					<div class="row col-8 my-4 justify-content-center mx-auto">
-						<p class="fs-4">${DTO.recipeContents}</p>
+						<p class="fs-6">${DTO.recipeContents}</p>
 					</div>
 				</c:when>
 				<c:otherwise>

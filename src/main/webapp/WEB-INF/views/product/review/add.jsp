@@ -36,27 +36,19 @@
 						<button type="button" class="btn btn-outline-primary btn-image" id="imgAdd">+</button>
 					</div>	
 				</div>
-				<div class="col-12 my-4">
+				<div class="col-12 my-4 select">
 					<h5 class="fw-bold fs-5"><b>별점</b></h5>
-					<div class="form-check form-check-block">
-						<label for="oneStar" class="form-check-label">★</label>
-						<input id="oneStar" type="radio" name="productRating" value="1" checked class="form-check-input">
-					</div>
-					<div class="form-check form-check-block">
-						<label for="twoStars" class="form-check-label">★★</label>
-						<input id="twoStars" type="radio" name="productRating" value="2" class="form-check-input">
-					</div>
-					<div class="form-check form-check-block">
-						<label for="threeStars" class="form-check-label">★★★</label>
-						<input id="threeStars" type="radio" name="productRating" value="3" class="form-check-input">
-					</div>
-					<div class="form-check form-check-block">
-						<label for="fourStars" class="form-check-label">★★★★</label>
-						<input id="fourStars" type="radio" name="productRating" value="4" class="form-check-input">
-					</div>
-					<div class="form-check form-check-block">
-						<label for="fiveStars" class="form-check-label">★★★★★</label>
-						<input id="fiveStars" type="radio" name="productRating" value="5" class="form-check-input">
+					<div class="form-check-block select">
+							<input id="oneStar" type="radio" name="productRating" value="1" class="form-check-input">
+							<label for="oneStar" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★</label>
+							<input id="twoStars" type="radio" name="productRating" value="2" class="form-check-input">
+							<label for="twoStars" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★★</label>
+							<input id="threeStars" type="radio" name="productRating" value="3" class="form-check-input">
+							<label for="threeStars" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★★★</label>
+							<input id="fourStars" type="radio" name="productRating" value="4" class="form-check-input">
+							<label for="fourStars" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★★★★</label>
+							<input id="fiveStars" type="radio" name="productRating" value="5" class="form-check-input">
+							<label for="fiveStars" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★★★★★</label>
 					</div>
 				</div>
 				<div class="row justify-content-center my-5">
@@ -65,10 +57,10 @@
 			</div>
 	   </form>
 	</div>
-	<script src="/resources/js/common/fileManager.js"></script>
 	<script>
 		setMax(4);
 	</script>
+	<script src="/resources/js/common/fileManager.js"></script>
 	<c:import url="../../template/common_js.jsp"></c:import>
 	<c:import url="../../template/footer.jsp"></c:import>
 </body>

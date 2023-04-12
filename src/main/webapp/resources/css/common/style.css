@@ -97,6 +97,11 @@ a {
     border-radius: 20px;
 }
 
+.btn-condition {
+    width: 140px;
+    border-radius: 20px;
+}
+
 .btn-default {
     width: 42.22px;
 }
