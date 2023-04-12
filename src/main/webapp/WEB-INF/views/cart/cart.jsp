@@ -82,13 +82,13 @@
 									<input type="text" class="quantity_input" value="${ci.orderStock}">
 									<button class="minus_btn">-</button>									
 								</div>
-								<a class="btn btn-primary btn-sm btn-default mx-1" data-cartNum="${ci.cartNum}" id="quantity_modify_btn">변경</a>
+								<a class="quantity_modify btn btn-primary btn-sm btn-default mx-1" data-cartNum="${ci.cartNum}">변경</a>
 							</td>
 							<td class="td_width_4 table_text_align_center">
 								<fmt:formatNumber value="${ci.productPrice * ci.orderStock}" pattern="###,###,###,###원" />
 							</td>
 							<td class="td_width_4 table_text_align_center">
-								<button class="btn btn-primary btn-sm btn-default mx-1" data-cartNum="${ci.cartNum}" id="delete_btn">삭제</button>
+								<button class="delete_btn" data-cartNum="${ci.cartNum}">삭제</button>
 							</td>
 						</tr>
 					</c:forEach>
@@ -278,7 +278,7 @@
 		}
 	});
 	/* 수량 수정 버튼 */
-	$("#quantity_modify_btn").on("click", function(){
+	$(".quantity_modify").on("click", function(){
 		let cartNum = $(this).attr("data-cartNum");
 		let orderStock = $(this).parent("td").find("input").val();
 		$(".update_cartNum").val(cartNum);
@@ -287,7 +287,7 @@
 		
 	});
 	/* 장바구니 삭제 버튼 */
-	$("#delete_btn").on("click", function(e){
+	$(".delete_btn").on("click", function(e){
 		e.preventDefault();
 		const cartNum = $(this).attr("data-cartNum");
 		$(".delete_cartNum").val(cartNum);
