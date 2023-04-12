@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -211,46 +213,44 @@ public class MemberController {
 		return modelAndView;
 	}
 	
-	@GetMapping("pw-change")
-	public ModelAndView pwChange() {
-		return new ModelAndView("member/pw-change");
-	}
+	/*
+	 * @GetMapping("pw-change") public ModelAndView pwChange() { return new
+	 * ModelAndView("member/pw-change"); }
+	 * 
+	 * @PostMapping("checkPw") public String checkPw(@RequestBody String memberPw,
+	 * HttpSession session) throws Exception {
+	 * 
+	 * logger.info("비밀번호 확인 요청 발생");
+	 * 
+	 * String result = null; BCryptPasswordEncoder encoder = new
+	 * BCryptPasswordEncoder();
+	 * 
+	 * MemberDTO dbMember = (MemberDTO)session.getAttribute("login");
+	 * logger.info("DB 회원의 비밀번호 : " + dbMember.getMemberPw());
+	 * logger.info("폼에서 받아온 비밀번호 : " + memberPw);
+	 * 
+	 * if(encoder.matches(memberPw, dbMember.getMemberPw())) { result =
+	 * "pwConfirmOK"; } else { result = "pwConfirmNO"; }
+	 * 
+	 * return result;
+	 * 
+	 * }
+	 * 
+	 * @PostMapping("pw-change") public String pwChange(@RequestBody MemberDTO
+	 * member, HttpSession session) throws Exception {
+	 * 
+	 * logger.info("비밀번호 변경 요청 발생");
+	 * 
+	 * memberService.modifyPw(member);
+	 * 
+	 * MemberDTO memberDTO = memberService.memberLogin(member);
+	 * logger.info("회원정보 불러오기 : " + memberDTO); session.setAttribute("memberLogin",
+	 * memberDTO);
+	 * 
+	 * return "changeSuccess";
+	 * 
+	 * }
+	 */
 	
-	@PostMapping("checkPw")
-	public String checkPw(@RequestBody String memberPw, HttpSession session) throws Exception {
-		
-		logger.info("비밀번호 확인 요청 발생");
-		
-		String result = null;
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		
-		MemberDTO dbMember = (MemberDTO)session.getAttribute("login");
-		logger.info("DB 회원의 비밀번호 : " + dbMember.getMemberPw());
-		logger.info("폼에서 받아온 비밀번호 : " + memberPw);
-		
-		if(encoder.matches(memberPw, dbMember.getMemberPw())) {
-			result = "pwConfirmOK";
-		} else {
-			result = "pwConfirmNO";
-		}
-		
-		return result;
-		
-	}
-	
-	@PostMapping("pw-change")
-	public String pwChange(@RequestBody MemberDTO member, HttpSession session) throws Exception {
-		
-		logger.info("비밀번호 변경 요청 발생");
-		
-		memberService.modifyPw(member);
-		
-		MemberDTO memberDTO = memberService.memberLogin(member);
-		logger.info("회원정보 불러오기 : " + memberDTO);
-		session.setAttribute("memberLogin", memberDTO);
-		
-		return "changeSuccess";
-		
-	}
 	
 }
