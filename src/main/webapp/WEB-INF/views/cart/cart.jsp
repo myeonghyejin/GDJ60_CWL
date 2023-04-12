@@ -8,8 +8,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/css/cart.css">
+<section class="page-title bg-cover" data-background="/resources/images/banner/page-title.jpg">
+		<div class="container">
+		  <div class="row">
+			<div class="col-12 text-center">
+			  <h1 class="display-1 text-white font-weight-bold font-primary">Product</h1>
+			</div>
+		  </div>
+		</div>
+	</section>
 </head>
 <body>
+<c:import url="../template/newheader.jsp"></c:import>
 <div class="wrapper">
 	<div class="wrap">
 		<div class="top_gnb_area">
