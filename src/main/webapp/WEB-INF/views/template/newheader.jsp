@@ -11,8 +11,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <!-- ** Plugins Needed for the Project ** -->
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="/resources/js/plugins/bootstrap/bootstrap.min.css">
   <!-- slick slider -->
   <link rel="stylesheet" href="/resources/js/plugins/slick/slick.css">
   <!-- themefy-icon -->
@@ -32,7 +30,7 @@
   
   <header class="navigation fixed-top">
   <nav class="navbar navbar-expand-lg navbar-dark">
-    <a class="navbar-brand" href="index.html"><img src="/resources/images/banner/logo.png" alt="Egen"></a>
+    <a class="navbar-brand" href="/"><img src="/resources/images/banner/logo.png" width="150px" height="75px" alt="Egen"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
       aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>

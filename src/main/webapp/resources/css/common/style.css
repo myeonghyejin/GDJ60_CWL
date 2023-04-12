@@ -20,7 +20,7 @@ a {
 
 /* ------- table -------- */
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-    background-color: yellow;
+    background-color: #38FCFB;
 }
 
 /* ------- frame -------- */
@@ -41,7 +41,7 @@ a {
 .select input[type=radio]+label{
     display: inline-block;
     cursor: pointer;
-    border: 1px solid #343DDB;
+    border: 1px solid #07085d;
     line-height: 24px;
     text-align: center;
     font-weight: bold;
@@ -49,47 +49,47 @@ a {
 }
 .select input[type=radio]+label{
     background-color: #fff;
-    color: #343DDB;
+    color: #07085d;
 }
 .select input[type=radio]:checked+label{
-    background-color: #343DDB;
+    background-color: #07085d;
     color: #fff;
 }
 
 /* ------- button -------- */
 .btn-primary {
     color: #fff;
-    background-color: #343DDB;
-    border-color: #343DDB;
+    background-color: #07085d;
+    border-color: #07085d;
 }
 
 .btn-primary:hover{
     color: #fff;
-    background-color: #252dce;
-    border-color: #252dce;
+    background-color: #FF008C;
+    border-color: #FF008C;
 }
 
 .btn-outline-primary {
-    color: #343DDB;
-    border-color: #343DDB;
+    color: #07085d;
+    border-color: #07085d;
 }
 
 .btn-outline-primary:hover{
     color: #fff;
-    background-color: #343DDB;
-    border-color: #343DDB;
+    background-color: #07085d;
+    border-color: #07085d;
 }
 
 .btn-info {
     color: #fff;
-    background-color: #343DDB;
-    border-color: #343DDB;
+    background-color: #07085d;
+    border-color: #07085d;
 }
 
 .btn-info:hover {
     color: #fff;
-    background-color: #252dce;
-    border-color: #252dce;
+    background-color: #FF008C;
+    border-color: #FF008C;
 }
 
 .btn-category {
@@ -98,8 +98,16 @@ a {
 }
 
 .btn-condition {
+    color: #07085d;
+    border-color: #07085d;
     width: 140px;
     border-radius: 20px;
+}
+
+.btn-condition:hover {
+    color: #07085d;
+    background-color: #fff;
+    border-color: #07085d;
 }
 
 .btn-default {
@@ -126,7 +134,7 @@ a {
 
 /* ------- pagination -------- */
 .pagination ul li a {
-    color: #343DDB;
+    color: #07085d;
     width: 40px;
     height: 40px;
     line-height: 20px;
@@ -138,14 +146,14 @@ a {
 }
 
   .pagination ul li a:hover {
-    background: #343DDB;
+    background: #07085d;
     color: #fff;
 }
 
   .pagination ul li a.active {
-    background: #343DDB;
+    background: #07085d;
     color: #fff;
-    border-color: #343DDB;
+    border-color: #07085d;
 }
 
 /* ------- imgList -------- */
@@ -159,7 +167,7 @@ a {
 
 /* ------- badge -------- */
 #me {
-    background-color: #343DDB;
+    background-color: #07085d;
     color: #fff;
     width: 25px;
     height: 25px;
@@ -170,7 +178,7 @@ a {
 }
 
 #re {
-    background-color: #343DDB;
+    background-color: #07085d;
     color: #fff;
     width: 25px;
     height: 25px;
@@ -181,7 +189,7 @@ a {
 }
 
 #re2 {
-    color: #343DDB;
+    color: #07085d;
     height: 25px;
     vertical-align: middle;
     display: inline-block;

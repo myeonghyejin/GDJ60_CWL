@@ -8,18 +8,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<c:import url="./template/common_css.jsp"></c:import>
 	<link rel="stylesheet" href="/resources/css/common/style.css">
-		 <!-- page-title -->
-		 <section class="page-title bg-cover" data-background="/resources/images/banner/page-title.jpg">
-			<div class="container">
-				<div class="row">
-					<div class="col-12 text-center">
-						<h1 class="display-1 text-white font-weight-bold font-primary">Cool With LAB</h1>
-					</div>
-				</div>
-			</div>
-		</section>
 </head>
 <body>
+<section class="banner bg-cover position-relative d-flex justify-content-center align-items-center"
+data-background="/resources/images/banner/banner2.jpg">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h1 class="display-1 text-white font-weight-bold font-primary">Cool With LAB</h1>
+			</div>
+		</div>
+	</div>
+</section>
 	<!-- 서버 내부 주소, 상대경로 -->
 	<c:import url="./template/newheader.jsp"></c:import>
 	<c:import url="./template/common_js.jsp"></c:import>

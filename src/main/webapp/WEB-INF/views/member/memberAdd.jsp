@@ -8,7 +8,7 @@
 	<title>회원가입</title>
 	<c:import url="../template/common_css.jsp"></c:import>
 	<link rel="stylesheet" href="/resources/css/common/style.css">
-	<link rel="stylesheet" href="/resources/css/member/memberAdd.css">
+	<link rel="stylesheet" href="/resources/css/member/member.css">
 	
 	<!-- page-title -->
 	<section class="page-title bg-cover" data-background="/resources/images/banner/page-title.jpg">
@@ -27,12 +27,12 @@
 	<form id="join_form" method="post">
 	<div class="wrap">
 		<div class="mt-5 mb-3 row">
-			<label for="memberId" class="col-sm-2 col-form-label">ID</label>
+			<label for="memberId" class="col-sm-2 col-form-label"><b>ID</b></label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" id="memberId" name="memberId">
-				<span class="id_input_re_1">사용 가능한 아이디입니다.</span>
-				<span class="id_input_re_2">아이디가 이미 존재합니다.</span>	
-				<span class="final_id_ck">아이디를 입력해주세요.</span>
+				<input type="text" class="form-control id_input" id="memberId" name="memberId">
+				<span class="id_input_re_1 mx-2 mt-2">사용 가능한 아이디입니다.</span>
+				<span class="id_input_re_2 mx-2 mt-2">아이디가 이미 존재합니다.</span>	
+				<span class="final_id_ck mx-2 mt-2">아이디를 입력해주세요.</span>
 			</div>
 		</div>
 		
@@ -46,28 +46,28 @@
 			</div>	 -->
 			
 		<div class="mb-3 row">
-			<label for="memberPw" class="col-sm-2 col-form-label">비밀번호</label>
+			<label for="memberPw" class="col-sm-2 col-form-label"><b>비밀번호</b></label>
 			<div class="col-sm-10">
-				<input type="password" class="form-control" id="memberPw" name="memberPw">
-				<span class="final_pw_ck">비밀번호를 입력해주세요.</span>
+				<input type="password" class="form-control pw_input" id="memberPw" name="memberPw">
+				<span class="final_pw_ck mx-2 mt-2">비밀번호를 입력해주세요.</span>
 			</div>
 		</div>
 		
 		<div class="mb-3 row">
-			<label for="memberPw" class="col-sm-2 col-form-label">비밀번호 확인</label>
+			<label for="memberPw" class="col-sm-2 col-form-label"><b>비밀번호 확인</b></label>
 			<div class="col-sm-10">
 				<input type="password" class="form-control pwck_input" id="memberPw" name="memberPw">
-				<span class="final_pwck_ck">비밀번호를 한 번 더 입력해 주세요.</span>
-				<span class="pwck_input_re_1">비밀번호가 일치합니다.</span>
-				<span class="pwck_input_re_2">비밀번호가 일치하지 않습니다.</span>
+				<span class="final_pwck_ck mx-2 mt-2">비밀번호를 한 번 더 입력해 주세요.</span>
+				<span class="pwck_input_re_1 mx-2 mt-2">비밀번호가 일치합니다.</span>
+				<span class="pwck_input_re_2 mx-2 mt-2">비밀번호가 일치하지 않습니다.</span>
 			</div>
 		</div>
 		
 		<div class="mb-3 row">
-			<label for="memberName" class="col-sm-2 col-form-label">이름</label>
+			<label for="memberName" class="col-sm-2 col-form-label"><b>이름</b></label>
 			<div class="col-sm-10">
 				<input type="text" class="form-control user_input" id="memberName" name="memberName">
-				<span class="final_name_ck">이름을 입력해주세요.</span>
+				<span class="final_name_ck mx-2 mt-2">이름을 입력해주세요.</span>
 			</div>
 		</div>
 		
@@ -80,35 +80,34 @@
 		</div>
 		
 		<div class="mb-3 row">
-			<label for="memberAge" class="col-sm-2 col-form-label">나이</label>
+			<label for="memberAge" class="col-sm-2 col-form-label"><b>나이</b></label>
 			<div class="col-sm-10">
 				<input type="number" class="form-control" id="memberAge" name="memberAge">
 			</div>
 		</div>
 		
 		<div class="mb-3 row">
-			<label for="memberPhone" class="col-sm-2 col-form-label">전화 번호</label>
+			<label for="memberPhone" class="col-sm-2 col-form-label"><b>전화 번호</b></label>
 			<div class="col-sm-10">
 				<input type="number" class="form-control" id="memberPhone" name="memberPhone">
-				<span class="final_phone_ck">전화 번호를 입력해 주세요.</span>
+				<span class="final_phone_ck mx-2 mt-2">전화 번호를 입력해 주세요.</span>
 			</div>
 		</div>
 		
 		<div class="mb-3 row">
-			<label for="memberEmail" class="col-sm-2 col-form-label">이메일</label>
+			<label for="memberEmail" class="col-sm-2 col-form-label"><b>이메일</b></label>
 			<div class="col-sm-10">
 				<input type="text" class="form-control mail_input" id="memberEmail" name="memberEmail" placeholder="email@example.com">
-				<span class="final_mail_ck">이메일을 입력해주세요.</span>
-				<span class="mail_input_box_warn"></span>
+				<span class="final_mail_ck mx-2 mt-2">이메일을 입력해주세요.</span>
 			</div>
 		</div>
 		
 		<div class="mb-3 row">
-			<label for="memberAddress1" class="col-sm-2 col-form-label">주소</label>
+			<label for="memberAddress1" class="col-sm-2 col-form-label"><b>주소</b></label>
 			<div class="col-sm-8">
 				<input class="form-control address_input_1" name="memberAddress1" readonly="readonly">
 			</div>
-			<div class="address_button col-auto" onclick="execution_daum_address()">
+			<div class="address_button col-auto row" onclick="execution_daum_address()">
 				<span class="btn btn-primary">주소 찾기</span>
 			</div>
 		</div>
@@ -120,17 +119,17 @@
 		<div class="mb-3 row justify-content-end">
 			<div class="col-sm-10">
 				<input class="form-control address_input_3" name="memberAddress3" readonly="readonly">
-				<span class="final_addr_ck my-1">주소를 입력해주세요.</span>
+				<span class="final_addr_ck mx-2 mt-2">주소를 입력해 주세요.</span>
 			</div>
 		</div>
 		
 		<div class="mb-3">
-			<label for="exampleFormControlTextarea1" class="form-label">자기소개</label>
+			<label for="exampleFormControlTextarea1" class="form-label"><b>자기소개</b></label>
 			<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="memberSI"></textarea>
 		</div>
 		
 		<div class="join_button_wrap row justify-content-center my-5">
-			<input type="button" class="join_button btn btn-primary col-2" value="가입하기">
+			<input type="button" class="join_button btn btn-primary col-2" value="가입">
 		</div>
 	</div>
 	</form>
