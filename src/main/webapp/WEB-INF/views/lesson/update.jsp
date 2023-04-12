@@ -9,14 +9,25 @@
 	<%@ include file="../common/sessionCheck.jsp" %>
 	<c:import url="../template/common_css.jsp"></c:import>
 	<link rel="stylesheet" href="/resources/css/common/style.css">
+			 <!-- page-title -->
+			 <section class="page-title bg-cover" data-background="/resources/images/banner/page-title.jpg">
+				<div class="container">
+				  <div class="row">
+					<div class="col-12 text-center">
+					  <h1 class="display-1 text-white font-weight-bold font-primary">Lesson</h1>
+					</div>
+				  </div>
+				</div>
+				</section>
+				<!-- /page-title -->
 </head>
 <body>
-	<c:import url="../template/header.jsp"></c:import>
+	<c:import url="../template/newheader.jsp"></c:import>
 	<div class="container-fluid my-5">
 		<!-- Title -->
-		<div class="row mx-auto text-center border-bottom border-dark pb-2">
+		<!-- <div class="row mx-auto text-center border-bottom border-dark pb-2">
 			<p class="fs-2" style="font-family: 'Impact'">LESSON</p>
-		</div>
+		</div> -->
 		<!-- Contents -->
 		<form action="./update" method="post" enctype="multipart/form-data" id="frm">
 			<input type="hidden" name="memberId" value="${member.memberId}">

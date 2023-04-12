@@ -9,16 +9,27 @@
 	<c:import url="../template/common_css.jsp"></c:import>
 	<link rel="stylesheet" href="/resources/css/common/style.css">
 	<link rel="stylesheet" href="/resources/css/product/list.css">
-
+  
+  <!-- page-title -->
+  <section class="page-title bg-cover" data-background="/resources/images/banner/page-title.jpg">
+	<div class="container">
+	  <div class="row">
+		<div class="col-12 text-center">
+		  <h1 class="display-1 text-white font-weight-bold font-primary">Product</h1>
+		</div>
+	  </div>
+	</div>
+	</section>
+	<!-- /page-title -->
 </head>
 <body>
-	<c:import url="../template/header.jsp"></c:import>
+	<c:import url="../template/newheader.jsp"></c:import>
 	<div class="container-fluid my-5">
 		<!-- Title -->
-		<div class="row mx-auto text-center border-bottom border-dark pb-2">
+		<!-- <div class="row mx-auto text-center border-bottom border-dark pb-2">
 			<p class="fs-2" style="font-family: 'Impact'">PRODUCT</p>
 		</div>
-		
+		 -->
 		<!-- 검색창 -->
 		<div class="col-11 mx-auto">
 			<form action="./list" method="get" class="row mx-5 my-5 justify-content-center">
@@ -29,6 +40,10 @@
 				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="lowPriceOrder">낮은 가격순</button>
 			</form>
 		</div>
+
+
+
+
 		<div class="col-11">
 			<form action="./list" method="get" class="row justify-content-end mx-auto g-3" id="searchForm">
 				<input type="hidden" name="page" value="1" id="page">
@@ -80,7 +95,7 @@
 										<div class="overlay-inner">
 											<div class="overlay-content">
 												<h5 class="mb-0">${DTO.productName}</h5>
-												<p>${DTO.productPrice}</p>
+												<p>${DTO.productPrice}원</p>
 											</div>
 										</div>
 									</div>
