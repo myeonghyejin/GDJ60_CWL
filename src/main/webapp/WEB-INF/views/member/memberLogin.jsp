@@ -32,6 +32,9 @@
 	<link rel="stylesheet" type="text/css" href="/resources/css/member/util.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/member/main.css">
 	
+	<c:import url="../template/common_css.jsp"></c:import>
+	<link rel="stylesheet" href="/resources/css/common/style.css">
+	
 	<!-- page-title -->
 	<section class="page-title bg-cover" data-background="/resources/images/banner/page-title.jpg">
 	  <div class="container">
