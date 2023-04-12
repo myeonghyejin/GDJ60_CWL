@@ -11,6 +11,8 @@ $(".chat-icon").click(function () {
 
 let id = '';
 
+
+
 function setId(memberId) {
   id = memberId;
 }
@@ -26,19 +28,25 @@ let sock = new SockJS("http://" + ipAddress + "/echo",{
   timeout: 30000000 // 30000초
 });
 
+let v = makeJson("list", null, null, null)
+setInterval(() => {
+  sendMessage(v);
+}, 5000);
+
+
 sock.onopen = function () {
-  console.log("연결 성공");
+  // console.log("연결 성공");
   
   //sock.send('list');
-  let v = makeJson("list", null, null, null)
   let c = makeJson("list-2nd", null, null, null)
   sendMessage(v);
   sendMessage(c);
 
+
 };
 
 sock.onclose=function() {	
-  console.log("연결을 끊었습니다");
+  // console.log("연결을 끊었습니다");
   alert("연결이 끊겼습니다");
 }
 
@@ -50,21 +58,23 @@ function sendMessage (m){
   //친구 list or 채팅 메세지 출력
   sock.onmessage = function (m) {
 
-    console.log(m); // 받은 메세지 출력
+
+    // console.log(m); // 받은 메세지 출력
   
     let json = JSON.parse(m.data); // 받은 메세지를 JSON 형식으로 파싱
-    console.log("DATA : " + json); // 받은 메세지 출력
-    console.log(json.type); // 전송 타입 출력
-    console.log(json.value); // 유저 목록 출력
+    // console.log("DATA : " + json); // 받은 메세지 출력
+    // console.log(json.type); // 전송 타입 출력
+    // console.log(json.value); // 유저 목록 출력
     let valueArray = json.value;
     
     
     if (json.type === 'list') {
+      $("#chat-list").empty();
       for (let i = 0; i < valueArray.length; i+=2) {
         let memberId = valueArray[i];
         let memberSI = valueArray[i+1];
-        console.log("memberID" + memberId);
-        console.log('memberSI : ', memberSI);
+        // console.log("memberID" + memberId);
+        // console.log('memberSI : ', memberSI);
         if(memberId!=id){
           makeUser(memberId, memberSI);
         }
@@ -99,10 +109,10 @@ function sendMessage (m){
 
   if(json.type=='invite'){
     for(let t of json.value){
-      console.log("msg :"+t.value)
-      console.log("senderId :"+t.senderId)
-      console.log("receiveId :"+t.receiveId)
-      console.log("time :"+t.sendTime)
+      // console.log("msg :"+t.value)
+      // console.log("senderId :"+t.senderId)
+      // console.log("receiveId :"+t.receiveId)
+      // console.log("time :"+t.sendTime)
       $(".msg").append(makeRecv(t.value, t.senderId, t.receiveId, getTimeString(t.sendTime)));
       
     }
@@ -138,7 +148,6 @@ function makelist2nd(users) {
 
 //친구목록 나타내기
 function makeUser(users, intro) {
-  
   let u = ''
   u = u + '<div class="d-flex align-items-center friend" data-user="'+users+'" data-memberSI="'+intro+'">'
   u = u + '<div class="flex-shrink-0">'
@@ -161,11 +170,11 @@ $("#chat-list").on('click','.friend' ,function (e) {
   // e.stopPropagation();
   $(".chatbox").empty();
 
-  console.log("초대 : ", $(this));
+  // console.log("초대 : ", $(this));
   let userId = $(this).attr("data-user");
   userName = userId;
   let memberSI = $(this).attr("data-memberSI");
-  console.log("start chat with " + userId);
+  // console.log("start chat with " + userId);
   let r = makeJson('invite',null, userId);
   sock.send(r)
 
@@ -231,7 +240,7 @@ $("#chat-list").on('click','.friend' ,function (e) {
   $(".chatbox").css("display", "block")
 
   $(".chatbox").on('click','.dropdown-item' ,function (e) {
-    console.log("리브 클릭")
+    // console.log("리브 클릭")
     $(".chatbox").empty();
   })
 
@@ -242,12 +251,12 @@ $("#chat-list").on('click','.friend' ,function (e) {
   // var maxScroll = $(".modal-body").height() - chatboxHeight;
   // $(".chatbox").scrollTop(maxScroll);
 
-  const chatbox = $('.chatbox');
-  chatbox.scrollTop(chatbox[0].scrollHeight);
-  // setTimeout(function() {
+  setTimeout(function() {
+       const chatbox = $('.chatbox');
+       chatbox.scrollTop(chatbox[0].scrollHeight);
   //   $('.msg-body').scrollTop($('.msg-body')[0].scrollHeight);
   //   console.log("스크롤")
-  // }, 5000);
+   }, 2000);
   
 
   
@@ -261,7 +270,7 @@ $("#chat-list").on('click','.friend' ,function (e) {
   
 //메세지 창 메세지 내용 보이기
 function makeRecv(msg, senderId, receiveId, timeString) {
-  console.log("userName : "+userName)
+  // console.log("userName : "+userName)
   if(receiveId == id&&senderId!=userName){
     // if(receiveId != userName){
     //   return;
@@ -269,7 +278,7 @@ function makeRecv(msg, senderId, receiveId, timeString) {
     return;
   }
   if(msg=="**채팅상대가 온라인중이 아닙니다**"){
-    console.log("여끼까지 오나?")
+    // console.log("여끼까지 오나?")
     $(".send-box").css("display", "none");
 
   }
@@ -292,7 +301,7 @@ function makeRecv(msg, senderId, receiveId, timeString) {
 
 $(".chatbox").on('submit', 'form', function (e) {
   e.preventDefault();
-  console.log("엔터키 입력함");
+  // console.log("엔터키 입력함");
   let r = makeJson('msg',$("#txtMessage").val(), $("#txtMessage").attr("data-id"), getTimeString)
   sock.send(r);
 
@@ -303,8 +312,8 @@ $(".chatbox").on('submit', 'form', function (e) {
   
 //send버튼 눌렀을때 채팅 메세지 전송
 $(".chatbox").on('click', '#sendButton', function () {
-    console.log("버튼 클릭함");
-    console.log("메세지 내용 : " + $("#txtMessage").val());
+    // console.log("버튼 클릭함");
+    // console.log("메세지 내용 : " + $("#txtMessage").val());
     let r = makeJson('msg',$("#txtMessage").val(), $("#txtMessage").attr("data-id"), getTimeString)
     sock.send(r);
 
