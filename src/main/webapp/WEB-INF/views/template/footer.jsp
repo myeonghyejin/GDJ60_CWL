@@ -4,7 +4,7 @@
 
 <style type="text/css">
     footer {
-        background-color: #343DDB;
+        background-color: #07085d;
         color: #fff;
         width: 100%;
         height: 40px;
