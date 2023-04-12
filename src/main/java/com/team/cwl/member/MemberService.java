@@ -19,4 +19,10 @@ public interface MemberService {
 	
 	/* 마이 페이지 */
 	public MemberDTO getMemberPage(MemberDTO memberDTO) throws Exception;
+	
+	/* 회원 수정 */
+	public int memberUpdate(MemberDTO memberDTO) throws Exception;
+	
+	/* 비밀번호 변경 */
+	public void modifyPw(MemberDTO member) throws Exception;
 }

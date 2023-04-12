@@ -8,13 +8,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+
 
 @Controller
 @RequestMapping("/member/**")
@@ -106,9 +113,10 @@ public class MemberController {
 	
 	/* 로그인 */
 	@RequestMapping(value = "login.do", method = RequestMethod.POST)
-	public String loginPOST(HttpServletRequest request, MemberDTO member, RedirectAttributes rttr) throws Exception {
+	public String loginPOST(HttpSession session, HttpServletRequest request, MemberDTO member, RedirectAttributes rttr) throws Exception {
 		
-		HttpSession session = request.getSession();
+		
+		
 		String rawPw = "";
 		String encodePw = "";
 		
@@ -118,9 +126,8 @@ public class MemberController {
 			rawPw = member.getMemberPw(); // 사용자가 제출한 비밀번호
 			encodePw = membercheck.getMemberPw(); // DB에 저장한 인코딩된 비밀번호
 			
-			if(true == pwEncoder.matches(rawPw, encodePw)) { // 비밀번호 일치여부 판단
-				
-				membercheck.setMemberPw(""); // 인코딩된 비밀번호 정보 지움
+			if(true == pwEncoder.matches(rawPw, encodePw)) { // 비밀번호 일치여부 판단				
+				membercheck.setMemberPw(""); // 인코딩된 비밀번호 정보 지움				
 				session.setAttribute("member", membercheck); // session에 사용자의 정보 저장
 				return "redirect:/"; // 메인페이지로 이동
 			} else {
@@ -169,5 +176,81 @@ public class MemberController {
 		modelAndView.setViewName("/member/memberPage");
 		return modelAndView;
 	}
+	
+	@RequestMapping(value = "memberUpdate", method = RequestMethod.GET)
+	public ModelAndView memberUpdate(HttpSession session) throws Exception {
+		ModelAndView modelAndView = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		
+		memberDTO = memberService.getMemberPage(memberDTO);
+		modelAndView.addObject("dto", memberDTO);
+		modelAndView.setViewName("/member/memberUpdate");		
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "memberUpdate", method = RequestMethod.POST)
+	public ModelAndView memberUpdate(MemberDTO member, HttpSession session) throws Exception {
+		ModelAndView modelAndView = new ModelAndView();
+		MemberDTO sessionMemberDTO = (MemberDTO)session.getAttribute("member");
+		member.setMemberId(sessionMemberDTO.getMemberId());
+		int result = memberService.memberUpdate(member);
+		
+		String rawPw = "";
+		String encodePw = "";
+		
+		MemberDTO membercheck = memberService.memberLogin(member); // 제출한 아이디와 일치한 아이디가 있는지 확인
+		
+		if(membercheck != null) { // 일치하는 아이디 존재시
+			rawPw = member.getMemberPw(); // 사용자가 제출한 비밀번호
+			encodePw = membercheck.getMemberPw(); // DB에 저장한 인코딩된 비밀번호
+			
+			if(true == pwEncoder.matches(rawPw, encodePw)) { // 비밀번호 일치여부 판단				
+				membercheck.setMemberPw(""); // 인코딩된 비밀번호 정보 지움				
+				session.setAttribute("member", membercheck); // session에 사용자의 정보 저장
+			}
+		}
+		modelAndView.setViewName("redirect:./memberPage");
+		return modelAndView;
+	}
+	
+	/*
+	 * @GetMapping("pw-change") public ModelAndView pwChange() { return new
+	 * ModelAndView("member/pw-change"); }
+	 * 
+	 * @PostMapping("checkPw") public String checkPw(@RequestBody String memberPw,
+	 * HttpSession session) throws Exception {
+	 * 
+	 * logger.info("비밀번호 확인 요청 발생");
+	 * 
+	 * String result = null; BCryptPasswordEncoder encoder = new
+	 * BCryptPasswordEncoder();
+	 * 
+	 * MemberDTO dbMember = (MemberDTO)session.getAttribute("login");
+	 * logger.info("DB 회원의 비밀번호 : " + dbMember.getMemberPw());
+	 * logger.info("폼에서 받아온 비밀번호 : " + memberPw);
+	 * 
+	 * if(encoder.matches(memberPw, dbMember.getMemberPw())) { result =
+	 * "pwConfirmOK"; } else { result = "pwConfirmNO"; }
+	 * 
+	 * return result;
+	 * 
+	 * }
+	 * 
+	 * @PostMapping("pw-change") public String pwChange(@RequestBody MemberDTO
+	 * member, HttpSession session) throws Exception {
+	 * 
+	 * logger.info("비밀번호 변경 요청 발생");
+	 * 
+	 * memberService.modifyPw(member);
+	 * 
+	 * MemberDTO memberDTO = memberService.memberLogin(member);
+	 * logger.info("회원정보 불러오기 : " + memberDTO); session.setAttribute("memberLogin",
+	 * memberDTO);
+	 * 
+	 * return "changeSuccess";
+	 * 
+	 * }
+	 */
+	
 	
 }

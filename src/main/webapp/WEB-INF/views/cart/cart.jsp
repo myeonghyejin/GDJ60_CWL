@@ -8,8 +8,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/css/cart.css">
+<section class="page-title bg-cover" data-background="/resources/images/banner/page-title.jpg">
+		<div class="container">
+		  <div class="row">
+			<div class="col-12 text-center">
+			  <h1 class="display-1 text-white font-weight-bold font-primary">Product</h1>
+			</div>
+		  </div>
+		</div>
+	</section>
 </head>
 <body>
+<c:import url="../template/newheader.jsp"></c:import>
 <div class="wrapper">
 	<div class="wrap">
 		<div class="top_gnb_area">
@@ -39,20 +49,7 @@
 			</ul>			
 		</div>
 		
-		<div class="top_area">
-			<div class="login_area">
-				<!-- 로그인한 상태 -->
-				<c:if test="${ member != null }">
-					<div class="login_success_area">
-						<span>회원 : ${member.memberName}</span>
-						<span>충전금액 : <fmt:formatNumber value="${member.money}" pattern="\#,###.##"/></span>
-						
-					</div>
-				</c:if>
-				
-			</div>
-			<div class="clearfix"></div>			
-		</div>
+		<div class="top_area"></div>
 		
 		<div class="content_area">
 		<div class="content_subject"><span>장바구니</span></div>
@@ -95,8 +92,10 @@
 								<input type="hidden" class="individual_productNum_input" value="${ci.productNum}">								
 							</td>
 							<td class="td_width_2">
-								<div class="image_wrap" data-productNum="${ci.imageList[0].productNum}" data-path="${ci.imageList[0].uploadPath}" data-uuid="${ci.imageList[0].uuid}" data-filename="${ci.imageList[0].fileName}">></div>
-								<img>
+								<div class="image_wrap" data-productNum="${ci.imageList[0].productNum}" data-path="${ci.imageList[0].uploadPath}" data-uuid="${ci.imageList[0].uuid}" data-imageName="${ci.imageList[0].imageName}">>
+									<img alt="" src="">
+								</div>
+								
 							</td>
 							<td class="td_width_3">${ci.productName}</td>
 							<td class="td_width_4 price_td">
@@ -210,21 +209,30 @@ $(document).ready(function(){
 	/* 종합 정보 섹션 정보 삽입 */
 	setTotalInfo();	
 	
+	/* data-productImgNum="${ci.imageList[0].productImgNum}" 
+	data-productNum="${ci.imageList[0].productNum}" 
+	data-path="${ci.imageList[0].uploadPath}" 
+	data-imagename="${ci.imageList[0].imageName}" 
+	data-originalName="${ci.imageList[0].originalName}" */
+	
+	
 	/* 이미지 삽입 */
 	$(".image_wrap").each(function(i, obj){
+		
 		const bobj = $(obj);
 		
 		if(bobj.data("productNum")){
 			const uploadPath = bobj.data("path");
 			const uuid = bobj.data("uuid");
-			const fileName = bobj.data("filename");
+			const imageName = bobj.data("imageName");
 			
-			const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+			const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + imageName);
 			
-			$(this).find("img").attr('src', '/display?fileName=' + fileCallPath);
+			$(this).find("img").attr('src', '/display?imageName=' + fileCallPath);
 		} else {
-			$(this).find("img").attr('src', '/resources/images/iu.jpg');
+			$(this).find("img").attr('src', '/resources/images/iu2.jpg');
 		}
+		
 	});
 	
 });	

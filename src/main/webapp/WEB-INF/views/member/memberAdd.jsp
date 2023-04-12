@@ -81,7 +81,6 @@
 				</div>
 				<span class="final_mail_ck">이메일을 입력해주세요.</span>
 				<span class="mail_input_box_warn"></span>
-				
 			</div>
 			<div class="address_wrap">
 				<div class="address_name">주소</div>

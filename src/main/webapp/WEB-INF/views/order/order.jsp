@@ -41,20 +41,7 @@
 			</ul>			
 		</div>
 		
-		<div class="top_area">
-			<div class="login_area">
-				<!-- 로그인한 상태 -->
-				<c:if test="${ member != null }">
-					<div class="login_success_area">
-						<span>회원 : ${member.memberName}</span>
-						<span>충전금액 : <fmt:formatNumber value="${member.money}" pattern="\#,###.##"/></span>
-						
-					</div>
-				</c:if>
-				
-			</div>
-			<div class="clearfix"></div>			
-		</div>
+		<div class="top_area"></div>
 		
 		<div class="content_area">
 			<div class="content_subject"><span>장바구니</span></div>
@@ -97,10 +84,10 @@
 										<td>
 											${memberInfo.memberAddress1} ${memberInfo.memberAddress2}<br>${memberInfo.memberAddress3}
 											<input class="selectAddress" value="T" type="hidden">
-											<input class="addressee_input" value="${memberInfo.memberName}" type="hidden" >
-											<input class="address1_input" type="hidden" value="${memberInfo.memberAddress1}">
-											<input class="address2_input" type="hidden" value="${memberInfo.memberAddress2}">
-											<input class="address3_input" type="hidden" value="${memberInfo.memberAddress3}">
+											<input class="addressee_input" value="${memberInfo.memberName}" type="hidden" id="memberName">
+											<input class="address1_input" type="hidden" value="${memberInfo.memberAddress1}" id="memberAddress1">
+											<input class="address2_input" type="hidden" value="${memberInfo.memberAddress2}" id="memberAddress2">
+											<input class="address3_input" type="hidden" value="${memberInfo.memberAddress3}" id="memberAddress3">
 										</td>
 									</tr>
 								</tbody>
@@ -169,7 +156,7 @@
 										</div>
 									</td>
 									<td class="goods_table_product_td">
-										<input type="hidden" class="individual_productName_input" id="productName" value="${ol.productName}"> 
+										<input type="submit" class="individual_productName_input" id="productName" value="${ol.productName}"> 
 									</td>
 									<td class="goods_table_price_td">
 										<fmt:formatNumber value="${ol.productPrice}" pattern="#,### 원" /> | 수량 ${ol.orderStock}개
@@ -191,16 +178,16 @@
 						<ul>
 							<li>
 								<span class="price_span_label">상품 금액</span>
-								<span class="totalPrice_span">100000</span>원
+								<span class="totalPrice_span">0</span>원
 							</li>
 							<li>
 								<span class="price_span_label">배송비</span>
-								<span class="orderFee_price_span">100000</span>원
+								<span class="orderFee_price_span">0</span>원
 							</li>
 							<li class="price_total_li">
 								<strong class="price_span_label total_price_label">최종 결제 금액</strong>
 								<strong class="strong_red">
-									<span class="total_price_red finalTotalPrice_span">150000</span>원
+									<span class="total_price_red finalTotalPrice_span">0</span>원
 								</strong>																
 							</li>
 						</ul>
@@ -217,17 +204,17 @@
 				<input name="memberId" value="${memberInfo.memberId}" type="hidden">
 				<!-- 주소록 & 받는이-->
 				<input name="addressee" type="hidden">
-				<input name="memberAddress1" type="hidden">
-				<input name="memberAddress2" type="hidden">
-				<input name="memberAddress3" type="hidden">			
+
+				<input name="memberAddress1" type="hidden" id="memberAddress1" value="${member.memberAddress1}">
+				<input name="memberAddress2" type="hidden" id="memberAddress2" value="${member.memberAddress2}">
+				<input name="memberAddress3" type="hidden" id="memberAddress3" value="${member.memberAddress3}">
 				<!-- 상품 정보 -->
 			</form>
-								
 		</div>
 	</div>
-</div>	
+</div>
 
-<a class="btn_payment">결제Test</a>
+
 
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <!-- jQuery -->
@@ -236,6 +223,8 @@
 <!-- <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-{SDK-최신버전}.js"></script> -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
+
+let finalTotalPrice = 0;
 
 $(document).ready(function() {
 	
@@ -344,11 +333,9 @@ function setTotalInfo() {
 	let totalStock = 0;
 	let totalKind = 0;
 	let orderFeePrice = 0;
-	let finalTotalPrice = 0;
 	
-	$(".goods_table_product_td").each(function(index, element) {
-		productName += parseInt($(element).find(".individual_productName_input").val());
-	});
+	
+	
 	$(".goods_table_price_td").each(function(index, element) {
 		// 총 가격
 		totalPrice += parseInt($(element).find(".individual_totalPrice_input").val());
@@ -384,61 +371,43 @@ function setTotalInfo() {
 }
 
 /* 주문 요청 */
-$(".order_btn").on("click", function(productName, productPrice, memberEmail, memberName, memberPhone, memberAddress2, memberAddress3, memberAddress1) {
+$(".order_btn").click(()=>{
+	let payment = iamport()
 	
+	function iamport() {
+		IMP.init('imp86115306');
+		
+		IMP.request_pay({
+		    pg : 'kicc',
+		    pay_method : 'card',
+		    merchant_uid: 'merchant_' + new Date().getTime(), // 상점에서 관리하는 주문 번호
+		    name : $('#productName').val(),
+		    amount : finalTotalPrice,
+		    buyer_name : $('#memberName').val(),
+		    buyer_tel : $('#memberPhone').val(),
+		    buyer_email : $('#memberEmail').val(),		    
+		    buyer_address : $('#memberAddress1').val() + $('#memberAddress2').val() + $('#memberAddress3').val()
+		    
+		}, function(rsp) {
+		    console.log(rsp);
+			if ( rsp.success ) {
+	   			let msg = '결제가 완료되었습니다.';
+	   			msg += '고유ID : ' + rsp.imp_uid;
+	   			msg += '상점 거래ID : ' + rsp.merchant_uid;
+	   			msg += '결제 금액 : ' + rsp.paid_amount;
+	   			msg += '카드 승인번호 : ' + rsp.apply_num;
+	   			console.log('결제 성공')
+	   			alert(msg);
+	   			$('#paymentForm').submit()
+	   		} else {
+	   			let msg = '결제에 실패하였습니다.';
+	   	        msg += '에러내용 : ' + rsp.error_msg;
+	   	        console.log('결제 실패')
+	   	        alert(msg);
+	   		}
+		});
+	}
 	
-	
-	event.preventDefault();
-	console.log(productName);
-	console.log(totalPrice);
-	console.log(memberEmail);
-	
-	IMP.init('imp86115306');
-	IMP.request_pay({
-	    pg : 'kicc',
-	    pay_method : 'card',
-	    merchant_uid: 'merchant_' + new Date().getTime(), // 상점에서 관리하는 주문 번호
-	    name : productName,
-	    amount : totalPrice,
-	    buyer_email : memberEmail,
-	    buyer_name : memberName,
-	    buyer_phone : memberPhone,
-	    buyer_address2 : memberAddress2,
-	    buyer_address2 : memberAddress3,
-	    buyer_postcode : memberAddress1
-	}, function(rsp) {
-	    if ( rsp.success ) {
-	    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
-	    	jQuery.ajax({
-	    		url: "/payments/complete", //cross-domain error가 발생하지 않도록 주의해주세요
-	    		type: 'POST',
-	    		dataType: 'json',
-	    		data: {
-		    		imp_uid : rsp.imp_uid
-		    		//기타 필요한 데이터가 있으면 추가 전달
-	    		}
-	    	}).done(function(data) {
-	    		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
-	    		if ( everythings_fine ) {
-	    			var msg = '결제가 완료되었습니다.';
-	    			msg += '\n고유ID : ' + rsp.imp_uid;
-	    			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-	    			msg += '\결제 금액 : ' + rsp.paid_amount;
-	    			msg += '카드 승인번호 : ' + rsp.apply_num;
-	    			
-	    			alert(msg);
-	    		} else {
-	    			//[3] 아직 제대로 결제가 되지 않았습니다.
-	    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
-	    		}
-	    	});
-	    } else {
-	        var msg = '결제에 실패하였습니다.';
-	        msg += '에러내용 : ' + rsp.error_msg;
-	        
-	        alert(msg);
-	    }
-	})
 	
 	/* 주소 정보 & 받는이*/
 	$(".addressInfo_input_div").each(function(i, obj){
@@ -465,46 +434,10 @@ $(".order_btn").on("click", function(productName, productPrice, memberEmail, mem
 	$(".order_form").append(form_contents);
 	
 	/* 서버 전송 */
-	$(".order_form").submit();
+	/* $(".order_form").submit(); */
 	
 	
 });
-
-$(".btn_payment").click(()=>{
-	let payment = iamport()	
-})
-function iamport() {
-	IMP.init('imp86115306');
-	IMP.request_pay({
-	    pg : 'kicc',
-	    pay_method : 'card',
-	    merchant_uid: 'merchant_' + new Date().getTime(), // 상점에서 관리하는 주문 번호
-	    name : $('#productName').val(),
-	    amount : $('#totalPrice').val(),
-	    buyer_email : 'memberEmail',
-	    buyer_name : 'memberName',
-	    buyer_phone : 'memberPhone',
-	    buyer_address2 : 'memberAddress2',
-	    buyer_address2 : 'memberAddress3',
-	    buyer_postcode : 'memberAddress1'
-	}, function(rsp) {
-	    console.log(rsp);
-		if ( rsp.success ) {
-   			let msg = '결제가 완료되었습니다.';
-   			msg += '\n고유ID : ' + rsp.imp_uid;
-   			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-   			msg += '\결제 금액 : ' + rsp.paid_amount;
-   			msg += '카드 승인번호 : ' + rsp.apply_num;
-   			console.log('결제 성공')
-   			alert(msg);
-   		} else {
-   			let msg = '결제에 실패하였습니다.';
-   	        msg += '에러내용 : ' + rsp.error_msg;
-   	        console.log('결제 실패')
-   	        alert(msg);
-   		}
-	});
-}	
 </script>
 </body>
 </html>
