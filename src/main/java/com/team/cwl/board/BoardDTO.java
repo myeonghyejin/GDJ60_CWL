@@ -3,6 +3,7 @@ package com.team.cwl.board;
 import java.sql.Date;
 
 import com.team.cwl.board.BoardDTO;
+import com.team.cwl.board.comment.BoardCommentDTO;
 
 public class BoardDTO{
 	
@@ -12,6 +13,9 @@ public class BoardDTO{
 	private String boardContents;
 	private Date boardDate;
 	private Long boardHit;
+	private Long boardCommentCount;
+	
+	private BoardCommentDTO boardCommentDTOs;
 	
 	public Long getBoardNum() {
 		return boardNum;
@@ -48,6 +52,19 @@ public class BoardDTO{
 	}
 	public void setBoardHit(Long boardHit) {
 		this.boardHit = boardHit;
+	}
+	public Long getBoardCommentCount() {
+		return boardCommentCount;
+	}
+	public void setBoardCommentCount(Long boardCommentCount) {
+		this.boardCommentCount = boardCommentCount;
+	}
+	
+	public BoardCommentDTO getBoardCommentDTOs() {
+		return boardCommentDTOs;
+	}
+	public void setBoardCommentDTOs(BoardCommentDTO boardCommentDTOs) {
+		this.boardCommentDTOs = boardCommentDTOs;
 	}
 
 }

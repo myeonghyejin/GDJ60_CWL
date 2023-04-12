@@ -8,18 +8,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- SQL -->
   	<sql id="productCondition">
-    	<where>
-    		<if test="condition == 'productName'">
-    			PRODUCTNAME LIKE '%' || #{search} || '%'
+  		<choose>
+  			<when test="condition == 'productName'">
+  				WHERE PRODUCTNAME LIKE '%' || #{search} || '%'
     			ORDER BY PRODUCTNUM DESC
-    		</if>
-		</where>
-		<if test="condition == 'lowPriceOrder'">
-			ORDER BY PRODUCTPRICE ASC
-		</if>
-		<if test="condition == 'highPriceOrder'">
-			ORDER BY PRODUCTPRICE DESC
-		</if>
+  			</when>
+  			<when test="condition == 'lowPriceOrder'">
+  				ORDER BY PRODUCTPRICE ASC
+  			</when>
+  			<when test="condition == 'highPriceOrder'">
+  				ORDER BY PRODUCTPRICE DESC
+  			</when>
+  			<otherwise>
+  				ORDER BY PRODUCTNUM DESC
+  			</otherwise>
+  		</choose>
 	</sql>
 
 	<!-- SELECT -->

@@ -98,7 +98,7 @@ $("#boardCommentListResult").on("click", ".reply", function(e){
     e.preventDefault();
 })
 
-//update confirm
+//reply confirm
 $("#replyConfirm").click(function(){
     $.ajax({
         url:'../board/comment/reply',
@@ -112,7 +112,8 @@ $("#replyConfirm").click(function(){
             if(res.trim()!=0){
                 alert('답글이 등록되었습니다.');
                 $("#closeReplyModal").click();
-                getList(1);            
+                $("#boardCommentReply").val("");
+                getList(1);
             }else {
                 alert('등록 실패!');
             }

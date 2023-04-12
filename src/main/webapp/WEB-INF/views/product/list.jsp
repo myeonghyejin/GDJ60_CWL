@@ -36,8 +36,8 @@
 				<input type="hidden" name="page" value="1" id="page">
 				<button class="btn btn-primary btn-sm btn-category mx-1">별점순</button>
 				<button class="btn btn-primary btn-sm btn-category mx-1">후기 많은순</button>
-				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="highPriceOrder">높은 가격순</button>
-				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" id="condition" value="lowPriceOrder">낮은 가격순</button>
+				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" value="highPriceOrder">높은 가격순</button>
+				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" value="lowPriceOrder">낮은 가격순</button>
 			</form>
 		</div>
 
