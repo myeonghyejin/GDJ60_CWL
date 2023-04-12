@@ -9,17 +9,16 @@
 	<c:import url="../template/common_css.jsp"></c:import>
 	<link rel="stylesheet" href="/resources/css/common/style.css">
 
-	 <!-- page-title -->
-	 <section class="page-title bg-cover" data-background="/resources/images/banner/page-title.jpg">
+	<!-- page-title -->
+	<section class="page-title bg-cover" data-background="/resources/images/banner/page-title.jpg">
 		<div class="container">
-		  <div class="row">
-			<div class="col-12 text-center">
-			  <h1 class="display-1 text-white font-weight-bold font-primary">Board</h1>
+			<div class="row">
+				<div class="col-12 text-center">
+					<h1 class="display-1 text-white font-weight-bold font-primary">Board</h1>
+				</div>
 			</div>
-		  </div>
 		</div>
-		</section>
-		<!-- /page-title -->
+	</section>
 </head>
 <body>
 	<c:import url="../template/newheader.jsp"></c:import>
@@ -91,7 +90,7 @@
 		<!-- 검색창 -->
 		<form action="./list" method="get" class="row g-3" id="searchForm">
 			<input type="hidden" name="page" value="1" id="page">
-			<div class="row justify-content-center mx-auto">
+			<div class="row justify-content-center mx-auto mt-5">
 				<div class="col-auto">
 					<label for="condition" class="visually-hidden">Email</label>
 					<select class="form-select" name="condition" id="condition" aria-label="Default select example">

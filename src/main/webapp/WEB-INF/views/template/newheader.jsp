@@ -18,7 +18,7 @@
   <!-- themefy-icon -->
   <link rel="stylesheet" href="/resources/js/plugins/themify-icons/themify-icons.css">
   <!-- venobox css -->
-  <link rel="stylesheet" href="/resources/js/pluginsvenobox/venobox.css">
+  <link rel="stylesheet" href="/resources/js/plugins/venobox/venobox.css">
   <!-- card slider -->
   <link rel="stylesheet" href="/resources/js/plugins/card-slider/css/style.css">
 
@@ -44,7 +44,7 @@
           <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/cwc/list">Cool with Cocktail</a>
+          <a class="nav-link" href="/recipe/list">Recipe</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/lesson/list">Lesson</a>
@@ -98,10 +98,6 @@
 <body>
 
 
-<!-- jQuery -->
-<script src="/resources/js/plugins/jQuery/jquery.min.js"></script>
-<!-- Bootstrap JS -->
-<script src="/resources/js/plugins/bootstrap/bootstrap.min.js"></script>
 <!-- slick slider -->
 <script src="/resources/js/plugins/slick/slick.min.js"></script>
 <!-- venobox -->
