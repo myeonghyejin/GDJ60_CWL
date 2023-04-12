@@ -1,23 +1,4 @@
 
-
-
-
-/*//////////////////////////////////////////////////////////////////
-[ FONT ]*/
-
-@font-face {
-  font-family: OpenSans-Regular;
-  src: url('../fonts/OpenSans/OpenSans-Regular.ttf'); 
-}
-
-@font-face {
-  font-family: OpenSans-Bold;
-  src: url('../fonts/OpenSans/OpenSans-Bold.ttf'); 
-}
-
-
-
-
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
 
@@ -79,6 +60,27 @@ input {
 	border: none;
 }
 
+
+.container-agree100 {
+  width: 100%;  
+  /* min-height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap; */
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+
+  background: #07085d;
+
+
+}
+
+
+
 textarea {
   outline: none;
   border: none;
@@ -136,11 +138,18 @@ iframe {
 [ Text ]*/
 .txt1 {
   font-family: OpenSans-Regular;
-  font-size: 13px;
+  font-size: 17px;
   line-height: 1.4;
   color: #cccccc;
 }
 
+.form-check{
+  font-size: 15;
+	margin-top: 30px;
+  margin-bottom: 50px;
+    text-align: center;
+    color : orange;
+}
 
 
 /*//////////////////////////////////////////////////////////////////
@@ -163,11 +172,8 @@ iframe {
   align-items: center;
   padding: 15px;
 
-  background: #2575fc;
-  background: -webkit-linear-gradient(left, #6a11cb, #2575fc);
-  background: -o-linear-gradient(left, #6a11cb, #2575fc);
-  background: -moz-linear-gradient(left, #6a11cb, #2575fc);
-  background: linear-gradient(left, #6a11cb, #2575fc);
+  background: #07085d;
+
 
 }
 
@@ -293,6 +299,13 @@ input.input100 {
 }
 
 
+/* 로그인 실패시 경고글 */
+.login_warn{
+  font-size: 13px;
+  text-align: center;
+  color : orange;
+  margin-top: 20px;
+}
 
 /*------------------------------------------------------------------
 [ Button ]*/

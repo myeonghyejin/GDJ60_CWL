@@ -208,8 +208,13 @@
 
     <script >
         id='${member.memberId}'
-        console.log("로그인 아이디 :"+id);
+        if(id==null){
+            alert("로그인 후 이용 바랍니다.");
+        }
+        // console.log("로그인 아이디 :"+id);
     </script>
+
+ 
 
 </body>
 
