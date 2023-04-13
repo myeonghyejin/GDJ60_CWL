@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 회원가입 -->  
   	<insert id="memberAdd">
   		INSERT INTO MEMBER(MEMBERID, MEMBERPW, MEMBERNAME, MEMBERPHONE, MEMBERADDRESS1, MEMBERADDRESS2, MEMBERADDRESS3, MEMBEREMAIL, ADMINCHECK, MEMBERGENDER, MEMBERSI, MEMBERAGE, MONEY)
-  		VALUES (#{memberId}, #{memberPw}, #{memberName}, #{memberPhone}, #{memberAddress1}, #{memberAddress2}, #{memberAddress3}, #{memberEmail}, 1, #{memberGender}, #{memberSI}, #{memberAge}, 100000)
+  		VALUES (#{memberId}, #{memberPw}, #{memberName}, #{memberPhone}, #{memberAddress1}, #{memberAddress2}, #{memberAddress3}, #{memberEmail}, 0, #{memberGender}, #{memberSI}, #{memberAge}, 100000)
   	</insert>
   	
   	<!-- 아이디 중복검사 -->
