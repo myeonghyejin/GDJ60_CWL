@@ -21,7 +21,8 @@ function setId(memberId) {
 let userName='';
 
 //웹소켓 생성
-let ipAddress = "192.168.1.31";
+let ipAddress = "localhost";
+
 // let ipAddress = "192.168.1.27";
 
 let sock = new SockJS("http://" + ipAddress + "/echo",{
@@ -29,9 +30,12 @@ let sock = new SockJS("http://" + ipAddress + "/echo",{
 });
 
 let v = makeJson("list", null, null, null)
+
 setInterval(() => {
   sendMessage(v);
-}, 5000);
+  $('.modal-body').scrollTop($('.msg-body')[0].scrollHeight);
+}, 500);
+
 
 
 sock.onopen = function () {
@@ -47,7 +51,7 @@ sock.onopen = function () {
 
 sock.onclose=function() {	
   // console.log("연결을 끊었습니다");
-  alert("연결이 끊겼습니다");
+  alert("연결이 끊겼습니다. 새로고침을 해보세요");
 }
 
 //message 전송시 사용
@@ -57,7 +61,6 @@ function sendMessage (m){
 
   //친구 list or 채팅 메세지 출력
   sock.onmessage = function (m) {
-
 
     // console.log(m); // 받은 메세지 출력
   
@@ -85,34 +88,8 @@ function sendMessage (m){
     
   
 
-  
-  // if (json.type === 'list') {
-  //   console.log("users : ", json.value);
-  //  for(let i =0; i<json.value; i++){
-  //   if(json.value != id){
-  //     console.log('user : ', user[i])
-  //     console.log('json.intro : ', json.intro[i])
-  //     makeUser(user[i], json.intro[i])
-  //   }
-  //  }
-
-  // for (let i = 0; i < json.value.length; i++) {
-  //   if (json.value[i] != id) {
-  //     console.log('user : ', json.value[i]);
-  //     console.log('json.intro : ', json.intro[i]);
-  //     makeUser(json.value[i], json.intro[i]);
-  //   }
-  // }
-  
-  //   return;
-  // }
-
   if(json.type=='invite'){
     for(let t of json.value){
-      // console.log("msg :"+t.value)
-      // console.log("senderId :"+t.senderId)
-      // console.log("receiveId :"+t.receiveId)
-      // console.log("time :"+t.sendTime)
       $(".msg").append(makeRecv(t.value, t.senderId, t.receiveId, getTimeString(t.sendTime)));
       
     }
@@ -123,6 +100,7 @@ function sendMessage (m){
   if (json.type == 'msg') { // 타입이 msg인 경우
     let timeString = getTimeString(json.sendTime); // getTimeString 함수를 호출하여 시간 정보를 문자열로 변환
     $(".msg").append(makeRecv(json.value, json.senderId, json.receiveId, timeString)); // makeRecv 함수 호출하여 채팅 메세지 출력
+    
   }
 
 }
@@ -188,7 +166,6 @@ $("#chat-list").on('click','.friend' ,function (e) {
           <div class="row">
               <div class="col-8">
                   <div class="d-flex align-items-center">
-
                       <div class="flex-grow-1 ms-3">
                           <h3>${userId}</h3>
                           <p>${memberSI}</p>
@@ -209,7 +186,6 @@ $("#chat-list").on('click','.friend' ,function (e) {
               </div>
           </div>
       </div>
-
       <div class="modal-body">
           <div class="msg-body">
               <ul class='msg'>
@@ -217,12 +193,10 @@ $("#chat-list").on('click','.friend' ,function (e) {
               </ul>
           </div>
       </div>
-
       <div class="send-box">
           <form action="">
               <input type="text" class="form-control" aria-label="message…"
                   placeholder="Write message…" id="txtMessage" data-id="${userId}">
-
               <button type="button" id="sendButton"><i class="fa fa-paper-plane"
                       aria-hidden="true"></i>
                   Send</button>
@@ -230,36 +204,23 @@ $("#chat-list").on('click','.friend' ,function (e) {
       </div>
   </div>
 </div>
-
   `;
   $(".chatbox").append(chattingroom);
 
-  $('.modal-body').scrollTop($('.modal-body')[0].scrollHeight);
-
+  $('.msg-body').scrollTop($('.msg-body')[0].scrollHeight);
 
   $(".chatbox").css("display", "block")
 
+  //나가기 버튼 눌렀을때
   $(".chatbox").on('click','.dropdown-item' ,function (e) {
-    // console.log("리브 클릭")
     $(".chatbox").empty();
   })
 
-  
-  // $("#map").css("display", "none")
 
-  // let chatboxHeight = $(".chatbox").height();
-  // var maxScroll = $(".modal-body").height() - chatboxHeight;
-  // $(".chatbox").scrollTop(maxScroll);
-
+  //스크롤 하단으로 내리기
   setTimeout(function() {
-       const chatbox = $('.chatbox');
-       chatbox.scrollTop(chatbox[0].scrollHeight);
-  //   $('.msg-body').scrollTop($('.msg-body')[0].scrollHeight);
-  //   console.log("스크롤")
-   }, 2000);
-  
-
-  
+     $('.modal-body').scrollTop($('.msg-body')[0].scrollHeight);
+   }, 500);
 
 
 })
@@ -278,7 +239,6 @@ function makeRecv(msg, senderId, receiveId, timeString) {
     return;
   }
   if(msg=="**채팅상대가 온라인중이 아닙니다**"){
-    // console.log("여끼까지 오나?")
     $(".send-box").css("display", "none");
 
   }
@@ -291,7 +251,6 @@ function makeRecv(msg, senderId, receiveId, timeString) {
   recv = recv + '<span class="time">'+timeString+'</span>'
   recv = recv + '</li>'
   
-  $('.chatbox').scrollTop($('.chatbox')[0].scrollHeight);
 
   return recv;
 }
@@ -300,26 +259,29 @@ function makeRecv(msg, senderId, receiveId, timeString) {
 
 
 $(".chatbox").on('submit', 'form', function (e) {
+  let message = $("#txtMessage").val().trim(); // 입력된 텍스트를 가져와서 공백 제거
+  if (message !== '') { // 텍스트가 비어있지 않으면
   e.preventDefault();
-  // console.log("엔터키 입력함");
   let r = makeJson('msg',$("#txtMessage").val(), $("#txtMessage").attr("data-id"), getTimeString)
   sock.send(r);
 
   $("#txtMessage").val(''); // 메시지 전송 후 텍스트 필드 초기화
+  $('.modal-body').scrollTop($('.msg-body')[0].scrollHeight);
   return false; 
+  }
 });
 
   
 //send버튼 눌렀을때 채팅 메세지 전송
 $(".chatbox").on('click', '#sendButton', function () {
-    // console.log("버튼 클릭함");
-    // console.log("메세지 내용 : " + $("#txtMessage").val());
+    let message = $("#txtMessage").val().trim(); // 입력된 텍스트를 가져와서 공백 제거
+    if (message !== '') { // 텍스트가 비어있지 않으면
     let r = makeJson('msg',$("#txtMessage").val(), $("#txtMessage").attr("data-id"), getTimeString)
     sock.send(r);
 
     $("#txtMessage").val(''); // 메시지 전송 후 텍스트 필드 초기화
-    $('.chatbox').scrollTop($('.chatbox')[0].scrollHeight);
-
+    $('.modal-body').scrollTop($('.msg-body')[0].scrollHeight);
+  }
 });
 
 function getTimeString(sendTime) {
@@ -342,7 +304,6 @@ function makeJson(type, message, receiveId, sendTime){
     "value": message,
     "receiveId": receiveId,
     "sendTime": sendTime,
-    // "intro":memberSI
   };
   return JSON.stringify(json);
 }

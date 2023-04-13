@@ -21,11 +21,6 @@
  		VALUES (#{roomNum} , #{m1}, #{m2}, #{messageContents} )
  	</insert>
  	
- 	<select id="">
- 		SELECT ROOMNUM FROM CHAT
- 		WHERE 
- 		
- 	
- 	</select>
+ 
  	
 </mapper>
