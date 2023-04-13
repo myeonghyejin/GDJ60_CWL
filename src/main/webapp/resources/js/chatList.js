@@ -47,7 +47,7 @@ sock.onopen = function () {
 
 sock.onclose=function() {	
   // console.log("연결을 끊었습니다");
-  alert("연결이 끊겼습니다");
+  alert("연결이 끊겼습니다. 새로고침을 해보세요");
 }
 
 //message 전송시 사용
@@ -209,7 +209,7 @@ $("#chat-list").on('click','.friend' ,function (e) {
           </div>
       </div>
       <div class="modal-body">
-          <div class="msg-body">
+          <div class="msg-body" onscroll="scrollFn()">
               <ul class='msg'>
  
               </ul>
@@ -229,7 +229,7 @@ $("#chat-list").on('click','.friend' ,function (e) {
   `;
   $(".chatbox").append(chattingroom);
 
-  $('.modal-body').scrollTop($('.modal-body')[0].scrollHeight);
+  $('.msg-body').scrollTop($('.msg-body')[0].scrollHeight);
 
 
   $(".chatbox").css("display", "block")
@@ -246,14 +246,28 @@ $("#chat-list").on('click','.friend' ,function (e) {
   // var maxScroll = $(".modal-body").height() - chatboxHeight;
   // $(".chatbox").scrollTop(maxScroll);
 
-  setTimeout(function() {
-       const chatbox = $('.chatbox');
-       chatbox.scrollTop(chatbox[0].scrollHeight);
-  //   $('.msg-body').scrollTop($('.msg-body')[0].scrollHeight);
-  //   console.log("스크롤")
-   }, 2000);
+  // setTimeout(function() {
+  //      const chatbox = $('.msg-body');
+  //      chatbox.scrollTop(chatbox[0].scrollHeight);
+  //    $('.msg-body').scrollTop($('.msg-body')[0].scrollHeight);
+  //    console.log("스크롤")
+  //    let chat = document.querySelector('.msg-body');
+  //    chat.scrollTop = chat.scrollHeight;
+  //    console.log('chat', chat)
+  //    console.log('scrollheight',chat.scrollHeight);
+  //    console.log('chatscrollTop', chat.scrollTop)
+  //  }, 2000);
   
 
+  
+  setTimeout(function() {
+    let chat = document.querySelector('.msg-body');
+    chat.scrollTop = chat.scrollHeight;
+    // const chatbox = $('.msg-body');
+    // chatbox.scrollTop(chatbox[0].scrollHeight);
+    console.log("스크롤")
+  }, 2000);
+  
   
 
 

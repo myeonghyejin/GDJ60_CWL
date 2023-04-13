@@ -418,6 +418,10 @@ a.add img {
     margin-top: 0.125rem;
 }
 
+.msg-body{
+    overflow-y: auto;
+}
+
 .msg-body ul {
     overflow: hidden;
 }
