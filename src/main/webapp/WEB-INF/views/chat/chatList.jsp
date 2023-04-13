@@ -26,6 +26,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
     <!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7cfe0a988351b935c1deefc425b4cc46"></script> -->
 
+    <c:import url="../template/common_css.jsp"></c:import>
+
   <!-- page-title -->
   <section class="page-title bg-cover" data-background="/resources/images/banner/page-title.jpg">
 	<div class="container">
@@ -203,8 +205,7 @@
 
     <link href="/resources/css/chatList.css" rel="stylesheet">
     <script src="/resources/js/chatList.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <c:import url="../template/common_js.jsp"></c:import>
 
     <script >
         id='${member.memberId}'
