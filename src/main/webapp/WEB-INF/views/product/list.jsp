@@ -93,7 +93,7 @@
 									<div class="overlay-box">
 										<div class="overlay-inner">
 											<div class="overlay-content">
-												<h5 class="mb-0">${DTO.productName}</h5>
+												<h5 class="mb-0"><b>${DTO.productName}</b></h5>
 												<p>${DTO.productPrice}원</p>
 											</div>
 										</div>

@@ -1,125 +1,143 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="/resources/css/member/memberAdd.css">
-
+	<meta charset="UTF-8">
+	<title>회원가입</title>
+	<c:import url="../template/common_css.jsp"></c:import>
+	<link rel="stylesheet" href="/resources/css/common/style.css">
+	<link rel="stylesheet" href="/resources/css/member/member.css">
+	
+	<!-- page-title -->
+	<section class="page-title bg-cover" data-background="/resources/images/banner/page-title.jpg">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 text-center">
+					<h1 class="display-1 text-white font-weight-bold font-primary">Join</h1>
+				</div>
+			</div>
+		</div>
+	</section>
 </head>
 <body>
-
+	<c:import url="../template/newheader.jsp"></c:import>
 <div class="wrapper">
 	<form id="join_form" method="post">
 	<div class="wrap">
-			<div class="subjecet">
-				<span>회원가입</span>
+		<div class="mt-5 mb-3 row">
+			<label for="memberId" class="col-sm-2 col-form-label"><b>ID</b></label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control id_input" id="memberId" name="memberId" placeholder="영문 소문자, 숫자만 사용 가능합니다.">
+				<span class="id_input_re_1 mx-2 mt-2">사용 가능한 아이디입니다.</span>
+				<span class="id_input_re_2 mx-2 mt-2">아이디가 이미 존재합니다.</span>	
+				<span class="final_id_ck mx-2 mt-2">아이디를 입력해주세요.</span>
 			</div>
-			<div class="id_wrap">
-				<div class="id_name">아이디</div>
-				<div class="id_input_box">
-					<input class="id_input" name="memberId">
-				</div>
-				<span class="id_input_re_1">사용 가능한 아이디입니다.</span>
-				<span class="id_input_re_2">아이디가 이미 존재합니다.</span>	
-				<span class="final_id_ck">아이디를 입력해주세요.</span>			
-			</div>
-			<!-- <div class="nickName_wrap">
+		</div>
+		
+	<!-- <div class="nickName_wrap">
 				<div class="nickName_name">닉네임</div>
 				<div class="nickName_input_box">
 					<input class="nickName_input" name="memberNickName">
 				</div>
 				<span class="nickName_input_re_1">사용 가능한 닉네임입니다.</span>
 				<span class="nickName_input_re_2">닉네임이 이미 존재합니다.</span>	
-			</div>	 -->			
-			<div class="pw_wrap">
-				<div class="pw_name">비밀번호</div>
-				<div class="pw_input_box">
-					<input type="password" class="pw_input" name="memberPw">
-				</div>
-				<span class="final_pw_ck">비밀번호를 입력해주세요.</span>
-			</div>
-			<div class="pwck_wrap">
-				<div class="pwck_name">비밀번호 확인</div>
-				<div class="pwck_input_box">
-					<input type="password" class="pwck_input">
-				</div>
-				<span class="final_pwck_ck">비밀번호를 한번더 입력해주세요.</span>
-				<span class="pwck_input_re_1">비밀번호가 일치합니다.</span>
-				<span class="pwck_input_re_2">비밀번호가 일치하지 않습니다.</span>
-			</div>
-			<div class="user_wrap">
-				<div class="user_name">이름</div>
-				<div class="user_input_box">
-					<input class="user_input" name="memberName">
-				</div>
-				<span class="final_name_ck">이름을 입력해주세요.</span>
-			</div>
-			<div class="gender_wrap">
-				<label for="memberGender" class="user_gender">성별</label><br>
-				<input type="radio" name="memberGender" value="남성" class="gender_radio">남성
-				<input type="radio" name="memberGender" value="여성" class="gender_radio">여성
-			</div>
-			<div class="age_wrap">
-				<div class="user_age">나이</div>
-				<div class="user_age_input_box">
-					<input class="user_age_input" name="memberAge">
-				</div>
-			</div>
-			<div class="phone_wrap">
-				<div class="user_phone">전화번호</div>
-				<div class="user_phone_input_box">
-					<input class="user_phone_input" name="memberPhone">
-				</div>
-				<span class="final_phone_ck">번호를 입력해주세요.</span>
-			</div>
-			<div class="mail_wrap">
-				<div class="mail_name">이메일</div> 
-				<div class="mail_input_box">
-					<input class="mail_input" name="memberEmail">
-				</div>
-				<span class="final_mail_ck">이메일을 입력해주세요.</span>
-				<span class="mail_input_box_warn"></span>
-			</div>
-			<div class="address_wrap">
-				<div class="address_name">주소</div>
-				<div class="address_input_1_wrap">
-					<div class="address_input_1_box">
-						<input class="address_input_1" name="memberAddress1" readonly="readonly">
-					</div>
-					<div class="address_button" onclick="execution_daum_address()">
-						<span>주소 찾기</span>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div class ="address_input_2_wrap">
-					<div class="address_input_2_box">
-						<input class="address_input_2" name="memberAddress2" readonly="readonly">
-					</div>
-				</div>
-				<div class ="address_input_3_wrap">
-					<div class="address_input_3_box">
-						<input class="address_input_3" name="memberAddress3" readonly="readonly">
-					</div>
-				</div>
-				<span class="final_addr_ck">주소를 입력해주세요.</span>
-			</div>
-			<div class="SI_wrap">
-				<div class="user_SI">자기소개</div>
-				<div class="user_SI_input_box">
-					<input class="user_SI_input" name="memberSI">
-				</div>
-			</div>
-			<div class="join_button_wrap">
-				<input type="button" class="join_button" value="가입하기">
+			</div>	 -->
+			
+		<div class="mb-3 row">
+			<label for="memberPw" class="col-sm-2 col-form-label"><b>비밀번호</b></label>
+			<div class="col-sm-10">
+				<input type="password" class="form-control pw_input" id="memberPw" name="memberPw">
+				<span class="final_pw_ck mx-2 mt-2">비밀번호를 입력해주세요.</span>
 			</div>
 		</div>
+		
+		<div class="mb-3 row">
+			<label for="memberPw" class="col-sm-2 col-form-label"><b>비밀번호 확인</b></label>
+			<div class="col-sm-10">
+				<input type="password" class="form-control pwck_input" id="memberPw" name="memberPw">
+				<span class="final_pwck_ck mx-2 mt-2">비밀번호를 한 번 더 입력해 주세요.</span>
+				<span class="pwck_input_re_1 mx-2 mt-2">비밀번호가 일치합니다.</span>
+				<span class="pwck_input_re_2 mx-2 mt-2">비밀번호가 일치하지 않습니다.</span>
+			</div>
+		</div>
+		
+		<div class="mb-3 row">
+			<label for="memberName" class="col-sm-2 col-form-label"><b>이름</b></label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control user_input" id="memberName" name="memberName">
+				<span class="final_name_ck mx-2 mt-2">이름을 입력해주세요.</span>
+			</div>
+		</div>
+		
+		<div class="mb-3 row">
+			<select class="form-select" name="memberGender">
+				<option selected>성별</option>
+				<option value="남성">남성</option>
+				<option value="여성">여성</option>
+			</select>
+		</div>
+		
+		<div class="mb-3 row">
+			<label for="memberAge" class="col-sm-2 col-form-label"><b>나이</b></label>
+			<div class="col-sm-10">
+				<input type="number" class="form-control" id="memberAge" name="memberAge">
+			</div>
+		</div>
+		
+		<div class="mb-3 row">
+			<label for="memberPhone" class="col-sm-2 col-form-label"><b>전화 번호</b></label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="memberPhone" name="memberPhone" placeholder="하이픈(-)을 포함하여 입력하세요.">
+				<span class="final_phone_ck mx-2 mt-2">전화 번호를 입력해 주세요.</span>
+			</div>
+		</div>
+		
+		<div class="mb-3 row">
+			<label for="memberEmail" class="col-sm-2 col-form-label"><b>이메일</b></label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control mail_input" id="memberEmail" name="memberEmail" placeholder="email@example.com">
+				<span class="final_mail_ck mx-2 mt-2">이메일을 입력해주세요.</span>
+			</div>
+		</div>
+		
+		<div class="mb-3 row">
+			<label for="memberAddress1" class="col-sm-2 col-form-label"><b>주소</b></label>
+			<div class="col-sm-8">
+				<input class="form-control address_input_1" name="memberAddress1" readonly="readonly">
+			</div>
+			<div class="address_button col-auto row" onclick="execution_daum_address()">
+				<span class="btn btn-point">주소 찾기</span>
+			</div>
+		</div>
+		<div class="mb-3 row justify-content-end">
+			<div class="col-sm-10">
+				<input class="form-control address_input_2" name="memberAddress2" readonly="readonly">
+			</div>
+		</div>
+		<div class="mb-3 row justify-content-end">
+			<div class="col-sm-10">
+				<input class="form-control address_input_3" name="memberAddress3" readonly="readonly">
+				<span class="final_addr_ck mx-2 mt-2">주소를 입력해 주세요.</span>
+			</div>
+		</div>
+		
+		<div class="mb-3">
+			<label for="exampleFormControlTextarea1" class="form-label"><b>자기소개</b></label>
+			<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="memberSI"></textarea>
+		</div>
+		
+		<div class="join_button_wrap row justify-content-center my-5">
+			<input type="button" class="join_button btn btn-primary btn-sm btn-default" value="가입">
+		</div>
+	</div>
 	</form>
 </div>
 
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<c:import url="../template/common_js.jsp"></c:import>
+	<c:import url="../template/footer.jsp"></c:import>	
 <script>
  /* 유효성 검사 통과유무 변수 */
  var idCheck = false;			// 아이디

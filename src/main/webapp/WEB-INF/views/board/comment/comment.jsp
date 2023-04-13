@@ -13,8 +13,10 @@
 			</td>
 			<td align="right" style="vertical-align: middle;">${DTO.boardCommentDate}</td>
 			<td align="right" style="vertical-align: middle;">
-				<c:if test="${DTO.boardCommentDepth eq 0}">
-					<button class="btn btn-info btn-sm reply" data-boardcomment-num="${DTO.boardCommentNum}" data-bs-toggle="modal" data-bs-target="#replyModal">답글</button>
+				<c:if test="${not empty member}">
+					<c:if test="${DTO.boardCommentDepth eq 0}">
+						<button class="btn btn-info btn-sm reply" data-boardcomment-num="${DTO.boardCommentNum}" data-bs-toggle="modal" data-bs-target="#replyModal">답글</button>
+					</c:if>
 				</c:if>
 				<c:if test="${member.memberId eq DTO.memberId}">
 					<button class="btn btn-info btn-sm update" data-boardcomment-num="${DTO.boardCommentNum}" data-bs-toggle="modal" data-bs-target="#updateModal">수정</button>
