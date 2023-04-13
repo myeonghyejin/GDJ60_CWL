@@ -57,7 +57,7 @@
           <a class="nav-link" href="/product/list">Product</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Pages</a>
+          <a class="nav-link dropdown-toggle" href="/member/memberPage" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Pages</a>
           <div class="dropdown-menu">
             <c:if test="${empty member}">
               <a class="dropdown-item" href="/member/memberLogin">LOGIN</a>
@@ -94,6 +94,8 @@
 </head>
 
 <body>
+
+
 
 
 <!-- slick slider -->

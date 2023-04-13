@@ -50,7 +50,7 @@
 									</div>
 									<div class="images">
 										<c:forEach items="${DTO.productImgDTOs}" var="imgDTO">
-											<img src="/resources/upload/product/${imgDTO.imgName}" alt="product-image" class="img">
+											<img src="/resources/upload/product/${imgDTO.imgName}" alt="product-image" class="img" style="width: 700px;">
 										</c:forEach>
 									</div>
 								</main>
