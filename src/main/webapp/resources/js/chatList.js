@@ -22,6 +22,7 @@ let userName='';
 
 //웹소켓 생성
 let ipAddress = "localhost";
+
 // let ipAddress = "192.168.1.27";
 
 let sock = new SockJS("http://" + ipAddress + "/echo",{

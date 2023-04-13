@@ -26,10 +26,6 @@
 <body>
 	<c:import url="../template/newheader.jsp"></c:import>
 	<div class="container-fluid my-5">
-		<!-- Title -->
-		<div class="row mx-auto text-center border-bottom border-dark pb-2">
-			<p class="fs-2" style="font-family: 'Impact'">RECIPE</p>
-		</div>
 		<!-- Contents -->
 		<form action="./update" method="post" enctype="multipart/form-data" id="frm">
 			<input type="hidden" name="memberId" value="${member.memberId}">
