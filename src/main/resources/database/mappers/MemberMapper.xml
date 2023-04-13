@@ -37,7 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	
   	<!-- 회원 수정 -->
   	<update id="memberUpdate" parameterType="MemberDTO">
-  		UPDATE MEMBER SET MEMBERNAME=#{memberName}, MEMBERPW=#{memberPw}, MEMBERPHONE=#{memberPhone}, MEMBEREMAIL=#{memberEmail}, MEMBERGENDER=#{memberGender}, MEMBERSI=#{memberSI}, MEMBERAGE=#{memberAge}
+  		UPDATE MEMBER SET MEMBERPW=#{memberPw}, MEMBERAGE=#{memberAge}, MEMBERPHONE=#{memberPhone}, MEMBEREMAIL=#{memberEmail}, MEMBERADDRESS1=#{memberAddress1}, MEMBERADDRESS2=#{memberAddress2}, MEMBERADDRESS3=#{memberAddress3}, MEMBERSI=#{memberSI}
   		WHERE MEMBERID=#{memberId}
   	</update>
 </mapper>

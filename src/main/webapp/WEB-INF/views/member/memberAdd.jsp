@@ -29,10 +29,9 @@
 		<div class="mt-5 mb-3 row">
 			<label for="memberId" class="col-sm-2 col-form-label"><b>ID</b></label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control id_input" id="memberId" name="memberId" placeholder="영문 소문자, 숫자만 사용 가능합니다.">
+				<input type="text" class="id_input form-control" name="memberId" placeholder="영문 소문자, 숫자만 사용 가능합니다.">
 				<span class="id_input_re_1 mx-2 mt-2">사용 가능한 아이디입니다.</span>
-				<span class="id_input_re_2 mx-2 mt-2">아이디가 이미 존재합니다.</span>	
-				<span class="final_id_ck mx-2 mt-2">아이디를 입력해주세요.</span>
+				<span class="id_input_re_2 mx-2 mt-2">아이디가 이미 존재합니다.</span>					
 			</div>
 		</div>
 		
@@ -48,15 +47,14 @@
 		<div class="mb-3 row">
 			<label for="memberPw" class="col-sm-2 col-form-label"><b>비밀번호</b></label>
 			<div class="col-sm-10">
-				<input type="password" class="form-control pw_input" id="memberPw" name="memberPw">
-				<span class="final_pw_ck mx-2 mt-2">비밀번호를 입력해주세요.</span>
+				<input type="password" class="pw_input form-control" id="memberPw" name="memberPw">
 			</div>
 		</div>
 		
 		<div class="mb-3 row">
 			<label for="memberPw" class="col-sm-2 col-form-label"><b>비밀번호 확인</b></label>
 			<div class="col-sm-10">
-				<input type="password" class="form-control pwck_input" id="memberPw" name="memberPw">
+				<input type="password" class="pwck_input form-control" id="memberPw">
 				<span class="final_pwck_ck mx-2 mt-2">비밀번호를 한 번 더 입력해 주세요.</span>
 				<span class="pwck_input_re_1 mx-2 mt-2">비밀번호가 일치합니다.</span>
 				<span class="pwck_input_re_2 mx-2 mt-2">비밀번호가 일치하지 않습니다.</span>
