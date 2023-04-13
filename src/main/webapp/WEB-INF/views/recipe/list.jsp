@@ -24,10 +24,6 @@
 <body>
 	<c:import url="../template/newheader.jsp"></c:import>
 	<div class="container-fluid my-5">
-		<!-- Title -->
-		<div class="row mx-auto text-center border-bottom border-dark pb-2">
-			<p class="fs-2" style="font-family: 'Impact'">RECIPE</p>
-		</div>
 		
 		<!-- 검색창 -->
 		<div class="col-11 mx-auto">
@@ -79,7 +75,7 @@
 
 						</div>
 						<div class="row justify-content-center mx-auto my-2" align="center">
-							<button type="button" class="btn btn-outline-primary btn-sm btn-condition mx-1 my-1" name="recipeBase" value="${DTO.recipeBase}">${DTO.recipeBase}</button>
+							<button class="btn btn-sm btn-condition mx-1 my-1" name="recipeBase" value="${DTO.recipeBase}" disabled="disabled">${DTO.recipeBase}</button>
 							<p><b>${DTO.recipeTitle}</b></p>
 						</div>
 					</div>
@@ -120,7 +116,7 @@
 		
 		<!-- 강의 등록 버튼 -->
 	 	<c:if test="${not empty member}">
-			<div class="row justify-content-center mx-auto">
+			<div class="row justify-content-center mx-auto mt-4">
 				<a href=./add class="btn btn-primary btn-sm btn-default">등록</a>
 			</div>
 	 	</c:if>

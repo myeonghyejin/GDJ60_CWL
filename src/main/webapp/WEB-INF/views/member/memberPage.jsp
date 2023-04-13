@@ -28,7 +28,7 @@
 		<div class="row col-2 my-4 justify-content-start mx-auto">
 			<img alt="profile-image" src="/resources/images/profile.png">
 		</div>
-		<div class="row col-4 my-4 justify-content-center mx-auto" id="frame">
+		<div class="row col-6 my-4 justify-content-center mx-auto" id="frame">
 			<div class="row col-md-6 mx-auto my-1">
 				ID
 				<h5 class="my-1">${member.memberId}</h5>
