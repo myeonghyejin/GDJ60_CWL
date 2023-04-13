@@ -126,9 +126,9 @@
 
                         <!-- chatbox -->
                         <div class="chatbox">
-                            <div id="map">
-                             <div class="modal-dialog-scrollable">
-                               <!-- <div class="modal-content">
+                            <div id="map" class="modal-dialog-scrollable">
+                             <!--<div class="modal-dialog-scrollable">
+                                <div class="modal-content">
                                      <div class="msg-head">
                                         <div class="row">
                                             <div class="col-8">
@@ -189,9 +189,9 @@
                                                 Send</button>
                                         </form>
                                     </div>
+                                    </div>
                                 </div>-->
                             </div> 
-                        </div>
                         </div>
                         <!-- chatbox -->
                     </div>
@@ -205,14 +205,12 @@
 
     <link href="/resources/css/chatList.css" rel="stylesheet">
     <script src="/resources/js/chatList.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 
 
     <script >
         id='${member.memberId}'
-        if(id==null){
-            alert("로그인 후 이용 바랍니다.");
-        }
+
         // console.log("로그인 아이디 :"+id);
     </script>
 
