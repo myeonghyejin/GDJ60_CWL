@@ -149,9 +149,9 @@
 					<button id="update" type="submit" class="btn btn-outline-primary btn-sm btn-default mx-1">수정</button>
 					<button id="delete" type="button" class="btn btn-outline-primary btn-sm btn-default mx-1">삭제</button>
 				</c:if>
-					<a href="./list" class="btn btn-primary btn-sm btn-default mx-1">목록</a>
-				</div>
-			</form>
+				<a href="./list" class="btn btn-primary btn-sm btn-default mx-1">목록</a>
+			</div>
+		</form>
 		
 		<!-- Review -->
 		<div class="row col-8 justify-content-center mx-auto mt-5">
@@ -162,7 +162,7 @@
 		</div>
 	
 		<c:if test="${not empty member}">
-			<div class="row col-md-4 justify-content-center mx-auto">
+			<div class="row justify-content-center mx-auto my-3">
 				<a href="./review/add?productNum=${DTO.productNum}" class="btn btn-primary btn-sm btn-default mx-1" id="productReviewAdd" data-product-num-review="${DTO.productNum}">작성</a>
 			</div>
 		</c:if>
@@ -176,7 +176,7 @@
 		</div>
 	
 		<c:if test="${not empty member}">
-			<div class="row justify-content-center mx-auto">
+			<div class="row justify-content-center mx-auto my-3">
 				<a href="./qna/add?productNum=${DTO.productNum}" class="btn btn-primary btn-sm btn-default mx-1" id="productQnAAdd">작성</a>
 			</div>
 		</c:if>	

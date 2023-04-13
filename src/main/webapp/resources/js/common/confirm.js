@@ -58,10 +58,6 @@ $('#productConfirm').click(function(){
 		alert("재고를 입력하세요.")
 		return;
 	}
-	else if(!$('#imgs').val()){
-		alert("최소 1장 이상의 제품 사진을 첨부하세요.")
-		return;
-	}
 	//submit
 	else{
 		$('#frm').submit();

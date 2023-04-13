@@ -46,13 +46,12 @@
 				<h5 class="my-1">${member.memberAge}</h5>
 			</div>
 			<div class="row col-md-12 my-1">
-				연락처 
+				전화 번호
 				<h5 class="my-1">${member.memberPhone}</h5>
-				<h5 class="my-1">${member.memberAddress1}<br>${dto.memberAddress2} ${dto.memberAddress3}</h5>
 			</div>
 			<div class="row col-md-12 my-1">
-				충전된 금액
-				<h5 class="my-1"><fmt:formatNumber value="${member.money}" pattern="￦###,###,###,###"/></h5>
+				주소
+				<h5 class="my-1">${member.memberAddress1}<br>${dto.memberAddress2} ${dto.memberAddress3}</h5>
 			</div>
 			<div class="row col-md-12 my-1">
 				자기 소개

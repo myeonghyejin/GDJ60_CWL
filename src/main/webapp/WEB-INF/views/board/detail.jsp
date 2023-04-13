@@ -31,7 +31,7 @@
 						<p class="fs-4 fw-bold text-center border-bottom border-dark pb-4">${DTO.boardTitle}</p>
 					</div>
 					<div class="row my-4 mx-auto text-center">
-						<p class="fs-6"><b>글 번호</b>&ensp;${DTO.boardNum}&emsp;<b>작성자</b>&ensp;${DTO.memberId}&emsp;<b>날짜</b>&ensp;${DTO.boardDate}&emsp;<b>조회수</b>&ensp;${DTO.boardHit+1}</p>
+						<p class="fs-6"><b>글 번호</b>&ensp;${DTO.boardNum}&emsp;<b>작성자</b>&ensp;${DTO.memberId}&emsp;<b>날짜</b>&ensp;${DTO.boardDate}&emsp;<b>조회 수</b>&ensp;${DTO.boardHit+1}</p>
 					</div>
 					<div class="row col-8 my-4 justify-content-center mx-auto">
 						<p class="fs-4">${DTO.boardContents}</p>
@@ -46,18 +46,16 @@
 		</div>
 		
 		<!-- Buttons -->
-		<c:if test="${member.memberId eq DTO.memberId}">
-			<form action="./update" id="frm">
-				<div class="row col-6 justify-content-center mx-auto">
-					<input type="hidden" name="boardNum" value="${DTO.boardNum}">
+		<form action="./update" id="frm">
+			<div class="row col-md-4 justify-content-center mx-auto">
+				<input type="hidden" name="boardNum" value="${DTO.boardNum}">
+				<c:if test="${member.memberId eq DTO.memberId}">
 					<button id="update" type="submit" class="btn btn-outline-primary btn-sm btn-default mx-1">수정</button>
 					<button id="delete" type="button" class="btn btn-outline-primary btn-sm btn-default mx-1">삭제</button>
-				</div>
-			</form>
-		</c:if>
-		<div class="row col-6 my-2 justify-content-center mx-auto">
-			<a href="./list" class="btn btn-primary btn-sm btn-default mx-1">목록</a>
-		</div>
+				</c:if>
+				<a href="./list" class="btn btn-primary btn-sm btn-default mx-1">목록</a>
+			</div>
+		</form>
 		
 		<!-- Comment -->
 		<div class="row col-8 justify-content-center mx-auto mt-5">

@@ -18,6 +18,11 @@ a {
     text-decoration: none;
 }
 
+/* ------- tr -------- */
+.tr-height {
+    height: 70px;
+}
+
 /* ------- table -------- */
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
     background-color: #38FCFB;
@@ -31,12 +36,9 @@ a {
 	border-radius: 4px;
 }
 
-/* ------- checkbox -------- */
-
-
 /* ------- radio -------- */
 .select {
-    padding: 3px;
+    padding: 3px ;
 }
 .select input[type=radio]{
     display: none;
@@ -186,6 +188,7 @@ a {
     color: #fff;
     width: 25px;
     height: 25px;
+    line-height: 25px;
     vertical-align: middle;
     border-radius: 50%;
     display: inline-block;
@@ -197,6 +200,7 @@ a {
     color: #fff;
     width: 25px;
     height: 25px;
+    line-height: 25px;
     vertical-align: middle;
     border-radius: 50%;
     display: inline-block;

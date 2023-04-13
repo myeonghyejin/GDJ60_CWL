@@ -5,7 +5,7 @@
 <!-- Contents -->
 <table class="table table-hover">
 	<c:forEach items="${list}" var="DTO">
-		<tr>
+		<tr class="tr-height">
 			<td align="center" style="vertical-align: middle;" width="50%">
 				<b>${DTO.memberId}</b>
 				<c:if test="${member.memberId eq DTO.memberId}">
@@ -40,7 +40,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td id="lessonReviewContents${DTO.lessonReviewNum}" width="100%" height="70px" style="vertical-align: middle;" colspan="4">
+			<td id="lessonReviewContents${DTO.lessonReviewNum}" class="tr-height" width="100%" style="vertical-align: middle;" colspan="4">
 				${DTO.lessonReviewContents}
 			</td>
 		</tr>

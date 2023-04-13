@@ -4,7 +4,7 @@
 
 <table class="table table-hover">
 	<c:forEach items="${list}" var="DTO">
-		<tr>
+		<tr class="tr-height">
 			<td align="center" style="vertical-align: middle;" width="50%">
 				<b>${DTO.memberId}</b>
 				<c:if test="${member.memberId eq DTO.memberId}">
@@ -27,7 +27,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td id="boardCommentContents${DTO.boardCommentNum}" width="100%" height="70px" style="vertical-align: middle;" colspan="3">
+			<td id="boardCommentContents${DTO.boardCommentNum}" class="tr-height" width="100%" style="vertical-align: middle;" colspan="3">
 				<c:forEach begin="1" end="${DTO.boardCommentDepth}">
 					<p id="re2" height="100%" align="center" style="vertical-align: middle;">⤷</p>
 				</c:forEach>

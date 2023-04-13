@@ -51,15 +51,15 @@
 					<h5 class="fw-bold fs-5"><b>별점</b></h5>
 					<div class="form-check-block select">
 							<input id="oneStar" type="radio" name="productRating" value="1" class="form-check-input">
-							<label for="oneStar" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★</label>
+							<label for="oneStar" class="form-check-label btn btn-outline-primary btn-sm btn-category">★</label>
 							<input id="twoStars" type="radio" name="productRating" value="2" class="form-check-input">
-							<label for="twoStars" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★★</label>
+							<label for="twoStars" class="form-check-label btn btn-outline-primary btn-sm btn-category">★★</label>
 							<input id="threeStars" type="radio" name="productRating" value="3" class="form-check-input">
-							<label for="threeStars" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★★★</label>
+							<label for="threeStars" class="form-check-label btn btn-outline-primary btn-sm btn-category">★★★</label>
 							<input id="fourStars" type="radio" name="productRating" value="4" class="form-check-input">
-							<label for="fourStars" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★★★★</label>
+							<label for="fourStars" class="form-check-label btn btn-outline-primary btn-sm btn-category">★★★★</label>
 							<input id="fiveStars" type="radio" name="productRating" value="5" class="form-check-input">
-							<label for="fiveStars" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★★★★★</label>
+							<label for="fiveStars" class="form-check-label btn btn-outline-primary btn-sm btn-category">★★★★★</label>
 					</div>
 				</div>
 				<div class="row justify-content-center my-5">

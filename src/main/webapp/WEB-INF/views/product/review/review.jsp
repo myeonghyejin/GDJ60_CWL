@@ -5,7 +5,7 @@
 <!-- Contents -->
 <table class="table table-hover">
 	<c:forEach items="${list}" var="DTO">
-		<tr>
+		<tr class="tr-height">
 			<td class="detail" id="productReviewTitle${DTO.productReviewNum}" data-productreview-num="${DTO.productReviewNum}" width="50%">
 				<a data-productreview-num="${DTO.productReviewNum}"><b>${DTO.productReviewTitle}</b></a>
 			</td>
@@ -37,7 +37,7 @@
 				</c:if>
 			</td>
 		</tr>
-		<tr>
+		<tr class="tr-height">
 			<td id="productReviewContents${DTO.productReviewNum}" width="100%" colspan="5" style="display:none;">
 				<div class="row">
 					<c:if test="${not empty DTO.productReviewImgDTOs}">

@@ -5,8 +5,8 @@
 <!-- Contents -->
 <table class="table table-hover">
 	<c:forEach items="${list}" var="DTO">
-		<tr>
-			<td class="detail" id="productQnATitle${DTO.productQnANum}" data-productqna-num="${DTO.productQnANum}" width="50%">
+		<tr class="tr-height">
+			<td class="detail" id="productQnATitle${DTO.productQnANum}" data-productqna-num="${DTO.productQnANum}" width="50%" style="vertical-align: middle;">
 				<c:forEach begin="1" end="${DTO.productQnADepth}">
 					<p id="re" height="100%" align="center" style="vertical-align: middle;">re</p>
 				</c:forEach>
