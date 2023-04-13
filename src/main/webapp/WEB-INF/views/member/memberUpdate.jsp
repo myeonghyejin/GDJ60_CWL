@@ -29,32 +29,21 @@
 		<div class="mt-5 mb-3 row">
 			<label for="memberId" class="col-sm-2 col-form-label"><b>ID</b></label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control id_input" id="memberId" name="memberId" value="${member.memberId}" readonly>
+				<input type="text" class="form-control id_input" id="memberId" name="memberId" value="${dto.memberId}" readonly>
 			</div>
 		</div>
-		
-	<!-- <div class="nickName_wrap">
-				<div class="nickName_name">닉네임</div>
-				<div class="nickName_input_box">
-					<input class="nickName_input" name="memberNickName">
-				</div>
-				<span class="nickName_input_re_1">사용 가능한 닉네임입니다.</span>
-				<span class="nickName_input_re_2">닉네임이 이미 존재합니다.</span>	
-			</div>	 -->
 			
 		<div class="mb-3 row">
 			<label for="memberPw" class="col-sm-2 col-form-label"><b>비밀번호</b></label>
 			<div class="col-sm-10">
-				<input type="password" class="form-control pw_input" id="memberPw" name="memberPw">
-				<span class="final_pw_ck mx-2 mt-2">비밀번호를 입력해주세요.</span>
+				<input type="password" class="pw_input form-control" id="memberPw" name="memberPw">				
 			</div>
 		</div>
 		
 		<div class="mb-3 row">
 			<label for="memberPw" class="col-sm-2 col-form-label"><b>비밀번호 확인</b></label>
 			<div class="col-sm-10">
-				<input type="password" class="form-control pwck_input" id="memberPw" name="memberPw">
-				<span class="final_pwck_ck mx-2 mt-2">비밀번호를 한 번 더 입력해 주세요.</span>
+				<input type="password" class="pwck_input form-control" id="memberPw">		
 				<span class="pwck_input_re_1 mx-2 mt-2">비밀번호가 일치합니다.</span>
 				<span class="pwck_input_re_2 mx-2 mt-2">비밀번호가 일치하지 않습니다.</span>
 			</div>
@@ -63,45 +52,42 @@
 		<div class="mb-3 row">
 			<label for="memberName" class="col-sm-2 col-form-label"><b>이름</b></label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control user_input" id="memberName" name="memberName" value="${member.memberName}" readonly>
-				<span class="final_name_ck mx-2 mt-2">이름을 입력해주세요.</span>
+				<input type="text" class="form-control user_input" id="memberName" name="memberName" value="${dto.memberName}" readonly>
 			</div>
 		</div>
 		
 		<div class="mb-3 row">
 			<label for="memberGender" class="col-sm-2 col-form-label"><b>성별</b></label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" id="memberGender" name="memberGender" value="${member.memberGender}" readonly>
+				<input type="text" class="form-control" id="memberGender" name="memberGender" value="${dto.memberGender}" readonly>
 			</div>
 		</div>
 		
 		<div class="mb-3 row">
 			<label for="memberAge" class="col-sm-2 col-form-label"><b>나이</b></label>
 			<div class="col-sm-10">
-				<input type="number" class="form-control" id="memberAge" name="memberAge" value="${member.memberAge}">
+				<input type="number" class="form-control" id="memberAge" name="memberAge" value="${dto.memberAge}">
 			</div>
 		</div>
 		
 		<div class="mb-3 row">
 			<label for="memberPhone" class="col-sm-2 col-form-label"><b>전화 번호</b></label>
 			<div class="col-sm-10">
-				<input type="number" class="form-control" id="memberPhone" name="memberPhone" value="${member.memberPhone}">
-				<span class="final_phone_ck mx-2 mt-2">전화 번호를 입력해 주세요.</span>
+				<input type="text" class="form-control" id="memberPhone" name="memberPhone" value="${dto.memberPhone}">				
 			</div>
 		</div>
 		
 		<div class="mb-3 row">
 			<label for="memberEmail" class="col-sm-2 col-form-label"><b>이메일</b></label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control mail_input" id="memberEmail" name="memberEmail" value="${member.memberEmail}">
-				<span class="final_mail_ck mx-2 mt-2">이메일을 입력해주세요.</span>
+				<input type="text" class="form-control mail_input" id="memberEmail" name="memberEmail" value="${dto.memberEmail}">				
 			</div>
 		</div>
 		
 		<div class="mb-3 row">
 			<label for="memberAddress1" class="col-sm-2 col-form-label"><b>주소</b></label>
 			<div class="col-sm-8">
-				<input class="form-control address_input_1" name="memberAddress1" value="${member.memberAddress1}" readonly="readonly">
+				<input class="form-control address_input_1" name="memberAddress1" value="${dto.memberAddress1}" readonly="readonly">
 			</div>
 			<div class="address_button col-auto row" onclick="execution_daum_address()">
 				<span class="btn btn-primary">주소 찾기</span>
@@ -109,23 +95,22 @@
 		</div>
 		<div class="mb-3 row justify-content-end">
 			<div class="col-sm-10">
-				<input class="form-control address_input_2" name="memberAddress2" value="${member.memberAddress2}" readonly="readonly">
+				<input class="form-control address_input_2" name="memberAddress2" value="${dto.memberAddress2}" readonly="readonly">
 			</div>
 		</div>
 		<div class="mb-3 row justify-content-end">
 			<div class="col-sm-10">
-				<input class="form-control address_input_3" name="memberAddress3" value="${member.memberAddress3}" readonly="readonly">
-				<span class="final_addr_ck mx-2 mt-2">주소를 입력해 주세요.</span>
+				<input class="form-control address_input_3" name="memberAddress3" value="${dto.memberAddress3}" readonly="readonly">				
 			</div>
 		</div>
 		
 		<div class="mb-3">
 			<label for="exampleFormControlTextarea1" class="form-label"><b>자기소개</b></label>
-			<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="memberSI">${member.memberSI}</textarea>
+			<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="memberSI">${dto.memberSI}</textarea>
 		</div>
 		
-		<div class="join_button_wrap row justify-content-center my-5">
-			<input type="button" class="join_button btn btn-primary col-2" value="수정">
+		<div class="row justify-content-center my-5">
+			<button class="update_btn btn btn-primary col-2" type="submit">수정</button>
 		</div>
 	</div>
 	</form>
@@ -136,145 +121,29 @@
 	<c:import url="../template/footer.jsp"></c:import>	
 <script>
  /* 유효성 검사 통과유무 변수 */
- var idCheck = false;			// 아이디
- var idckCheck = false;			// 아이디 중복 검사
- var nickName = false;			// 닉네임
- //var nickNameCheck = false;		// 닉네임 중복 검사
  var pwCheck = false;			// 비번
  var pwckCheck = false;			// 비번 확인
  var pwckcorCheck = false;		// 비번 확인 일치 확인
- var nameCheck = false;			// 이름
  var addressCheck = false 		// 주소
 $(document).ready(function(){
-	//회원가입 버튼(회원가입 기능 작동)
-	$(".join_button").click(function(){
+	//업데이트 버튼(업데이트 기능 작동)
+	$(".update_button").click(function(){
 		
-		/* 입력값 변수 */
-		var id = $('.id_input').val(); 				// id 입력란
-		//var nickName = $('.nickName_input').val(); 	// 닉네임 입력란
+		/* 입력값 변수 */		
 		var pw = $('.pw_input').val();				// 비밀번호 입력란
-		var pwck = $('.pwck_input').val();			// 비밀번호 확인 입력란
-		var name = $('.user_input').val();			// 이름 입력란
+		var pwck = $('.pwck_input').val();			// 비밀번호 확인 입력란		
 		var mail = $('.mail_input').val();			// 이메일 입력란
-		var addr = $('.address_input_3').val();		// 주소 입력란
-		
-		/* 아이디 유효성검사 */
-		if(id == ""){
-			$('.final_id_ck').css('display','block');
-			idCheck = false;
-		}else{
-			$('.final_id_ck').css('display', 'none');
-			idCheck = true;
-		}
-		
-		/* 닉네임 유효성검사 */
-		if(nickName == ""){
-			$('.final_nickName_ck').css('display','block');
-			nickNameCheck = false;
-		}else{
-			$('.final_nickName_ck').css('display', 'none');
-			nickNameCheck = true;
-		}
-		
-		/* 비밀번호 유효성 검사 */
-		if(pw == ""){
-			$('.final_pw_ck').css('display','block');
-			pwCheck = false;
-		}else{
-			$('.final_pw_ck').css('display', 'none');
-			pwCheck = true;
-		}
-		
-		/* 비밀번호 확인 유효성 검사 */
-		if(pwck == ""){
-			$('.final_pwck_ck').css('display','block');
-			pwckCheck = false;
-		}else{
-			$('.final_pwck_ck').css('display', 'none');
-			pwckCheck = true;
-		}
-		
-		/* 이름 유효성 검사 */
-		if(name == ""){
-			$('.final_name_ck').css('display','block');
-			nameCheck = false;
-		}else{
-			$('.final_name_ck').css('display', 'none');
-			nameCheck = true;
-		}		
-		
-		
-		
-		/* 주소 유효성 검사 */
-		if(addr == ""){
-			$('.final_addr_ck').css('display','block');
-			addressCheck = false;
-		}else{
-			$('.final_addr_ck').css('display', 'none');
-			addressCheck = true;
-		}		
+		var addr = $('.address_input_3').val();		// 주소 입력란				
 		
 		/* 최종 유효성 검사 */
-		if(idCheck&&idckCheck&&pwCheck&&pwckCheck&&pwckcorCheck&&nameCheck&&addressCheck ){
-			$("#join_form").attr("action", "/member/memberAdd");
-			$("#join_form").submit();			
-			
+		if(pwCheck&&pwckCheck&&pwckcorCheck&&addressCheck){
+			$("#update_form").attr("action", "/member/memberUpdate");
+			$("#update_form").submit();			
 		}		
 		
 		return false;
 	});
 });
-//아이디 중복검사
-$('.id_input').on("propertychange change keyup paste input", function(){
-	/* console.log("keyup 테스트"); */
-	
-	var memberId = $('.id_input').val();			// .id_input에 입력되는 값
-	var data = {memberId : memberId}				// '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
-	
-	$.ajax({
-		type : "post",
-		url : "/member/memberIdCheck",
-		data : data,
-		success : function(result){
-			// console.log("성공 여부" + result);
-			if(result != 'fail'){
-				$('.id_input_re_1').css("display","inline-block");
-				$('.id_input_re_2').css("display", "none");	
-				idckCheck = true;
-			} else {
-				$('.id_input_re_2').css("display","inline-block");
-				$('.id_input_re_1').css("display", "none");
-				idckCheck = false;
-			}	
-		}// success 종료
-	}); // ajax 종료	
-});// function 종료
-
- //닉네임 중복검사
-//$('.nickName_input').on("propertychange change keyup paste input", function(){
-//	/* console.log("keyup 테스트"); */
-//	
-//	var memberNickName = $('.nickName_input').val();	// .nickName_input에 입력되는 값
-//	var data = {memberNickName : memberNickName}				// '컨트롤에 넘길 데이터 이름' : '데이터(.nickName_input에 입력되는 값)'
-//	
-//	$.ajax({
-//		type : "post",
-//		url : "/member/memberNickNameCheck",
-//		data : data,
-//		success : function(result){
-//			// console.log("성공 여부" + result);
-//			if(result != 'fail'){
-//				$('.nickName_input_re_1').css("display","inline-block");
-//				$('.nickName_input_re_2').css("display", "none");	
-//				nickNameCheck = true;
-//			} else {
-//				$('.nickName_input_re_2').css("display","inline-block");
-//				$('.nickName_input_re_1').css("display", "none");
-//				nickNameCheck = false;
-//			}	
-//		}// success 종료
-//	}); // ajax 종료	
-//});// function 종료
 
 /* 다음 주소 연동 */
 function execution_daum_address(){
@@ -332,7 +201,6 @@ $('.pwck_input').on("propertychange change keyup paste input", function(){
 	
 	var pw = $('.pw_input').val();
 	var pwck = $('.pwck_input').val();
-	$('.final_pwck_ck').css('display', 'none');
 	
 	if(pw == pwck){
 		$('.pwck_input_re_1').css('display','block');

@@ -58,17 +58,17 @@
 						</c:if>
 					</span>
 					<div class="wrap-input100 rs1 validate-input" data-validate="Username is required">
-						<input class="input100 id_input" type="text" name="memberId">
+						<input class="id_input input100" type="text" name="memberId">
 						<span class="label-input100">Username</span>
 					</div>
 					<div class="wrap-input100 rs2 validate-input" data-validate="Password is required">
-						<input class="input100 pw_iput" type="password" name="memberPw">
+						<input class="pw_iput input100" type="password" name="memberPw">
 						<span class="label-input100">Password</span>
 					</div>
 
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn login_button">
+						<button class="login_button login100-form-btn">
 							Login
 						</button>
 					</div>
@@ -94,6 +94,8 @@
 	<script src="/resources/js/member/main.js"></script>
 
 	<script async="" src="./Login V20_files/js"></script>
+	
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script>
 		/* 로그인 버튼 클릭 메서드 */
 		$(".login_button").click(function () {
@@ -103,6 +105,7 @@
 			/* 로그인 메서드 서버 요청 */
 			$("#login_form").attr("action", "/member/login.do");
 			$("#login_form").submit();
+
 		});
 	</script>
 	<!-- <script defer="" src="./Login V20_files/v2b4487d741ca48dcbadcaf954e159fc61680799950996"
