@@ -31,6 +31,9 @@ a {
 	border-radius: 4px;
 }
 
+/* ------- checkbox -------- */
+
+
 /* ------- radio -------- */
 .select {
     padding: 3px;
@@ -112,6 +115,18 @@ a {
 
 .btn-default {
     width: 42.22px;
+}
+
+.btn-point {
+    color: #FF008C;
+    background-color: #fff;
+    border-color: #FF008C;
+}
+
+.btn-point:hover{
+    color: #fff;
+    background-color: #FF008C;
+    border-color: #FF008C;
 }
 
 /* ------- search -------- */

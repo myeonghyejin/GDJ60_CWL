@@ -77,7 +77,7 @@ public class Pagination {
 	
 	public Long getPerPage() {
 		if(this.perPage == null || this.perPage == 0) {
-			this.perPage = 10L;
+			this.perPage = 9L;
 		}
 		return perPage;
 	}

@@ -24,13 +24,13 @@
 	<c:import url="../template/newheader.jsp"></c:import>
 
 	<div class="container-fluid">
-		<div class="col-8 row justify-content-center mx-auto">
+		<div class="col-6 row justify-content-center mx-auto my-3">
 			<!--시작 -->
 			<div id="subpage_contents">
 				<div id="subpagebody_contents">
 					<!-- 이용약관 및 회원유형 -->
 					<div class="agreement my-4">
-						<h5 class="mx-2 my-2"><b>이용약관</b></h5>
+						<h5 class="mx-2 my-3"><b>이용약관</b></h5>
 						<textarea class="form-control agreement_contents" id="useStplatCn" rows="10" title="나라통계 운영홈페이지 인터넷서비스 이용약관">
 제 1 장 총칙
 
@@ -176,14 +176,14 @@
 
 부 칙
 (시행일) 본 약관은 2018년 8월 1일부터 시행됩니다. 개정된 약관의 적용일자 이전 이용자 또는 회원은 개정된 이용약관의 적용을 받습니다.</textarea>
-	<div class="form-check mx-2 my-2">
+	<div class="form-check mx-2 my-2" style="line-height: 24px;">
 		<input class="form-check-input checks" type="checkbox" value="" id="check1">
 		<label class="form-check-label" for="check1">동의 <b>[필수]</b></label>
 	</div>
 
-	<!-- 개인정보 보호정책 -->
-	<div class="agreement my-4">
-		<h5 class="mx-2 my-2"><b>개인정보 수집/이용 동의</b></h5>
+	<!-- 개인정보 보호 정책 -->
+	<div class="agreement my-5">
+		<h5 class="mx-2 my-3"><b>개인정보 수집/이용 동의</b></h5>
 		<textarea class="form-control agreement_contents" id="useStplatCn2" rows="10" title="나라통계시스템 포털 인터넷서비스 개인정보보호정책">	
 1. 개인정보의 수집항목 및 수집방법&nbsp;
 통계청 나라통계사이트에서는 기본적인 회원 서비스 제공을 위한 필수정보로 실명인증정보와 가입정보로 구분하여 다음의 정보를 수집하고 있습니다. 필수정보를 입력해주셔야 회원 서비스 이용이 가능합니다.
@@ -232,13 +232,13 @@
       · 개인정보 보유 및 이용 기간 : 행정자치부에서는 이미 보유하고 있는 개인정보이기 때문에 별도로 저장하지 않음
 	</textarea>
 
-					<div class="form-check my-1">
+					<div class="form-check my-2" style="line-height: 24px;">
 						<input class="form-check-input checks" type="checkbox" value="" id="check2">
-						<label class="form-check-label" for="check2">동의 <b>[필수]</b></label>
+						<label class="form-check-label" for="check2" style="line-height: 12px;">동의 <b>[필수]</b></label>
 					</div>
 					
-					<div class="form-check my-1">
-						<input class="form-check-input" type="checkbox" value="" id="checkAll">
+					<div class="form-check my-2" style="line-height: 24px;">
+						<input class="form-check-input checks" type="checkbox" value="" id="checkAll">
 						<label class="form-check-label" for="check">전체 동의</label>
 					</div>
 				</div>
@@ -247,9 +247,9 @@
 	</div>
 	<!--끝 -->
 
-			<div class="container-login100-form-btn row justify-content-center my-3">
-				<button id="agree" class="login100-form-btn btn btn-primary col-2">
-					회원가입
+			<div class="container-login100-form-btn row justify-content-center mb-5">
+				<button id="agree" class="login100-form-btn btn btn-primary btn-sm btn-default">
+					다음
 				</button>
 			</div>
 		</div>

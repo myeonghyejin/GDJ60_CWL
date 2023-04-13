@@ -29,7 +29,7 @@
 		<div class="mt-5 mb-3 row">
 			<label for="memberId" class="col-sm-2 col-form-label"><b>ID</b></label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control id_input" id="memberId" name="memberId">
+				<input type="text" class="form-control id_input" id="memberId" name="memberId" placeholder="영문 소문자, 숫자만 사용 가능합니다.">
 				<span class="id_input_re_1 mx-2 mt-2">사용 가능한 아이디입니다.</span>
 				<span class="id_input_re_2 mx-2 mt-2">아이디가 이미 존재합니다.</span>	
 				<span class="final_id_ck mx-2 mt-2">아이디를 입력해주세요.</span>
@@ -89,7 +89,7 @@
 		<div class="mb-3 row">
 			<label for="memberPhone" class="col-sm-2 col-form-label"><b>전화 번호</b></label>
 			<div class="col-sm-10">
-				<input type="number" class="form-control" id="memberPhone" name="memberPhone">
+				<input type="text" class="form-control" id="memberPhone" name="memberPhone" placeholder="하이픈(-)을 포함하여 입력하세요.">
 				<span class="final_phone_ck mx-2 mt-2">전화 번호를 입력해 주세요.</span>
 			</div>
 		</div>
@@ -108,7 +108,7 @@
 				<input class="form-control address_input_1" name="memberAddress1" readonly="readonly">
 			</div>
 			<div class="address_button col-auto row" onclick="execution_daum_address()">
-				<span class="btn btn-primary">주소 찾기</span>
+				<span class="btn btn-point">주소 찾기</span>
 			</div>
 		</div>
 		<div class="mb-3 row justify-content-end">
@@ -129,7 +129,7 @@
 		</div>
 		
 		<div class="join_button_wrap row justify-content-center my-5">
-			<input type="button" class="join_button btn btn-primary col-2" value="가입">
+			<input type="button" class="join_button btn btn-primary btn-sm btn-default" value="가입">
 		</div>
 	</div>
 	</form>
