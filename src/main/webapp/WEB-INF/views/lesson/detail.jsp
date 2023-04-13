@@ -32,7 +32,7 @@
 					</div>
 					<div class="row mx-auto">
 						<p class="fs-4 fw-bold text-center">${DTO.lessonTitle}</p>
-						<p class="fs-6 text-center border-bottom border-dark pb-4">${DTO.lessonTeacher}</p>
+						<p class="fs-6 text-center border-bottom border-dark pb-4"><b>크리에이터</b>&ensp;${DTO.lessonTeacher}&emsp;<b>날짜</b>&ensp;${DTO.lessonDate}&emsp;<b>조회 수</b>&ensp;${DTO.lessonHit+1}</p>
 					</div>
 					<div class="row col-8 my-4 mx-auto" align="center">
 						<p class="fs-4">${DTO.lessonContents}</p>
@@ -47,18 +47,16 @@
 		</div>
 		
 		<!-- Buttons -->
-	  	<c:if test="${member.memberId eq DTO.memberId}">
-			<form action="./update" id="frm">
-				<div class="row justify-content-center mx-auto">
-					<input type="hidden" name="lessonNum" value="${DTO.lessonNum}">
+		<form action="./update" id="frm">
+			<div class="row col-md-4 justify-content-center mx-auto">
+				<input type="hidden" name="lessonNum" value="${DTO.lessonNum}">
+				<c:if test="${member.memberId eq DTO.memberId}">
 					<button id="update" type="submit" class="btn btn-outline-primary btn-sm btn-default mx-1">수정</button>
 					<button id="delete" type="button" class="btn btn-outline-primary btn-sm btn-default mx-1">삭제</button>
-				</div>
-			</form>
-	  	</c:if>
-		<div class="row justify-content-center mx-auto my-2">
-			<a href="./list" class="btn btn-primary btn-sm btn-default mx-1">목록</a>
-		</div>
+				</c:if>
+				<a href="./list" class="btn btn-primary btn-sm btn-default mx-1">목록</a>
+			</div>
+		</form>
 		
  		<!-- Review -->
 		<div class="row col-8 justify-content-center mx-auto mt-5">

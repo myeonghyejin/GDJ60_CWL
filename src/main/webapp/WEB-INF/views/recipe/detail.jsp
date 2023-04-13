@@ -50,18 +50,16 @@
 		</div>
 		
 		<!-- Buttons -->
-		<c:if test="${member.memberId eq DTO.memberId}">
-			<form action="./update" id="frm">
-				<div class="row col-6 justify-content-center mx-auto">
-					<input type="hidden" name="recipeNum" value="${DTO.recipeNum}">
+		<form action="./update" id="frm">
+			<div class="row col-md-4 justify-content-center mx-auto">
+				<input type="hidden" name="recipeNum" value="${DTO.recipeNum}">
+				<c:if test="${member.memberId eq DTO.memberId}">
 					<button id="update" type="submit" class="btn btn-outline-primary btn-sm btn-default mx-1">수정</button>
 					<button id="delete" type="button" class="btn btn-outline-primary btn-sm btn-default mx-1">삭제</button>
-				</div>
-			</form>
-		</c:if>
-		<div class="row col-6 my-2 justify-content-center mx-auto">
-			<a href="./list" class="btn btn-primary btn-sm btn-default mx-1">목록</a>
-		</div>
+				</c:if>
+				<a href="./list" class="btn btn-primary btn-sm btn-default mx-1">목록</a>
+			</div>
+		</form>
 
 	</div>
 	<c:import url="../template/common_js.jsp"></c:import>

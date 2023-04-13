@@ -6,8 +6,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>PRODUCT REVIEW UPDATE</title>
-	
 	<c:import url="../../template/common_css.jsp"></c:import>
+	<link rel="stylesheet" href="/resources/css/common/style.css">
 	
 	<!-- page-title -->
 	<section class="page-title bg-cover" data-background="/resources/images/banner/page-title.jpg">
@@ -51,25 +51,17 @@
 			</div>
 			<div class="col-12 my-4 select">
 				<h5 class="fw-bold fs-5"><b>별점</b></h5>
-				<div class="form-check-inline">
-					<input id="oneStar" type="radio" name="productRating" value="1" class="form-check-input">
-					<label for="oneStar" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★</label>
-				</div>
-				<div class="form-check-inline">
-					<input id="twoStars" type="radio" name="productRating" value="2" class="form-check-input">
-					<label for="twoStars" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★★</label>
-				</div>
-				<div class="form-check-inline">
-					<input id="threeStars" type="radio" name="productRating" value="3" class="form-check-input">
-					<label for="threeStars" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★★★</label>
-				</div>
-				<div class="form-check-inline">
-					<input id="fourStars" type="radio" name="productRating" value="4" class="form-check-input">
-					<label for="fourStars" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★★★★</label>
-				</div>
-				<div class="form-check-inline">
-					<input id="fiveStars" type="radio" name="productRating" value="5" class="form-check-input">
-					<label for="fiveStars" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★★★★★</label>
+				<div class="form-check-block select">
+						<input id="oneStar" type="radio" name="productRating" value="1" class="form-check-input" ${DTO.productRating eq '1' ? 'checked' :''}>
+						<label for="oneStar" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★</label>
+						<input id="twoStars" type="radio" name="productRating" value="2" class="form-check-input" ${DTO.productRating eq '2' ? 'checked' :''}>
+						<label for="twoStars" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★★</label>
+						<input id="threeStars" type="radio" name="productRating" value="3" class="form-check-input" ${DTO.productRating eq '3' ? 'checked' :''}>
+						<label for="threeStars" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★★★</label>
+						<input id="fourStars" type="radio" name="productRating" value="4" class="form-check-input" ${DTO.productRating eq '4' ? 'checked' :''}>
+						<label for="fourStars" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★★★★</label>
+						<input id="fiveStars" type="radio" name="productRating" value="5" class="form-check-input" ${DTO.productRating eq '5' ? 'checked' :''}>
+						<label for="fiveStars" class="form-check-label btn btn-outline-primary btn-sm btn-category mx-1">★★★★★</label>
 				</div>
 			</div>
 			<div class="row justify-content-center my-5">

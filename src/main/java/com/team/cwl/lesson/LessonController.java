@@ -67,7 +67,7 @@ public class LessonController {
 		String message = "등록에 실패했습니다.";
 		
 		if(result > 0) {
-			message = "등록에 성공했습니다.";
+			message = "등록되었습니다.";
 		}
 		
 		modelAndView.addObject("result", message);
@@ -100,7 +100,7 @@ public class LessonController {
 		String message = "수정에 실패했습니다.";
 		
 		if(result > 0) {
-			message = "수정에 성공했습니다.";
+			message = "수정되었습니다.";
 		}
 		
 		modelAndView.addObject("result", message);
@@ -119,8 +119,8 @@ public class LessonController {
 		
 		String message = "삭제에 실패했습니다.";
 		
-		if(result > 0) {
-			message = "삭제에 성공했습니다.";
+		if(result != 0) {
+			message = "삭제되었습니다.";
 		}
 		
 		modelAndView.addObject("result", message);
