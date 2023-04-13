@@ -21,7 +21,7 @@ function setId(memberId) {
 let userName='';
 
 //웹소켓 생성
-let ipAddress = "192.168.1.199";
+let ipAddress = "192.168.1.31";
 // let ipAddress = "192.168.1.27";
 
 let sock = new SockJS("http://" + ipAddress + "/echo",{
