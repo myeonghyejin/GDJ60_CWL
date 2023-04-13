@@ -243,6 +243,9 @@ a{
 .goods_table tr{
 height: 110px;
 }
+.goods_table_product_td{
+	text-align: center;
+}
 .goods_table_price_td{
 	text-align: center;
 }

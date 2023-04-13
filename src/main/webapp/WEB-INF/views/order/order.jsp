@@ -109,35 +109,27 @@
 					</div>
 					<!-- 상품 테이블 -->
 					<table class="goods_subject_table">
-						<colgroup>
-							<col width="15%">
+						<colgroup>							
 							<col width="45%">
 							<col width="40%">							
 						</colgroup>
 						<tbody>
-							<tr>
-								<th>이미지</th>
-								<th>상품 정보</th>
+							<tr>								
+								<th>상품 정보</th>															
 								<th>판매가</th>
 							</tr>
 						</tbody>
 					</table>
 					<table class="goods_table">
-						<colgroup>
-							<col width="15%">
+						<colgroup>							
 							<col width="45%">
 							<col width="40%">
 						</colgroup>
 						<tbody>
 							<c:forEach items="${orderList}" var="ol">
-								<tr>
-									<td>
-										<div class="image_wrap" data-productNum="${ol.imageList[0].productNum}" data-path="${ol.imageList[0].uploadPath}" data-uuid="${ol.imageList[0].uuid}" data-fileName="${ol.imageList[0].fileName}">
-											<img alt="" src="">
-										</div>
-									</td>
+								<tr>									
 									<td class="goods_table_product_td">
-										<input type="submit" class="individual_productName_input" id="productName" value="${ol.productName}"> 
+										<span class="individual_productName_input" id="productName">${ol.productName}</span>										 
 									</td>
 									<td class="goods_table_price_td">
 										<fmt:formatNumber value="${ol.productPrice}" pattern="###,###,###,###원" /> | ${ol.orderStock}개

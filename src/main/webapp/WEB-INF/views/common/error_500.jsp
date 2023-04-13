@@ -23,7 +23,7 @@
 		  <div class="modal-dialog">
 		    <div class="modal-content">
 		      <div class="modal-body">
-		        결제가 완료되었습니다.
+		        관리자에게 문의 바랍니다.
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>		        
@@ -31,7 +31,6 @@
 		    </div>
 		  </div>
 		</div>
-		<a href="/">Home</a>
 	</div>
 </div>
 <c:import url="../template/common_js.jsp"></c:import>
