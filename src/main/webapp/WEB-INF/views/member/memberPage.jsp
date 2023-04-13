@@ -31,32 +31,32 @@
 		<div class="row col-6 my-4 justify-content-center mx-auto" id="frame">
 			<div class="row col-md-6 mx-auto my-1">
 				ID
-				<h5 class="my-1">${member.memberId}</h5>
+				<h5 class="my-1">${dto.memberId}</h5>
 			</div>
 			<div class="row col-md-6 mx-auto my-1">
 				이름
-				<h5 class="my-1">${member.memberName}</h5>
+				<h5 class="my-1">${dto.memberName}</h5>
 			</div>
 			<div class="row col-md-6 mx-auto my-1">
 				성별
-				<h5 class="my-1">${member.memberGender}</h5>
+				<h5 class="my-1">${dto.memberGender}</h5>
 			</div>
 			<div class="row col-md-6 mx-auto my-1">
 				나이
-				<h5 class="my-1">${member.memberAge}</h5>
+				<h5 class="my-1">${dto.memberAge}</h5>
 			</div>
 			<div class="row col-md-12 my-1">
 				연락처 
-				<h5 class="my-1">${member.memberPhone}</h5>
-				<h5 class="my-1">${member.memberAddress1}<br>${dto.memberAddress2} ${dto.memberAddress3}</h5>
+				<h5 class="my-1">${dto.memberPhone}</h5>				
 			</div>
 			<div class="row col-md-12 my-1">
-				충전된 금액
-				<h5 class="my-1"><fmt:formatNumber value="${member.money}" pattern="￦###,###,###,###"/></h5>
+				주소
+				<h5 class="my-1">(${dto.memberAddress1})<br>${member.memberAddress2} ${member.memberAddress3}</h5>				
 			</div>
+			
 			<div class="row col-md-12 my-1">
 				자기 소개
-				<h5 class="my-1">${member.memberSI}</h5>
+				<h5 class="my-1">${dto.memberSI}</h5>
 			</div>
 		</div>
 		<div class="row justify-content-center mx-auto">

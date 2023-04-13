@@ -68,10 +68,6 @@ a{
 }
 
 /* 홈페이지 메인 제품 목록  */
-.content_area{
-	width: 100%;
-    min-height: 1000px;
-}
 	 table{
 	 	border-collapse: collapse;
 	 	width: 100%;
@@ -164,14 +160,14 @@ a{
 			.button_quantity button {
 				width: 25px;
 				height: 25px;
-				color: #343DDB;
+				color: #07085d;
 				background-color: #fff;
 				border: none;
 			}
 			
 			.button_quantity button:hover {
 				color: #fff;
-				background-color: #343DDB;
+				background-color: #07085d;
 				transition: 0.3s ease;
 			}
 			.plus_btn{
