@@ -37,12 +37,12 @@
 			<input type="hidden" name="productQnANum" value="<%=productQnANum%>">
 			<input type="hidden" name="productQnASecret" value="<%=productQnASecret%>">
 			<div class="row col-8 mx-auto my-5">
-				<div class="fw-bold fs-5 col-12">
-					<label for="productQnATitle" class="form-label">제목</label>
+				<div class="col-12">
+					<label for="productQnATitle" class="form-label fw-bold fs-5">제목</label>
 					<input type="text" name="productQnATitle" class="form-control" id="productQnATitle"><br>
 				</div>	
-				<div class="fw-bold fs-5 col-12">
-					<label for="productQnAContents" class="form-label">내용</label>
+				<div class="col-12">
+					<label for="productQnAContents" class="form-label fw-bold fs-5">내용</label>
 					<textarea name="productQnAContents" class="form-control" id="productQnAContents" rows="3"></textarea><br>
 				</div>
 				<div class="row justify-content-center my-5">

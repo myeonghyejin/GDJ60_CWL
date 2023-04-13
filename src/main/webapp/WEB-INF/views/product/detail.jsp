@@ -65,11 +65,11 @@
 									<div class="button_quantity my-3" align="right">
 										Quantity 
 										<span>
-											<button class="plus_btn">+</button>
+											<button class="minus_btn">-</button>
 										</span>
 										<input type="text" class="quantity_input" value="1">
 										<span>
-											<button class="minus_btn">-</button>
+											<button class="plus_btn">+</button>
 										</span>
 									</div>
 									<div class="row align-items-end">

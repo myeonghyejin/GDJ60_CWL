@@ -111,7 +111,7 @@
 		
 		<!-- 강의 등록 버튼 -->
 	 	<c:if test="${not empty member}">
-			<div class="row justify-content-center mx-auto">
+			<div class="row justify-content-center mx-auto my-3">
 				<a href=./add class="btn btn-primary btn-sm btn-default">등록</a>
 			</div>
 	 	</c:if>

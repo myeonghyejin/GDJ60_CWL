@@ -8,14 +8,14 @@
 .button_quantity button {
 	width: 25px;
 	height: 25px;
-	color: #343DDB;
+	color: #07085d;
 	background-color: #fff;
 	border: none;
 }
 
 .button_quantity button:hover {
 	color: #fff;
-	background-color: #343DDB;
+	background-color: #07085d;
 	transition: 0.3s ease;
 }
 
@@ -345,7 +345,7 @@
   
 .item-details .product-info .wish-button .btn:hover {
 	color: #fff;
-	background-color: #343DDB;
+	background-color: #07085d;
 	border-color: transparent;
 }
   

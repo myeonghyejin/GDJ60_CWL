@@ -5,12 +5,13 @@
 <!-- Contents -->
 <table class="table table-hover">
 	<c:forEach items="${list}" var="DTO">
-		<tr class="tr-height">
-			<td class="detail" id="productReviewTitle${DTO.productReviewNum}" data-productreview-num="${DTO.productReviewNum}" width="50%">
+		<tr class="tr-height" style="vertical-align: middle;">
+			<td width="29px"></td>
+			<td class="detail" id="productReviewTitle${DTO.productReviewNum}" data-productreview-num="${DTO.productReviewNum}" width="40%" style="vertical-align: middle;">
 				<a data-productreview-num="${DTO.productReviewNum}"><b>${DTO.productReviewTitle}</b></a>
 			</td>
-			<td align="center" style="vertical-align: middle;"><b>${DTO.memberId}</b></td>
-			<td id="productRating${DTO.productReviewNum}" align="right" style="vertical-align: middle; text-align: center;">
+			<td align="center"><b>${DTO.memberId}</b></td>
+			<td id="productRating${DTO.productReviewNum}" align="right" style="text-align: center;">
 				<c:if test="${DTO.productRating eq 1}">
 					★
 				</c:if>
@@ -27,8 +28,8 @@
 					★★★★★
 				</c:if>
 			</td>
-			<td align="right" style="vertical-align: middle;">${DTO.productReviewDate}</td>
-			<td align="right" style="vertical-align: middle;">
+			<td align="right">${DTO.productReviewDate}</td>
+			<td align="right">
 				<c:if test="${member.memberId eq DTO.memberId}">
 					<a href="./review/update?productReviewNum=${DTO.productReviewNum}&productNum=${DTO.productNum}" class="btn btn-info btn-sm" data-productreview-num="${DTO.productReviewNum}">수정</a>
 				</c:if>
@@ -37,8 +38,9 @@
 				</c:if>
 			</td>
 		</tr>
-		<tr class="tr-height">
-			<td id="productReviewContents${DTO.productReviewNum}" width="100%" colspan="5" style="display:none;">
+		<tr class="tr-height" id="productReviewContents${DTO.productReviewNum}" style="vertical-align: middle; display:none;">
+			<td>⤷</td>
+			<td colspan="6">
 				<div class="row">
 					<c:if test="${not empty DTO.productReviewImgDTOs}">
 						<c:forEach items="${DTO.productReviewImgDTOs}" var="imgDTO">
@@ -46,7 +48,7 @@
 						</c:forEach>
 					</c:if>
 				</div>
-				⤷ ${DTO.productReviewContents}
+				${DTO.productReviewContents}
 			</td>
 		</tr>
 	</c:forEach>
