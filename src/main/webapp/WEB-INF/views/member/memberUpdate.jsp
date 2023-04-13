@@ -109,8 +109,8 @@
 			<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="memberSI">${dto.memberSI}</textarea>
 		</div>
 		
-		<div class="join_button_wrap row justify-content-center my-5">
-			<button class="update_btn" type="submit">Update</button>
+		<div class="row justify-content-center my-5">
+			<button class="update_btn btn btn-primary col-2" type="submit">수정</button>
 		</div>
 	</div>
 	</form>
