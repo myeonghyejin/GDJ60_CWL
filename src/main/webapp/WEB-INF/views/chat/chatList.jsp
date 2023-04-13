@@ -24,9 +24,10 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
-    <!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7cfe0a988351b935c1deefc425b4cc46"></script> -->
+    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5211c78ede13565f054a7d30da0ff316"></script>
+    <!-- <script async src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5211c78ede13565f054a7d30da0ff316&libraries=services"></script> -->
 
-  <!-- page-title -->
+    <!-- page-title -->
   <section class="page-title bg-cover" data-background="/resources/images/banner/page-title.jpg">
 	<div class="container">
 	  <div class="row">
@@ -125,10 +126,10 @@
 
                         <!-- chatbox -->
                         <div class="chatbox">
-                            <!-- <div id="map" class="h-100 w-100"></div> -->
-                            <!-- <div class="modal-dialog-scrollable">
-                                <div class="modal-content">
-                                    <div class="msg-head">
+                            <div id="map">
+                             <div class="modal-dialog-scrollable">
+                               <!-- <div class="modal-content">
+                                     <div class="msg-head">
                                         <div class="row">
                                             <div class="col-8">
                                                 <div class="d-flex align-items-center">
@@ -188,8 +189,9 @@
                                                 Send</button>
                                         </form>
                                     </div>
-                                </div>
-                            </div> -->
+                                </div>-->
+                            </div> 
+                        </div>
                         </div>
                         <!-- chatbox -->
                     </div>
@@ -214,6 +216,56 @@
         // console.log("로그인 아이디 :"+id);
     </script>
 
+<script>
+  kakao.maps.load(function() {
+//현재 위치(위도 경도) 권한 요청 및 받아오기 
+function getLocation() {
+	  if (navigator.geolocation) { // GPS를 지원하면
+	    navigator.geolocation.getCurrentPosition(function(position) {
+        console.log(position.coords.latitude + ' ' + position.coords.longitude);
+          let container = document.getElementById('map');
+          let options = {
+            center: new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude),
+            level: 3
+            
+          };
+        
+
+          let map = new kakao.maps.Map(container, options);
+
+          let imageSrc = 'https://cdn-icons-png.flaticon.com/512/8830/8830938.png', // 마커이미지의 주소입니다    
+          imageSize = new kakao.maps.Size(70, 70), // 마커이미지의 크기입니다
+          imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+            
+          // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+          var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+              markerPosition = new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude); // 마커가 표시될 위치입니다
+
+          // 마커를 생성합니다
+          var marker = new kakao.maps.Marker({
+              position: markerPosition, 
+              image: markerImage // 마커이미지 설정 
+          });
+
+          // 마커가 지도 위에 표시되도록 설정합니다
+          marker.setMap(map);  
+
+
+	    }, function(error) {
+	      console.error(error);
+	    }, {
+	      enableHighAccuracy: false,
+	      maximumAge: 0,
+	      timeout: Infinity
+	    });
+	  } else {
+	    alert('GPS를 지원하지 않습니다');
+	  }
+	}
+	getLocation();
+
+  });
+</script>
  
 
 </body>

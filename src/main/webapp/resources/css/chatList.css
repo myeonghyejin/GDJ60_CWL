@@ -197,10 +197,12 @@ message-area
 ******************************** */
 
 
-/* 
+
 #map {
     display: block;
-} */
+    width: 100%;
+    height: 100%;
+}
 
 
 .message-area {
@@ -240,12 +242,16 @@ message-area
     height: 100% !important;
 }
 
+.modal-dialog-scrollable{
+    display: block;
+}
+
 .chatbox {
     width: auto;
     overflow: auto;
     height: 100%;
     border-left: 1px solid #ccc;
-    display: none;
+    display: block;
 }
 
 .chatbox .modal-dialog,
@@ -771,3 +777,4 @@ button:focus {
         border-bottom-left-radius: 6px;
     }
 }
+

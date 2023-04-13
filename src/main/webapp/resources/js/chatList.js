@@ -188,7 +188,6 @@ $("#chat-list").on('click','.friend' ,function (e) {
           <div class="row">
               <div class="col-8">
                   <div class="d-flex align-items-center">
-
                       <div class="flex-grow-1 ms-3">
                           <h3>${userId}</h3>
                           <p>${memberSI}</p>
@@ -209,7 +208,6 @@ $("#chat-list").on('click','.friend' ,function (e) {
               </div>
           </div>
       </div>
-
       <div class="modal-body">
           <div class="msg-body">
               <ul class='msg'>
@@ -217,12 +215,10 @@ $("#chat-list").on('click','.friend' ,function (e) {
               </ul>
           </div>
       </div>
-
       <div class="send-box">
           <form action="">
               <input type="text" class="form-control" aria-label="message…"
                   placeholder="Write message…" id="txtMessage" data-id="${userId}">
-
               <button type="button" id="sendButton"><i class="fa fa-paper-plane"
                       aria-hidden="true"></i>
                   Send</button>
@@ -230,7 +226,6 @@ $("#chat-list").on('click','.friend' ,function (e) {
       </div>
   </div>
 </div>
-
   `;
   $(".chatbox").append(chattingroom);
 
