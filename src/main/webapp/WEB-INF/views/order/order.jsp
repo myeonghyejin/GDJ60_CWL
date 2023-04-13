@@ -5,55 +5,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="/resources/css/order.css">
-<!-- 다음주소 -->
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<meta charset="UTF-8">
+	<title>ORDER</title>
+	<c:import url="../template/common_css.jsp"></c:import>
+	<link rel="stylesheet" href="/resources/css/common/style.css">
+	<link rel="stylesheet" href="/resources/css/order/order.css">
+	
+	<!-- 다음 주소 -->
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+	<!-- page-title -->
+	<section class="page-title bg-cover" data-background="/resources/images/banner/page-title.jpg">
+		<div class="container">
+		   <div class="row">
+			  <div class="col-12 text-center">
+				 <h1 class="display-1 text-white font-weight-bold font-primary">Order</h1>
+			  </div>
+		   </div>
+		</div>
+	</section>
 </head>
 <body>
+	<c:import url="../template/newheader.jsp"></c:import>
 <div class="wrapper">
 	<div class="wrap">
-		<div class="top_gnb_area">
-			<ul class="list">
-				<c:if test = "${member == null}">	<!-- 로그인 x -->	
-					<li >
-						<a href="/member/memberLogin">로그인</a>
-					</li>
-					<li>
-						<a href="/member/memberAdd">회원가입</a>
-					</li>
-				</c:if>
-				<c:if test="${member != null }">	<!-- 로그인 o -->		
-					<c:if test="${member.adminCheck == 1 }"> <!-- 관리자 계정 -->
-						<li><a href="/admin/main">관리자 페이지</a></li>
-					</c:if>	
-					<li>
-						<a href="/member/memberLogout.do">로그아웃</a>
-					</li>
-					<li>
-						<a href="/member/memberPage">마이룸</a>
-					</li>
-					<li>
-						<a href="/cart/${member.memberId}">장바구니</a>
-					</li>
-				</c:if>
-			</ul>			
-		</div>
-		
-		<div class="top_area"></div>
-		
-		<div class="content_area">
-			<div class="content_subject"><span>장바구니</span></div>
-			
-			<div class="content_main">
+		<div class="content_area5">
+			<div class="content_main my-5">
 				<!-- 회원정보 -->
 				<div class="member_info_div">
 					<table class="table_text_align_center memberInfo_table">
 						<tbody>
 							<tr>
 								<th style="width: 25%;">주문자</th>
-								<td style="width: *">${memberInfo.memberName} | ${memberInfo.memberEmail}</td>
+								<td width="*">${memberInfo.memberName} | ${memberInfo.memberEmail}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -62,15 +46,15 @@
 				<!-- 배송지 정보 -->
 				<div class="addressInfo_div">
 					<div class="addressInfo_button_div">
-						<button class="address_btn address_btn_1" onclick="showAddress('1')" style="background-color: #3c3838;">사용자 정보 주소록</button>
+						<button class="address_btn address_btn_1" onclick="showAddress('1')" style="background-color: #FF008C;">사용자 정보 주소록</button>
 						<button class="address_btn address_btn_2" onclick="showAddress('2')">직접 입력</button>
 					</div>
 					<div class="addressInfo_input_div_wrap">
 						<div class="addressInfo_input_div addressInfo_input_div_1" style="display: block">
 							<table>
 								<colgroup>
-									<col width="25%">
-									<col width="*">									
+									<col width="17%">
+									<col width="*">
 								</colgroup>
 								<tbody>
 									<tr>
@@ -95,24 +79,21 @@
 						</div>
 						<div class="addressInfo_input_div addressInfo_input_div_2">
 							<table>
-								<colgroup>
-									<col width="25%">
-									<col width="*">
-								</colgroup>
 								<tbody>
 									<tr>
 										<th>이름</th>
 										<td>
-											<input class="addressee_input">
+											<input class="form-control addressee_input">
 										</td>
 									</tr>
 									<tr>
 										<th>주소</th>
 										<td>
 											<input class="selectAddress" value="F" type="hidden">
-											<input class="address1_input" readonly="readonly"><a class="address_search_btn" onclick="execution_daum_address()">주소 찾기</a><br>
-											<input class="address2_input" readonly="readonly"><br>
-											<input class="address3_input" readonly="readonly">
+											<a class="address_search_btn btn btn-primary btn-sm" onclick="execution_daum_address()">주소 찾기</a><br>
+											<input class="form-control address1_input my-1" readonly="readonly">
+											<input class="form-control address2_input my-1" readonly="readonly">
+											<input class="form-control address3_input my-1" readonly="readonly">
 										</td>
 									</tr>
 								</tbody>
@@ -121,7 +102,7 @@
 					</div>
 				</div>
 				<!-- 상품 정보 -->
-				<div class="orderGoods_div">
+				<div class="orderGoods_div my-5">
 					<!-- 상품 종류 -->
 					<div class="goods_kind_div">
 						주문상품 <span class="goods_kind_div_kind"></span>종 <span class="goods_kind_div_stock"></span>개						
@@ -151,7 +132,7 @@
 							<c:forEach items="${orderList}" var="ol">
 								<tr>
 									<td>
-										<div class="image_wrap" data-productNum="${ol.imageList[0].productNum}" data-path="${ol.imageList[0].uploadPath}" data-uuid="${ol.imageList[0].uuid}" data-fileName="${ol.imageList[0].fileName}">>
+										<div class="image_wrap" data-productNum="${ol.imageList[0].productNum}" data-path="${ol.imageList[0].uploadPath}" data-uuid="${ol.imageList[0].uuid}" data-fileName="${ol.imageList[0].fileName}">
 											<img alt="" src="">
 										</div>
 									</td>
@@ -159,8 +140,8 @@
 										<input type="submit" class="individual_productName_input" id="productName" value="${ol.productName}"> 
 									</td>
 									<td class="goods_table_price_td">
-										<fmt:formatNumber value="${ol.productPrice}" pattern="#,### 원" /> | 수량 ${ol.orderStock}개
-										<br><fmt:formatNumber value="${ol.totalPrice}" pattern="#,### 원" />
+										<fmt:formatNumber value="${ol.productPrice}" pattern="###,###,###,###원" /> | ${ol.orderStock}개
+										<br><fmt:formatNumber value="${ol.totalPrice}" pattern="###,###,###,###원" />
 										<input type="hidden" class="individual_productPrice_input" value="${ol.productPrice}">
 										<input type="hidden" class="individual_orderStock_input" value="${ol.orderStock}">
 										<input type="hidden" class="individual_totalPrice_input" id="totalPrice" value="${ol.productPrice * ol.orderStock}">
@@ -215,10 +196,8 @@
 </div>
 
 
-
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<!-- jQuery -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+	<c:import url="../template/common_js.jsp"></c:import>
+	<c:import url="../template/footer.jsp"></c:import>
 <!-- iamport.payment.js -->
 <!-- <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-{SDK-최신버전}.js"></script> -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -260,9 +239,9 @@ function showAddress(className) {
 	
 	$(".addressInfo_input_div_" + className).css('display', 'block');
 	
-	$(".address_btn").css('backgroundColor', '#555');
+	$(".address_btn").css('backgroundColor', '#07085d');
 	
-	$(".address_btn_" + className).css('backgroundColor', '#3c3838');
+	$(".address_btn_" + className).css('backgroundColor', '#FF008C');
 	
 	$(".addressInfo_input_div").each(function(i, obj) {
 		$(obj).find(".selectAddress").val("F");
