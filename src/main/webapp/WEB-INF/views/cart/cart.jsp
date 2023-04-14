@@ -46,7 +46,8 @@
             <tbody>
    
                <tr>
-                  <th class="td_width_1"></th>                  
+                  <th class="td_width_1"></th>
+                  <th class="td_width_2"></th>                  
                   <th class="td_width_3">상품명</th>
                   <th class="td_width_4">가격</th>
                   <th class="td_width_4">수량</th>

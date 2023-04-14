@@ -139,7 +139,7 @@ a{
 				height: 110px;
 			}
 			.price_td{
-				padding-left: 5px;
+				text-align: center;
 			}
 				.red_color{
 					color : red;
