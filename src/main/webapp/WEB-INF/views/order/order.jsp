@@ -115,13 +115,13 @@
 						</colgroup>
 						<tbody>
 							<tr>								
-								<th>상품 정보</th>															
+								<th>상품 정보</th>
 								<th>판매가</th>
 							</tr>
 						</tbody>
 					</table>
 					<table class="goods_table">
-						<colgroup>							
+						<colgroup>
 							<col width="45%">
 							<col width="40%">
 						</colgroup>
@@ -129,7 +129,8 @@
 							<c:forEach items="${orderList}" var="ol">
 								<tr>									
 									<td class="goods_table_product_td">
-										<span class="individual_productName_input" id="productName">${ol.productName}</span>										 
+										<input type="hidden" class="individual_productName_input" value="${ol.productName}">
+										${ol.productName}							 
 									</td>
 									<td class="goods_table_price_td">
 										<fmt:formatNumber value="${ol.productPrice}" pattern="###,###,###,###원" /> | ${ol.orderStock}개
@@ -194,37 +195,14 @@
 <!-- <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-{SDK-최신버전}.js"></script> -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
-
 let finalTotalPrice = 0;
-
 $(document).ready(function() {
 	
 	/* 주문 종합정보란 최신화 */
 	setTotalInfo();
 	
-	/* 이미지 삽입 */
-	$(".image_wrap").each(function(i, obj){
-		
-		const bobj = $(obj);
-		
-		if(bobj.data("productNum")){
-			const uploadPath = bobj.data("path");
-			const uuid = bobj.data("uuid");
-			const fileName = bobj.data("fileName");
-			
-			const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
-			
-			$(this).find("img").attr('src', '/display?fileName=' + fileCallPath);
-		} else {
-			$(this).find("img").attr('src', '/resources/images/iu2.jpg');
-		}
-		
-	});
-	
 	
 });
-
-
 function showAddress(className) {
 	
 	$(".addressInfo_input_div").css('display', 'none');
@@ -241,7 +219,6 @@ function showAddress(className) {
 	
 	$(".addressInfo_input_div_" + className).find(".selectAddress").val("T");
 }
-
 /* 다음 주소 연동 */
 function execution_daum_address(){
  		console.log("동작");
@@ -297,7 +274,6 @@ function execution_daum_address(){
 	    }).open();  	
 	
 }
-
 /* 총 주문 정보 세팅(배송비, 총 가격, 물품 수, 종류) */
 function setTotalInfo() {
 	let totalPrice = 0;
@@ -340,7 +316,6 @@ function setTotalInfo() {
 	$(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());
 	
 }
-
 /* 주문 요청 */
 $(".order_btn").click(()=>{
 	let payment = iamport()
