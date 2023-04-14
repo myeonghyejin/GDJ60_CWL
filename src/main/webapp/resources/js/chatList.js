@@ -21,7 +21,7 @@ function setId(memberId) {
 let userName='';
 
 //웹소켓 생성
-let ipAddress = "localhost";
+let ipAddress = "192.168.1.120";
 
 // let ipAddress = "192.168.1.27";
 
@@ -33,7 +33,6 @@ let v = makeJson("list", null, null, null)
 
 setInterval(() => {
   sendMessage(v);
-  $('.modal-body').scrollTop($('.msg-body')[0].scrollHeight);
 }, 500);
 
 
@@ -91,7 +90,7 @@ function sendMessage (m){
   if(json.type=='invite'){
     for(let t of json.value){
       $(".msg").append(makeRecv(t.value, t.senderId, t.receiveId, getTimeString(t.sendTime)));
-      
+
     }
 
   }
@@ -100,7 +99,9 @@ function sendMessage (m){
   if (json.type == 'msg') { // 타입이 msg인 경우
     let timeString = getTimeString(json.sendTime); // getTimeString 함수를 호출하여 시간 정보를 문자열로 변환
     $(".msg").append(makeRecv(json.value, json.senderId, json.receiveId, timeString)); // makeRecv 함수 호출하여 채팅 메세지 출력
-    
+    setInterval(() => {
+      $('.modal-body').scrollTop($('.msg-body')[0].scrollHeight);
+    }, 500);
   }
 
 }
@@ -207,22 +208,27 @@ $("#chat-list").on('click','.friend' ,function (e) {
   `;
   $(".chatbox").append(chattingroom);
 
-  $('.msg-body').scrollTop($('.msg-body')[0].scrollHeight);
 
   $(".chatbox").css("display", "block")
 
-  //나가기 버튼 눌렀을때
-  $(".chatbox").on('click','.dropdown-item' ,function (e) {
-    $(".chatbox").empty();
-  })
+  $("#map").css("display", "none")
 
 
+
+  
+  
   //스크롤 하단으로 내리기
   setTimeout(function() {
-     $('.modal-body').scrollTop($('.msg-body')[0].scrollHeight);
-   }, 500);
-
-
+    $('.modal-body').scrollTop($('.msg-body')[0].scrollHeight);
+  }, 500);
+  
+  /////////////////
+  //나가기 버튼 눌렀을때
+  $(".chatbox").on('click','.dropdown-item' ,function (e) {
+    console.log("클릭")
+    $(".chatbox").empty();
+  })
+  
 })
 
 

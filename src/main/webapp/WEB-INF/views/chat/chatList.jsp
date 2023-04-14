@@ -11,6 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHAT</title>
 
+    <c:import url="../template/common_css.jsp"></c:import>
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -18,13 +20,13 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+        crossorigin="anonymous"></script> -->
+    <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
-    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5211c78ede13565f054a7d30da0ff316"></script>
+    <!-- <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5211c78ede13565f054a7d30da0ff316"></script> -->
     <!-- <script async src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5211c78ede13565f054a7d30da0ff316&libraries=services"></script> -->
 
     <!-- page-title -->
@@ -205,7 +207,7 @@
 
     <link href="/resources/css/chatList.css" rel="stylesheet">
     <script src="/resources/js/chatList.js"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+	<c:import url="../template/common_js.jsp"></c:import>
 
 
     <script >
@@ -214,7 +216,7 @@
         // console.log("로그인 아이디 :"+id);
     </script>
 
-<script>
+<!-- <script>
   kakao.maps.load(function() {
 //현재 위치(위도 경도) 권한 요청 및 받아오기 
 function getLocation() {
@@ -263,7 +265,7 @@ function getLocation() {
 	getLocation();
 
   });
-</script>
+</script> -->
  
 
 </body>
