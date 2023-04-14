@@ -225,7 +225,6 @@ $("#chat-list").on('click','.friend' ,function (e) {
   /////////////////
   //나가기 버튼 눌렀을때
   $(".chatbox").on('click','.dropdown-item' ,function (e) {
-    console.log("클릭")
     $(".chatbox").empty();
   })
   
