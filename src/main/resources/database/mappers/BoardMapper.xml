@@ -53,7 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
 		INSERT INTO BOARD
-		VALUES(#{boardNum}, #{memberId}, #{boardTitle}, #{boardContents}, SYSDATE, 0)
+		VALUES(#{boardNum}, #{memberId}, #{boardTitle}, #{boardContents}, SYSDATE)
 	</insert>
 	
 	<!-- UPDATE -->
