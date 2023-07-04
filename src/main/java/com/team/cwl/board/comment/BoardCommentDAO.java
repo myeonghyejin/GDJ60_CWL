@@ -49,8 +49,12 @@ public class BoardCommentDAO {
 		return sqlSession.update(NAMESPACE+"setStepUpdate", boardCommentDTO);
 	}
 	
-	public int setBoardCommentCountUpdate(BoardDTO boardDTO) throws Exception {
-		return sqlSession.update(NAMESPACE+"setBoardCommentCountUpdate", boardDTO);
+	public int setBoardCommentCountAdd(BoardDTO boardDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"setBoardCommentCountAdd", boardDTO);
+	}
+	
+	public int setBoardCommentCountDelete(BoardDTO boardDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"setBoardCommentCountDelete", boardDTO);
 	}
 	
 	/** DELETE **/

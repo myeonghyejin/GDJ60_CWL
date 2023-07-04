@@ -37,12 +37,15 @@ public class BoardCommentController {
 	
 	/** INSERT **/
 	@PostMapping("add")
-	public ModelAndView setBoardCommentAdd(BoardCommentDTO boardCommentDTO, HttpSession session, ModelAndView modelAndView) throws Exception {
+	public ModelAndView setBoardCommentAdd(BoardCommentDTO boardCommentDTO, BoardDTO boardDTO, HttpSession session, ModelAndView modelAndView) throws Exception {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		
 		boardCommentDTO.setMemberId(memberDTO.getMemberId());
 		
 		int result = boardCommentService.setBoardCommentAdd(boardCommentDTO, null);
+		
+		if(result == 1) {
+			boardCommentService.setBoardCommentCountAdd(boardDTO);
+		}
 		
 		modelAndView.addObject("result", result);
 		modelAndView.setViewName("common/ajaxResult");
@@ -53,13 +56,12 @@ public class BoardCommentController {
 	@PostMapping("reply")
 	public ModelAndView setBoardCommentReplyAdd(BoardCommentDTO boardCommentDTO, BoardDTO boardDTO, HttpSession session, ModelAndView modelAndView) throws Exception {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		
 		boardCommentDTO.setMemberId(memberDTO.getMemberId());
 		
 		int result = boardCommentService.setBoardCommentReplyAdd(boardCommentDTO, null);
 		
 		if(result == 1) {
-			boardCommentService.setBoardCommentCountUpdate(boardDTO);
+			boardCommentService.setBoardCommentCountAdd(boardDTO);
 		}
 		
 		modelAndView.addObject("result", result);
@@ -81,8 +83,14 @@ public class BoardCommentController {
 	
 	/** DELETE **/
 	@PostMapping("delete")
-	public ModelAndView setBoardCommentDelete(BoardCommentDTO boardCommentDTO, ModelAndView modelAndView) throws Exception {
+	public ModelAndView setBoardCommentDelete(BoardCommentDTO boardCommentDTO, BoardDTO boardDTO, ModelAndView modelAndView) throws Exception {
 		int result = boardCommentService.setBoardCommentDelete(boardCommentDTO, null);
+		
+		System.out.println(result);
+		
+		if(result == 1) {
+			boardCommentService.setBoardCommentCountDelete(boardDTO);
+		}
 		
 		modelAndView.addObject("result", result);
 		modelAndView.setViewName("common/ajaxResult");

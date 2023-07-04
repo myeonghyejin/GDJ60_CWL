@@ -7,7 +7,14 @@
 		<tr class="tr-height">
 			<td width="29px"></td>
 			<td align="center" style="vertical-align: middle;" width="40%">
-				<b>${DTO.memberId}</b>
+				<b>
+					<c:if test="${member.adminCheck eq 0}">
+						${DTO.memberId}
+					</c:if>
+					<c:if test="${member.adminCheck eq 1}">
+						관리자
+					</c:if>
+				</b>
 				<c:if test="${member.memberId eq DTO.memberId}">
 					<p id="me">나</p>
 				</c:if>
@@ -23,7 +30,7 @@
 					<button class="btn btn-info btn-sm update" data-boardcomment-num="${DTO.boardCommentNum}" data-bs-toggle="modal" data-bs-target="#updateModal">수정</button>
 				</c:if>
 				<c:if test="${member.memberId eq DTO.memberId || member.adminCheck eq 1}">
-					<button class="btn btn-danger btn-sm delete" id="del" data-boardcomment-num="${DTO.boardCommentNum}">삭제</button>
+					<button class="btn btn-danger btn-sm delete" data-board-num="${DTO.boardNum}" data-boardcomment-num="${DTO.boardCommentNum}">삭제</button>
 				</c:if>
 			</td>
 		</tr>

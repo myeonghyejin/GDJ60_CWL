@@ -31,7 +31,18 @@
 						<p class="fs-4 fw-bold text-center border-bottom border-dark pb-4">${DTO.boardTitle}</p>
 					</div>
 					<div class="row my-4 mx-auto text-center">
-						<p class="fs-6"><b>글 번호</b>&ensp;${DTO.boardNum}&emsp;<b>작성자</b>&ensp;${DTO.memberId}&emsp;<b>날짜</b>&ensp;${DTO.boardDate}&emsp;<b>조회수</b>&ensp;${DTO.boardHit+1}</p>
+						<p class="fs-6">
+							<b>글 번호</b>&ensp;${DTO.boardNum}&emsp;
+							<b>작성자</b>&ensp;
+								<c:if test="${member.adminCheck eq 0}">
+									${DTO.memberId}
+								</c:if>
+								<c:if test="${member.adminCheck eq 1}">
+									관리자
+								</c:if>&emsp;
+							<b>날짜</b>&ensp;${DTO.boardDate}&emsp;
+							<b>조회수</b>&ensp;${DTO.boardHit+1}
+						</p>
 					</div>
 					<div class="row col-8 my-4 justify-content-center mx-auto">
 						<p class="fs-4">${DTO.boardContents}</p>
@@ -123,9 +134,9 @@
 		</div>
 
 	</div>
-	<c:import url="../template/common_js.jsp"></c:import>
-	<c:import url="../template/footer.jsp"></c:import>
-	<script src="/resources/js/board/comment.js"></script>
+<c:import url="../template/common_js.jsp"></c:import>
+<c:import url="../template/footer.jsp"></c:import>
+<script src="/resources/js/board/comment.js"></script>
 	<script>
 		/* 삭제 버튼 */
 		const d = document.getElementById("delete");

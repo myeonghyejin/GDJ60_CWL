@@ -56,8 +56,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE BOARDCOMMENTREF = #{boardCommentRef} AND BOARDCOMMENTSTEP > #{boardCommentStep}
 	</update>
 	
-	<update id="setBoardCommentCountUpdate" parameterType="Long">
+	<update id="setBoardCommentCountAdd" parameterType="Long">
 		UPDATE BOARD SET BOARDCOMMENTCOUNT = BOARDCOMMENTCOUNT + 1
+		WHERE BOARDNUM = #{boardNum}
+	</update>
+	
+	<update id="setBoardCommentCountDelete" parameterType="Long">
+		UPDATE BOARD SET BOARDCOMMENTCOUNT = BOARDCOMMENTCOUNT - 1
 		WHERE BOARDNUM = #{boardNum}
 	</update>
 	

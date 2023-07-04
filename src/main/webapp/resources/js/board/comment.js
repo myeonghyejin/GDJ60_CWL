@@ -42,23 +42,24 @@ $("#boardCommentAdd").click(function(){
 //delete
 $("#boardCommentListResult").on("click",".delete",function(e){
 	let check = window.confirm("삭제하시겠습니까?");
+	console.log($(this).attr('data-board-num'))
     if(check) {
-	    fetch("../board/comment/delete", {
-	        method:'POST',
-	        headers:{
-	           "Content-type":"application/x-www-form-urlencoded"
-	       },
-	       body:"boardCommentNum="+$(this).attr("data-boardcomment-num")
-	       }).then((response)=>{return response.text()})
-	         .then((res)=>{
-	           if(res.trim()!=0){
-					alert('댓글이 삭제되었습니다.');
-					getList(1);
-	           }else {
-	               alert('삭제 실패!');
-	           }
-	         })
-	         e.preventDefault();
+    	$.ajax({
+    		url:'../board/comment/delete',
+    		type:'POST',
+    		data:{
+    			'boardNum': $(this).attr('data-board-num'),
+    			'boardCommentNum': $(this).attr('data-boardcomment-num')
+    		},
+    		success:(res)=>{
+    			if(res.trim()==1){
+    				alert('댓글이 삭제되었습니다.');
+    				getList(1);
+    			} else {
+    				alert('삭제 실패!')
+    			}
+    		}
+    	})
 	}
 })
 

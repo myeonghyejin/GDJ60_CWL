@@ -54,8 +54,12 @@ public class BoardCommentService {
 		return boardCommentDAO.setBoardCommentUpdate(boardCommentDTO);
 	}
 	
-	public int setBoardCommentCountUpdate(BoardDTO boardDTO) throws Exception {
-		return boardCommentDAO.setBoardCommentCountUpdate(boardDTO);
+	public int setBoardCommentCountAdd(BoardDTO boardDTO) throws Exception {
+		return boardCommentDAO.setBoardCommentCountAdd(boardDTO);
+	}
+	
+	public int setBoardCommentCountDelete(BoardDTO boardDTO) throws Exception {
+		return boardCommentDAO.setBoardCommentCountDelete(boardDTO);
 	}
 	
 	/** DELETE **/

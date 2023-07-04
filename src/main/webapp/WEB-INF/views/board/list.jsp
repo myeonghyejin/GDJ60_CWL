@@ -47,7 +47,14 @@
 							<td>
 								<a href="./detail?boardNum=${DTO.boardNum}">${DTO.boardTitle} <b>[${DTO.boardCommentCount}]</b></a>
 							</td>
-							<td>${DTO.memberId}</td>
+							<td>
+								<c:if test="${member.adminCheck eq 0}">
+									${DTO.memberId}
+								</c:if>
+								<c:if test="${member.adminCheck eq 1}">
+									관리자
+								</c:if>
+							</td>
 							<td>${DTO.boardDate}</td>
 							<td>${DTO.boardHit}</td>
 						</tr>
