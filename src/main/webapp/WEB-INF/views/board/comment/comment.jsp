@@ -8,10 +8,10 @@
 			<td width="29px"></td>
 			<td align="center" style="vertical-align: middle;" width="40%">
 				<b>
-					<c:if test="${member.adminCheck eq 0}">
+					<c:if test="${DTO.memberId ne 'admin'}">
 						${DTO.memberId}
 					</c:if>
-					<c:if test="${member.adminCheck eq 1}">
+					<c:if test="${DTO.memberId eq 'admin'}">
 						관리자
 					</c:if>
 				</b>

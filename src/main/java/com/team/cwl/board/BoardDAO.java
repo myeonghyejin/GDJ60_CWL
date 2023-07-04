@@ -22,6 +22,10 @@ public class BoardDAO {
 	public List<BoardDTO> getBoardList(Pagination pagination) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"getBoardList", pagination);
 	}
+	
+	public List<BoardDTO> getNoticeList(BoardDTO boardDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getNoticeList", boardDTO);
+	}
 
 	public BoardDTO getBoardDetail(BoardDTO boardDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"getBoardDetail", boardDTO);

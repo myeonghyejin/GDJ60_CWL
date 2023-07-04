@@ -37,6 +37,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
   	</select>
   	
+  	<select id="getNoticeList" resultType="BoardDTO" parameterType="BoardDTO">
+  		SELECT * FROM BOARD
+  		WHERE NOTICE = 1
+  		ORDER BY BOARDNUM DESC
+  	</select>
+  	
   	<select id="getBoardDetail" resultType="BoardDTO" parameterType="BoardDTO">
   		SELECT * FROM BOARD
   		WHERE BOARDNUM = #{boardNum}

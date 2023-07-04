@@ -63,7 +63,7 @@ public class OrderServiceImpl implements OrderService {
 		// 회원정보
 		MemberDTO member = memberMapper.getMemberInfo(ord.getMemberId());
 		// 주문정보
-		List<OrderItemDTO> ords = new ArrayList<>();
+		List<OrderItemDTO> ords = new ArrayList<OrderItemDTO>();
 		for(OrderItemDTO oit : ord.getOrders()) {
 			OrderItemDTO orderItem = orderMapper.getOrderInfo(oit.getProductNum());
 			// 수량 세팅

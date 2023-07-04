@@ -14,7 +14,16 @@
 			<td class="detail" id="productQnATitle${DTO.productQnANum}" data-productqna-num="${DTO.productQnANum}" width="50%" style="vertical-align: middle;">
 				<a data-productqna-num="${DTO.productQnANum}"><b>${DTO.productQnATitle}</b></a>
 			</td>
-			<td align="center"><b>${DTO.memberId}</b></td>
+			<td align="center">
+				<b>
+					<c:if test="${DTO.memberId ne 'admin'}">
+						${DTO.memberId}
+					</c:if>
+					<c:if test="${DTO.memberId eq 'admin'}">
+						관리자
+					</c:if>
+				</b>
+			</td>
 			<td align="right">${DTO.productQnADate}</td>
 			<td align="right">
 				<c:if test="${member.adminCheck eq 1}">
@@ -23,7 +32,7 @@
 				<c:if test="${member.memberId eq DTO.memberId}">
 					<a href="./qna/update?productQnANum=${DTO.productQnANum}&productNum=${DTO.productNum}" class="btn btn-info btn-sm" data-productqna-num="${DTO.productQnANum}">수정</a>
 				</c:if>
-				<c:if test="${member.memberId eq DTO.memberId}">
+				<c:if test="${member.memberId eq DTO.memberId || member.adminCheck eq 1}">
 					<button class="btn btn-danger btn-sm delete" data-productqna-num="${DTO.productQnANum}">삭제</button>
 				</c:if>
 			</td>

@@ -42,16 +42,20 @@
 				</thead>
 				<tbody>
 					<c:forEach items="${list}" var="DTO">
+						<c:if test="${DTO.notice eq 1}">
+							<tr class="notice" style="background-color: #fbfae1;">
+							</tr>
+						</c:if>
 						<tr>
 							<td>${DTO.boardNum}</td>
 							<td>
 								<a href="./detail?boardNum=${DTO.boardNum}">${DTO.boardTitle} <b>[${DTO.boardCommentCount}]</b></a>
 							</td>
 							<td>
-								<c:if test="${member.adminCheck eq 0}">
+								<c:if test="${DTO.memberId ne 'admin'}">
 									${DTO.memberId}
 								</c:if>
-								<c:if test="${member.adminCheck eq 1}">
+								<c:if test="${DTO.memberId eq 'admin'}">
 									관리자
 								</c:if>
 							</td>
@@ -118,8 +122,24 @@
 	 	</c:if>
 	 	
 </div>
-	<c:import url="../template/common_js.jsp"></c:import>
-	<c:import url="../template/footer.jsp"></c:import>
-	<script src="../resources/js/common/pagination.js"></script>
+<c:import url="../template/common_js.jsp"></c:import>
+<c:import url="../template/footer.jsp"></c:import>
+<script src="../resources/js/common/pagination.js"></script>
+<script>
+	$(document).ready(function(){
+	
+	    $.ajax({
+	        url: "../board/notice",
+	        type: "GET",
+	        data : {
+	            "notice": 1
+	        },
+	        success: function(result) {
+	            $(".notice").prepend(result);
+	        }
+	    })
+	
+	})
+</script>
 </body>
 </html>

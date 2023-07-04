@@ -51,6 +51,8 @@ public class BoardDAOTest extends MyTestCase {
 			boardDTO.setBoardContents("테스트입니다.");
 			boardDTO.setBoardDate(date);
 			boardDTO.setBoardHit(0L);
+			boardDTO.setBoardCommentCount(0L);
+			boardDTO.setNotice(0);
 		
 			int result = boardDAO.setBoardAdd(boardDTO);
 		}

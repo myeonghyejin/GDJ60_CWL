@@ -27,6 +27,10 @@ public class BoardService {
 		
 		return boardDAO.getBoardList(pagination);
 	}
+	
+	public List<BoardDTO> getNoticeList(BoardDTO boardDTO) throws Exception {
+		return boardDAO.getNoticeList(boardDTO);
+	}
 
 	public BoardDTO getBoardDetail(BoardDTO boardDTO) throws Exception {
 		return boardDAO.getBoardDetail(boardDTO);

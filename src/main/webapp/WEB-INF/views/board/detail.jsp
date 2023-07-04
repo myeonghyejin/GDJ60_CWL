@@ -34,10 +34,10 @@
 						<p class="fs-6">
 							<b>글 번호</b>&ensp;${DTO.boardNum}&emsp;
 							<b>작성자</b>&ensp;
-								<c:if test="${member.adminCheck eq 0}">
+								<c:if test="${DTO.memberId ne 'admin'}">
 									${DTO.memberId}
 								</c:if>
-								<c:if test="${member.adminCheck eq 1}">
+								<c:if test="${DTO.memberId eq 'admin'}">
 									관리자
 								</c:if>&emsp;
 							<b>날짜</b>&ensp;${DTO.boardDate}&emsp;

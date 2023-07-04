@@ -33,6 +33,16 @@ public class BoardController {
 		return modelAndView;
 	}
 	
+	@GetMapping("notice")
+	public ModelAndView getNoticeList(BoardDTO boardDTO, ModelAndView modelAndView) throws Exception {
+		List<BoardDTO> ar = boardService.getNoticeList(boardDTO);
+		
+		modelAndView.setViewName("board/notice");
+		modelAndView.addObject("notice", ar);
+		
+		return modelAndView;
+	}
+	
 	@GetMapping("detail")
 	public ModelAndView getBoardDetail(BoardDTO boardDTO, Long count, ModelAndView modelAndView) throws Exception {
 		boardDTO = boardService.getBoardDetail(boardDTO);

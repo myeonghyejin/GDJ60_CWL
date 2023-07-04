@@ -10,7 +10,16 @@
 			<td class="detail" id="productReviewTitle${DTO.productReviewNum}" data-productreview-num="${DTO.productReviewNum}" width="40%" style="vertical-align: middle;">
 				<a data-productreview-num="${DTO.productReviewNum}"><b>${DTO.productReviewTitle}</b></a>
 			</td>
-			<td align="center"><b>${DTO.memberId}</b></td>
+			<td align="center">
+				<b>
+					<c:if test="${DTO.memberId ne 'admin'}">
+						${DTO.memberId}
+					</c:if>
+					<c:if test="${DTO.memberId eq 'admin'}">
+						관리자
+					</c:if>
+				</b>
+			</td>
 			<td id="productRating${DTO.productReviewNum}" align="right" style="text-align: center;">
 				<c:if test="${DTO.productRating eq 1}">
 					★
@@ -33,7 +42,7 @@
 				<c:if test="${member.memberId eq DTO.memberId}">
 					<a href="./review/update?productReviewNum=${DTO.productReviewNum}&productNum=${DTO.productNum}" class="btn btn-info btn-sm" data-productreview-num="${DTO.productReviewNum}">수정</a>
 				</c:if>
-				<c:if test="${member.memberId eq DTO.memberId}">
+				<c:if test="${member.memberId eq DTO.memberId || member.adminCheck eq 1}">
 					<button class="btn btn-danger btn-sm delete" data-productreview-num="${DTO.productReviewNum}">삭제</button>
 				</c:if>
 			</td>
