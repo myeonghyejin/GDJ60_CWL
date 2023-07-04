@@ -42,7 +42,6 @@ $("#boardCommentAdd").click(function(){
 //delete
 $("#boardCommentListResult").on("click",".delete",function(e){
 	let check = window.confirm("삭제하시겠습니까?");
-	console.log($(this).attr('data-board-num'))
     if(check) {
     	$.ajax({
     		url:'../board/comment/delete',

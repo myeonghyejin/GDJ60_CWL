@@ -137,18 +137,18 @@
 <c:import url="../template/common_js.jsp"></c:import>
 <c:import url="../template/footer.jsp"></c:import>
 <script src="/resources/js/board/comment.js"></script>
-	<script>
-		/* 삭제 버튼 */
-		const d = document.getElementById("delete");
+<script>
+	/* 삭제 버튼 */
+	const d = document.getElementById("delete");
 
-		d.addEventListener("click", function(){
-			let check = window.confirm("삭제하시겠습니까?");
-			if(check) {
-				frm.setAttribute("action", "./delete");
-				frm.setAttribute("method", "post");
-				frm.submit();
-			}
-		})
-	</script>
+	d.addEventListener("click", function(){
+		let check = window.confirm("삭제하시겠습니까?");
+		if(check) {
+			frm.setAttribute("action", "./delete");
+			frm.setAttribute("method", "post");
+			frm.submit();
+		}
+	})
+</script>
 </body>
 </html>
