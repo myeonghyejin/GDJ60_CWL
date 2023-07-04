@@ -33,10 +33,12 @@
 		<div class="col-11 mx-auto">
 			<form action="./list" method="get" class="row mx-5 my-5 justify-content-center">
 				<input type="hidden" name="page" value="1" id="page">
-				<button class="btn btn-primary btn-sm btn-category mx-1">별점순</button>
-				<button class="btn btn-primary btn-sm btn-category mx-1">후기 많은순</button>
+				<!-- <button class="btn btn-primary btn-sm btn-category mx-1">별점순</button>
+				<button class="btn btn-primary btn-sm btn-category mx-1">후기 많은순</button> -->
+				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" value="nameOrder">이름순</button>
 				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" value="highPriceOrder">높은 가격순</button>
 				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" value="lowPriceOrder">낮은 가격순</button>
+				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" value="stock">판매 중</button>
 			</form>
 		</div>
 
@@ -106,33 +108,27 @@
 			</div>
 		</div>
 			
-		<!-- Paging -->
+		<!-- Pagination -->
 		<div class="m-auto">
-			<div class="pagination justify-content-center mt-5 pt-4">
+			<div class="pagination justify-content-center my-3">
 				<ul class="list-inline">
-					<li class="list-inline-item ${pagination.page eq 1?'disabled':''}">
-						<a href="./list?page=1&condition=${pagination.condition}&search=${pagination.search}" aria-label="Previous" data-board-page="1">
-							<span aria-hidden="true">&laquo;</span>
-						</a>
-					</li>
-					<li class="list-inline-item ${pagination.prev?'disabled':''}">
-						<a href="./list?page=${pagination.startNum-1}&condition=${pagination.condition}&search=${pagination.search}" aria-label="Previous" data-board-page="${pagination.startNum}">
-							<span aria-hidden="true">&lsaquo;</span>
-						</a>
-					</li>				
+					<c:if test="${pagination.prev}">
+						<li class="list-inline-item">
+							<a href="./list?page=${pagination.startNum-1}&condition=${pagination.condition}&search=${pagination.search}" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+					</c:if>			
 					<c:forEach begin="${pagination.startNum}" end="${pagination.lastNum}" var="page">
-						<li class="list-inline-item"><a href="./list?page=${page}&condition=${pagination.condition}&search=${pagination.search}" data-board-page="${page}">${page}</a></li>
+						<li class="list-inline-item"><a href="./list?page=${page}&condition=${pagination.condition}&search=${pagination.search}">${page}</a></li>
 					</c:forEach>
-					<li class="list-inline-item ${pagination.next eq false ? 'disabled' : ''}">
-						<a href="./list?page=${pagination.lastNum+1}&condition=${pagination.condition}&search=${pagination.search}"  aria-label="Next" data-board-page="${pagination.lastNum}">
-							<span aria-hidden="true">&rsaquo;</span>
-						</a>
-					 </li>
-					 <li class="list-inline-item ${pagination.page eq pagination.totalPage?'disabled' : ''}">
-						<a href="./list?page=${pagination.totalPage}&condition=${pagination.condition}&search=${pagination.search}"  aria-label="Next" data-board-page="${pagination.totalPage}">
-							<span aria-hidden="true">&raquo;</span>
-						</a>
-					</li>
+					<c:if test="${pagination.next}">
+						<li class="list-inline-item">
+							<a href="./list?page=${pagination.lastNum+1}&condition=${pagination.condition}&search=${pagination.search}" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+							</a>
+						 </li>
+					 </c:if>
 				</ul>	
 			</div>
 		</div>
@@ -149,6 +145,6 @@
 </div>
 	<c:import url="../template/common_js.jsp"></c:import>
 	<c:import url="../template/footer.jsp"></c:import>
-	<script src="../resources/js/common/paging.js"></script>
+	<script src="../resources/js/common/pagination.js"></script>
 </body>
 </html>

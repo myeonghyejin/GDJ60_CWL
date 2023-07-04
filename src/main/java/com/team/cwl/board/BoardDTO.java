@@ -13,6 +13,8 @@ public class BoardDTO{
 	private String boardContents;
 	private Date boardDate;
 	private Long boardHit;
+	private Long boardCommentCount;
+	private Integer notice;
 	
 	private BoardCommentDTO boardCommentDTOs;
 	
@@ -51,6 +53,18 @@ public class BoardDTO{
 	}
 	public void setBoardHit(Long boardHit) {
 		this.boardHit = boardHit;
+	}
+	public Long getBoardCommentCount() {
+		return boardCommentCount;
+	}
+	public void setBoardCommentCount(Long boardCommentCount) {
+		this.boardCommentCount = boardCommentCount;
+	}
+	public Integer getNotice() {
+		return notice;
+	}
+	public void setNotice(Integer notice) {
+		this.notice = notice;
 	}
 	
 	public BoardCommentDTO getBoardCommentDTOs() {

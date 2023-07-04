@@ -13,11 +13,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   				WHERE PRODUCTNAME LIKE '%' || #{search} || '%'
     			ORDER BY PRODUCTNUM DESC
   			</when>
+  			<when test="condition == 'nameOrder'">
+  				ORDER BY PRODUCTNAME ASC
+  			</when>
   			<when test="condition == 'lowPriceOrder'">
   				ORDER BY PRODUCTPRICE ASC
   			</when>
   			<when test="condition == 'highPriceOrder'">
   				ORDER BY PRODUCTPRICE DESC
+  			</when>
+  			<when test="condition == 'stock'">
+  				WHERE PRODUCTSTOCK NOT IN 0
+  				ORDER BY PRODUCTNUM DESC
   			</when>
   			<otherwise>
   				ORDER BY PRODUCTNUM DESC

@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   				WHERE RECIPEBASE = #{recipeBase}
   			</when>
   			<otherwise>
-  				ORDER BY RECIPENUM DESC
+  				ORDER BY RECIPETITLE ASC
   			</otherwise>
   		</choose>
 	</sql>

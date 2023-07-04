@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.team.cwl.board.BoardDTO;
 import com.team.cwl.util.Pagination;
 
 @Service
@@ -51,6 +52,10 @@ public class BoardCommentService {
 	/** UPDATE **/
 	public int setBoardCommentUpdate(BoardCommentDTO boardCommentDTO) throws Exception {
 		return boardCommentDAO.setBoardCommentUpdate(boardCommentDTO);
+	}
+	
+	public int setBoardCommentCountUpdate(BoardDTO boardDTO) throws Exception {
+		return boardCommentDAO.setBoardCommentCountUpdate(boardDTO);
 	}
 	
 	/** DELETE **/

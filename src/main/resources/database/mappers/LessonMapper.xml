@@ -13,6 +13,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   				WHERE LESSONTITLE LIKE '%' || #{search} || '%'
 				ORDER BY LESSONNUM DESC
   			</when>
+  			<when test="condition == 'hitOrder'">
+  				ORDER BY LESSONHIT DESC
+  			</when>
   			<when test="condition == 'nameOrder'">
   				ORDER BY LESSONTITLE ASC
   			</when>

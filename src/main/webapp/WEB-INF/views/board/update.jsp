@@ -35,6 +35,12 @@
 		<form action="./update" method="post" id="frm">
 			<input type="hidden" name="memberId" value="${member.memberId}">
 			<input type="hidden" name="boardNum" value="${DTO.boardNum}">
+			<c:if test="${member.adminCheck eq 1}">
+				<input type="hidden" name="notice" value="1">
+			</c:if>
+			<c:if test="${member.adminCheck eq 0}">
+				<input type="hidden" name="notice" value="0">
+			</c:if>
 			<div class="row col-8 mx-auto my-5">
 				<div class="col-12">
 					<label for="boardTitle" class="form-label fw-bold fs-5">제목</label>

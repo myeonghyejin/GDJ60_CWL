@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.cwl.board.BoardDTO;
 import com.team.cwl.member.MemberDTO;
 import com.team.cwl.util.Pagination;
 
@@ -50,12 +51,16 @@ public class BoardCommentController {
 	}
 	
 	@PostMapping("reply")
-	public ModelAndView setBoardCommentReplyAdd(BoardCommentDTO boardCommentDTO, HttpSession session, ModelAndView modelAndView) throws Exception {
+	public ModelAndView setBoardCommentReplyAdd(BoardCommentDTO boardCommentDTO, BoardDTO boardDTO, HttpSession session, ModelAndView modelAndView) throws Exception {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		
 		boardCommentDTO.setMemberId(memberDTO.getMemberId());
 		
 		int result = boardCommentService.setBoardCommentReplyAdd(boardCommentDTO, null);
+		
+		if(result == 1) {
+			boardCommentService.setBoardCommentCountUpdate(boardDTO);
+		}
 		
 		modelAndView.addObject("result", result);
 		modelAndView.setViewName("common/ajaxResult");

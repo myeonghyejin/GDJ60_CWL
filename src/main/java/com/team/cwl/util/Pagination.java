@@ -217,14 +217,8 @@ public class Pagination {
 		this.lastNum = curBlock * this.getPerBlock();
 		
 		//이전 블록, 다음 블록 유무
-		if(curBlock == 1) {
-			this.prev = true;
-		}
-		
-		this.next = true;
 		if(curBlock == totalBlock) {
 			this.lastNum = totalPage;
-			this.next = false;
 		}
 	}
 	

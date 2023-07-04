@@ -32,7 +32,7 @@
 					</div>
 					<div class="row mx-auto">
 						<p class="fs-4 fw-bold text-center">${DTO.lessonTitle}</p>
-						<p class="fs-6 text-center border-bottom border-dark pb-4"><b>크리에이터</b>&ensp;${DTO.lessonTeacher}&emsp;<b>날짜</b>&ensp;${DTO.lessonDate}&emsp;<b>조회 수</b>&ensp;${DTO.lessonHit+1}</p>
+						<p class="fs-6 text-center border-bottom border-dark pb-4"><b>크리에이터</b>&ensp;${DTO.lessonTeacher}&emsp;<b>날짜</b>&ensp;${DTO.lessonDate}&emsp;<b>조회수</b>&ensp;${DTO.lessonHit+1}</p>
 					</div>
 					<div class="row col-8 my-4 mx-auto" align="center">
 						<p class="fs-4">${DTO.lessonContents}</p>
