@@ -53,7 +53,7 @@
 				<div class="row">
 					<c:if test="${not empty DTO.productReviewImgDTOs}">
 						<c:forEach items="${DTO.productReviewImgDTOs}" var="imgDTO">
-							<img src="/resources/upload/product/review/${imgDTO.imgName}" alt="product_review_image">
+							<img src="/resources/upload/product/review/${imgDTO.imgName}" alt="product_review_image" style="max-width: 30%; height: auto;"">
 						</c:forEach>
 					</c:if>
 				</div>

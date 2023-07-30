@@ -41,11 +41,18 @@
 					</tr>
 				</thead>
 				<tbody>
+					<c:forEach items="${notice}" var="notice">
+						<tr style="background-color: #fbfae1;">
+							<td>${notice.boardNum}</td>
+							<td>
+								<a href="./detail?boardNum=${notice.boardNum}">${notice.boardTitle} <b>[${notice.boardCommentCount}]</b></a>
+							</td>
+							<td>관리자</td>
+							<td>${notice.boardDate}</td>
+							<td>${notice.boardHit}</td>
+						</tr>
+					</c:forEach>
 					<c:forEach items="${list}" var="DTO">
-						<c:if test="${DTO.notice eq 1}">
-							<tr class="notice" style="background-color: #fbfae1;">
-							</tr>
-						</c:if>
 						<tr>
 							<td>${DTO.boardNum}</td>
 							<td>

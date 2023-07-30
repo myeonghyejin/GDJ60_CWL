@@ -24,21 +24,13 @@ public class BoardController {
 	
 	/** SELECT **/
 	@GetMapping("list")
-	public ModelAndView getBoardList(Pagination pagination, ModelAndView modelAndView) throws Exception {
+	public ModelAndView getBoardList(Pagination pagination, BoardDTO boardDTO, ModelAndView modelAndView) throws Exception {
 		List<BoardDTO> ar = boardService.getBoardList(pagination);
+		List<BoardDTO> ar2 = boardService.getNoticeList(boardDTO);
 		
 		modelAndView.setViewName("board/list");
 		modelAndView.addObject("list", ar);
-		
-		return modelAndView;
-	}
-	
-	@GetMapping("notice")
-	public ModelAndView getNoticeList(BoardDTO boardDTO, ModelAndView modelAndView) throws Exception {
-		List<BoardDTO> ar = boardService.getNoticeList(boardDTO);
-		
-		modelAndView.setViewName("board/notice");
-		modelAndView.addObject("notice", ar);
+		modelAndView.addObject("notice", ar2);
 		
 		return modelAndView;
 	}

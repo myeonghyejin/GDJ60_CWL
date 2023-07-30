@@ -65,42 +65,38 @@
 					<div class="col-lg-4 col-6 mb-4 shuffle-item">
 						<div class="position-relative inner-box">
 							<div class="image position-relative">
-								<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-									<div class="carousel-inner">
-										<c:set var="loop_flag" value="false"/>
-										<c:forEach items="${DTO.productImgDTOs}" var="imgDTO" varStatus="index">
-											<c:if test="${index.end eq 0}">
-												<div class="carousel-item">
-													<img src="/resources/upload/product/${imgDTO.imgName}" alt="product-image" class="img-fluid w-100 d-block">
-												</div>
-												<c:set var="loop_flag" value="true"/>
-											</c:if>
-											
-											<c:choose>
-												<c:when test="${index.index eq 0}">
-													<div class="carousel-item active">
-														<img src="/resources/upload/product/${imgDTO.imgName}" alt="product-image" class="img-fluid w-100 d-block">
-													</div>
-												</c:when>
-												<c:otherwise>
+								<a href="./detail?productNum=${DTO.productNum}">
+									<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+										<div class="carousel-inner">
+											<c:set var="loop_flag" value="false"/>
+											<c:forEach items="${DTO.productImgDTOs}" var="imgDTO" varStatus="index">
+												<c:if test="${index.end eq 0}">
 													<div class="carousel-item">
 														<img src="/resources/upload/product/${imgDTO.imgName}" alt="product-image" class="img-fluid w-100 d-block">
 													</div>
-												</c:otherwise>
-											</c:choose>
-										</c:forEach>
-									</div>
-								</div>
-								<a href="./detail?productNum=${DTO.productNum}">
-									<div class="overlay-box">
-										<div class="overlay-inner">
-											<div class="overlay-content">
-												<h5 class="mb-0"><b>${DTO.productName}</b></h5>
-												<p>${DTO.productPrice}원</p>
-											</div>
+													<c:set var="loop_flag" value="true"/>
+												</c:if>
+												
+												<c:choose>
+													<c:when test="${index.index eq 0}">
+														<div class="carousel-item active">
+															<img src="/resources/upload/product/${imgDTO.imgName}" alt="product-image" class="img-fluid w-100 d-block">
+														</div>
+													</c:when>
+													<c:otherwise>
+														<div class="carousel-item">
+															<img src="/resources/upload/product/${imgDTO.imgName}" alt="product-image" class="img-fluid w-100 d-block">
+														</div>
+													</c:otherwise>
+												</c:choose>
+											</c:forEach>
 										</div>
 									</div>
 								</a>
+								<div class="row my-2" align="center">
+									<p><b>${DTO.productName}</b></p>
+									<p>${DTO.productPrice}원</p>
+								</div>
 							</div> 
 						</div>
 					</div>
