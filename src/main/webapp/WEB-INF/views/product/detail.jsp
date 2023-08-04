@@ -72,16 +72,27 @@
 										</span>
 									</div>
 									<div class="row align-items-end">
-										<div class="col-lg-6 col-md-4 col-12">
-											<div class="wish-button">
-												<a class="btn btn_cart">Add to Cart</a>
-											</div>
-										</div>
-										<div class="col-lg-6 col-md-4 col-12">
-											<div class="wish-button">
-												<a class="btn btn_buy">Buy Now</a>
-											</div>
-										</div>										
+										<c:choose>
+											<c:when test="${DTO.productStock ne 0}">
+												<div class="col-lg-6 col-md-4 col-12">
+													<div class="wish-button">
+														<a class="btn btn_cart">Add to Cart</a>
+													</div>
+												</div>
+												<div class="col-lg-6 col-md-4 col-12">
+													<div class="wish-button">
+														<a class="btn btn_buy">Buy Now</a>
+													</div>
+												</div>	
+											</c:when>
+											<c:otherwise>
+												<div class="row my-3">
+													<div class="wish-button">
+														<a class="btn_disabled">Out of Stock</a>
+													</div>
+												</div>
+											</c:otherwise>
+										</c:choose>									
 									</div>
 								</div>	
 							</div>
