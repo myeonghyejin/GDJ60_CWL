@@ -38,7 +38,7 @@
 				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" value="nameOrder">이름순</button>
 				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" value="highPriceOrder">높은 가격순</button>
 				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" value="lowPriceOrder">낮은 가격순</button>
-				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" value="stock">판매 중</button>
+				<button type="submit" class="btn btn-primary btn-sm btn-category mx-1" name="condition" value="state">판매 중</button>
 			</form>
 		</div>
 

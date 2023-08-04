@@ -73,7 +73,7 @@
 									</div>
 									<div class="row align-items-end">
 										<c:choose>
-											<c:when test="${DTO.productStock ne 0}">
+											<c:when test="${DTO.productStock ne 0 && DTO.productState eq 1}">
 												<div class="col-lg-6 col-md-4 col-12">
 													<div class="wish-button">
 														<a class="btn btn_cart">Add to Cart</a>

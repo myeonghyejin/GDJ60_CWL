@@ -22,12 +22,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   			<when test="condition == 'highPriceOrder'">
   				ORDER BY PRODUCTPRICE DESC
   			</when>
-  			<when test="condition == 'stock'">
-  				WHERE PRODUCTSTOCK NOT IN 0
+  			<when test="condition == 'state'">
+  				WHERE PRODUCTSTATE NOT IN 0
   				ORDER BY PRODUCTNUM DESC
   			</when>
   			<otherwise>
-  				ORDER BY PRODUCTNUM DESC
+  				ORDER BY PRODUCTSTATE DESC, PRODUCTNUM DESC
   			</otherwise>
   		</choose>
 	</sql>
